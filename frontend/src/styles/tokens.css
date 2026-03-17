@@ -1,0 +1,187 @@
+/* ═══════════════════════════════════════════════════════════
+   MK APP — Urban Company Design System
+   Exact color tokens, typography, spacing, elevations
+═══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap');
+
+:root {
+  /* ── Brand Colors ────────────────────────────── */
+  --color-brand:        #f15c22;   /* UC exact orange */
+  --color-brand-dark:   #d94f1a;
+  --color-brand-light:  #fff3ee;
+  --color-brand-mid:    #fde4d7;
+
+  /* ── Neutrals ────────────────────────────────── */
+  --color-ink-900:  #1c1c1e;
+  --color-ink-800:  #2d2d30;
+  --color-ink-700:  #3a3a3c;
+  --color-ink-600:  #555558;
+  --color-ink-500:  #6e6e73;
+  --color-ink-400:  #8e8e93;
+  --color-ink-300:  #aeaeb2;
+  --color-ink-200:  #c7c7cc;
+  --color-ink-100:  #e5e5ea;
+  --color-ink-50:   #f2f2f7;
+  --color-white:    #ffffff;
+
+  /* ── Semantic ────────────────────────────────── */
+  --color-success:      #30d158;
+  --color-success-bg:   #f0fdf4;
+  --color-warning:      #ff9f0a;
+  --color-warning-bg:   #fff8f0;
+  --color-error:        #ff3b30;
+  --color-error-bg:     #fff5f5;
+  --color-info:         #0a84ff;
+  --color-info-bg:      #f0f8ff;
+
+  /* ── Stars ───────────────────────────────────── */
+  --color-star: #f5a623;
+
+  /* ── Typography ──────────────────────────────── */
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body:    'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --text-xs:   11px;
+  --text-sm:   13px;
+  --text-base: 15px;
+  --text-md:   17px;
+  --text-lg:   20px;
+  --text-xl:   24px;
+  --text-2xl:  30px;
+  --text-3xl:  38px;
+  --text-4xl:  48px;
+
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semi:    600;
+  --weight-bold:    700;
+  --weight-heavy:   800;
+
+  --leading-tight:  1.2;
+  --leading-snug:   1.35;
+  --leading-normal: 1.55;
+  --leading-relaxed:1.75;
+
+  --tracking-tight: -0.02em;
+  --tracking-snug:  -0.01em;
+  --tracking-wide:  0.02em;
+  --tracking-wider: 0.06em;
+
+  /* ── Spacing ─────────────────────────────────── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-7:  28px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+
+  /* ── Border Radius ───────────────────────────── */
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   14px;
+  --radius-xl:   20px;
+  --radius-2xl:  28px;
+  --radius-full: 9999px;
+
+  /* ── Elevations ──────────────────────────────── */
+  --shadow-xs:  0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-sm:  0 2px 8px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.09), 0 2px 6px rgba(0,0,0,0.06);
+  --shadow-lg:  0 8px 30px rgba(0,0,0,0.11), 0 3px 10px rgba(0,0,0,0.07);
+  --shadow-xl:  0 16px 48px rgba(0,0,0,0.14), 0 6px 16px rgba(0,0,0,0.08);
+  --shadow-brand: 0 6px 20px rgba(241,92,34,0.30);
+  --shadow-brand-lg: 0 12px 36px rgba(241,92,34,0.36);
+
+  /* ── Transitions ─────────────────────────────── */
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:    cubic-bezier(0.4, 0, 1, 1);
+  --ease-inout: cubic-bezier(0.45, 0, 0.55, 1);
+  --ease-spring:cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast:   120ms;
+  --dur-base:   200ms;
+  --dur-slow:   320ms;
+  --dur-slower: 500ms;
+
+  /* ── Layout ──────────────────────────────────── */
+  --max-width:  1280px;
+  --nav-height: 68px;
+  --sidebar-w:  280px;
+}
+
+/* ── Global Reset ─────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-ink-900);
+  background: var(--color-ink-50);
+  line-height: var(--leading-normal);
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, textarea, select { font-family: inherit; }
+img { display: block; max-width: 100%; }
+
+/* ── Scrollbar ────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-ink-200); border-radius: var(--radius-full); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-ink-300); }
+
+/* ── Utility Animations ───────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Skeleton shimmer ─────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s ease infinite;
+  border-radius: var(--radius-md);
+}
+
+/* ── Focus ring ───────────────────────────────── */
+:focus-visible {
+  outline: 2.5px solid var(--color-brand);
+  outline-offset: 2px;
+}

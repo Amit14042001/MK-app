@@ -1,0 +1,289 @@
+name: MK App — Build Android & iOS
+
+on:
+  push:
+    branches: [main, release]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+
+env:
+  NODE_VERSION: '20'
+  JAVA_VERSION: '17'
+  RUBY_VERSION: '3.2'
+
+# ── Jobs ──────────────────────────────────────────────────────
+jobs:
+
+  # ── Android Customer App ─────────────────────────────────────
+  android-customer:
+    name: 📱 Android — Customer App
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mobile
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: mobile/package-lock.json
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('mobile/android/**/*.gradle*') }}
+          restore-keys: gradle-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Create google-services.json
+        run: |
+          echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > android/app/google-services.json
+
+      - name: Create debug keystore
+        run: |
+          keytool -genkey -v \
+            -keystore android/app/debug.keystore \
+            -storepass android -alias androiddebugkey -keypass android \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname "CN=MK,OU=MK,O=MK,L=HYD,ST=TS,C=IN" 2>/dev/null
+
+      - name: Create release keystore
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          echo '${{ secrets.RELEASE_KEYSTORE_BASE64 }}' | base64 -d > android/app/release.keystore
+          echo "storeFile=app/release.keystore"                 > android/keystore.properties
+          echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" >> android/keystore.properties
+          echo "keyAlias=${{ secrets.KEY_ALIAS }}"              >> android/keystore.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}"        >> android/keystore.properties
+
+      - name: Build Debug APK
+        if: "!startsWith(github.ref, 'refs/tags/v')"
+        run: cd android && ./gradlew assembleDebug --no-daemon
+
+      - name: Build Release AAB
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: cd android && ./gradlew bundleRelease --no-daemon
+
+      - name: Upload Debug APK
+        if: "!startsWith(github.ref, 'refs/tags/v')"
+        uses: actions/upload-artifact@v4
+        with:
+          name: mk-customer-debug.apk
+          path: mobile/android/app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 14
+
+      - name: Upload Release AAB
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: actions/upload-artifact@v4
+        with:
+          name: mk-customer-release.aab
+          path: mobile/android/app/build/outputs/bundle/release/app-release.aab
+          retention-days: 90
+
+  # ── Android Professional App ──────────────────────────────────
+  android-professional:
+    name: 🔧 Android — Professional App
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: professional-app
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: professional-app/package-lock.json
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-pro-${{ runner.os }}-${{ hashFiles('professional-app/android/**/*.gradle*') }}
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Create google-services.json
+        run: echo '${{ secrets.GOOGLE_SERVICES_JSON_PRO }}' > android/app/google-services.json
+
+      - name: Create debug keystore
+        run: |
+          keytool -genkey -v \
+            -keystore android/app/debug.keystore \
+            -storepass android -alias androiddebugkey -keypass android \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname "CN=MKPro,OU=MKPro,O=MK,L=HYD,ST=TS,C=IN" 2>/dev/null
+
+      - name: Build Debug APK
+        if: "!startsWith(github.ref, 'refs/tags/v')"
+        run: cd android && ./gradlew assembleDebug --no-daemon
+
+      - name: Build Release AAB
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: cd android && ./gradlew bundleRelease --no-daemon
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: mk-professional-debug.apk
+          path: professional-app/android/app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 14
+
+  # ── iOS Customer App (macOS only) ────────────────────────────
+  ios-customer:
+    name: 🍎 iOS — Customer App
+    runs-on: macos-14   # M1/M2 runner — faster builds
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+    defaults:
+      run:
+        working-directory: mobile
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: mobile/package-lock.json
+
+      - name: Setup Ruby (for CocoaPods)
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: true
+          working-directory: mobile/ios
+
+      - name: Cache CocoaPods
+        uses: actions/cache@v4
+        with:
+          path: mobile/ios/Pods
+          key: pods-${{ runner.os }}-${{ hashFiles('mobile/ios/Podfile.lock') }}
+          restore-keys: pods-${{ runner.os }}-
+
+      - name: Install JS dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Create GoogleService-Info.plist
+        run: |
+          echo '${{ secrets.GOOGLE_SERVICE_INFO_PLIST }}' | base64 -d > ios/MKApp/GoogleService-Info.plist
+
+      - name: Install CocoaPods
+        run: cd ios && pod install --repo-update
+        env:
+          NO_FLIPPER: '1'
+
+      - name: Build iOS (simulator — no signing needed)
+        run: |
+          xcodebuild \
+            -workspace ios/MKApp.xcworkspace \
+            -scheme MKApp \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=latest' \
+            -derivedDataPath ios/build \
+            CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO \
+            build | xcpretty
+
+      - name: Upload iOS build log
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-customer-build-log
+          path: mobile/ios/build/Logs/
+
+  # ── iOS Professional App ──────────────────────────────────────
+  ios-professional:
+    name: 🔧🍎 iOS — Professional App
+    runs-on: macos-14
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+    defaults:
+      run:
+        working-directory: professional-app
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: professional-app/package-lock.json
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          working-directory: professional-app/ios
+
+      - name: Cache CocoaPods
+        uses: actions/cache@v4
+        with:
+          path: professional-app/ios/Pods
+          key: pods-pro-${{ runner.os }}-${{ hashFiles('professional-app/ios/Podfile.lock') }}
+
+      - name: Install JS dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Create GoogleService-Info.plist
+        run: |
+          echo '${{ secrets.GOOGLE_SERVICE_INFO_PLIST_PRO }}' | base64 -d > ios/MKPro/GoogleService-Info.plist
+
+      - name: Install CocoaPods
+        run: cd ios && pod install --repo-update
+        env:
+          NO_FLIPPER: '1'
+
+      - name: Build iOS Simulator
+        run: |
+          xcodebuild \
+            -workspace ios/MKPro.xcworkspace \
+            -scheme MKPro \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=latest' \
+            -derivedDataPath ios/build \
+            CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO \
+            build | xcpretty
+
+# ── Required GitHub Secrets ───────────────────────────────────
+# Set these in: GitHub repo → Settings → Secrets → Actions
+#
+# GOOGLE_SERVICES_JSON          → android/app/google-services.json (customer)
+# GOOGLE_SERVICES_JSON_PRO      → android/app/google-services.json (professional)
+# GOOGLE_SERVICE_INFO_PLIST     → ios/MKApp/GoogleService-Info.plist (base64 encoded)
+# GOOGLE_SERVICE_INFO_PLIST_PRO → ios/MKPro/GoogleService-Info.plist (base64 encoded)
+# RELEASE_KEYSTORE_BASE64       → release.keystore (base64 encoded, for Play Store)
+# KEYSTORE_PASSWORD             → keystore password
+# KEY_ALIAS                     → key alias
+# KEY_PASSWORD                  → key password

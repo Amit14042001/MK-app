@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+
+    <!-- ── App Identity ─────────────────────────────────────── -->
+    <key>CFBundleDisplayName</key>
+    <string>MK</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.mkapp</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>CFBundleName</key>
+    <string>MKApp</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+
+    <!-- ── Orientation ──────────────────────────────────────── -->
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+    </array>
+    <key>UISupportedInterfaceOrientations~ipad</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+
+    <!-- ── Status Bar ───────────────────────────────────────── -->
+    <key>UIStatusBarHidden</key>
+    <false/>
+    <key>UIViewControllerBasedStatusBarAppearance</key>
+    <false/>
+
+    <!-- ── URL Schemes (Deep Links) ─────────────────────────── -->
+    <key>CFBundleURLTypes</key>
+    <array>
+        <!-- Custom scheme: mkapp://booking/123 -->
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>mkapp</string>
+            </array>
+            <key>CFBundleURLName</key>
+            <string>com.mkapp</string>
+        </dict>
+        <!-- Google Sign-In reverse client ID (from GoogleService-Info.plist) -->
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>$(REVERSED_CLIENT_ID)</string>
+            </array>
+        </dict>
+    </array>
+
+    <!-- ── Associated Domains (Universal Links) ─────────────── -->
+    <!-- Enable in Xcode: Signing & Capabilities → Associated Domains -->
+    <!-- Then add: applinks:mkapp.in -->
+
+    <!-- ── Google Maps ──────────────────────────────────────── -->
+    <key>GMSApiKey</key>
+    <string>YOUR_GOOGLE_MAPS_API_KEY</string>
+
+    <!-- ── Privacy Permissions ──────────────────────────────── -->
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>MK uses your location to show nearby professionals and track your booking.</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>MK uses your location in the background to provide accurate tracking during active bookings.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>MK uses your location to track your booking in real time.</string>
+
+    <key>NSCameraUsageDescription</key>
+    <string>MK needs camera access to upload profile photos and review images.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>MK needs photo library access to select profile and review images.</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>MK needs permission to save photos.</string>
+
+    <key>NSContactsUsageDescription</key>
+    <string>MK can help you find friends already using the app.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>MK needs microphone access for support calls.</string>
+
+    <!-- ── Face ID / Biometrics (Razorpay) ──────────────────── -->
+    <key>NSFaceIDUsageDescription</key>
+    <string>MK uses Face ID for faster, secure payments.</string>
+
+    <!-- ── Network ──────────────────────────────────────────── -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <!-- Allow HTTP in development only -->
+        <key>NSAllowsArbitraryLoads</key>
+        <false/>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <!-- Local dev server -->
+            <key>localhost</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+            </dict>
+        </dict>
+    </dict>
+
+    <!-- ── Background Modes ──────────────────────────────────── -->
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>remote-notification</string>
+        <string>location</string>   <!-- For professional GPS tracking -->
+    </array>
+
+    <!-- ── OTP Autofill ─────────────────────────────────────── -->
+    <!-- Enables iOS to suggest OTPs from SMS automatically -->
+    <!-- Requires Associated Domains: webcredentials:mkapp.in -->
+
+    <!-- ── Fonts ─────────────────────────────────────────────── -->
+    <key>UIAppFonts</key>
+    <array>
+        <string>Inter-Regular.ttf</string>
+        <string>Inter-Medium.ttf</string>
+        <string>Inter-SemiBold.ttf</string>
+        <string>Inter-Bold.ttf</string>
+        <string>Inter-ExtraBold.ttf</string>
+        <string>Inter-Black.ttf</string>
+    </array>
+
+    <!-- ── Launch Screen ─────────────────────────────────────── -->
+    <key>UILaunchStoryboardName</key>
+    <string>LaunchScreen</string>
+
+    <!-- ── Hermes JS Engine ──────────────────────────────────── -->
+    <key>HermesEnabled</key>
+    <true/>
+
+</dict>
+</plist>

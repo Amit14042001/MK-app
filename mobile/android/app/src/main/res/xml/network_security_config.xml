@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Network Security Config for MK App
+  - Production: HTTPS only with certificate pinning
+  - Debug: Allow cleartext for local dev server
+-->
+<network-security-config>
+
+    <!-- Production HTTPS enforcement -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">mkapp.in</domain>
+        <domain includeSubdomains="true">api.mkapp.in</domain>
+        <!-- Pin the SSL certificate (update with your cert hash) -->
+        <!--
+        <pin-set expiration="2026-12-31">
+            <pin digest="SHA-256">YOUR_CERT_HASH_HERE=</pin>
+            <pin digest="SHA-256">BACKUP_CERT_HASH_HERE=</pin>
+        </pin-set>
+        -->
+    </domain-config>
+
+    <!-- Development: allow HTTP to localhost and emulator host -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">10.0.2.2</domain>   <!-- Android emulator → host -->
+        <domain includeSubdomains="true">10.0.3.2</domain>   <!-- Genymotion → host -->
+        <domain includeSubdomains="true">192.168.0.0</domain> <!-- Local network dev -->
+    </domain-config>
+
+    <!-- Razorpay payment gateway -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">razorpay.com</domain>
+        <domain includeSubdomains="true">api.razorpay.com</domain>
+    </domain-config>
+
+    <!-- Trust system CAs + user CAs in debug only -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+
+</network-security-config>

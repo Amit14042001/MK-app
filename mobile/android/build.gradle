@@ -1,0 +1,32 @@
+// Top-level build.gradle for MK Customer App
+buildscript {
+    ext {
+        buildToolsVersion = "34.0.0"
+        minSdkVersion    = 24        // Android 7.0+ (covers 97%+ devices)
+        compileSdkVersion = 34
+        targetSdkVersion  = 34
+        ndkVersion        = "26.1.10909125"
+        kotlinVersion     = "1.9.22"
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.3.0")
+        classpath("com.facebook.react:react-native-gradle-plugin")
+        classpath("com.google.gms:google-services:4.4.1")
+        classpath("com.google.firebase:firebase-crashlytics-gradle:2.9.9")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://www.jitpack.io" }
+        // Razorpay
+        maven { url "https://maven.razorpay.com/releases" }
+    }
+}

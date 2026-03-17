@@ -1,0 +1,58 @@
+{
+  "name": "mk-app-tests",
+  "version": "1.0.0",
+  "description": "MK App — Test Suite",
+  "scripts": {
+    "test": "jest --runInBand --forceExit",
+    "test:unit": "jest tests/unit --runInBand --forceExit",
+    "test:integration": "jest tests/integration --runInBand --forceExit",
+    "test:e2e": "playwright test tests/e2e",
+    "test:coverage": "jest --coverage --runInBand --forceExit",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --runInBand --forceExit --ci --coverage --reporters=default --reporters=jest-junit"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/tests/unit/**/*.test.js",
+      "**/tests/integration/**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "backend/src/**/*.js",
+      "!backend/src/utils/seeder.js",
+      "!**/node_modules/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 60,
+        "functions": 70,
+        "lines": 70,
+        "statements": 70
+      }
+    },
+    "setupFilesAfterFramework": [],
+    "testTimeout": 30000,
+    "maxWorkers": 1,
+    "verbose": true,
+    "reporters": [
+      "default",
+      [
+        "jest-junit",
+        {
+          "outputDirectory": "./test-results",
+          "outputName": "junit.xml"
+        }
+      ]
+    ]
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.41.0",
+    "jest": "^29.7.0",
+    "jest-junit": "^16.0.0",
+    "mongodb-memory-server": "^9.1.6",
+    "supertest": "^6.3.4"
+  },
+  "dependencies": {
+    "mongoose": "^9.3.0"
+  }
+}

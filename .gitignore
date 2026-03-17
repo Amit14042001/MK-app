@@ -1,0 +1,83 @@
+# ── Node ──────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── Environment (NEVER commit these) ─────────────────────────
+.env
+.env.local
+.env.*.local
+backend/.env
+mobile/.env
+professional-app/.env
+
+# ── Android ───────────────────────────────────────────────────
+*.keystore
+!debug.keystore        # Debug keystore is OK to track
+*.jks
+keystore.properties    # Contains passwords — never commit
+mobile/android/.gradle/
+mobile/android/app/build/
+mobile/android/build/
+mobile/android/local.properties
+professional-app/android/.gradle/
+professional-app/android/app/build/
+professional-app/android/build/
+professional-app/android/local.properties
+
+# ── iOS ───────────────────────────────────────────────────────
+mobile/ios/Pods/
+mobile/ios/build/
+mobile/ios/*.xcworkspace/xcuserdata/
+mobile/ios/*.xcodeproj/xcuserdata/
+mobile/ios/*.xcodeproj/project.xcworkspace/xcuserdata/
+professional-app/ios/Pods/
+professional-app/ios/build/
+professional-app/ios/*.xcworkspace/xcuserdata/
+professional-app/ios/*.xcodeproj/xcuserdata/
+
+# ── Firebase (contain API keys — NEVER commit) ────────────────
+google-services.json
+GoogleService-Info.plist
+firebase-service-account.json
+
+# ── React Native ──────────────────────────────────────────────
+mobile/.bundle/
+mobile/vendor/
+professional-app/.bundle/
+professional-app/vendor/
+*.jsbundle
+
+# ── Backend ───────────────────────────────────────────────────
+backend/uploads/
+backend/logs/
+backend/*.log
+
+# ── Frontend build ────────────────────────────────────────────
+frontend/build/
+
+# ── Docker ────────────────────────────────────────────────────
+nginx/ssl/*.pem
+nginx/ssl/*.key
+nginx/ssl/*.crt
+
+# ── Backup files ──────────────────────────────────────────────
+backup_*.gz
+*.dump
+
+# ── OS ────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/settings.json
+
+# ── Certificates ──────────────────────────────────────────────
+*.p12
+*.p8
+*.mobileprovision
+ExportOptions.plist

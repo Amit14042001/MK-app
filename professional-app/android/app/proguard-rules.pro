@@ -1,0 +1,15 @@
+-keep class com.facebook.react.** { *; }
+-keep class com.facebook.hermes.** { *; }
+-keep class com.facebook.jni.** { *; }
+-dontwarn com.facebook.react.**
+-keep class com.google.firebase.** { *; }
+-keep class com.google.android.gms.** { *; }
+-dontwarn com.google.firebase.**
+-keep class com.google.android.gms.maps.** { *; }
+-keep class com.agontuk.RNFusedLocation.** { *; }
+-keep class com.airbnb.lottie.** { *; }
+-dontwarn okhttp3.**
+-keep class okhttp3.** { *; }
+-keep class * implements android.os.Parcelable { *; }
+-keep class com.mkpro.BuildConfig { *; }
+-dontwarn java.lang.invoke.**

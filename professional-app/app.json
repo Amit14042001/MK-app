@@ -1,0 +1,39 @@
+{
+  "name": "MKPro",
+  "displayName": "MK Pro",
+  "version": "1.0.0",
+  "buildNumber": "1",
+  "scheme": "mkpro",
+  "android": {
+    "package": "in.mkapp.professional",
+    "versionCode": 1,
+    "permissions": [
+      "android.permission.INTERNET",
+      "android.permission.ACCESS_FINE_LOCATION",
+      "android.permission.ACCESS_COARSE_LOCATION",
+      "android.permission.CAMERA",
+      "android.permission.READ_EXTERNAL_STORAGE",
+      "android.permission.WRITE_EXTERNAL_STORAGE",
+      "android.permission.RECORD_AUDIO",
+      "android.permission.VIBRATE",
+      "android.permission.RECEIVE_BOOT_COMPLETED",
+      "android.permission.CALL_PHONE",
+      "android.permission.FLASHLIGHT"
+    ],
+    "googleServicesFile": "./google-services.json"
+  },
+  "ios": {
+    "bundleIdentifier": "in.mkapp.professional",
+    "buildNumber": "1",
+    "supportsTablet": false,
+    "infoPlist": {
+      "NSCameraUsageDescription": "MK Pro needs camera access to photograph jobs before and after completion.",
+      "NSMicrophoneUsageDescription": "MK Pro needs microphone access for customer video calls.",
+      "NSLocationWhenInUseUsageDescription": "MK Pro needs your location for job navigation and customer tracking.",
+      "NSLocationAlwaysUsageDescription": "MK Pro tracks your location in the background during active jobs.",
+      "NSPhotoLibraryUsageDescription": "MK Pro needs photo library access to upload job progress photos.",
+      "UIBackgroundModes": ["location", "fetch", "remote-notification"]
+    },
+    "googleServicesFile": "./GoogleService-Info.plist"
+  }
+}

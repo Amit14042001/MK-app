@@ -1,0 +1,22 @@
+# Pod Disruption Budgets — ensure availability during maintenance
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: mk-backend-pdb
+  namespace: mk-app
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: mk-backend
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: mk-frontend-pdb
+  namespace: mk-app
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: mk-frontend

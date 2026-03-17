@@ -1,0 +1,60 @@
+{
+  "name": "MKApp",
+  "displayName": "MK",
+  "version": "1.0.0",
+  "buildNumber": "1",
+  "scheme": "mkapp",
+  "android": {
+    "package": "in.mkapp.customer",
+    "versionCode": 1,
+    "permissions": [
+      "android.permission.INTERNET",
+      "android.permission.ACCESS_FINE_LOCATION",
+      "android.permission.ACCESS_COARSE_LOCATION",
+      "android.permission.CAMERA",
+      "android.permission.READ_EXTERNAL_STORAGE",
+      "android.permission.WRITE_EXTERNAL_STORAGE",
+      "android.permission.RECORD_AUDIO",
+      "android.permission.VIBRATE",
+      "android.permission.RECEIVE_BOOT_COMPLETED",
+      "android.permission.CALL_PHONE",
+      "android.permission.USE_BIOMETRIC",
+      "android.permission.FLASHLIGHT"
+    ],
+    "googleServicesFile": "./google-services.json"
+  },
+  "ios": {
+    "bundleIdentifier": "in.mkapp.customer",
+    "buildNumber": "1",
+    "supportsTablet": false,
+    "infoPlist": {
+      "NSCameraUsageDescription": "MK App needs camera access to take photos for service requests and AR beauty try-on.",
+      "NSMicrophoneUsageDescription": "MK App needs microphone access for voice search and video consultations.",
+      "NSLocationWhenInUseUsageDescription": "MK App needs your location to find nearby professionals and show accurate service areas.",
+      "NSLocationAlwaysUsageDescription": "MK App uses location to track your professional in real-time during a service.",
+      "NSPhotoLibraryUsageDescription": "MK App needs access to your photos to upload service request images.",
+      "NSPhotoLibraryAddUsageDescription": "MK App needs permission to save AR previews and service photos to your gallery.",
+      "NSFaceIDUsageDescription": "Use Face ID to quickly sign in to MK App.",
+      "UIBackgroundModes": ["location", "fetch", "remote-notification"]
+    },
+    "googleServicesFile": "./GoogleService-Info.plist",
+    "entitlements": {
+      "com.apple.developer.associated-domains": [
+        "applinks:mkapp.in",
+        "webcredentials:mkapp.in"
+      ]
+    }
+  },
+  "deepLinking": {
+    "scheme": "mkapp",
+    "host": "mkapp.in",
+    "paths": {
+      "booking": "/booking/:id",
+      "service": "/service/:slug",
+      "profile": "/profile",
+      "tracking": "/tracking/:bookingId",
+      "refer": "/refer/:code",
+      "gift": "/gift/:code"
+    }
+  }
+}

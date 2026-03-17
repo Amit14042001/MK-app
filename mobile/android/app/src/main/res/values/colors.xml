@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- MK Brand Colors -->
+    <color name="primary">#E94560</color>
+    <color name="primary_dark">#C0392B</color>
+    <color name="primary_light">#FFF0F3</color>
+    <color name="black">#1A1A2E</color>
+    <color name="white">#FFFFFF</color>
+    <color name="background">#F8F9FA</color>
+
+    <!-- Status bar -->
+    <color name="status_bar">#1A1A2E</color>
+
+    <!-- Splash screen background -->
+    <color name="splash_background">#1A1A2E</color>
+
+    <!-- Notification accent -->
+    <color name="notification_accent">#E94560</color>
+</resources>

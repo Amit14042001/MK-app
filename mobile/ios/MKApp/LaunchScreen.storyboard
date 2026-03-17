@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB"
+    version="3.0" toolsVersion="21701" targetRuntime="AppleCocoa"
+    propertyAccessControl="none" useAutolayout="YES"
+    launchScreen="YES" useTraitCollections="YES"
+    useSafeAreas="YES" colorMatched="YES">
+
+    <device id="retina6_12" orientation="portrait"
+        appearance="light"/>
+
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+
+    <scenes>
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill"
+                        id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+
+                        <!-- Dark navy background matching UC / MK brand -->
+                        <color key="backgroundColor" red="0.102" green="0.102" blue="0.180" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+
+                        <subviews>
+                            <!-- Gradient overlay view -->
+                            <view contentMode="scaleToFill"
+                                translatesAutoresizingMaskIntoConstraints="NO"
+                                id="gradient-overlay">
+                                <rect key="frame" x="0" y="0" width="393" height="852"/>
+                                <color key="backgroundColor" red="0.914" green="0.271" blue="0.376" alpha="0.15" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+
+                            <!-- Logo container -->
+                            <view contentMode="scaleToFill"
+                                translatesAutoresizingMaskIntoConstraints="NO"
+                                id="logo-bg">
+                                <rect key="frame" x="156.5" y="370" width="80" height="80"/>
+                                <color key="backgroundColor" red="0.914" green="0.271" blue="0.376" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+
+                            <!-- App name label -->
+                            <label opaque="NO" clipsSubviews="YES"
+                                userInteractionEnabled="NO"
+                                contentMode="left"
+                                horizontalHuggingPriority="251"
+                                verticalHuggingPriority="251"
+                                text="MK"
+                                textAlignment="center"
+                                lineBreakMode="middleTruncation"
+                                translatesAutoresizingMaskIntoConstraints="NO"
+                                id="app-name-label">
+                                <rect key="frame" x="0" y="468" width="393" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+
+                            <!-- Tagline label -->
+                            <label opaque="NO"
+                                userInteractionEnabled="NO"
+                                contentMode="left"
+                                horizontalHuggingPriority="251"
+                                verticalHuggingPriority="251"
+                                text="Home Services at Your Doorstep"
+                                textAlignment="center"
+                                lineBreakMode="middleTruncation"
+                                translatesAutoresizingMaskIntoConstraints="NO"
+                                id="tagline-label">
+                                <rect key="frame" x="0" y="518" width="393" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.65" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+
+                        <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
+
+                        <constraints>
+                            <!-- Gradient fills full view -->
+                            <constraint firstItem="gradient-overlay" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="g1"/>
+                            <constraint firstItem="gradient-overlay" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottom" id="g2"/>
+                            <constraint firstItem="gradient-overlay" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="g3"/>
+                            <constraint firstItem="gradient-overlay" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailing" id="g4"/>
+
+                            <!-- Logo centered horizontally -->
+                            <constraint firstItem="logo-bg" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="lc1"/>
+                            <constraint firstItem="logo-bg" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-40" id="lc2"/>
+                            <constraint firstItem="logo-bg" firstAttribute="width" constant="80" id="lw"/>
+                            <constraint firstItem="logo-bg" firstAttribute="height" constant="80" id="lh"/>
+
+                            <!-- App name below logo -->
+                            <constraint firstItem="app-name-label" firstAttribute="top" secondItem="logo-bg" secondAttribute="bottom" constant="16" id="anl1"/>
+                            <constraint firstItem="app-name-label" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="anl2"/>
+                            <constraint firstItem="app-name-label" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailing" id="anl3"/>
+
+                            <!-- Tagline below app name -->
+                            <constraint firstItem="tagline-label" firstAttribute="top" secondItem="app-name-label" secondAttribute="bottom" constant="8" id="tl1"/>
+                            <constraint firstItem="tagline-label" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="tl2"/>
+                            <constraint firstItem="tagline-label" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailing" id="tl3"/>
+                        </constraints>
+                    </view>
+                </viewController>
+
+                <placeholder placeholderIdentifier="IBFirstResponder"
+                    id="iYj-Kq-Ea1" userLabel="First Responder"
+                    sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+</document>

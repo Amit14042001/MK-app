@@ -1,0 +1,56 @@
+# MK App Ingress — routes traffic to frontend and backend
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mk-app-ingress
+  namespace: mk-app
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers "X-Frame-Options: SAMEORIGIN";
+      more_set_headers "X-Content-Type-Options: nosniff";
+      more_set_headers "X-XSS-Protection: 1; mode=block";
+spec:
+  tls:
+    - hosts:
+        - mkapp.in
+        - www.mkapp.in
+        - api.mkapp.in
+      secretName: mk-app-tls
+  rules:
+    - host: api.mkapp.in
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mk-backend-service
+                port:
+                  number: 5000
+    - host: mkapp.in
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mk-frontend-service
+                port:
+                  number: 80
+    - host: www.mkapp.in
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mk-frontend-service
+                port:
+                  number: 80

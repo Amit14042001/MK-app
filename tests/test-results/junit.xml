@@ -1,0 +1,849 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="145" failures="90" errors="0" time="752.825">
+  <testsuite name="RecommendationService" errors="0" failures="6" skipped="0" timestamp="2026-03-16T17:20:45" time="0.119" tests="24">
+    <testcase classname="RecommendationService getPersonalizedRecommendations should return recommendations for a user" name="RecommendationService getPersonalizedRecommendations should return recommendations for a user" time="0">
+      <failure>Error: Cannot find module &apos;../../../src/models/Booking&apos; from &apos;unit/services/new.services.test.js&apos;
+    at Resolver._throwModNotFoundError (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:427:11)
+    at Resolver.resolveModule (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:358:10)
+    at Resolver._getVirtualMockPath (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:619:14)
+    at Resolver._getAbsolutePath (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:587:14)
+    at Resolver.getModuleID (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:530:31)
+    at Runtime.setMock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1212:37)
+    at setMockFactory (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1936:12)
+    at Object.mock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1922:16)
+    at Object.mock (/Users/amitmaharana/Downloads/mk-app/tests/unit/services/new.services.test.js:11:10)
+    at Promise.then.completed (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:281:40)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:95:7)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:444:34)</failure>
+    </testcase>
+    <testcase classname="RecommendationService getPersonalizedRecommendations should exclude specified categories" name="RecommendationService getPersonalizedRecommendations should exclude specified categories" time="0.001">
+      <failure>Error: Cannot find module &apos;../../../src/models/Booking&apos; from &apos;unit/services/new.services.test.js&apos;
+    at Resolver._throwModNotFoundError (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:427:11)
+    at Resolver.resolveModule (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:358:10)
+    at Resolver._getVirtualMockPath (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:619:14)
+    at Resolver._getAbsolutePath (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:587:14)
+    at Resolver.getModuleID (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:530:31)
+    at Runtime.setMock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1212:37)
+    at setMockFactory (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1936:12)
+    at Object.mock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1922:16)
+    at Object.mock (/Users/amitmaharana/Downloads/mk-app/tests/unit/services/new.services.test.js:11:10)
+    at Promise.then.completed (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:281:40)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:95:7)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:444:34)</failure>
+    </testcase>
+    <testcase classname="RecommendationService getPersonalizedRecommendations should return fallback for new user with no history" name="RecommendationService getPersonalizedRecommendations should return fallback for new user with no history" time="0">
+      <failure>Error: Cannot find module &apos;../../../src/models/Booking&apos; from &apos;unit/services/new.services.test.js&apos;
+    at Resolver._throwModNotFoundError (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:427:11)
+    at Resolver.resolveModule (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:358:10)
+    at Resolver._getVirtualMockPath (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:619:14)
+    at Resolver._getAbsolutePath (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:587:14)
+    at Resolver.getModuleID (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:530:31)
+    at Runtime.setMock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1212:37)
+    at setMockFactory (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1936:12)
+    at Object.mock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1922:16)
+    at Object.mock (/Users/amitmaharana/Downloads/mk-app/tests/unit/services/new.services.test.js:11:10)
+    at Promise.then.completed (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:281:40)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:95:7)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:444:34)</failure>
+    </testcase>
+    <testcase classname="RecommendationService getComplementaryRecommendations should return complementary services" name="RecommendationService getComplementaryRecommendations should return complementary services" time="0">
+      <failure>Error: Cannot find module &apos;../../../src/models/Booking&apos; from &apos;unit/services/new.services.test.js&apos;
+    at Resolver._throwModNotFoundError (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:427:11)
+    at Resolver.resolveModule (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:358:10)
+    at Resolver._getVirtualMockPath (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:619:14)
+    at Resolver._getAbsolutePath (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:587:14)
+    at Resolver.getModuleID (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:530:31)
+    at Runtime.setMock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1212:37)
+    at setMockFactory (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1936:12)
+    at Object.mock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1922:16)
+    at Object.mock (/Users/amitmaharana/Downloads/mk-app/tests/unit/services/new.services.test.js:11:10)
+    at Promise.then.completed (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:281:40)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:95:7)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:444:34)</failure>
+    </testcase>
+    <testcase classname="RecommendationService getComplementaryRecommendations should return empty array for unknown category" name="RecommendationService getComplementaryRecommendations should return empty array for unknown category" time="0">
+      <failure>Error: Cannot find module &apos;../../../src/models/Booking&apos; from &apos;unit/services/new.services.test.js&apos;
+    at Resolver._throwModNotFoundError (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:427:11)
+    at Resolver.resolveModule (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:358:10)
+    at Resolver._getVirtualMockPath (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:619:14)
+    at Resolver._getAbsolutePath (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:587:14)
+    at Resolver.getModuleID (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:530:31)
+    at Runtime.setMock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1212:37)
+    at setMockFactory (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1936:12)
+    at Object.mock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1922:16)
+    at Object.mock (/Users/amitmaharana/Downloads/mk-app/tests/unit/services/new.services.test.js:11:10)
+    at Promise.then.completed (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:281:40)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:95:7)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:444:34)</failure>
+    </testcase>
+    <testcase classname="RecommendationService getHomeScreenLayout should return structured home layout" name="RecommendationService getHomeScreenLayout should return structured home layout" time="0">
+      <failure>Error: Cannot find module &apos;../../../src/models/Booking&apos; from &apos;unit/services/new.services.test.js&apos;
+    at Resolver._throwModNotFoundError (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:427:11)
+    at Resolver.resolveModule (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:358:10)
+    at Resolver._getVirtualMockPath (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:619:14)
+    at Resolver._getAbsolutePath (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:587:14)
+    at Resolver.getModuleID (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-resolve/build/resolver.js:530:31)
+    at Runtime.setMock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1212:37)
+    at setMockFactory (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1936:12)
+    at Object.mock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1922:16)
+    at Object.mock (/Users/amitmaharana/Downloads/mk-app/tests/unit/services/new.services.test.js:11:10)
+    at Promise.then.completed (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:281:40)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:95:7)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:444:34)</failure>
+    </testcase>
+    <testcase classname="DynamicPricingEdgeCases should apply festival multiplier on festival day" name="DynamicPricingEdgeCases should apply festival multiplier on festival day" time="0.001">
+    </testcase>
+    <testcase classname="DynamicPricingEdgeCases should return higher time multiplier for evening slots" name="DynamicPricingEdgeCases should return higher time multiplier for evening slots" time="0">
+    </testcase>
+    <testcase classname="DynamicPricingEdgeCases should cap final price at max surge" name="DynamicPricingEdgeCases should cap final price at max surge" time="0">
+    </testcase>
+    <testcase classname="WarrantyPeriods should have 90-day warranty for appliance repair" name="WarrantyPeriods should have 90-day warranty for appliance repair" time="0">
+    </testcase>
+    <testcase classname="WarrantyPeriods should have 180-day warranty for painting" name="WarrantyPeriods should have 180-day warranty for painting" time="0.001">
+    </testcase>
+    <testcase classname="WarrantyPeriods should have 0-day warranty for salon/massage/wellness" name="WarrantyPeriods should have 0-day warranty for salon/massage/wellness" time="0">
+    </testcase>
+    <testcase classname="WarrantyPeriods should have shortest warranty for cleaning (7 days)" name="WarrantyPeriods should have shortest warranty for cleaning (7 days)" time="0">
+    </testcase>
+    <testcase classname="WarrantyPeriods should correctly calculate expiry date" name="WarrantyPeriods should correctly calculate expiry date" time="0">
+    </testcase>
+    <testcase classname="LoyaltyTiers should classify tiers correctly" name="LoyaltyTiers should classify tiers correctly" time="0">
+    </testcase>
+    <testcase classname="LoyaltyTiers should apply correct multipliers per tier" name="LoyaltyTiers should apply correct multipliers per tier" time="0">
+    </testcase>
+    <testcase classname="LoyaltyTiers should calculate points correctly with multiplier" name="LoyaltyTiers should calculate points correctly with multiplier" time="0">
+    </testcase>
+    <testcase classname="LoyaltyTiers should calculate wallet value at 0.25 per point" name="LoyaltyTiers should calculate wallet value at 0.25 per point" time="0">
+    </testcase>
+    <testcase classname="ReferralCodeGeneration should generate 8-character referral code" name="ReferralCodeGeneration should generate 8-character referral code" time="0.001">
+    </testcase>
+    <testcase classname="ReferralCodeGeneration should be alphanumeric uppercase" name="ReferralCodeGeneration should be alphanumeric uppercase" time="0">
+    </testcase>
+    <testcase classname="ReferralCodeGeneration should be deterministic for same inputs" name="ReferralCodeGeneration should be deterministic for same inputs" time="0.001">
+    </testcase>
+    <testcase classname="ReferralCodeGeneration should be different for different users" name="ReferralCodeGeneration should be different for different users" time="0">
+    </testcase>
+    <testcase classname="ReferralCodeGeneration should handle names with spaces and numbers" name="ReferralCodeGeneration should handle names with spaces and numbers" time="0">
+    </testcase>
+    <testcase classname="ReferralCodeGeneration should use MK prefix for empty names" name="ReferralCodeGeneration should use MK prefix for empty names" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="User Journey: Register → Book → Review" errors="0" failures="6" skipped="0" timestamp="2026-03-16T17:20:46" time="53.332" tests="6">
+    <testcase classname="User Journey: Register → Book → Review Complete booking lifecycle" name="User Journey: Register → Book → Review Complete booking lifecycle" time="10.017">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="User Journey: Register → Book → Review Wallet credit on booking payment" name="User Journey: Register → Book → Review Wallet credit on booking payment" time="10.01">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="User Journey: Register → Book → Review Coupon validation with user limit" name="User Journey: Register → Book → Review Coupon validation with user limit" time="10.029">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Professional Journey: Register → Accept Job → Earn Professional earns commission after completing job" name="Professional Journey: Register → Accept Job → Earn Professional earns commission after completing job" time="10.008">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Subscription Model Subscription model has correct structure" name="Subscription Model Subscription model has correct structure" time="0.026">
+      <failure>Error: `key_id` or `oauthToken` is mandatory
+    at new Razorpay (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/razorpay/dist/razorpay.js:34:13)
+    at Object.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/src/models/Subscription.js:59:18)
+    at Runtime._execModule (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1439:24)
+    at Runtime._loadModule (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1022:12)
+    at Runtime.requireModule (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:882:12)
+    at Runtime.requireModuleOrMock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runtime/build/index.js:1048:21)
+    at Object.require (/Users/amitmaharana/Downloads/mk-app/tests/integration/api/api.test.js:189:30)
+    at Promise.then.completed (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at _runTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:444:34)</failure>
+    </testcase>
+    <testcase classname="Admin Controller getDashboardStats computes correct counts" name="Admin Controller getDashboardStats computes correct counts" time="10.047">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="User Model" errors="0" failures="24" skipped="0" timestamp="2026-03-16T17:21:40" time="202.199" tests="34">
+    <testcase classname="User Model creates a user with required fields" name="User Model creates a user with required fields" time="10.007">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="User Model auto-generates referral code" name="User Model auto-generates referral code" time="10.009">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="User Model hashes password before save" name="User Model hashes password before save" time="10.313">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="User Model matchPassword returns true for correct password" name="User Model matchPassword returns true for correct password" time="10.295">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="User Model generates valid JWT token" name="User Model generates valid JWT token" time="10.008">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="User Model updates membership tier based on spend" name="User Model updates membership tier based on spend" time="10.008">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="User Model rejects duplicate phone numbers" name="User Model rejects duplicate phone numbers" time="10.011">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="User Model rejects invalid Indian phone number format" name="User Model rejects invalid Indian phone number format" time="0.016">
+    </testcase>
+    <testcase classname="Booking Model auto-generates bookingId" name="Booking Model auto-generates bookingId" time="10.006">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Booking Model defaults status to pending" name="Booking Model defaults status to pending" time="10.014">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Coupon Model validates a valid coupon" name="Coupon Model validates a valid coupon" time="10.011">
+      <failure>MongooseError: Operation `coupons.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Coupon Model rejects coupon below minimum order" name="Coupon Model rejects coupon below minimum order" time="10.009">
+      <failure>MongooseError: Operation `coupons.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Coupon Model rejects expired coupon" name="Coupon Model rejects expired coupon" time="10.007">
+      <failure>MongooseError: Operation `coupons.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Coupon Model calculates flat discount correctly" name="Coupon Model calculates flat discount correctly" time="10.01">
+      <failure>MongooseError: Operation `coupons.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Coupon Model calculates percentage discount with cap" name="Coupon Model calculates percentage discount with cap" time="10.021">
+      <failure>MongooseError: Operation `coupons.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Auth Controller sendOTP returns success for valid phone" name="Auth Controller sendOTP returns success for valid phone" time="10.055">
+      <failure>MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Auth Controller sendOTP rejects invalid phone" name="Auth Controller sendOTP rejects invalid phone" time="0.022">
+      <failure>Error: expect(jest.fn()).toHaveBeenCalled()
+
+Expected number of calls: &gt;= 1
+Received number of calls:    0
+    at Object.toHaveBeenCalled (/Users/amitmaharana/Downloads/mk-app/tests/unit/unit.test.js:217:18)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)</failure>
+    </testcase>
+    <testcase classname="Auth Controller verifyOTP fails with wrong OTP" name="Auth Controller verifyOTP fails with wrong OTP" time="10.011">
+      <failure>MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Auth Controller getMe returns user info" name="Auth Controller getMe returns user info" time="10.012">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Service Controller getServices returns active services" name="Service Controller getServices returns active services" time="10.014">
+      <failure>MongooseError: Operation `categories.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Service Controller getFeaturedServices returns featured only" name="Service Controller getFeaturedServices returns featured only" time="10.007">
+      <failure>MongooseError: Operation `categories.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Service Controller searchServices finds by name" name="Service Controller searchServices finds by name" time="10.009">
+      <failure>MongooseError: Operation `categories.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Matching Service exports findBestProfessionals function" name="Matching Service exports findBestProfessionals function" time="0.008">
+      <failure>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: &quot;function&quot;
+Received: &quot;undefined&quot;
+    at Object.toBe (/Users/amitmaharana/Downloads/mk-app/tests/unit/unit.test.js:288:58)
+    at Promise.then.completed (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at _runTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:444:34)</failure>
+    </testcase>
+    <testcase classname="Matching Service exports assignProfessional function" name="Matching Service exports assignProfessional function" time="0">
+      <failure>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: &quot;function&quot;
+Received: &quot;undefined&quot;
+    at Object.toBe (/Users/amitmaharana/Downloads/mk-app/tests/unit/unit.test.js:292:55)
+    at Promise.then.completed (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at _runTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:444:34)</failure>
+    </testcase>
+    <testcase classname="Matching Service handles empty professional pool gracefully" name="Matching Service handles empty professional pool gracefully" time="0.001">
+      <failure>TypeError: matchingService.findBestProfessionals is not a function
+    at Object.findBestProfessionals (/Users/amitmaharana/Downloads/mk-app/tests/unit/unit.test.js:301:42)
+    at Promise.then.completed (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at _runTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:444:34)</failure>
+    </testcase>
+    <testcase classname="Error Handler Middleware AppError sets correct statusCode" name="Error Handler Middleware AppError sets correct statusCode" time="0.057">
+    </testcase>
+    <testcase classname="Error Handler Middleware asyncHandler catches async errors" name="Error Handler Middleware asyncHandler catches async errors" time="0.011">
+    </testcase>
+    <testcase classname="Error Handler Middleware errorHandler returns JSON with success:false" name="Error Handler Middleware errorHandler returns JSON with success:false" time="0.045">
+    </testcase>
+    <testcase classname="Error Handler Middleware handles Mongoose duplicate key error" name="Error Handler Middleware handles Mongoose duplicate key error" time="0.01">
+    </testcase>
+    <testcase classname="Error Handler Middleware handles Mongoose validation error" name="Error Handler Middleware handles Mongoose validation error" time="0.007">
+    </testcase>
+    <testcase classname="SMS Utility sendSMS mocks when no credentials" name="SMS Utility sendSMS mocks when no credentials" time="0.008">
+    </testcase>
+    <testcase classname="SMS Utility sendOTPSMS formats OTP message" name="SMS Utility sendOTPSMS formats OTP message" time="0.003">
+    </testcase>
+    <testcase classname="Email Utility sendEmail mocks when no credentials" name="Email Utility sendEmail mocks when no credentials" time="0.008">
+    </testcase>
+    <testcase classname="Email Utility otpEmail generates correct structure" name="Email Utility otpEmail generates correct structure" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="Professional Model" errors="0" failures="15" skipped="0" timestamp="2026-03-16T17:25:02" time="141.55" tests="15">
+    <testcase classname="Professional Model auto-generates employee ID with MKP prefix" name="Professional Model auto-generates employee ID with MKP prefix" time="10.008">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Professional Model defaults to pending verification status" name="Professional Model defaults to pending verification status" time="10.015">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Professional Model default commission rate is 20%" name="Professional Model default commission rate is 20%" time="10.017">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Professional Model wallet starts at zero" name="Professional Model wallet starts at zero" time="10.017">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Professional Model earnings update correctly" name="Professional Model earnings update correctly" time="10.007">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Professional Model rating update after review" name="Professional Model rating update after review" time="10.009">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Professional Model verification status transition approved" name="Professional Model verification status transition approved" time="10.006">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Professional Model stores bank details correctly" name="Professional Model stores bank details correctly" time="10.013">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Professional Model availability toggle works" name="Professional Model availability toggle works" time="10.013">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Matching Service exports all required functions" name="Matching Service exports all required functions" time="0.01">
+      <failure>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: &quot;function&quot;
+Received: &quot;undefined&quot;
+    at Object.toBe (/Users/amitmaharana/Downloads/mk-app/tests/unit/professional.test.js:119:58)
+    at Promise.then.completed (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at _runTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/amitmaharana/Downloads/mk-app/tests/node_modules/jest-runner/build/runTest.js:444:34)</failure>
+    </testcase>
+    <testcase classname="Matching Service returns empty array when no professionals available" name="Matching Service returns empty array when no professionals available" time="10.005">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Matching Service finds verified professionals for a booking" name="Matching Service finds verified professionals for a booking" time="10.005">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Matching Service assignProfessional returns null when no match" name="Matching Service assignProfessional returns null when no match" time="10.019">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Review Model creates review with all rating fields" name="Review Model creates review with all rating fields" time="10.028">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Review Model helpful votes toggle correctly" name="Review Model helpful votes toggle correctly" time="10.012">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Coupon Model — Full Tests" errors="0" failures="22" skipped="0" timestamp="2026-03-16T17:27:24" time="221.455" tests="22">
+    <testcase classname="Coupon Model — Full Tests creates coupon with correct defaults" name="Coupon Model — Full Tests creates coupon with correct defaults" time="10.007">
+      <failure>MongooseError: Operation `coupons.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Coupon Model — Full Tests validates flat discount coupon" name="Coupon Model — Full Tests validates flat discount coupon" time="10.007">
+      <failure>MongooseError: Operation `coupons.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Coupon Model — Full Tests rejects coupon below min order" name="Coupon Model — Full Tests rejects coupon below min order" time="10.015">
+      <failure>MongooseError: Operation `coupons.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Coupon Model — Full Tests rejects expired coupon" name="Coupon Model — Full Tests rejects expired coupon" time="10.011">
+      <failure>MongooseError: Operation `coupons.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Coupon Model — Full Tests rejects inactive coupon" name="Coupon Model — Full Tests rejects inactive coupon" time="10.013">
+      <failure>MongooseError: Operation `coupons.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Coupon Model — Full Tests rejects when usage limit reached" name="Coupon Model — Full Tests rejects when usage limit reached" time="10.013">
+      <failure>MongooseError: Operation `coupons.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Coupon Model — Full Tests rejects when user already used coupon" name="Coupon Model — Full Tests rejects when user already used coupon" time="10.024">
+      <failure>MongooseError: Operation `coupons.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Coupon Model — Full Tests calculates flat discount correctly" name="Coupon Model — Full Tests calculates flat discount correctly" time="10.011">
+      <failure>MongooseError: Operation `coupons.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Coupon Model — Full Tests calculates percentage discount with cap" name="Coupon Model — Full Tests calculates percentage discount with cap" time="10.01">
+      <failure>MongooseError: Operation `coupons.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Coupon Model — Full Tests handles percentage discount without cap" name="Coupon Model — Full Tests handles percentage discount without cap" time="10.013">
+      <failure>MongooseError: Operation `coupons.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Coupon Model — Full Tests allows new-user-only coupon for new user" name="Coupon Model — Full Tests allows new-user-only coupon for new user" time="10.009">
+      <failure>MongooseError: Operation `coupons.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Payment Controller applyCoupon validates coupon correctly" name="Payment Controller applyCoupon validates coupon correctly" time="10.012">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Payment Controller applyCoupon rejects invalid coupon" name="Payment Controller applyCoupon rejects invalid coupon" time="10.006">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Payment Controller applyCoupon rejects below minimum order" name="Payment Controller applyCoupon rejects below minimum order" time="10.01">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Payment Controller getPaymentHistory returns empty for new user" name="Payment Controller getPaymentHistory returns empty for new user" time="10.013">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Payment Controller getWalletTransactions returns wallet data" name="Payment Controller getWalletTransactions returns wallet data" time="10.021">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Payment Controller getInvoice returns 404 for missing booking" name="Payment Controller getInvoice returns 404 for missing booking" time="10.015">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Payment Controller getInvoice returns invoice for valid booking" name="Payment Controller getInvoice returns invoice for valid booking" time="10.013">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="User Wallet Operations wallet credits accumulate correctly" name="User Wallet Operations wallet credits accumulate correctly" time="10.021">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="User Wallet Operations wallet debit reduces balance" name="User Wallet Operations wallet debit reduces balance" time="10.007">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="User Wallet Operations wallet does not go negative" name="User Wallet Operations wallet does not go negative" time="10.008">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="User Wallet Operations referral bonus adds to both users" name="User Wallet Operations referral bonus adds to both users" time="10.018">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Health Check" errors="0" failures="0" skipped="0" timestamp="2026-03-16T17:31:05" time="0.602" tests="27">
+    <testcase classname="Health Check GET /health returns 200" name="Health Check GET /health returns 200" time="0">
+    </testcase>
+    <testcase classname="Services API GET /api/v1/services returns list" name="Services API GET /api/v1/services returns list" time="0">
+    </testcase>
+    <testcase classname="Services API GET /api/v1/services/featured returns featured" name="Services API GET /api/v1/services/featured returns featured" time="0">
+    </testcase>
+    <testcase classname="Services API GET /api/v1/services/:id returns service detail" name="Services API GET /api/v1/services/:id returns service detail" time="0">
+    </testcase>
+    <testcase classname="Services API GET /api/v1/services/search?q=AC finds AC service" name="Services API GET /api/v1/services/search?q=AC finds AC service" time="0">
+    </testcase>
+    <testcase classname="Services API POST /api/v1/services requires admin" name="Services API POST /api/v1/services requires admin" time="0">
+    </testcase>
+    <testcase classname="Categories API GET /api/v1/categories returns list" name="Categories API GET /api/v1/categories returns list" time="0">
+    </testcase>
+    <testcase classname="User Profile API GET /api/v1/users/profile requires auth" name="User Profile API GET /api/v1/users/profile requires auth" time="0">
+    </testcase>
+    <testcase classname="User Profile API GET /api/v1/users/profile returns profile when authenticated" name="User Profile API GET /api/v1/users/profile returns profile when authenticated" time="0">
+    </testcase>
+    <testcase classname="User Profile API PUT /api/v1/users/profile updates profile" name="User Profile API PUT /api/v1/users/profile updates profile" time="0">
+    </testcase>
+    <testcase classname="User Profile API POST /api/v1/users/addresses adds address" name="User Profile API POST /api/v1/users/addresses adds address" time="0">
+    </testcase>
+    <testcase classname="User Profile API GET /api/v1/users/wallet returns wallet" name="User Profile API GET /api/v1/users/wallet returns wallet" time="0">
+    </testcase>
+    <testcase classname="Bookings API GET /api/v1/bookings requires auth" name="Bookings API GET /api/v1/bookings requires auth" time="0">
+    </testcase>
+    <testcase classname="Bookings API GET /api/v1/bookings returns empty array for new user" name="Bookings API GET /api/v1/bookings returns empty array for new user" time="0.001">
+    </testcase>
+    <testcase classname="Bookings API POST /api/v1/bookings creates booking" name="Bookings API POST /api/v1/bookings creates booking" time="0">
+    </testcase>
+    <testcase classname="Notifications API GET /api/v1/notifications requires auth" name="Notifications API GET /api/v1/notifications requires auth" time="0">
+    </testcase>
+    <testcase classname="Notifications API GET /api/v1/notifications returns list" name="Notifications API GET /api/v1/notifications returns list" time="0">
+    </testcase>
+    <testcase classname="Notifications API PUT /api/v1/notifications/read-all marks all read" name="Notifications API PUT /api/v1/notifications/read-all marks all read" time="0">
+    </testcase>
+    <testcase classname="Reviews API GET /api/v1/reviews/service/:id returns reviews" name="Reviews API GET /api/v1/reviews/service/:id returns reviews" time="0">
+    </testcase>
+    <testcase classname="Reviews API POST /api/v1/reviews requires auth" name="Reviews API POST /api/v1/reviews requires auth" time="0">
+    </testcase>
+    <testcase classname="Admin API GET /api/v1/admin/stats requires admin role" name="Admin API GET /api/v1/admin/stats requires admin role" time="0">
+    </testcase>
+    <testcase classname="Admin API GET /api/v1/admin/stats returns stats for admin" name="Admin API GET /api/v1/admin/stats returns stats for admin" time="0">
+    </testcase>
+    <testcase classname="Admin API GET /api/v1/admin/users returns user list" name="Admin API GET /api/v1/admin/users returns user list" time="0">
+    </testcase>
+    <testcase classname="Professionals API GET /api/v1/professionals returns public list" name="Professionals API GET /api/v1/professionals returns public list" time="0">
+    </testcase>
+    <testcase classname="Error Handling Unknown route returns 404" name="Error Handling Unknown route returns 404" time="0">
+    </testcase>
+    <testcase classname="Error Handling Malformed JSON returns 400" name="Error Handling Malformed JSON returns 400" time="0">
+    </testcase>
+    <testcase classname="Error Handling Missing auth token returns 401" name="Error Handling Missing auth token returns 401" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="Auth Controller — sendOTP" errors="0" failures="17" skipped="0" timestamp="2026-03-16T17:31:06" time="130.542" tests="17">
+    <testcase classname="Auth Controller — sendOTP sends OTP for valid Indian phone (starts with 6-9)" name="Auth Controller — sendOTP sends OTP for valid Indian phone (starts with 6-9)" time="10.007">
+      <failure>MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Auth Controller — sendOTP sends OTP and sets isNewUser=true for fresh number" name="Auth Controller — sendOTP sends OTP and sets isNewUser=true for fresh number" time="10.013">
+      <failure>MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Auth Controller — sendOTP sends OTP and sets isNewUser=false for existing user" name="Auth Controller — sendOTP sends OTP and sets isNewUser=false for existing user" time="10.013">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Auth Controller — sendOTP rejects phone starting with invalid digit" name="Auth Controller — sendOTP rejects phone starting with invalid digit" time="0.006">
+      <failure>Error: expect(jest.fn()).toHaveBeenCalled()
+
+Expected number of calls: &gt;= 1
+Received number of calls:    0
+    at Object.toHaveBeenCalled (/Users/amitmaharana/Downloads/mk-app/tests/unit/auth.test.js:62:18)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)</failure>
+    </testcase>
+    <testcase classname="Auth Controller — sendOTP rejects phone with wrong length" name="Auth Controller — sendOTP rejects phone with wrong length" time="0">
+      <failure>Error: expect(jest.fn()).toHaveBeenCalled()
+
+Expected number of calls: &gt;= 1
+Received number of calls:    0
+    at Object.toHaveBeenCalled (/Users/amitmaharana/Downloads/mk-app/tests/unit/auth.test.js:70:18)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)</failure>
+    </testcase>
+    <testcase classname="Auth Controller — sendOTP rejects missing phone" name="Auth Controller — sendOTP rejects missing phone" time="0.001">
+      <failure>Error: expect(jest.fn()).toHaveBeenCalled()
+
+Expected number of calls: &gt;= 1
+Received number of calls:    0
+    at Object.toHaveBeenCalled (/Users/amitmaharana/Downloads/mk-app/tests/unit/auth.test.js:78:18)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)</failure>
+    </testcase>
+    <testcase classname="Auth Controller — verifyOTP rejects wrong OTP" name="Auth Controller — verifyOTP rejects wrong OTP" time="10.002">
+      <failure>MongooseError: Operation `users.findOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Auth Controller — verifyOTP rejects missing OTP" name="Auth Controller — verifyOTP rejects missing OTP" time="0.001">
+      <failure>Error: expect(jest.fn()).toHaveBeenCalled()
+
+Expected number of calls: &gt;= 1
+Received number of calls:    0
+    at Object.toHaveBeenCalled (/Users/amitmaharana/Downloads/mk-app/tests/unit/auth.test.js:103:18)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)</failure>
+    </testcase>
+    <testcase classname="Auth Controller — verifyOTP accepts test bypass OTP in test env" name="Auth Controller — verifyOTP accepts test bypass OTP in test env" time="10.012">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Auth Controller — getMe returns user profile" name="Auth Controller — getMe returns user profile" time="10.011">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Auth Controller — getMe returns user with name and phone" name="Auth Controller — getMe returns user with name and phone" time="10.008">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Auth Controller — logout logout clears refresh tokens" name="Auth Controller — logout logout clears refresh tokens" time="10.021">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="Auth Controller — logout logout works even without refreshToken in body" name="Auth Controller — logout logout works even without refreshToken in body" time="10.009">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="User Model — generateTokens generates valid JWT structure" name="User Model — generateTokens generates valid JWT structure" time="10.007">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="User Model — generateTokens generates different tokens for different users" name="User Model — generateTokens generates different tokens for different users" time="10.009">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="User Model — generateTokens generateRefreshToken produces different token from access token" name="User Model — generateTokens generateRefreshToken produces different token from access token" time="10.007">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+    <testcase classname="User Model — generateTokens membership tier upgrades at correct spend thresholds" name="User Model — generateTokens membership tier upgrades at correct spend thresholds" time="10.009">
+      <failure>MongooseError: Operation `users.insertOne()` buffering timed out after 10000ms
+    at Timeout.&lt;anonymous&gt; (/Users/amitmaharana/Downloads/mk-app/backend/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:187:23)
+    at listOnTimeout (node:internal/timers:605:17)
+    at processTimers (node:internal/timers:541:7)</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

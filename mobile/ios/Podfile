@@ -1,0 +1,101 @@
+# ── MK Customer App — iOS Podfile ─────────────────────────────
+# React Native 0.73.4 · Firebase · Google Maps · Razorpay
+
+require Pod::Executable.execute_command('node', ['-e',
+  'process.stdout.write(require("react-native/scripts/react_native_pods").js_react_native_pods_path)',
+  '--interactive',
+]).strip
+
+platform :ios, min_ios_version_supported
+prepare_react_native_project!
+
+# ── Flipper (disable in release for smaller binary) ───────────
+flipper_config = ENV['NO_FLIPPER'] == "1" ? FlipperConfiguration.disabled :
+    FlipperConfiguration.enabled(["Debug", "Release"])
+
+linkage = ENV['USE_FRAMEWORKS']
+if linkage != nil
+  Pod::UI.puts "Configuring Pod with #{linkage}ary frameworks".green
+  use_frameworks! :linkage => linkage.to_sym
+end
+
+target 'MKApp' do
+  config = use_native_modules!
+
+  # ── React Native Core ──────────────────────────────────────
+  use_react_native!(
+    :path => config[:reactNativePath],
+    :hermes_enabled => true,
+    :fabric_enabled => false,
+    :flipper_configuration => flipper_config,
+    :app_path => "#{Pod::Config.instance.installation_root}/.."
+  )
+
+  # ── Firebase (via Google) ──────────────────────────────────
+  pod 'Firebase/Analytics',        '~> 10.20'
+  pod 'Firebase/Messaging',        '~> 10.20'
+  pod 'Firebase/Crashlytics',      '~> 10.20'
+  pod 'Firebase/Performance',      '~> 10.20'
+  pod 'GoogleUtilities',           '~> 7.13'
+
+  # ── Google Maps ────────────────────────────────────────────
+  pod 'GoogleMaps',                '~> 8.3'
+  pod 'Google-Maps-iOS-Utils',     '~> 4.2'
+
+  # ── React Native Maps ──────────────────────────────────────
+  pod 'react-native-maps',
+    :path => '../node_modules/react-native-maps'
+
+  # ── Google Places (address autocomplete) ──────────────────
+  pod 'GooglePlaces',              '~> 8.3'
+
+  # ── Razorpay Payment ───────────────────────────────────────
+  pod 'razorpay-pod', '~> 1.3.1'
+
+  # ── Lottie Animations ─────────────────────────────────────
+  pod 'lottie-ios',                '~> 4.3'
+  pod 'lottie-react-native',
+    :path => '../node_modules/lottie-react-native'
+
+  # ── Permissions ────────────────────────────────────────────
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-Camera',         :path => "#{permissions_path}/Camera"
+  pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways"
+  pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse"
+  pod 'Permission-Notifications',  :path => "#{permissions_path}/Notifications"
+  pod 'Permission-PhotoLibrary',   :path => "#{permissions_path}/PhotoLibrary"
+  pod 'Permission-FaceID',         :path => "#{permissions_path}/FaceID"
+
+  # ── Tests ──────────────────────────────────────────────────
+  target 'MKAppTests' do
+    inherit! :complete
+  end
+
+  post_install do |installer|
+    react_native_post_install(
+      installer,
+      config[:reactNativePath],
+      :mac_catalyst_enabled => false
+    )
+
+    # Fix iOS deployment target warnings
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.4'
+        # Required for Hermes
+        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)']
+        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'HERMES_ENABLE_DEBUGGER=1'
+      end
+    end
+
+    # Fix signing for test targets
+    installer.pods_project.targets.each do |target|
+      if target.respond_to?(:product_type) &&
+         target.product_type == "com.apple.product-type.bundle"
+        target.build_configurations.each do |config|
+          config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+        end
+      end
+    end
+  end
+end

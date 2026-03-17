@@ -1,0 +1,584 @@
+name: MK App — CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop, release]
+    tags:     ['v*.*.*']
+  pull_request:
+    branches: [main, develop]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION:  '20'
+  JAVA_VERSION:  '17'
+  RUBY_VERSION:  '3.2'
+  REGISTRY:      ghcr.io
+  IMAGE_PREFIX:  ghcr.io/${{ github.repository_owner }}/mk-app
+
+# ════════════════════════════════════════════════════════════════
+# JOB 1 — Backend Tests + Build
+# ════════════════════════════════════════════════════════════════
+jobs:
+  backend-test:
+    name: 🧪 Backend — Test & Lint
+    runs-on: ubuntu-latest
+    services:
+      mongodb:
+        image: mongo:7.0
+        ports: ['27017:27017']
+        options: >-
+          --health-cmd "mongosh --eval 'db.runCommand({ping:1})'"
+          --health-interval 10s --health-timeout 5s --health-retries 5
+      redis:
+        image: redis:7.2-alpine
+        ports: ['6379:6379']
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s --health-timeout 3s --health-retries 5
+
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linter
+        run: npm run lint --if-present
+
+      - name: Run unit tests
+        env:
+          NODE_ENV:           test
+          MONGO_URI:          mongodb://localhost:27017/mk-test
+          REDIS_URL:          redis://localhost:6379
+          JWT_SECRET:         test-secret-key-minimum-32-characters!
+          JWT_REFRESH_SECRET: test-refresh-key-minimum-32-characters
+          OTP_STATIC:         '1234'
+        run: npm test -- --coverage --testPathPattern="tests/unit"
+
+      - name: Run integration tests
+        env:
+          NODE_ENV:           test
+          MONGO_URI:          mongodb://localhost:27017/mk-integration-test
+          REDIS_URL:          redis://localhost:6379
+          JWT_SECRET:         test-secret-key-minimum-32-characters!
+          JWT_REFRESH_SECRET: test-refresh-key-minimum-32-characters
+          OTP_STATIC:         '1234'
+          RAZORPAY_KEY_ID:    rzp_test_dummy
+          RAZORPAY_KEY_SECRET: dummy_secret_key
+        run: npm test -- --testPathPattern="tests/integration" --runInBand
+
+      - name: Upload coverage report
+        uses: codecov/codecov-action@v4
+        with:
+          files: backend/coverage/lcov.info
+          flags: backend
+          fail_ci_if_error: false
+
+  # ── Backend Docker Build ──────────────────────────────────────
+  backend-docker:
+    name: 🐳 Backend — Docker Build & Push
+    runs-on: ubuntu-latest
+    needs: backend-test
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE_PREFIX }}-backend
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,prefix=sha-,suffix=,format=short
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push backend image
+        uses: docker/build-push-action@v5
+        with:
+          context:    backend
+          file:       backend/Dockerfile
+          target:     production
+          push:       true
+          tags:       ${{ steps.meta.outputs.tags }}
+          labels:     ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to:   type=gha,mode=max
+
+# ════════════════════════════════════════════════════════════════
+# JOB 2 — Frontend Tests + Build
+# ════════════════════════════════════════════════════════════════
+  frontend-test:
+    name: ⚛️ Frontend — Test & Build
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test -- --coverage --watchAll=false --ci
+        env:
+          CI: true
+          REACT_APP_API_URL:    http://localhost:5000/api/v1
+          REACT_APP_SOCKET_URL: http://localhost:5000
+
+      - name: Build production bundle
+        run: npm run build
+        env:
+          REACT_APP_API_URL:                    ${{ secrets.REACT_APP_API_URL }}
+          REACT_APP_SOCKET_URL:                 ${{ secrets.REACT_APP_SOCKET_URL }}
+          REACT_APP_FIREBASE_API_KEY:           ${{ secrets.REACT_APP_FIREBASE_API_KEY }}
+          REACT_APP_FIREBASE_PROJECT_ID:        ${{ secrets.FIREBASE_PROJECT_ID }}
+          REACT_APP_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.REACT_APP_FIREBASE_MESSAGING_SENDER_ID }}
+          REACT_APP_FIREBASE_APP_ID:            ${{ secrets.REACT_APP_FIREBASE_APP_ID }}
+          REACT_APP_GOOGLE_MAPS_KEY:            ${{ secrets.GOOGLE_MAPS_KEY }}
+          REACT_APP_RAZORPAY_KEY_ID:            ${{ secrets.RAZORPAY_KEY_ID }}
+
+      - name: Upload frontend build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-build
+          path: frontend/build/
+          retention-days: 7
+
+  # ── Frontend Docker Build ─────────────────────────────────────
+  frontend-docker:
+    name: 🐳 Frontend — Docker Build & Push
+    runs-on: ubuntu-latest
+    needs: frontend-test
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE_PREFIX }}-frontend
+          tags: |
+            type=semver,pattern={{version}}
+            type=sha,prefix=sha-,suffix=,format=short
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Build and push frontend image
+        uses: docker/build-push-action@v5
+        with:
+          context: frontend
+          file:    frontend/Dockerfile
+          push:    true
+          tags:    ${{ steps.meta.outputs.tags }}
+          build-args: |
+            REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}
+            REACT_APP_GOOGLE_MAPS_KEY=${{ secrets.GOOGLE_MAPS_KEY }}
+            REACT_APP_FIREBASE_PROJECT_ID=${{ secrets.FIREBASE_PROJECT_ID }}
+          cache-from: type=gha
+          cache-to:   type=gha,mode=max
+
+# ════════════════════════════════════════════════════════════════
+# JOB 3 — Android Customer App
+# ════════════════════════════════════════════════════════════════
+  android-customer:
+    name: 📱 Android — Customer App
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mobile
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: mobile/package-lock.json
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: temurin
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-customer-${{ hashFiles('mobile/android/**/*.gradle*', 'mobile/android/gradle-wrapper.properties') }}
+          restore-keys: gradle-customer-
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Write google-services.json
+        run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > android/app/google-services.json
+
+      - name: Generate debug keystore
+        run: |
+          keytool -genkey -v \
+            -keystore android/app/debug.keystore \
+            -storepass android -alias androiddebugkey -keypass android \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname "CN=MK,OU=MK,O=MK,L=HYD,ST=TS,C=IN" 2>/dev/null
+
+      - name: Build debug APK
+        if: github.event_name == 'pull_request'
+        run: cd android && ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: Write release keystore
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          echo '${{ secrets.RELEASE_KEYSTORE_BASE64 }}' | base64 -d > android/app/release.keystore
+          cat > android/keystore.properties << PROPS
+          storeFile=app/release.keystore
+          storePassword=${{ secrets.KEYSTORE_PASSWORD }}
+          keyAlias=${{ secrets.KEY_ALIAS }}
+          keyPassword=${{ secrets.KEY_PASSWORD }}
+          PROPS
+
+      - name: Build release AAB
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: cd android && ./gradlew bundleRelease --no-daemon
+
+      - name: Upload debug APK
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: mk-customer-debug-${{ github.sha }}.apk
+          path: mobile/android/app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 7
+
+      - name: Upload release AAB
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: actions/upload-artifact@v4
+        with:
+          name: mk-customer-release-${{ github.ref_name }}.aab
+          path: mobile/android/app/build/outputs/bundle/release/app-release.aab
+          retention-days: 30
+
+# ════════════════════════════════════════════════════════════════
+# JOB 4 — Android Professional App
+# ════════════════════════════════════════════════════════════════
+  android-professional:
+    name: 🔧 Android — Professional App
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: professional-app
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: professional-app/package-lock.json
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: temurin
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-pro-${{ hashFiles('professional-app/android/**/*.gradle*') }}
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Write google-services.json
+        run: echo '${{ secrets.GOOGLE_SERVICES_JSON_PRO }}' > android/app/google-services.json
+
+      - name: Generate debug keystore
+        run: |
+          keytool -genkey -v \
+            -keystore android/app/debug.keystore \
+            -storepass android -alias androiddebugkey -keypass android \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname "CN=MKPro,OU=MKPro,O=MK,L=HYD,ST=TS,C=IN" 2>/dev/null
+
+      - name: Build debug APK
+        if: github.event_name == 'pull_request'
+        run: cd android && ./gradlew assembleDebug --no-daemon
+
+      - name: Build release AAB
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: cd android && ./gradlew bundleRelease --no-daemon
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mk-professional-debug-${{ github.sha }}.apk
+          path: professional-app/android/app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 7
+
+# ════════════════════════════════════════════════════════════════
+# JOB 5 — iOS Customer App (macOS)
+# ════════════════════════════════════════════════════════════════
+  ios-customer:
+    name: 🍎 iOS — Customer App
+    runs-on: macos-14
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+    defaults:
+      run:
+        working-directory: mobile
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: mobile/package-lock.json
+
+      - name: Setup Ruby + Bundler
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: true
+          working-directory: mobile
+
+      - name: Cache CocoaPods
+        uses: actions/cache@v4
+        with:
+          path: mobile/ios/Pods
+          key: pods-customer-${{ hashFiles('mobile/ios/Podfile.lock') }}
+          restore-keys: pods-customer-
+
+      - name: Install JS dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Write GoogleService-Info.plist
+        run: |
+          echo '${{ secrets.GOOGLE_SERVICE_INFO_PLIST }}' | base64 -d > ios/MKApp/GoogleService-Info.plist
+
+      - name: Install CocoaPods
+        run: cd ios && pod install --repo-update
+        env:
+          NO_FLIPPER: '1'
+
+      - name: Build for simulator (no signing)
+        run: |
+          xcodebuild \
+            -workspace ios/MKApp.xcworkspace \
+            -scheme MKApp \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=latest' \
+            -derivedDataPath ios/build \
+            CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO \
+            build | xcpretty --color
+
+      - name: Upload build logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-customer-build-logs
+          path: mobile/ios/build/Logs/
+
+# ════════════════════════════════════════════════════════════════
+# JOB 6 — iOS Professional App
+# ════════════════════════════════════════════════════════════════
+  ios-professional:
+    name: 🔧🍎 iOS — Professional App
+    runs-on: macos-14
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+    defaults:
+      run:
+        working-directory: professional-app
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: professional-app/package-lock.json
+
+      - name: Cache CocoaPods
+        uses: actions/cache@v4
+        with:
+          path: professional-app/ios/Pods
+          key: pods-pro-${{ hashFiles('professional-app/ios/Podfile.lock') }}
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Write GoogleService-Info.plist
+        run: echo '${{ secrets.GOOGLE_SERVICE_INFO_PLIST_PRO }}' | base64 -d > ios/MKPro/GoogleService-Info.plist
+
+      - name: Install CocoaPods
+        run: cd ios && pod install --repo-update
+        env:
+          NO_FLIPPER: '1'
+
+      - name: Build for simulator
+        run: |
+          xcodebuild \
+            -workspace ios/MKPro.xcworkspace \
+            -scheme MKPro \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=latest' \
+            -derivedDataPath ios/build \
+            CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO \
+            build | xcpretty --color
+
+# ════════════════════════════════════════════════════════════════
+# JOB 7 — Deploy to Production (on release tag)
+# ════════════════════════════════════════════════════════════════
+  deploy-production:
+    name: 🚀 Deploy — Production
+    runs-on: ubuntu-latest
+    needs: [backend-docker, frontend-docker]
+    if: startsWith(github.ref, 'refs/tags/v')
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host:     ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.PROD_USER }}
+          key:      ${{ secrets.PROD_SSH_KEY }}
+          port:     ${{ secrets.PROD_PORT || 22 }}
+          script: |
+            set -e
+            cd /opt/mk-app
+
+            # Pull latest images
+            docker pull ${{ env.IMAGE_PREFIX }}-backend:latest
+            docker pull ${{ env.IMAGE_PREFIX }}-frontend:latest
+
+            # Zero-downtime rolling restart
+            docker-compose up -d --no-deps --scale backend=2 backend
+            sleep 15
+            docker-compose up -d --no-deps --scale backend=1 backend
+
+            # Restart frontend
+            docker-compose up -d --no-deps frontend
+
+            # Health check
+            sleep 10
+            curl -f http://localhost:5000/api/v1/health || exit 1
+
+            # Cleanup old images
+            docker image prune -f
+
+            echo "✅ Deployed ${{ github.ref_name }} to production"
+
+      - name: Notify deployment success
+        uses: 8398a7/action-slack@v3
+        if: always()
+        with:
+          status: ${{ job.status }}
+          text:   "MK App ${{ github.ref_name }} deployed to production"
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+
+# ════════════════════════════════════════════════════════════════
+# JOB 8 — Deploy to Staging (on main push)
+# ════════════════════════════════════════════════════════════════
+  deploy-staging:
+    name: 🎭 Deploy — Staging
+    runs-on: ubuntu-latest
+    needs: [backend-docker, frontend-docker]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment: staging
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to staging via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host:     ${{ secrets.STAGING_HOST }}
+          username: ${{ secrets.STAGING_USER }}
+          key:      ${{ secrets.STAGING_SSH_KEY }}
+          script: |
+            cd /opt/mk-app-staging
+            docker-compose pull
+            docker-compose up -d
+            sleep 8
+            curl -f http://localhost:5000/api/v1/health || exit 1
+            echo "✅ Staging updated"
+
+# ════════════════════════════════════════════════════════════════
+# Required GitHub Secrets:
+# GOOGLE_SERVICES_JSON          - Customer Android Firebase config (JSON)
+# GOOGLE_SERVICES_JSON_PRO      - Professional Android Firebase config (JSON)
+# GOOGLE_SERVICE_INFO_PLIST     - Customer iOS Firebase config (base64)
+# GOOGLE_SERVICE_INFO_PLIST_PRO - Professional iOS Firebase config (base64)
+# RELEASE_KEYSTORE_BASE64       - Android release keystore (base64)
+# KEYSTORE_PASSWORD             - Keystore password
+# KEY_ALIAS                     - Key alias
+# KEY_PASSWORD                  - Key password
+# REACT_APP_API_URL             - Production API URL
+# GOOGLE_MAPS_KEY               - Google Maps API key
+# FIREBASE_PROJECT_ID           - Firebase project ID
+# PROD_HOST / PROD_USER / PROD_SSH_KEY / PROD_PORT
+# STAGING_HOST / STAGING_USER / STAGING_SSH_KEY
+# SLACK_WEBHOOK                 - Slack notifications
+# ════════════════════════════════════════════════════════════════

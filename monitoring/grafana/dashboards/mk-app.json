@@ -1,0 +1,142 @@
+{
+  "title": "MK App — Production Dashboard",
+  "uid": "mk-app-prod",
+  "version": 1,
+  "schemaVersion": 38,
+  "refresh": "30s",
+  "time": { "from": "now-6h", "to": "now" },
+  "tags": ["mk-app", "production", "api"],
+  "panels": [
+    {
+      "id": 1, "gridPos": { "x": 0, "y": 0, "w": 4, "h": 4 },
+      "type": "stat",
+      "title": "API Uptime",
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"] }, "colorMode": "background" },
+      "targets": [{
+        "expr": "avg(up{job='mk-backend'}) * 100",
+        "legendFormat": "Uptime %"
+      }],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent", "min": 0, "max": 100,
+          "thresholds": { "steps": [{"color": "red", "value": 0}, {"color": "yellow", "value": 95}, {"color": "green", "value": 99}] }
+        }
+      }
+    },
+    {
+      "id": 2, "gridPos": { "x": 4, "y": 0, "w": 4, "h": 4 },
+      "type": "stat", "title": "Requests/min",
+      "targets": [{
+        "expr": "sum(rate(http_requests_total{job='mk-backend'}[1m])) * 60",
+        "legendFormat": "req/min"
+      }],
+      "fieldConfig": { "defaults": { "unit": "reqpm" } }
+    },
+    {
+      "id": 3, "gridPos": { "x": 8, "y": 0, "w": 4, "h": 4 },
+      "type": "stat", "title": "Error Rate",
+      "targets": [{
+        "expr": "sum(rate(http_requests_total{job='mk-backend',status=~'5..'}[5m])) / sum(rate(http_requests_total{job='mk-backend'}[5m])) * 100",
+        "legendFormat": "Error %"
+      }],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "thresholds": { "steps": [{"color": "green", "value": 0}, {"color": "yellow", "value": 1}, {"color": "red", "value": 5}] }
+        }
+      }
+    },
+    {
+      "id": 4, "gridPos": { "x": 12, "y": 0, "w": 4, "h": 4 },
+      "type": "stat", "title": "P95 Response Time",
+      "targets": [{
+        "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket{job='mk-backend'}[5m]))",
+        "legendFormat": "p95"
+      }],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "thresholds": { "steps": [{"color": "green", "value": 0}, {"color": "yellow", "value": 0.5}, {"color": "red", "value": 2}] }
+        }
+      }
+    },
+    {
+      "id": 5, "gridPos": { "x": 16, "y": 0, "w": 4, "h": 4 },
+      "type": "stat", "title": "Active Bookings",
+      "targets": [{ "expr": "mk_active_bookings", "legendFormat": "Active" }],
+      "fieldConfig": { "defaults": { "unit": "short", "color": { "mode": "fixed", "fixedColor": "blue" } } }
+    },
+    {
+      "id": 6, "gridPos": { "x": 20, "y": 0, "w": 4, "h": 4 },
+      "type": "stat", "title": "Pros Online",
+      "targets": [{ "expr": "mk_professionals_online", "legendFormat": "Online" }],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "thresholds": { "steps": [{"color": "red", "value": 0}, {"color": "yellow", "value": 10}, {"color": "green", "value": 50}] }
+        }
+      }
+    },
+    {
+      "id": 10, "gridPos": { "x": 0, "y": 4, "w": 12, "h": 8 },
+      "type": "timeseries", "title": "Request Rate by Endpoint",
+      "targets": [{
+        "expr": "sum by(route) (rate(http_requests_total{job='mk-backend'}[5m]))",
+        "legendFormat": "{{route}}"
+      }],
+      "fieldConfig": { "defaults": { "unit": "reqps" } }
+    },
+    {
+      "id": 11, "gridPos": { "x": 12, "y": 4, "w": 12, "h": 8 },
+      "type": "timeseries", "title": "Response Time Percentiles",
+      "targets": [
+        { "expr": "histogram_quantile(0.50, rate(http_request_duration_seconds_bucket{job='mk-backend'}[5m]))", "legendFormat": "p50" },
+        { "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket{job='mk-backend'}[5m]))", "legendFormat": "p95" },
+        { "expr": "histogram_quantile(0.99, rate(http_request_duration_seconds_bucket{job='mk-backend'}[5m]))", "legendFormat": "p99" }
+      ],
+      "fieldConfig": { "defaults": { "unit": "s" } }
+    },
+    {
+      "id": 20, "gridPos": { "x": 0, "y": 12, "w": 8, "h": 8 },
+      "type": "timeseries", "title": "Bookings Created",
+      "targets": [{ "expr": "rate(mk_bookings_created_total[5m]) * 60", "legendFormat": "Bookings/min" }]
+    },
+    {
+      "id": 21, "gridPos": { "x": 8, "y": 12, "w": 8, "h": 8 },
+      "type": "timeseries", "title": "Revenue (₹/hour)",
+      "targets": [{ "expr": "rate(mk_revenue_total[1h]) * 3600", "legendFormat": "Revenue ₹/hr" }],
+      "fieldConfig": { "defaults": { "unit": "currencyINR" } }
+    },
+    {
+      "id": 22, "gridPos": { "x": 16, "y": 12, "w": 8, "h": 8 },
+      "type": "timeseries", "title": "Payment Success Rate",
+      "targets": [{
+        "expr": "rate(mk_payment_success_total[5m]) / rate(mk_payment_attempts_total[5m]) * 100",
+        "legendFormat": "Success %"
+      }],
+      "fieldConfig": {
+        "defaults": { "unit": "percent", "min": 0, "max": 100 }
+      }
+    },
+    {
+      "id": 30, "gridPos": { "x": 0, "y": 20, "w": 8, "h": 6 },
+      "type": "timeseries", "title": "MongoDB Connections",
+      "targets": [{ "expr": "mongodb_connections{state='current'}", "legendFormat": "Active" }]
+    },
+    {
+      "id": 31, "gridPos": { "x": 8, "y": 20, "w": 8, "h": 6 },
+      "type": "timeseries", "title": "Redis Memory",
+      "targets": [{ "expr": "redis_memory_used_bytes", "legendFormat": "Used" }],
+      "fieldConfig": { "defaults": { "unit": "bytes" } }
+    },
+    {
+      "id": 32, "gridPos": { "x": 16, "y": 20, "w": 8, "h": 6 },
+      "type": "timeseries", "title": "Node CPU & Memory",
+      "targets": [
+        { "expr": "100 - (avg(irate(node_cpu_seconds_total{mode='idle'}[5m])) * 100)", "legendFormat": "CPU %" },
+        { "expr": "(1 - node_memory_MemAvailable_bytes/node_memory_MemTotal_bytes) * 100", "legendFormat": "Memory %" }
+      ],
+      "fieldConfig": { "defaults": { "unit": "percent", "min": 0, "max": 100 } }
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+# MK App — Kubernetes Services
+apiVersion: v1
+kind: Service
+metadata:
+  name: mk-backend
+  labels:
+    app: mk-app
+    component: backend
+spec:
+  selector:
+    app: mk-backend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 5000
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mk-frontend
+  labels:
+    app: mk-app
+    component: frontend
+spec:
+  selector:
+    app: mk-frontend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mk-redis
+  labels:
+    app: mk-app
+    component: redis
+spec:
+  selector:
+    app: mk-redis
+  ports:
+    - name: redis
+      port: 6379
+      targetPort: 6379
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mk-mongodb
+  labels:
+    app: mk-app
+    component: mongodb
+spec:
+  selector:
+    app: mk-mongodb
+  ports:
+    - name: mongodb
+      port: 27017
+      targetPort: 27017
+  type: ClusterIP
+  clusterIP: None  # Headless for StatefulSet

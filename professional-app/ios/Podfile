@@ -1,0 +1,63 @@
+# ── MK Professional App — iOS Podfile ─────────────────────────
+# React Native 0.73.4 · Firebase · Google Maps
+
+require Pod::Executable.execute_command('node', ['-e',
+  'process.stdout.write(require("react-native/scripts/react_native_pods").js_react_native_pods_path)',
+  '--interactive',
+]).strip
+
+platform :ios, min_ios_version_supported
+prepare_react_native_project!
+
+flipper_config = ENV['NO_FLIPPER'] == "1" ? FlipperConfiguration.disabled :
+    FlipperConfiguration.enabled(["Debug"])
+
+target 'MKPro' do
+  config = use_native_modules!
+
+  use_react_native!(
+    :path => config[:reactNativePath],
+    :hermes_enabled => true,
+    :fabric_enabled => false,
+    :flipper_configuration => flipper_config,
+    :app_path => "#{Pod::Config.instance.installation_root}/.."
+  )
+
+  # Firebase
+  pod 'Firebase/Analytics',   '~> 10.20'
+  pod 'Firebase/Messaging',   '~> 10.20'
+  pod 'Firebase/Crashlytics', '~> 10.20'
+
+  # Google Maps (for live job tracking map)
+  pod 'GoogleMaps',           '~> 8.3'
+  pod 'Google-Maps-iOS-Utils','~> 4.2'
+  pod 'react-native-maps',
+    :path => '../node_modules/react-native-maps'
+
+  # Lottie (animations)
+  pod 'lottie-ios',           '~> 4.3'
+  pod 'lottie-react-native',
+    :path => '../node_modules/lottie-react-native'
+
+  # Permissions
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-Camera',            :path => "#{permissions_path}/Camera"
+  pod 'Permission-LocationAlways',    :path => "#{permissions_path}/LocationAlways"
+  pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse"
+  pod 'Permission-Notifications',     :path => "#{permissions_path}/Notifications"
+  pod 'Permission-PhotoLibrary',      :path => "#{permissions_path}/PhotoLibrary"
+  pod 'Permission-FaceID',            :path => "#{permissions_path}/FaceID"
+
+  target 'MKProTests' do
+    inherit! :complete
+  end
+
+  post_install do |installer|
+    react_native_post_install(installer, config[:reactNativePath], :mac_catalyst_enabled => false)
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.4'
+      end
+    end
+  end
+end

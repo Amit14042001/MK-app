@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB"
+    version="3.0" toolsVersion="21701" targetRuntime="AppleCocoa"
+    propertyAccessControl="none" useAutolayout="YES"
+    launchScreen="YES" useTraitCollections="YES"
+    useSafeAreas="YES" colorMatched="YES">
+
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+    </dependencies>
+
+    <scenes>
+        <scene sceneID="pro-scene-01">
+            <objects>
+                <viewController id="pro-vc-01" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pro-view-01">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.102" green="0.102" blue="0.180" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+
+                        <subviews>
+                            <!-- Wrench icon bg -->
+                            <view contentMode="scaleToFill"
+                                translatesAutoresizingMaskIntoConstraints="NO"
+                                id="pro-icon-bg">
+                                <rect key="frame" x="156.5" y="360" width="80" height="80"/>
+                                <color key="backgroundColor" red="0.153" green="0.682" blue="0.376" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+
+                            <label opaque="NO" userInteractionEnabled="NO"
+                                text="MK Pro"
+                                textAlignment="center"
+                                translatesAutoresizingMaskIntoConstraints="NO"
+                                id="pro-name-label">
+                                <rect key="frame" x="0" y="456" width="393" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+
+                            <label opaque="NO" userInteractionEnabled="NO"
+                                text="Professional App"
+                                textAlignment="center"
+                                translatesAutoresizingMaskIntoConstraints="NO"
+                                id="pro-tagline-label">
+                                <rect key="frame" x="0" y="506" width="393" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.60" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+
+                        <viewLayoutGuide key="safeArea" id="pro-safe-area"/>
+
+                        <constraints>
+                            <constraint firstItem="pro-icon-bg" firstAttribute="centerX" secondItem="pro-view-01" secondAttribute="centerX" id="pic1"/>
+                            <constraint firstItem="pro-icon-bg" firstAttribute="centerY" secondItem="pro-view-01" secondAttribute="centerY" constant="-36" id="pic2"/>
+                            <constraint firstItem="pro-icon-bg" firstAttribute="width" constant="80" id="piw"/>
+                            <constraint firstItem="pro-icon-bg" firstAttribute="height" constant="80" id="pih"/>
+                            <constraint firstItem="pro-name-label" firstAttribute="top" secondItem="pro-icon-bg" secondAttribute="bottom" constant="16" id="pnl1"/>
+                            <constraint firstItem="pro-name-label" firstAttribute="leading" secondItem="pro-view-01" secondAttribute="leading" id="pnl2"/>
+                            <constraint firstItem="pro-name-label" firstAttribute="trailing" secondItem="pro-view-01" secondAttribute="trailing" id="pnl3"/>
+                            <constraint firstItem="pro-tagline-label" firstAttribute="top" secondItem="pro-name-label" secondAttribute="bottom" constant="8" id="ptl1"/>
+                            <constraint firstItem="pro-tagline-label" firstAttribute="leading" secondItem="pro-view-01" secondAttribute="leading" id="ptl2"/>
+                            <constraint firstItem="pro-tagline-label" firstAttribute="trailing" secondItem="pro-view-01" secondAttribute="trailing" id="ptl3"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pro-fr-01" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
