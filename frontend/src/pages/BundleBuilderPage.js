@@ -1,5 +1,5 @@
 /**
- * MK Web — Bundle Builder Page
+ * Slot Web — Bundle Builder Page
  * Customer builds a personalised home maintenance plan on web.
  * Mirrors the mobile BundleBuilderScreen.
  */
@@ -7,50 +7,50 @@ import { useState, useEffect } from 'react';
 import { servicesAPI } from '../utils/api';
 
 const BILLING = [
-  { key: 'monthly',   label: 'Monthly',   save: '10%', months: 1  },
-  { key: 'quarterly', label: 'Quarterly', save: '15%', months: 3  },
-  { key: 'annual',    label: 'Annual',    save: '20%', months: 12 },
+  { key: 'monthly', label: 'Monthly', save: '10%', months: 1 },
+  { key: 'quarterly', label: 'Quarterly', save: '15%', months: 3 },
+  { key: 'annual', label: 'Annual', save: '20%', months: 12 },
 ];
 
 const CATALOG = [
-  { id: 'deep-cleaning', name: 'Deep Cleaning',     icon: '🧹', price: 1299, freq: 1    },
-  { id: 'ac-service',    name: 'AC Service',         icon: '❄️', price: 699,  freq: 0.5  },
-  { id: 'pest-control',  name: 'Pest Control',       icon: '🪲', price: 999,  freq: 0.25 },
-  { id: 'plumbing',      name: 'Plumbing Check',     icon: '🔧', price: 399,  freq: 0.5  },
-  { id: 'electrical',    name: 'Electrical Check',   icon: '⚡', price: 399,  freq: 0.5  },
-  { id: 'sofa-cleaning', name: 'Sofa Cleaning',      icon: '🛋️', price: 799,  freq: 0.25 },
-  { id: 'car-wash',      name: 'Car Wash',           icon: '🚗', price: 299,  freq: 2    },
-  { id: 'salon',         name: 'Salon at Home',      icon: '💄', price: 499,  freq: 1    },
+  { id: 'deep-cleaning', name: 'Deep Cleaning', icon: '🧹', price: 1299, freq: 1 },
+  { id: 'ac-service', name: 'AC Service', icon: '❄️', price: 699, freq: 0.5 },
+  { id: 'pest-control', name: 'Pest Control', icon: '🪲', price: 999, freq: 0.25 },
+  { id: 'plumbing', name: 'Plumbing Check', icon: '🔧', price: 399, freq: 0.5 },
+  { id: 'electrical', name: 'Electrical Check', icon: '⚡', price: 399, freq: 0.5 },
+  { id: 'sofa-cleaning', name: 'Sofa Cleaning', icon: '🛋️', price: 799, freq: 0.25 },
+  { id: 'car-wash', name: 'Car Wash', icon: '🚗', price: 299, freq: 2 },
+  { id: 'salon', name: 'Salon at Home', icon: '💄', price: 499, freq: 1 },
 ];
 
 const FREQS = [
-  { v: 2,    l: '2×/mo'    },
-  { v: 1,    l: '1×/mo'    },
-  { v: 0.5,  l: 'Every 2mo' },
+  { v: 2, l: '2×/mo' },
+  { v: 1, l: '1×/mo' },
+  { v: 0.5, l: 'Every 2mo' },
   { v: 0.25, l: 'Every 4mo' },
 ];
 
-const B = '#e94560';
+const B = 'var(--color-brand)';
 const DARK = '#1a1a2e';
 
 export default function BundleBuilderPage({ navigate }) {
   const [selected, setSelected] = useState([]);
-  const [cycle,    setCycle]    = useState('monthly');
-  const [name,     setName]     = useState('');
-  const [saved,    setSaved]    = useState(false);
+  const [cycle, setCycle] = useState('monthly');
+  const [name, setName] = useState('');
+  const [saved, setSaved] = useState(false);
   const [myBundles, setMyBundles] = useState([]);
-  const [tab,      setTab]      = useState('build');
+  const [tab, setTab] = useState('build');
 
   useEffect(() => { fetchBundles(); }, []);
 
   const fetchBundles = async () => {
     try {
-      const token = localStorage.getItem('mk_token');
+      const token = localStorage.getItem('slot_token');
       if (!token) return;
       const res = await fetch('/api/v1/subscriptions/bundles', { headers: { Authorization: `Bearer ${token}` } });
       const data = await res.json();
       if (data.success) setMyBundles(data.bundles || []);
-    } catch {}
+    } catch { }
   };
 
   const toggle = (svc) => setSelected(p => {
@@ -61,16 +61,16 @@ export default function BundleBuilderPage({ navigate }) {
 
   const setFreq = (id, v) => setSelected(p => p.map(s => s.id === id ? { ...s, freq: v } : s));
 
-  const cycleData   = BILLING.find(c => c.key === cycle);
-  const pct         = parseFloat(cycleData.save);
-  const rawMonthly  = selected.reduce((s, sv) => s + sv.price * sv.freq, 0);
-  const monthly     = Math.round(rawMonthly * (1 - pct / 100));
-  const savings     = Math.round(rawMonthly * cycleData.months * (pct / 100));
+  const cycleData = BILLING.find(c => c.key === cycle);
+  const pct = parseFloat(cycleData.save);
+  const rawMonthly = selected.reduce((s, sv) => s + sv.price * sv.freq, 0);
+  const monthly = Math.round(rawMonthly * (1 - pct / 100));
+  const savings = Math.round(rawMonthly * cycleData.months * (pct / 100));
 
   const handleSave = async () => {
     if (!selected.length) return;
     try {
-      const token = localStorage.getItem('mk_token');
+      const token = localStorage.getItem('slot_token');
       const res = await fetch('/api/v1/subscriptions/bundles', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
@@ -81,12 +81,12 @@ export default function BundleBuilderPage({ navigate }) {
       });
       const data = await res.json();
       if (data.success) { setSaved(true); fetchBundles(); setTimeout(() => { setSaved(false); setTab('my'); }, 1500); }
-    } catch {}
+    } catch { }
   };
 
   const cancelBundle = async (bundleId) => {
     if (!window.confirm('Cancel this home maintenance plan?')) return;
-    const token = localStorage.getItem('mk_token');
+    const token = localStorage.getItem('slot_token');
     await fetch(`/api/v1/subscriptions/bundles/${bundleId}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
     fetchBundles();
   };

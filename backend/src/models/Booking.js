@@ -125,7 +125,7 @@ const bookingSchema = new mongoose.Schema({
 // Auto-generate booking ID
 bookingSchema.pre('save', function (next) {
   if (!this.bookingId) {
-    const prefix = 'MK';
+    const prefix = 'Slot';
     const timestamp = Date.now().toString().slice(-6);
     const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
     this.bookingId = `${prefix}${timestamp}${random}`;

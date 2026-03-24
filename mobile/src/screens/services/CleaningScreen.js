@@ -1,5 +1,5 @@
 /**
- * MK App — Cleaning Services Screen (Full Production)
+ * Slot App — Cleaning Services Screen (Full Production)
  * Deep cleaning, bathroom, kitchen, sofa, water tank, move-in/out
  */
 import React, { useState, useRef } from 'react';

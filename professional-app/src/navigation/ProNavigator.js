@@ -1,5 +1,5 @@
 /**
- * MK App Professional — Full Navigator (v2 — all screens wired)
+ * Slot App Professional — Full Navigator (v2 — all screens wired)
  */
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';

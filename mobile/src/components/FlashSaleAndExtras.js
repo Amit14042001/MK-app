@@ -1,5 +1,5 @@
 /**
- * MK App — FlashSaleTimer (Feature #25)
+ * Slot App — FlashSaleTimer (Feature #25)
  * VideoPlayer (Feature #13 — Pro intro video)
  * AccessibilityHelpers (Feature #33)
  */

@@ -95,7 +95,7 @@ userSchema.pre('save', async function (next) {
 // Generate referral code
 userSchema.pre('save', function (next) {
   if (!this.referralCode) {
-    this.referralCode = 'MK' + Math.random().toString(36).substring(2, 8).toUpperCase();
+    this.referralCode = 'Slot' + Math.random().toString(36).substring(2, 8).toUpperCase();
   }
   next();
 });

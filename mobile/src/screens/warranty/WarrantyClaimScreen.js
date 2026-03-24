@@ -1,5 +1,5 @@
 /**
- * MK App — WarrantyClaimScreen
+ * Slot App — WarrantyClaimScreen
  * UC Shield — raise warranty/complaint claim within 7 days
  * Feature #12: Service warranty claim flow
  */
@@ -90,7 +90,7 @@ export default function WarrantyClaimScreen({ navigation, route }) {
           <TouchableOpacity onPress={() => navigation.goBack()} style={S.backBtn}>
             <Text style={S.backIcon}>←</Text>
           </TouchableOpacity>
-          <Text style={S.headerTitle}>MK Shield</Text>
+          <Text style={S.headerTitle}>Slot Shield</Text>
           <View style={{ width: 40 }} />
         </View>
         <View style={S.expiredBox}>
@@ -114,7 +114,7 @@ export default function WarrantyClaimScreen({ navigation, route }) {
         <TouchableOpacity onPress={() => step > 1 && step < 4 ? setStep(s => s - 1) : navigation.goBack()} style={S.backBtn}>
           <Text style={S.backIcon}>←</Text>
         </TouchableOpacity>
-        <Text style={S.headerTitle}>MK Shield Claim</Text>
+        <Text style={S.headerTitle}>Slot Shield Claim</Text>
         <View style={{ width: 40 }} />
       </View>
 
@@ -138,7 +138,7 @@ export default function WarrantyClaimScreen({ navigation, route }) {
           <View style={S.bookingCard}>
             <View style={S.shieldBadge}>
               <Text style={S.shieldIcon}>🛡️</Text>
-              <Text style={S.shieldText}>Protected by MK Shield</Text>
+              <Text style={S.shieldText}>Protected by Slot Shield</Text>
             </View>
             <Text style={S.bookingId}>{booking.bookingId} · {booking.service?.name}</Text>
             <Text style={S.proName}>By {booking.professional?.user?.name}</Text>
@@ -279,7 +279,7 @@ export default function WarrantyClaimScreen({ navigation, route }) {
             <Text style={S.successTitle}>Claim Submitted!</Text>
             <Text style={S.successId}>Claim ID: {claimId}</Text>
             <Text style={S.successDesc}>
-              Your MK Shield claim has been registered. Our team will review it within 24 hours and contact you with the resolution.
+              Your Slot Shield claim has been registered. Our team will review it within 24 hours and contact you with the resolution.
             </Text>
             <View style={S.successSteps}>
               {['Claim registered ✓', 'Under review (24h)', 'Resolution communicated', 'Issue resolved'].map((s, i) => (

@@ -1,5 +1,5 @@
 /**
- * MK App Professional — Leaderboard Screen (Full)
+ * Slot App Professional — Leaderboard Screen (Full)
  * Weekly/monthly rankings, badges, top earners, performance tiers
  */
 import React, { useState, useRef, useEffect } from 'react';

@@ -164,15 +164,15 @@ export const Input = forwardRef(({
 // ═══════════════════════════════════════════════
 export function Badge({ children, variant = 'default', dot = false, size = 'sm' }) {
   const variants = {
-    default:  { bg: 'var(--color-ink-100)',   color: 'var(--color-ink-600)' },
-    brand:    { bg: 'var(--color-brand-light)', color: 'var(--color-brand)' },
-    success:  { bg: 'var(--color-success-bg)', color: '#1a7a3a' },
-    warning:  { bg: 'var(--color-warning-bg)', color: '#9a5700' },
-    error:    { bg: 'var(--color-error-bg)',   color: 'var(--color-error)' },
-    info:     { bg: 'var(--color-info-bg)',    color: 'var(--color-info)' },
-    new:      { bg: '#e8f5e9', color: '#2e7d32' },
-    popular:  { bg: '#fff3e0', color: '#e65100' },
-    dark:     { bg: 'var(--color-ink-900)', color: '#fff' },
+    default: { bg: 'var(--color-ink-100)', color: 'var(--color-ink-600)' },
+    brand: { bg: 'var(--color-brand-light)', color: 'var(--color-brand)' },
+    success: { bg: 'var(--color-success-bg)', color: '#1a7a3a' },
+    warning: { bg: 'var(--color-warning-bg)', color: '#9a5700' },
+    error: { bg: 'var(--color-error-bg)', color: 'var(--color-error)' },
+    info: { bg: 'var(--color-info-bg)', color: 'var(--color-info)' },
+    new: { bg: '#e8f5e9', color: '#2e7d32' },
+    popular: { bg: '#fff3e0', color: '#e65100' },
+    dark: { bg: 'var(--color-ink-900)', color: '#fff' },
   };
   const v = variants[variant] || variants.default;
   const sizes = { xs: { px: '6px 10px', fs: 10 }, sm: { px: '5px 10px', fs: 11 }, md: { px: '6px 14px', fs: 12 } };
@@ -230,7 +230,7 @@ export function StarRating({ rating, count, size = 'sm', showCount = true }) {
   return (
     <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
       <div style={{ display: 'flex', gap: 1 }}>
-        {[1,2,3,4,5].map(i => (
+        {[1, 2, 3, 4, 5].map(i => (
           <svg key={i} width={fs} height={fs} viewBox="0 0 20 20" fill={i <= Math.floor(stars) ? '#f5a623' : i - 0.5 === stars ? 'url(#half)' : '#e0e0e0'}>
             <defs>
               <linearGradient id="half">
@@ -238,13 +238,13 @@ export function StarRating({ rating, count, size = 'sm', showCount = true }) {
                 <stop offset="50%" stopColor="#e0e0e0" />
               </linearGradient>
             </defs>
-            <path d="M10 1l2.39 4.84 5.35.78-3.87 3.77.91 5.32L10 13.27l-4.78 2.44.91-5.32L2.26 6.62l5.35-.78z"/>
+            <path d="M10 1l2.39 4.84 5.35.78-3.87 3.77.91 5.32L10 13.27l-4.78 2.44.91-5.32L2.26 6.62l5.35-.78z" />
           </svg>
         ))}
       </div>
       <span style={{ fontSize: fs + 1, fontWeight: 'var(--weight-bold)', color: 'var(--color-ink-700)' }}>{rating.toFixed(1)}</span>
       {showCount && count && (
-        <span style={{ fontSize: fs, color: 'var(--color-ink-400)' }}>({count >= 1000 ? (count/1000).toFixed(1)+'k' : count})</span>
+        <span style={{ fontSize: fs, color: 'var(--color-ink-400)' }}>({count >= 1000 ? (count / 1000).toFixed(1) + 'k' : count})</span>
       )}
     </div>
   );
@@ -309,13 +309,27 @@ export function ServiceCard({ service, navigate }) {
           width: 100, height: 100, borderRadius: '50%',
           background: 'rgba(255,255,255,0.15)',
         }} />
-        <span style={{
-          fontSize: 52,
-          filter: hov ? 'drop-shadow(0 4px 8px rgba(0,0,0,0.15))' : 'none',
-          transform: hov ? 'scale(1.1)' : 'scale(1)',
-          transition: 'all var(--dur-slow) var(--ease-spring)',
-          display: 'block',
-        }}>{service.icon}</span>
+        {service.images && service.images.length > 0 ? (
+          <img
+            src={service.images[0]}
+            alt={service.name}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              transition: 'transform var(--dur-slow) var(--ease-spring)',
+              transform: hov ? 'scale(1.08)' : 'scale(1)',
+            }}
+          />
+        ) : (
+          <span style={{
+            fontSize: 52,
+            filter: hov ? 'drop-shadow(0 4px 8px rgba(0,0,0,0.15))' : 'none',
+            transform: hov ? 'scale(1.1)' : 'scale(1)',
+            transition: 'all var(--dur-slow) var(--ease-spring)',
+            display: 'block',
+          }}>{service.icon}</span>
+        )}
 
         {/* Badges */}
         <div style={{ position: 'absolute', top: 10, left: 10, display: 'flex', gap: 4, flexWrap: 'wrap' }}>
@@ -487,8 +501,8 @@ export function Toast({ toast }) {
   if (!toast) return null;
   const configs = {
     success: { bg: '#1a3a22', border: '#30d158', icon: '✓', iconBg: 'rgba(48,209,88,0.2)' },
-    error:   { bg: '#3a1a1a', border: '#ff3b30', icon: '!', iconBg: 'rgba(255,59,48,0.2)' },
-    info:    { bg: '#1a2a3a', border: '#0a84ff', icon: 'i', iconBg: 'rgba(10,132,255,0.2)' },
+    error: { bg: '#3a1a1a', border: '#ff3b30', icon: '!', iconBg: 'rgba(255,59,48,0.2)' },
+    info: { bg: '#1a2a3a', border: '#0a84ff', icon: 'i', iconBg: 'rgba(10,132,255,0.2)' },
     warning: { bg: '#3a2a1a', border: '#ff9f0a', icon: '⚠', iconBg: 'rgba(255,159,10,0.2)' },
   };
   const c = configs[toast.type] || configs.success;

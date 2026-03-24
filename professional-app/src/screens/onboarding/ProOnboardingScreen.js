@@ -1,5 +1,5 @@
 /**
- * MK Professional App — ProOnboardingScreen
+ * Slot Professional App — ProOnboardingScreen
  * Welcome, registration steps, service selection, area pinning
  */
 import React, { useState, useRef } from 'react';
@@ -15,7 +15,7 @@ const { width: W, height: H } = Dimensions.get('window');
 const SLIDES = [
   {
     id: 0,
-    title: 'Welcome to MK Professionals',
+    title: 'Welcome to Slot Professionals',
     subtitle: 'India\'s most trusted home services platform. Join 50,000+ professionals earning ₹40,000–₹80,000/month.',
     icon: '🏆',
     color: '#E94560',

@@ -1,5 +1,5 @@
 /**
- * MK App — Shared UI Components
+ * Slot App — Shared UI Components
  * Button, Input, Badge, Avatar, Rating, Skeleton, Toast, Modal, Chip
  */
 import React, { useState, useRef, useEffect } from 'react';

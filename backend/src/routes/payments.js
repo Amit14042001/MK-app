@@ -1,5 +1,5 @@
 /**
- * MK App — Payments Routes (Full)
+ * Slot App — Payments Routes (Full)
  */
 const express = require('express');
 const router  = express.Router();

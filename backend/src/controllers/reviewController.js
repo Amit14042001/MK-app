@@ -1,5 +1,5 @@
 /**
- * MK App — Review Controller (Full)
+ * Slot App — Review Controller (Full)
  * Create reviews, reply, vote helpful, report, pending reviews
  */
 const Review = require('../models/Review');

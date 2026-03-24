@@ -1,5 +1,5 @@
 /**
- * MK Professional App — VerificationScreen
+ * Slot Professional App — VerificationScreen
  * KYC flow: Aadhaar, PAN, Police Clearance, Skill Certificates, Bank Details verification
  */
 import React, { useState } from 'react';

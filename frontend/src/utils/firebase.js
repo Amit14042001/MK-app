@@ -109,7 +109,7 @@ export const getNotificationMeta = (type) => {
     completed:            { icon: '🎉', color: '#30d158' },
     cancelled:            { icon: '❌', color: '#ff3b30' },
     payment_success:      { icon: '💰', color: '#30d158' },
-    coupon_available:     { icon: '🎟️', color: '#f15c22' },
+    coupon_available:     { icon: '🎟️', color: 'var(--color-brand)' },
   };
-  return map[type] || { icon: '🔔', color: '#f15c22' };
+  return map[type] || { icon: '🔔', color: 'var(--color-brand)' };
 };

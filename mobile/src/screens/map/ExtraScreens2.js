@@ -1,5 +1,5 @@
 /**
- * MK App — Extra Screens: Map, City Selection, Onboarding variants
+ * Slot App — Extra Screens: Map, City Selection, Onboarding variants
  * MapScreen, CitySelectionScreen, LocationScreen, FeedbackScreen, InvoiceScreen
  */
 import React, { useState, useEffect, useRef } from 'react';
@@ -144,7 +144,7 @@ export function InvoiceScreen({ route, navigation }) {
         {/* Invoice header */}
         <View style={IV.invHeader}>
           <View>
-            <Text style={IV.brandName}>MK Services</Text>
+            <Text style={IV.brandName}>Slot Services</Text>
             <Text style={IV.brandTagline}>India's trusted home services</Text>
             <Text style={IV.invNum}>{invoice.invoiceNumber}</Text>
           </View>
@@ -199,7 +199,7 @@ export function InvoiceScreen({ route, navigation }) {
           </View>
         </View>
 
-        <Text style={IV.thankYou}>Thank you for choosing MK Services! 🏠</Text>
+        <Text style={IV.thankYou}>Thank you for choosing Slot Services! 🏠</Text>
         <Text style={IV.gst}>GSTIN: 36AAJCM1234F1Z5 · PAN: AAJCM1234F</Text>
       </ScrollView>
     </View>

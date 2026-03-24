@@ -1,5 +1,5 @@
 /**
- * MK Web — Notifications Page (Full)
+ * Slot Web — Notifications Page (Full)
  */
 import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';

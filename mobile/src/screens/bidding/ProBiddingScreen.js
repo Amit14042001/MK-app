@@ -1,5 +1,5 @@
 /**
- * MK App — Pro Bidding Screen
+ * Slot App — Pro Bidding Screen
  * Auction-style: customer posts job → pros submit bids → customer picks
  * UC does NOT have this — competitive advantage
  */

@@ -1,13 +1,13 @@
 /**
- * MK App — Become a Professional Landing Page
+ * Slot App — Become a Professional Landing Page
  * UC equivalent: /become-a-pro
  * Earnings calculator, benefits, how it works, FAQ, registration CTA
  */
 import { useState } from 'react';
 
-const BRAND   = '#e94560';
-const DARK    = '#1a1a2e';
-const LIGHT   = '#f8f9fa';
+const BRAND = 'var(--color-brand)';
+const DARK = '#1a1a2e';
+const LIGHT = '#f8f9fa';
 
 const BENEFITS = [
   { icon: '💰', title: 'Earn ₹40,000–₹80,000/month', desc: 'Top professionals earn over ₹1 lakh. You set your own schedule.' },
@@ -26,31 +26,31 @@ const STEPS = [
 ];
 
 const CATEGORIES = [
-  { icon: '❄️', name: 'AC & Appliances',  avg: '₹52,000' },
-  { icon: '💄', name: 'Salon & Beauty',   avg: '₹38,000' },
-  { icon: '🧹', name: 'Home Cleaning',    avg: '₹34,000' },
-  { icon: '🔌', name: 'Electrician',      avg: '₹48,000' },
-  { icon: '🚰', name: 'Plumbing',         avg: '₹44,000' },
-  { icon: '🖌️', name: 'Painting',         avg: '₹56,000' },
-  { icon: '🚗', name: 'Automotive',       avg: '₹46,000' },
-  { icon: '💆', name: 'Massage & Spa',    avg: '₹42,000' },
+  { icon: '❄️', name: 'AC & Appliances', avg: '₹52,000' },
+  { icon: '💄', name: 'Salon & Beauty', avg: '₹38,000' },
+  { icon: '🧹', name: 'Home Cleaning', avg: '₹34,000' },
+  { icon: '🔌', name: 'Electrician', avg: '₹48,000' },
+  { icon: '🚰', name: 'Plumbing', avg: '₹44,000' },
+  { icon: '🖌️', name: 'Painting', avg: '₹56,000' },
+  { icon: '🚗', name: 'Automotive', avg: '₹46,000' },
+  { icon: '💆', name: 'Massage & Spa', avg: '₹42,000' },
 ];
 
 const FAQS = [
   { q: 'Do I need prior experience?', a: 'Basic skill is required, but we offer free training to upskill you for certification. Most pros reach full earning potential within 30 days.' },
   { q: 'How do I get paid?', a: 'Earnings are credited to your bank account every week. Minimum payout is ₹100. No delays — transparent real-time earnings tracking in the app.' },
   { q: 'What documents do I need?', a: 'Aadhaar card, PAN card, a recent selfie, and your bank account details. Skill certificates are a plus but not mandatory.' },
-  { q: 'Can I work part-time?', a: 'Absolutely. Many MK professionals work part-time alongside other jobs. You control your availability in the app.' },
+  { q: 'Can I work part-time?', a: 'Absolutely. Many Slot professionals work part-time alongside other jobs. You control your availability in the app.' },
   { q: 'Is there a joining fee?', a: 'Zero joining fee. No subscription, no commissions on training. We only earn when you earn — 20% platform fee on each completed job.' },
   { q: 'What if a customer cancels?', a: 'If a customer cancels within 2 hours of your arrival, you are paid a cancellation compensation.' },
 ];
 
 export default function BecomeProfessionalPage({ navigate }) {
-  const [jobs,    setJobs]    = useState(20);
-  const [rate,    setRate]    = useState(499);
-  const [form,    setForm]    = useState({ name: '', phone: '', city: '', skill: '' });
+  const [jobs, setJobs] = useState(20);
+  const [rate, setRate] = useState(499);
+  const [form, setForm] = useState({ name: '', phone: '', city: '', skill: '' });
   const [submitted, setSubmit] = useState(false);
-  const [openFaq,   setFaq]   = useState(null);
+  const [openFaq, setFaq] = useState(null);
 
   const monthlyEst = Math.round(jobs * rate * 0.80);   // 80% after platform fee
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
@@ -62,11 +62,11 @@ export default function BecomeProfessionalPage({ navigate }) {
     }
     try {
       await fetch('/api/v1/professionals/enquiry', {
-        method:  'POST',
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(form),
+        body: JSON.stringify(form),
       });
-    } catch {}
+    } catch { }
     setSubmit(true);
   };
 
@@ -76,7 +76,11 @@ export default function BecomeProfessionalPage({ navigate }) {
       {/* ── Hero ── */}
       <div style={{ background: `linear-gradient(135deg, ${DARK} 0%, #0f3460 100%)`, padding: '80px 24px 60px', textAlign: 'center' }}>
         <div style={{ maxWidth: 700, margin: '0 auto' }}>
-          <img src="/logo_pro.png" alt="MK Pro Logo" style={{ width: 80, height: 80, borderRadius: 16, marginBottom: 24, boxShadow: '0 8px 32px rgba(0,0,0,0.3)' }} />
+          {/* Branded Logo with PRO Badge */}
+          <div style={{ position: 'relative', width: 100, height: 100, margin: '0 auto 24px' }}>
+            <img src="/logo.png" alt="Slot Pro Logo" style={{ width: '100%', height: '100%', borderRadius: 22, boxShadow: '0 8px 32px rgba(0,0,0,0.3)', objectFit: 'cover' }} />
+            <span style={{ position: 'absolute', bottom: -5, right: -5, background: 'var(--color-brand)', color: '#fff', fontSize: 10, fontWeight: 900, padding: '4px 8px', borderRadius: 6, boxShadow: '0 4px 12px rgba(0,0,0,0.4)', letterSpacing: 0.5, textTransform: 'uppercase' }}>PRO</span>
+          </div>
           <span style={{ background: BRAND, color: '#fff', fontSize: 12, fontWeight: 700, padding: '4px 14px', borderRadius: 20, letterSpacing: '0.08em', textTransform: 'uppercase', display: 'block', width: 'fit-content', margin: '0 auto' }}>
             Now hiring in 30+ cities
           </span>
@@ -85,7 +89,7 @@ export default function BecomeProfessionalPage({ navigate }) {
             <span style={{ color: BRAND }}>₹40,000+/month</span>
           </h1>
           <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.75)', maxWidth: 520, margin: '0 auto 32px', lineHeight: 1.6 }}>
-            Join 50,000+ professionals already earning on MK App. Free training, weekly payouts, full flexibility.
+            Join 50,000+ professionals already earning on Slot App. Free training, weekly payouts, full flexibility.
           </p>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="#apply"
@@ -112,7 +116,7 @@ export default function BecomeProfessionalPage({ navigate }) {
       {/* ── Benefits ── */}
       <div style={{ background: '#fff', padding: '64px 24px' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <h2 style={{ textAlign: 'center', fontSize: 32, fontWeight: 800, marginBottom: 8 }}>Why join MK?</h2>
+          <h2 style={{ textAlign: 'center', fontSize: 32, fontWeight: 800, marginBottom: 8 }}>Why join Slot?</h2>
           <p style={{ textAlign: 'center', color: '#666', marginBottom: 40, fontSize: 16 }}>Everything you need to succeed, in one place.</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 24 }}>
             {BENEFITS.map(b => (
@@ -148,7 +152,7 @@ export default function BecomeProfessionalPage({ navigate }) {
       <div id="calculator" style={{ background: '#fff', padding: '64px 24px' }}>
         <div style={{ maxWidth: 600, margin: '0 auto', background: LIGHT, borderRadius: 20, padding: '40px 32px' }}>
           <h2 style={{ fontSize: 28, fontWeight: 800, marginBottom: 4, textAlign: 'center' }}>💰 Earnings Calculator</h2>
-          <p style={{ textAlign: 'center', color: '#666', marginBottom: 32, fontSize: 14 }}>Estimate your monthly income on MK App.</p>
+          <p style={{ textAlign: 'center', color: '#666', marginBottom: 32, fontSize: 14 }}>Estimate your monthly income on Slot App.</p>
 
           <label style={{ fontSize: 13, fontWeight: 700, color: '#555', display: 'block', marginBottom: 8 }}>
             Jobs per month: <strong style={{ color: BRAND }}>{jobs}</strong>
@@ -212,9 +216,9 @@ export default function BecomeProfessionalPage({ navigate }) {
           ) : (
             <div style={{ background: '#fff', borderRadius: 20, padding: '32px 28px', boxShadow: '0 4px 24px rgba(0,0,0,0.07)' }}>
               {[
-                { key: 'name',  label: 'Full Name *',       placeholder: 'Your full name',        type: 'text' },
-                { key: 'phone', label: 'Mobile Number *',   placeholder: '10-digit mobile number', type: 'tel'  },
-                { key: 'city',  label: 'Your City',         placeholder: 'e.g. Hyderabad',         type: 'text' },
+                { key: 'name', label: 'Full Name *', placeholder: 'Your full name', type: 'text' },
+                { key: 'phone', label: 'Mobile Number *', placeholder: '10-digit mobile number', type: 'tel' },
+                { key: 'city', label: 'Your City', placeholder: 'e.g. Hyderabad', type: 'text' },
               ].map(f => (
                 <div key={f.key} style={{ marginBottom: 16 }}>
                   <label style={{ fontSize: 13, fontWeight: 700, color: '#555', display: 'block', marginBottom: 6 }}>{f.label}</label>

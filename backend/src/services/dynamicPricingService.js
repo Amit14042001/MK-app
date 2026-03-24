@@ -1,5 +1,5 @@
 /**
- * MK App — Dynamic Pricing Service
+ * Slot App — Dynamic Pricing Service
  * Surge pricing based on demand, time of day, professional availability, and weather
  */
 const Professional = require('../models/Professional');

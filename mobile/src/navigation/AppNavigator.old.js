@@ -34,7 +34,7 @@ const slideUp = ({ current, layouts }) => ({
   cardStyle: { transform: [{ translateY: current.progress.interpolate({ inputRange:[0,1], outputRange:[layouts.screen.height,0] }) }] }
 });
 
-function MKTabBar({ state, navigation }) {
+function SlotTabBar({ state, navigation }) {
   const TABS = [
     { name:'HomeTab',     icon:'🏠', label:'Home' },
     { name:'BookingsTab', icon:'📋', label:'Bookings' },
@@ -123,7 +123,7 @@ function MainTabs() {
 }
 
 const linking = {
-  prefixes: ['mkapp://', 'https://mkapp.in'],
+  prefixes: ['mkapp://', 'https://slotapp.in'],
   config: { screens: {
     HomeTab:     { screens: { ServiceDetail:'service/:serviceId', Automotive:'automotive', Subscription:'prime' } },
     BookingsTab: { screens: { Tracking:'booking/:bookingId/track' } },
@@ -137,13 +137,13 @@ export default function AppNavigator() {
   const [onboardingDone, setOnboardingDone] = useState(null);
 
   useEffect(() => {
-    AsyncStorage.getItem('mk_onboarding_done')
+    AsyncStorage.getItem('slot_onboarding_done')
       .then(val => setOnboardingDone(val === 'true'))
       .catch(() => setOnboardingDone(false));
   }, []);
 
   const handleOnboardingDone = async () => {
-    await AsyncStorage.setItem('mk_onboarding_done', 'true');
+    await AsyncStorage.setItem('slot_onboarding_done', 'true');
     setOnboardingDone(true);
   };
 

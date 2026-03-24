@@ -1,5 +1,5 @@
 /**
- * MK App — AI Chatbot Booking Assistant
+ * Slot App — AI Chatbot Booking Assistant
  * LLM-powered: "Book AC service Sunday 10am" → auto-creates booking
  * Uses Anthropic Claude API via backend proxy (keeps API key server-side)
  * UC does NOT have this — competitive advantage
@@ -14,7 +14,7 @@ const { protect } = require('../middleware/auth');
 const { asyncHandler, AppError } = require('../middleware/errorHandler');
 
 // ── System prompt for the booking assistant ───────────────────
-const SYSTEM_PROMPT = `You are MK Assistant, an AI booking helper for MK App (a home services platform like Urban Company in India).
+const SYSTEM_PROMPT = `You are Slot Assistant, an AI booking helper for Slot App (a home services platform like Urban Company in India).
 
 Your job: Help customers book home services through natural conversation.
 
@@ -181,7 +181,7 @@ function fallbackResponse(message) {
   if (t.includes('cancel') || t.includes('reschedule'))
     return "To cancel or reschedule, go to My Bookings → tap on your booking → select Cancel/Reschedule. Or I can help you do it here — just share your booking ID.";
   if (t.includes('hi') || t.includes('hello') || t.includes('hey'))
-    return "Hi! 👋 I'm your MK Assistant. I can help you:\n• Book a home service\n• Check your bookings\n• Get price estimates\n\nWhat would you like to do?";
+    return "Hi! 👋 I'm your Slot Assistant. I can help you:\n• Book a home service\n• Check your bookings\n• Get price estimates\n\nWhat would you like to do?";
   return "I can help you book home services, check prices, or manage your bookings. What do you need today?";
 }
 
@@ -204,7 +204,7 @@ router.post('/diagnose', protect, asyncHandler(async (req, res) => {
   if (!problem || problem.trim().length < 5)
     throw new AppError('Problem description required (min 5 chars)', 400);
 
-  const systemPrompt = `You are an expert home services diagnostic AI for MK App, an Indian home services platform.
+  const systemPrompt = `You are an expert home services diagnostic AI for Slot App, an Indian home services platform.
 A customer has described a home problem. Your job is to:
 1. Identify the exact service needed
 2. Estimate the price range in Indian Rupees
@@ -268,7 +268,7 @@ router.post('/photo-quote', protect, asyncHandler(async (req, res) => {
   const { imageBase64, imageType = 'image/jpeg' } = req.body;
   if (!imageBase64) throw new AppError('Image required', 400);
 
-  const systemPrompt = `You are an expert home services estimator AI for MK App, an Indian home services platform.
+  const systemPrompt = `You are an expert home services estimator AI for Slot App, an Indian home services platform.
 A customer has sent you a photo of their home problem. Analyze the image carefully and:
 1. Identify what service is needed
 2. Estimate what you can see (damaged area size, severity level, extent of problem)

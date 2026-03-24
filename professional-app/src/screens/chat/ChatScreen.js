@@ -1,5 +1,5 @@
 /**
- * MK Professional App — ChatScreen
+ * Slot Professional App — ChatScreen
  * Real-time chat with customers, booking context, image/location sharing
  */
 import React, { useState, useEffect, useRef, useCallback } from 'react';

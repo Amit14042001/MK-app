@@ -36,7 +36,7 @@
                             </view>
 
                             <label opaque="NO" userInteractionEnabled="NO"
-                                text="MK Pro"
+                                text="Slot Pro"
                                 textAlignment="center"
                                 translatesAutoresizingMaskIntoConstraints="NO"
                                 id="pro-name-label">

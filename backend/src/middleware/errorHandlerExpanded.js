@@ -1,5 +1,5 @@
 /**
- * MK App — Error Handler Middleware (Complete)
+ * Slot App — Error Handler Middleware (Complete)
  * Global error handling, async wrapper, custom error classes
  */
 

@@ -1,5 +1,5 @@
 /**
- * MK App — Video Call Routes (wired to controller)
+ * Slot App — Video Call Routes (wired to controller)
  */
 const express = require('express');
 const router = express.Router();

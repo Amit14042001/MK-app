@@ -1,5 +1,5 @@
 /**
- * MK App — Analytics Service
+ * Slot App — Analytics Service
  * Business intelligence: revenue, bookings, professionals, retention
  */
 const mongoose = require('mongoose');

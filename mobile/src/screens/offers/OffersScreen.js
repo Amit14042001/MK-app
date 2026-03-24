@@ -1,5 +1,5 @@
 /**
- * MK App — OffersScreen
+ * Slot App — OffersScreen
  * Coupons, deals, flash sales, referral offers, membership perks
  */
 import React, { useState, useEffect, useCallback } from 'react';
@@ -48,7 +48,7 @@ const OFFERS = [
   },
   {
     id: 'o5', code: 'REFER100', title: 'Referral Reward ₹100',
-    description: 'Share MK App with friends. Earn ₹100 wallet credit per referral.',
+    description: 'Share Slot App with friends. Earn ₹100 wallet credit per referral.',
     discount: '₹100', maxDiscount: 100, minOrder: 0,
     validTill: '2025-12-31', category: 'referral', isNew: false,
     color: '#9B59B6', bgColor: '#F3E5F5', icon: '🤝',

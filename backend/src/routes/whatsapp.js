@@ -1,5 +1,5 @@
 /**
- * MK App — WhatsApp Webhook Route
+ * Slot App — WhatsApp Webhook Route
  * Meta Business API webhook + outbound message helpers
  */
 const express = require('express');
@@ -13,7 +13,7 @@ const { handleBookingBot } = require('../services/whatsappBotService');
 
 const WA_TOKEN    = process.env.WHATSAPP_TOKEN;
 const WA_PHONE_ID = process.env.WHATSAPP_PHONE_ID;
-const WA_VERIFY   = process.env.WHATSAPP_VERIFY_TOKEN || 'mk_wa_verify_2026';
+const WA_VERIFY   = process.env.WHATSAPP_VERIFY_TOKEN || 'slot_wa_verify_2026';
 const WA_API      = `https://graph.facebook.com/v18.0/${WA_PHONE_ID}/messages`;
 
 // ── Verify webhook (GET) ──────────────────────────────────────
@@ -122,7 +122,7 @@ async function handleIncomingMessage(msg, contact) {
   const user = await User.findOne({ phone: from }).lean();
 
   if (text === 'hi' || text === 'hello' || text === 'help') {
-    await sendWAMessage(from, `Hello ${name}! 👋 Welcome to MK App Support.\n\nReply with:\n1️⃣ *STATUS* — Check booking status\n2️⃣ *CANCEL* — Cancel a booking\n3️⃣ *RESCHEDULE* — Reschedule a booking\n4️⃣ *SUPPORT* — Talk to our team\n\nYou can also call us at 1800-123-4567`);
+    await sendWAMessage(from, `Hello ${name}! 👋 Welcome to Slot App Support.\n\nReply with:\n1️⃣ *STATUS* — Check booking status\n2️⃣ *CANCEL* — Cancel a booking\n3️⃣ *RESCHEDULE* — Reschedule a booking\n4️⃣ *SUPPORT* — Talk to our team\n\nYou can also call us at 1800-123-4567`);
     return;
   }
 
@@ -156,7 +156,7 @@ async function handleIncomingMessage(msg, contact) {
   }
 
   // Default fallback
-  await sendWAMessage(from, `Hi ${name}! We received your message.\n\nFor faster support, please:\n• Open the MK App\n• Go to Help & Support\n• Create a ticket\n\nOr reply *HELP* for options.`);
+  await sendWAMessage(from, `Hi ${name}! We received your message.\n\nFor faster support, please:\n• Open the Slot App\n• Go to Help & Support\n• Create a ticket\n\nOr reply *HELP* for options.`);
 }
 
 async function handleStatusUpdate(status) {
@@ -193,7 +193,7 @@ exports.notifyBookingConfirmed = async (booking, customerPhone) => {
     `Service: ${booking.service?.name || ''}\n` +
     `Date: ${new Date(booking.scheduledDate).toDateString()}\n` +
     `Time: ${booking.scheduledTimeSlot}\n\n` +
-    `Track your booking in the MK App.\nFor help, reply *SUPPORT*`
+    `Track your booking in the Slot App.\nFor help, reply *SUPPORT*`
   );
 };
 
@@ -210,7 +210,7 @@ exports.notifyBookingCompleted = async (booking, customerPhone) => {
   await sendWAMessage(customerPhone,
     `🎉 Service Completed!\n\n` +
     `Booking: ${booking.bookingId}\n` +
-    `Thank you for using MK App!\n\n` +
+    `Thank you for using Slot App!\n\n` +
     `Please rate your experience in the app. Your feedback helps us improve. ⭐`
   );
 };

@@ -1,5 +1,5 @@
 /**
- * MK Professional App — PayoutScreen
+ * Slot Professional App — PayoutScreen
  * Request earnings withdrawal, bank details, payout history
  * Feature #22: Earning withdrawal screen
  */

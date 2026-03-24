@@ -1,5 +1,5 @@
 /**
- * MK App — Payment Controller (Full Production)
+ * Slot App — Payment Controller (Full Production)
  * Razorpay integration, refunds, wallet, coupons, invoices
  */
 const Razorpay = require('razorpay');
@@ -43,7 +43,7 @@ exports.createOrder = asyncHandler(async (req, res) => {
   const order = await razorpay.orders.create({
     amount:   amountInPaise,
     currency: 'INR',
-    receipt:  `mk_${bookingId || 'wallet'}_${Date.now()}`,
+    receipt:  `slot_${bookingId || 'wallet'}_${Date.now()}`,
     notes:    {
       bookingId:  bookingId  || 'wallet_recharge',
       customerId: req.user._id.toString(),
@@ -201,7 +201,7 @@ exports.getInvoice = asyncHandler(async (req, res) => {
   if (!booking) throw new AppError('Booking not found', 404);
 
   const invoice = {
-    invoiceNumber: `INV-MK-${booking.bookingId}`,
+    invoiceNumber: `INV-Slot-${booking.bookingId}`,
     date:          new Date().toISOString(),
     customer:      { name: req.user.name, phone: req.user.phone, email: req.user.email },
     booking: {
@@ -209,7 +209,7 @@ exports.getInvoice = asyncHandler(async (req, res) => {
       service:     booking.service?.name,
       date:        booking.scheduledDate,
       time:        booking.scheduledTime,
-      professional: booking.professional?.user?.name || 'MK Professional',
+      professional: booking.professional?.user?.name || 'Slot Professional',
       address:     `${booking.address?.line1}, ${booking.address?.city}`,
     },
     pricing: booking.pricing,

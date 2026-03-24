@@ -1,5 +1,5 @@
 /**
- * MK App — Customer Auth Context (Full)
+ * Slot App — Customer Auth Context (Full)
  * OTP login, JWT management, auto-refresh, profile state
  */
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
@@ -30,9 +30,9 @@ export function AuthProvider({ children }) {
   const restoreSession = async () => {
     try {
       const [token, userData, firstLaunch] = await Promise.all([
-        AsyncStorage.getItem('mk_access_token'),
-        AsyncStorage.getItem('mk_user'),
-        AsyncStorage.getItem('mk_onboarded'),
+        AsyncStorage.getItem('slot_access_token'),
+        AsyncStorage.getItem('slot_user'),
+        AsyncStorage.getItem('slot_onboarded'),
       ]);
 
       setIsFirstLaunch(!firstLaunch);
@@ -56,7 +56,7 @@ export function AuthProvider({ children }) {
       const { data } = await api.get('/auth/me');
       if (data.user) {
         setUser(data.user);
-        await AsyncStorage.setItem('mk_user', JSON.stringify(data.user));
+        await AsyncStorage.setItem('slot_user', JSON.stringify(data.user));
       }
     } catch (err) {
       if (err.response?.status === 401) {
@@ -67,10 +67,10 @@ export function AuthProvider({ children }) {
 
   const handleRefreshToken = async () => {
     try {
-      const refreshToken = await AsyncStorage.getItem('mk_refresh_token');
+      const refreshToken = await AsyncStorage.getItem('slot_refresh_token');
       if (!refreshToken) { await clearSession(); return; }
       const { data } = await axios.post(`${API_URL}/auth/refresh-token`, { refreshToken });
-      await AsyncStorage.setItem('mk_access_token', data.accessToken);
+      await AsyncStorage.setItem('slot_access_token', data.accessToken);
       api.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
     } catch {
       await clearSession();
@@ -79,14 +79,14 @@ export function AuthProvider({ children }) {
 
   const clearSession = async () => {
     delete api.defaults.headers.common.Authorization;
-    await AsyncStorage.multiRemove(['mk_access_token', 'mk_refresh_token', 'mk_user']);
+    await AsyncStorage.multiRemove(['slot_access_token', 'slot_refresh_token', 'slot_user']);
     setUser(null);
   };
 
   // ── Request interceptor ──────────────────────────────────
   useEffect(() => {
     const reqInterceptor = api.interceptors.request.use(async config => {
-      const token = await AsyncStorage.getItem('mk_access_token');
+      const token = await AsyncStorage.getItem('slot_access_token');
       if (token) config.headers.Authorization = `Bearer ${token}`;
       return config;
     });
@@ -97,7 +97,7 @@ export function AuthProvider({ children }) {
         if (err.response?.status === 401 && !err.config._retry) {
           err.config._retry = true;
           await handleRefreshToken();
-          const token = await AsyncStorage.getItem('mk_access_token');
+          const token = await AsyncStorage.getItem('slot_access_token');
           if (token) {
             err.config.headers.Authorization = `Bearer ${token}`;
             return api(err.config);
@@ -125,9 +125,9 @@ export function AuthProvider({ children }) {
 
     api.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
     await AsyncStorage.multiSet([
-      ['mk_access_token',  accessToken],
-      ['mk_refresh_token', refreshToken],
-      ['mk_user',          JSON.stringify(userData)],
+      ['slot_access_token',  accessToken],
+      ['slot_refresh_token', refreshToken],
+      ['slot_user',          JSON.stringify(userData)],
     ]);
     setUser(userData);
     return data;
@@ -135,7 +135,7 @@ export function AuthProvider({ children }) {
 
   const logout = useCallback(async () => {
     try {
-      const refreshToken = await AsyncStorage.getItem('mk_refresh_token');
+      const refreshToken = await AsyncStorage.getItem('slot_refresh_token');
       if (refreshToken) await api.post('/auth/logout', { refreshToken }).catch(() => {});
     } catch {}
     await clearSession();
@@ -145,20 +145,20 @@ export function AuthProvider({ children }) {
     try {
       const { data } = await api.get('/auth/me');
       setUser(data.user);
-      await AsyncStorage.setItem('mk_user', JSON.stringify(data.user));
+      await AsyncStorage.setItem('slot_user', JSON.stringify(data.user));
     } catch {}
   }, []);
 
   const updateUser = useCallback((updates) => {
     setUser(prev => {
       const updated = { ...prev, ...updates };
-      AsyncStorage.setItem('mk_user', JSON.stringify(updated)).catch(() => {});
+      AsyncStorage.setItem('slot_user', JSON.stringify(updated)).catch(() => {});
       return updated;
     });
   }, []);
 
   const markOnboarded = useCallback(async () => {
-    await AsyncStorage.setItem('mk_onboarded', 'true');
+    await AsyncStorage.setItem('slot_onboarded', 'true');
     setIsFirstLaunch(false);
   }, []);
 

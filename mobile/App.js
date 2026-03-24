@@ -1,5 +1,5 @@
 /**
- * MK App — Customer App Root
+ * Slot App — Customer App Root
  */
 import React, { useEffect, useRef } from 'react';
 import {
@@ -49,20 +49,20 @@ async function setupFirebaseMessaging() {
     // Register token with backend
     try {
       await usersAPI.updateFCMToken(token);
-      await AsyncStorage.setItem('mk_fcm_token', token);
+      await AsyncStorage.setItem('slot_fcm_token', token);
     } catch {}
 
     // Token refresh
     const unsubRefresh = messaging().onTokenRefresh(async (newToken) => {
       try {
         await usersAPI.updateFCMToken(newToken);
-        await AsyncStorage.setItem('mk_fcm_token', newToken);
+        await AsyncStorage.setItem('slot_fcm_token', newToken);
       } catch {}
     });
 
     // Background messages
     messaging().setBackgroundMessageHandler(async (remoteMessage) => {
-      console.log('[MK] Background notification:', remoteMessage.notification?.title);
+      console.log('[Slot] Background notification:', remoteMessage.notification?.title);
     });
 
     return unsubRefresh;
@@ -98,7 +98,7 @@ export default function App() {
     // App state tracking
     const unsubAppState = AppState.addEventListener('change', (nextState) => {
       if (appState.current.match(/inactive|background/) && nextState === 'active') {
-        console.log('[MK] App foregrounded');
+        console.log('[Slot] App foregrounded');
       }
       appState.current = nextState;
     });

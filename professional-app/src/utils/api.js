@@ -1,5 +1,5 @@
 /**
- * MK Professional App — API Client
+ * Slot Professional App — API Client
  * Centralised Axios instance with auth interceptors, retry logic, token refresh
  */
 import axios from 'axios';

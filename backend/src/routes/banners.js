@@ -1,5 +1,5 @@
 /**
- * MK App — Banners Routes
+ * Slot App — Banners Routes
  */
 const express = require('express');
 const router  = express.Router();

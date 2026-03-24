@@ -1,5 +1,5 @@
 /**
- * MK App — Video Calls Routes
+ * Slot App — Video Calls Routes
  * Agora-based video consultation between customer and professional
  */
 const express = require('express');
@@ -27,7 +27,7 @@ router.post('/initiate', asyncHandler(async (req, res) => {
   if (!isCustomer && !isProfessional)
     throw new AppError('You are not authorized for this call', 403);
 
-  const channelName = `mk_${bookingId}_${Date.now()}`;
+  const channelName = `slot_${bookingId}_${Date.now()}`;
   const agoraToken  = generateAgoraToken(channelName, req.user._id.toString());
 
   const call = await VideoCall.create({

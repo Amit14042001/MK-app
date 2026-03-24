@@ -1,5 +1,5 @@
 /**
- * MK App — Notification Service
+ * Slot App — Notification Service
  * Orchestrates push notifications, SMS, email and in-app alerts
  * Handles batching, retry logic, template rendering, preferences
  */
@@ -14,7 +14,7 @@ const TEMPLATES = {
       title: (d) => '✅ Booking Confirmed!',
       body:  (d) => `${d.serviceName} on ${d.date} at ${d.time}. Booking ID: ${d.bookingId}`,
     },
-    sms: (d) => `MK App: Your booking ${d.bookingId} for ${d.serviceName} on ${d.date} is confirmed. Track in app.`,
+    sms: (d) => `Slot App: Your booking ${d.bookingId} for ${d.serviceName} on ${d.date} is confirmed. Track in app.`,
     email: {
       subject: (d) => `Booking Confirmed — ${d.bookingId}`,
       html:    (d) => `<h2>Booking Confirmed</h2><p>Service: ${d.serviceName}</p><p>Date: ${d.date} at ${d.time}</p><p>ID: ${d.bookingId}</p>`,
@@ -25,7 +25,7 @@ const TEMPLATES = {
       title: (d) => '❌ Booking Cancelled',
       body:  (d) => `Your booking ${d.bookingId} has been cancelled. ${d.refund > 0 ? `₹${d.refund} refunded to wallet.` : ''}`,
     },
-    sms: (d) => `MK App: Booking ${d.bookingId} cancelled. ${d.refund > 0 ? `Refund of Rs.${d.refund} will be credited to your wallet.` : ''} -MK Services`,
+    sms: (d) => `Slot App: Booking ${d.bookingId} cancelled. ${d.refund > 0 ? `Refund of Rs.${d.refund} will be credited to your wallet.` : ''} -Slot Services`,
     email: {
       subject: (d) => `Booking Cancelled — ${d.bookingId}`,
       html:    (d) => `<h2>Booking Cancelled</h2><p>Booking ${d.bookingId} has been cancelled.</p>${d.refund > 0 ? `<p>Refund of ₹${d.refund} will be credited to your wallet within 24 hours.</p>` : ''}`,
@@ -36,7 +36,7 @@ const TEMPLATES = {
       title: (d) => '👨‍🔧 Professional Assigned!',
       body:  (d) => `${d.proName} will handle your ${d.serviceName} booking. ${d.proPhone ? `Call: ${d.proPhone}` : ''}`,
     },
-    sms: (d) => `MK App: ${d.proName} (${d.proPhone}) assigned for your booking ${d.bookingId}. ETA: ${d.eta || 'As scheduled'}.`,
+    sms: (d) => `Slot App: ${d.proName} (${d.proPhone}) assigned for your booking ${d.bookingId}. ETA: ${d.eta || 'As scheduled'}.`,
     email: null,
   },
   PROFESSIONAL_ARRIVING: {
@@ -44,7 +44,7 @@ const TEMPLATES = {
       title: (d) => '🚗 Professional is on the way!',
       body:  (d) => `${d.proName} is arriving in ${d.eta || '10-15 mins'}. Please be ready.`,
     },
-    sms: (d) => `MK App: ${d.proName} is on the way. ETA: ${d.eta || '10-15 minutes'}. Booking: ${d.bookingId}`,
+    sms: (d) => `Slot App: ${d.proName} is on the way. ETA: ${d.eta || '10-15 minutes'}. Booking: ${d.bookingId}`,
     email: null,
   },
   SERVICE_COMPLETED: {
@@ -52,10 +52,10 @@ const TEMPLATES = {
       title: (d) => '🎉 Service Completed!',
       body:  (d) => `Your ${d.serviceName} is done! Please rate your experience.`,
     },
-    sms: (d) => `MK App: Service completed! Rate ${d.proName} in the app. Thank you for choosing MK Services.`,
+    sms: (d) => `Slot App: Service completed! Rate ${d.proName} in the app. Thank you for choosing Slot Services.`,
     email: {
       subject: (d) => `Service Completed — Rate Your Experience`,
-      html:    (d) => `<h2>Service Completed!</h2><p>Your ${d.serviceName} has been completed.</p><p>Please rate your experience in the MK App.</p>`,
+      html:    (d) => `<h2>Service Completed!</h2><p>Your ${d.serviceName} has been completed.</p><p>Please rate your experience in the Slot App.</p>`,
     },
   },
   NEW_BOOKING_FOR_PRO: {
@@ -63,14 +63,14 @@ const TEMPLATES = {
       title: (d) => '📋 New Booking Request!',
       body:  (d) => `${d.serviceName} on ${d.date} at ${d.time}. Accept within 10 minutes.`,
     },
-    sms: (d) => `MK App: New job! ${d.serviceName} on ${d.date} at ${d.time}. Open app to accept. Booking: ${d.bookingId}`,
+    sms: (d) => `Slot App: New job! ${d.serviceName} on ${d.date} at ${d.time}. Open app to accept. Booking: ${d.bookingId}`,
     email: null,
   },
   OTP: {
     push: null,
-    sms: (d) => `${d.otp} is your MK App OTP. Valid for 10 minutes. Do NOT share with anyone. -MK Services`,
+    sms: (d) => `${d.otp} is your Slot App OTP. Valid for 10 minutes. Do NOT share with anyone. -Slot Services`,
     email: {
-      subject: () => 'Your MK App OTP',
+      subject: () => 'Your Slot App OTP',
       html:    (d) => `<h2>Your OTP: ${d.otp}</h2><p>This OTP is valid for 10 minutes. Do not share it with anyone.</p>`,
     },
   },
@@ -79,7 +79,7 @@ const TEMPLATES = {
       title: (d) => `🎉 ${d.planName} Plan Activated!`,
       body:  (d) => `Enjoy ${d.discount}% off on all services. Valid till ${d.validTill}.`,
     },
-    sms: (d) => `MK App: Your ${d.planName} subscription is active. Enjoy ${d.discount}% off all services till ${d.validTill}.`,
+    sms: (d) => `Slot App: Your ${d.planName} subscription is active. Enjoy ${d.discount}% off all services till ${d.validTill}.`,
     email: {
       subject: (d) => `${d.planName} Subscription Activated`,
       html:    (d) => `<h2>${d.planName} Plan Active</h2><p>Enjoy ${d.discount}% discount on all services until ${d.validTill}.</p>`,
@@ -88,9 +88,9 @@ const TEMPLATES = {
   WALLET_CREDITED: {
     push: {
       title: (d) => '💰 Wallet Credited!',
-      body:  (d) => `₹${d.amount} added to your MK Wallet. New balance: ₹${d.balance}`,
+      body:  (d) => `₹${d.amount} added to your Slot Wallet. New balance: ₹${d.balance}`,
     },
-    sms: (d) => `MK App: Rs.${d.amount} credited to your wallet. Balance: Rs.${d.balance}. ${d.reason || ''}`,
+    sms: (d) => `Slot App: Rs.${d.amount} credited to your wallet. Balance: Rs.${d.balance}. ${d.reason || ''}`,
     email: null,
   },
   REFERRAL_BONUS: {
@@ -98,7 +98,7 @@ const TEMPLATES = {
       title: () => '🎁 Referral Bonus Earned!',
       body:  (d) => `₹${d.amount} added to your wallet for referring ${d.friendName}!`,
     },
-    sms: (d) => `MK App: Congrats! Rs.${d.amount} credited for your referral. Balance: Rs.${d.balance}.`,
+    sms: (d) => `Slot App: Congrats! Rs.${d.amount} credited for your referral. Balance: Rs.${d.balance}.`,
     email: null,
   },
 };

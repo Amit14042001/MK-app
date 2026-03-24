@@ -1,5 +1,5 @@
 /**
- * MK App — CorporateScreen
+ * Slot App — CorporateScreen
  * Corporate account registration, plans, team management, invoicing
  */
 import React, { useState } from 'react';
@@ -122,7 +122,7 @@ export default function CorporateScreen({ navigation }) {
         {/* Hero */}
         <View style={S.hero}>
           <Text style={S.heroEmoji}>🏢</Text>
-          <Text style={S.heroTitle}>MK for Business</Text>
+          <Text style={S.heroTitle}>Slot for Business</Text>
           <Text style={S.heroSub}>Streamline home services for your employees and offices. Trusted by 500+ companies across India.</Text>
         </View>
 
@@ -140,7 +140,7 @@ export default function CorporateScreen({ navigation }) {
 
         {/* Features */}
         <View style={S.featuresSection}>
-          <Text style={S.sectionTitle}>Why Choose MK Corporate?</Text>
+          <Text style={S.sectionTitle}>Why Choose Slot Corporate?</Text>
           <View style={S.featuresGrid}>
             {FEATURES_LIST.map((f, i) => (
               <View key={i} style={S.featureCard}>

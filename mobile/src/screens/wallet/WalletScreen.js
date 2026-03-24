@@ -1,5 +1,5 @@
 /**
- * MK App — Wallet Screen (Full)
+ * Slot App — Wallet Screen (Full)
  * Balance, transactions, add money, Razorpay integration
  */
 import React, { useState, useEffect, useCallback } from 'react';
@@ -66,13 +66,13 @@ function AddMoneyModal({ visible, onClose, onSuccess, userInfo }) {
     try {
       const { data } = await paymentsAPI.walletRecharge({ amount });
       const options = {
-        description:    'MK Wallet Recharge',
-        image:          'https://mkapp.in/logo.png',
+        description:    'Slot Wallet Recharge',
+        image:          'https://slotapp.in/logo.png',
         currency:       'INR',
         key:            data.key,
         amount:         amount * 100,
         order_id:       data.order.id,
-        name:           'MK Services',
+        name:           'Slot Services',
         prefill: {
           email:        userInfo?.email || '',
           contact:      userInfo?.phone || '',
@@ -211,7 +211,7 @@ export default function WalletScreen({ navigation }) {
           <TouchableOpacity onPress={() => navigation.goBack()} style={S.backBtn}>
             <Text style={S.backIcon}>←</Text>
           </TouchableOpacity>
-          <Text style={S.headerTitle}>MK Wallet</Text>
+          <Text style={S.headerTitle}>Slot Wallet</Text>
           <View style={{ width: 40 }} />
         </View>
 

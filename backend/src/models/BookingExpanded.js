@@ -1,5 +1,5 @@
 /**
- * MK App — Booking Model (Complete)
+ * Slot App — Booking Model (Complete)
  * Full schema with pricing, status history, tracking, reviews, corporate
  */
 const mongoose = require('mongoose');

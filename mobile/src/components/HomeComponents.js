@@ -1,5 +1,5 @@
 /**
- * MK App — HomeScreen v2 (Additional Components)
+ * Slot App — HomeScreen v2 (Additional Components)
  * Reusable widgets: ServiceCard, BannerCarousel, CategoryGrid, PromoCard
  */
 import React, { useState, useEffect, useRef, useCallback } from 'react';

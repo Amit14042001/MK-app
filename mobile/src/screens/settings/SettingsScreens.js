@@ -110,8 +110,8 @@ export function SettingsScreen({ navigation }) {
         <View style={S.card}>
           {[
             { label: 'App Version',     value: '1.0.0 (Build 1)',     icon: '📱' },
-            { label: 'Privacy Policy',  value: '',                     icon: '🔒', onPress: () => Linking.openURL('https://mkapp.in/privacy') },
-            { label: 'Terms of Service',value: '',                     icon: '📄', onPress: () => Linking.openURL('https://mkapp.in/terms') },
+            { label: 'Privacy Policy',  value: '',                     icon: '🔒', onPress: () => Linking.openURL('https://slotapp.in/privacy') },
+            { label: 'Terms of Service',value: '',                     icon: '📄', onPress: () => Linking.openURL('https://slotapp.in/terms') },
             { label: 'Licences',        value: '',                     icon: '⚖️', onPress: () => {} },
           ].map((item, i, arr) => (
             <TouchableOpacity key={item.label} onPress={item.onPress}
@@ -161,7 +161,7 @@ export function PrivacyScreen({ navigation }) {
           {[
             { key: 'analyticsData',      label: 'Usage Analytics',     sub: 'Help us improve app performance' },
             { key: 'personalizedAds',    label: 'Personalized Offers',  sub: 'Receive relevant offers' },
-            { key: 'thirdPartySharing',  label: 'Partner Data Sharing', sub: 'Share data with MK partners' },
+            { key: 'thirdPartySharing',  label: 'Partner Data Sharing', sub: 'Share data with Slot partners' },
           ].map((item, i, arr) => (
             <View key={item.key} style={[S.settingRow, i < arr.length - 1 && S.settingBorder]}>
               <View style={{ flex: 1 }}>
@@ -177,7 +177,7 @@ export function PrivacyScreen({ navigation }) {
         <View style={S.card}>
           {[
             { label: 'Download My Data',  icon: '📥', onPress: () => Alert.alert('Request submitted', 'You will receive your data within 30 days.') },
-            { label: 'View Privacy Policy', icon: '🔒', onPress: () => Linking.openURL('https://mkapp.in/privacy') },
+            { label: 'View Privacy Policy', icon: '🔒', onPress: () => Linking.openURL('https://slotapp.in/privacy') },
             { label: 'Report Privacy Issue', icon: '🚨', onPress: () => {} },
           ].map((item, i, arr) => (
             <TouchableOpacity key={item.label} onPress={item.onPress} style={[S.infoRow, i < arr.length - 1 && S.settingBorder]}>

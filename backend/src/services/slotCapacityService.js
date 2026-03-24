@@ -1,5 +1,5 @@
 /**
- * MK App — Slot Capacity Management Service
+ * Slot App — Slot Capacity Management Service
  * Feature #17: Max bookings per time slot per professional
  * Prevents double-booking and manages availability
  */

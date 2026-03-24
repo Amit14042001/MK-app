@@ -4,8 +4,12 @@ apply plugin: "com.google.gms.google-services"
 apply plugin: "com.google.firebase.crashlytics"
 
 /**
- * MK Customer App — Android Build Config
+ * Slot Customer App — Android Build Config
  */
+
+// Enable Proguard in release builds (set in gradle.properties)
+def enableProguardInReleaseBuilds = project.hasProperty('enableProguardInReleaseBuilds') \
+    ? project.enableProguardInReleaseBuilds.toBoolean() : false
 
 android {
     ndkVersion rootProject.ext.ndkVersion
@@ -66,14 +70,14 @@ android {
             signingConfig signingConfigs.debug
             applicationIdSuffix ".debug"
             versionNameSuffix "-DEBUG"
-            resValue "string", "app_name", "MK (Dev)"
+            resValue "string", "app_name", "Slot (Dev)"
         }
         release {
             signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             shrinkResources enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            resValue "string", "app_name", "MK"
+            resValue "string", "app_name", "Slot"
         }
     }
 
@@ -105,8 +109,8 @@ react {
 
 dependencies {
     // React Native
-    implementation("com.facebook.react:react-android")
-    implementation("com.facebook.react:hermes-android")
+    implementation("com.facebook.react:react-android:0.73.4")
+    implementation("com.facebook.react:hermes-android:0.73.4")
 
     // AndroidX
     implementation "androidx.multidex:multidex:2.0.1"
@@ -126,7 +130,4 @@ dependencies {
     // Razorpay
     implementation 'com.razorpay:checkout:1.6.33'
 }
-
-// Enable Proguard in release builds (set in gradle.properties)
-def enableProguardInReleaseBuilds = project.hasProperty('enableProguardInReleaseBuilds') \
-    ? project.enableProguardInReleaseBuilds : false
+apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

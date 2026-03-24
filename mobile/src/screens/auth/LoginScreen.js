@@ -121,7 +121,7 @@ export default function LoginScreen({ navigation }) {
         <Animated.View style={{ opacity: fadeAnim }}>
           {/* Logo */}
           <View style={styles.logo}>
-            <Text style={styles.logoText}>MK</Text>
+            <Text style={styles.logoText}>Slot</Text>
           </View>
           <Text style={styles.heroTitle}>Home Services{'\n'}At Your Doorstep</Text>
           <Text style={styles.heroSub}>Verified professionals for 200+ services</Text>

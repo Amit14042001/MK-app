@@ -1,5 +1,5 @@
 /**
- * MK App — NotificationContext
+ * Slot App — NotificationContext
  * Push notifications, in-app badge, deep link routing
  * Feature #10: Deep links from notifications
  */

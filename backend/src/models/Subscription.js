@@ -5,7 +5,7 @@ const subscriptionSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true, index: true },
   plan: {
     type: { type: String, enum: ['monthly', 'quarterly', 'annual'], required: true },
-    name: { type: String, default: 'MK Prime' },
+    name: { type: String, default: 'Slot Prime' },
     price: { type: Number, required: true },
     currency: { type: String, default: 'INR' },
     discount: { type: Number, default: 15 }, // % discount on all bookings
@@ -129,7 +129,7 @@ const activateSubscription = asyncHandler(async (req, res) => {
 
   const sub = await Subscription.create({
     user: req.user._id,
-    plan: { type: planType, name: 'MK Prime', price: plan.price },
+    plan: { type: planType, name: 'Slot Prime', price: plan.price },
     status: 'active',
     startDate: now,
     endDate,
@@ -144,7 +144,7 @@ const activateSubscription = asyncHandler(async (req, res) => {
     primeSubscription: sub._id,
   });
 
-  res.json({ success: true, message: 'Welcome to MK Prime! 👑', subscription: sub });
+  res.json({ success: true, message: 'Welcome to Slot Prime! 👑', subscription: sub });
 });
 
 // PUT /subscriptions/cancel

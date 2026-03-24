@@ -1,5 +1,5 @@
 /**
- * MK App — Search Routes
+ * Slot App — Search Routes
  * Full-text search across services, professionals, categories
  */
 const express     = require('express');

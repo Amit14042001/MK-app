@@ -423,7 +423,7 @@ export function LiveChatScreen({ route, navigation }) {
 
   useEffect(() => {
     const init = async () => {
-      const token = await AsyncStorage.getItem('mk_access_token');
+      const token = await AsyncStorage.getItem('slot_access_token');
       const s = io(SOCKET_URL, { auth: { token } });
       s.emit('join_booking', bookingId);
       s.on('connect', () => setConnected(true));

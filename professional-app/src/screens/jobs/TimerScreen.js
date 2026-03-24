@@ -1,5 +1,5 @@
 /**
- * MK App Professional — Job Timer Screen (Full)
+ * Slot App Professional — Job Timer Screen (Full)
  * Live timer from job start, milestones, completion with customer confirmation
  */
 import React, { useState, useEffect, useRef, useCallback } from 'react';

@@ -110,7 +110,7 @@ export default function CheckoutScreen({ navigation }) {
           key,
           amount: order.amount,
           currency: order.currency,
-          name: 'MK App',
+          name: 'Slot App',
           description: cart[0]?.serviceName,
           order_id: order.id,
           prefill: {
@@ -363,7 +363,7 @@ export default function CheckoutScreen({ navigation }) {
               {couponData && (
                 <Text style={styles.couponSuccess}>✅ {couponData.message}</Text>
               )}
-              <Text style={styles.couponHint}>Try: MKWELCOME · MK100 · AUTOCARE</Text>
+              <Text style={styles.couponHint}>Try: SlotWELCOME · Slot100 · AUTOCARE</Text>
             </View>
 
             <TouchableOpacity onPress={() => setStep(2)} style={[Common.primaryBtn, { margin: 16 }]}>

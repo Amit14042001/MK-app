@@ -1,5 +1,5 @@
 /**
- * MK App — Customer Live Chat Screen (Full)
+ * Slot App — Customer Live Chat Screen (Full)
  * Real-time chat with support agent, booking context, media support
  */
 import React, { useState, useEffect, useRef, useCallback } from 'react';
@@ -113,7 +113,7 @@ export function LiveChatScreen({ route, navigation }) {
 
   const [messages, setMessages] = useState([
     {
-      id: '1', type: 'text', text: "Hi! I'm Priya from MK App support. How can I help you today?",
+      id: '1', type: 'text', text: "Hi! I'm Priya from Slot App support. How can I help you today?",
       sender: 'agent', senderName: 'Priya (Support)', time: '2:30 PM', read: true,
     },
     ...(bookingId ? [{
@@ -525,14 +525,14 @@ export function GiftCardScreen({ navigation }) {
           <View style={[giftStyles.previewHeader, { backgroundColor: DESIGNS[selectedDesign].gradient[0] }]}>
             <Text style={giftStyles.previewEmoji}>{DESIGNS[selectedDesign].emoji}</Text>
             <View>
-              <Text style={giftStyles.previewTitle}>MK App Gift Card</Text>
+              <Text style={giftStyles.previewTitle}>Slot App Gift Card</Text>
               <Text style={giftStyles.previewAmount}>₹{selectedAmount}</Text>
             </View>
           </View>
           <View style={giftStyles.previewBody}>
             {recipientName && <Text style={giftStyles.previewTo}>For: {recipientName}</Text>}
             {personalMessage && <Text style={giftStyles.previewMsg}>"{personalMessage}"</Text>}
-            <Text style={giftStyles.previewValidity}>Valid for 1 year • Redeemable on any MK App service</Text>
+            <Text style={giftStyles.previewValidity}>Valid for 1 year • Redeemable on any Slot App service</Text>
           </View>
         </View>
       </ScrollView>

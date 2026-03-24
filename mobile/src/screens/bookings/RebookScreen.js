@@ -1,5 +1,5 @@
 /**
- * MK App — RebookScreen
+ * Slot App — RebookScreen
  * UC feature: "Book the same professional again"
  * Shows past professionals with ratings, lets user request them specifically
  */

@@ -309,7 +309,7 @@ export function VerificationScreen({ navigation }) {
 
         <View style={styles.verifyHelp}>
           <Text style={styles.verifyHelpTitle}>Need help with verification?</Text>
-          <Text style={styles.verifyHelpSub}>Contact our pro support at prosupport@mkapp.in or call 1800-123-4567</Text>
+          <Text style={styles.verifyHelpSub}>Contact our pro support at prosupport@slotapp.in or call 1800-123-4567</Text>
         </View>
       </ScrollView>
     </View>
@@ -320,10 +320,10 @@ export function VerificationScreen({ navigation }) {
 // TRAINING SCREEN
 // ─────────────────────────────────────────────────────────────
 const COURSES = [
-  { id: '1', title: 'MK Professional Standards', duration: '45 min', modules: 6, done: true, icon: '🏆' },
+  { id: '1', title: 'Slot Professional Standards', duration: '45 min', modules: 6, done: true, icon: '🏆' },
   { id: '2', title: 'Customer Communication',    duration: '30 min', modules: 4, done: true, icon: '💬' },
   { id: '3', title: 'Safety & Hygiene Protocols',duration: '25 min', modules: 3, done: false, icon: '🛡️' },
-  { id: '4', title: 'Using the MK Pro App',      duration: '20 min', modules: 5, done: false, icon: '📱' },
+  { id: '4', title: 'Using the Slot Pro App',      duration: '20 min', modules: 5, done: false, icon: '📱' },
   { id: '5', title: 'AC & Appliance Servicing',  duration: '60 min', modules: 8, done: false, icon: '❄️' },
   { id: '6', title: 'Automotive Services Training',duration:'50 min',modules:7, done: false, icon: '🚗' },
 ];
@@ -383,7 +383,7 @@ export function TrainingScreen({ navigation }) {
         {completed >= COURSES.length && (
           <View style={styles.certCard}>
             <Text style={{ fontSize: 48, marginBottom: 12 }}>🏅</Text>
-            <Text style={styles.certTitle}>MK Certified Professional</Text>
+            <Text style={styles.certTitle}>Slot Certified Professional</Text>
             <Text style={styles.certSub}>You've completed all training modules. Your certificate is ready to download.</Text>
             <TouchableOpacity style={styles.certBtn}>
               <Text style={styles.certBtnText}>Download Certificate</Text>

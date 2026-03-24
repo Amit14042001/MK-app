@@ -1,5 +1,5 @@
 /**
- * MK App — LocationContext
+ * Slot App — LocationContext
  * GPS location, permissions, reverse geocoding, nearby professionals
  * Real react-native-geolocation-service + react-native-permissions wired.
  */
@@ -314,7 +314,7 @@ export function LocationProvider({ children }) {
   const openSettings = () => {
     Alert.alert(
       'Location Access Required',
-      'MK App needs your location to show nearby professionals and accurate service availability.',
+      'Slot App needs your location to show nearby professionals and accurate service availability.',
       [
         { text: 'Not Now', style: 'cancel' },
         { text: 'Open Settings', onPress: () => Linking.openSettings() },
@@ -325,7 +325,7 @@ export function LocationProvider({ children }) {
   const promptLocation = () => {
     Alert.alert(
       '📍 Allow Location Access',
-      'MK App uses your location to:\n• Show professionals near you\n• Auto-fill your address\n• Provide accurate service availability',
+      'Slot App uses your location to:\n• Show professionals near you\n• Auto-fill your address\n• Provide accurate service availability',
       [
         { text: 'Not Now', style: 'cancel' },
         { text: 'Allow', onPress: () => requestPermission() },

@@ -10,11 +10,11 @@ const css = `
   @keyframes success-pop { 0%{transform:scale(0.5);opacity:0} 70%{transform:scale(1.1)} 100%{transform:scale(1);opacity:1} }
   .fade-in { animation:fadeIn 0.3s ease forwards; }
   .success-icon { animation:success-pop 0.6s cubic-bezier(0.175,0.885,0.32,1.275) forwards; }
-  .input-field:focus { border-color:#e94560 !important; box-shadow:0 0 0 3px rgba(233,69,96,0.1) !important; }
-  .addr-card:hover { border-color:#e94560 !important; }
-  .pay-method:hover { border-color:#e94560 !important; }
+  .input-field:focus { border-color:var(--color-brand) !important; box-shadow:0 0 0 3px rgba(233,69,96,0.1) !important; }
+  .addr-card:hover { border-color:var(--color-brand) !important; }
+  .pay-method:hover { border-color:var(--color-brand) !important; }
   .checkout-btn:hover { opacity:0.92; transform:translateY(-1px); }
-  .time-chip:hover { border-color:#e94560 !important; color:#e94560 !important; }
+  .time-chip:hover { border-color:var(--color-brand) !important; color:var(--color-brand) !important; }
 `;
 
 const STEPS = [{n:1,label:'Address',icon:'📍'},{n:2,label:'Payment',icon:'💳'},{n:3,label:'Confirm',icon:'✅'}];
@@ -107,8 +107,8 @@ export default function CheckoutPage({ navigate }) {
         if (typeof window.Razorpay !== 'undefined') {
           new window.Razorpay({
             key, amount:order.amount, currency:order.currency,
-            name:'MK App', description:cart[0]?.serviceName,
-            order_id: order.id, prefill, theme:{ color:'#e94560' },
+            name:'Slot App', description:cart[0]?.serviceName,
+            order_id: order.id, prefill, theme:{ color:'var(--color-brand)' },
             handler: async (resp) => {
               try {
                 await paymentsAPI.verify({ razorpayOrderId:resp.razorpay_order_id,
@@ -137,7 +137,7 @@ export default function CheckoutPage({ navigate }) {
       <div style={{ fontSize:72, marginBottom:16 }}>🛒</div>
       <h2 style={{ fontWeight:800, color:'#1a1a2e', marginBottom:8 }}>Your cart is empty</h2>
       <p style={{ color:'#888', marginBottom:24 }}>Add a service first</p>
-      <button onClick={() => navigate('services')} style={{ background:'#e94560', color:'#fff', border:'none',
+      <button onClick={() => navigate('services')} style={{ background:'var(--color-brand)', color:'#fff', border:'none',
         padding:'12px 32px', borderRadius:24, cursor:'pointer', fontWeight:700, fontSize:15 }}>Browse Services</button>
     </div>
   );
@@ -158,7 +158,7 @@ export default function CheckoutPage({ navigate }) {
                   <div style={{
                     width:42, height:42, borderRadius:'50%', display:'flex', alignItems:'center', justifyContent:'center',
                     fontSize:18, fontWeight:700, transition:'all 0.3s',
-                    background: step > s.n ? '#27ae60' : step === s.n ? '#e94560' : '#f0f0f0',
+                    background: step > s.n ? '#27ae60' : step === s.n ? 'var(--color-brand)' : '#f0f0f0',
                     color: step >= s.n ? '#fff' : '#bbb',
                     boxShadow: step === s.n ? '0 4px 14px rgba(233,69,96,0.35)' : 'none',
                   }}>{step > s.n ? '✓' : s.icon}</div>
@@ -186,7 +186,7 @@ export default function CheckoutPage({ navigate }) {
                     <div key={addr._id} onClick={() => { setSelectedAddr(addr); setAddingNew(false); }}
                       className="addr-card"
                       style={{ padding:16, borderRadius:14, marginBottom:12, cursor:'pointer', transition:'all 0.15s',
-                        border:`2px solid ${selectedAddr?._id === addr._id ? '#e94560' : '#f0f0f0'}`,
+                        border:`2px solid ${selectedAddr?._id === addr._id ? 'var(--color-brand)' : '#f0f0f0'}`,
                         background: selectedAddr?._id === addr._id ? '#fff8f9' : '#fafafa',
                         display:'flex', gap:14, alignItems:'flex-start' }}>
                       <span style={{ fontSize:24, marginTop:2 }}>
@@ -200,14 +200,14 @@ export default function CheckoutPage({ navigate }) {
                         {addr.landmark && <div style={{ fontSize:12, color:'#aaa', marginTop:2 }}>Landmark: {addr.landmark}</div>}
                       </div>
                       {selectedAddr?._id === addr._id && (
-                        <span style={{ color:'#e94560', fontWeight:800, fontSize:18 }}>●</span>
+                        <span style={{ color:'var(--color-brand)', fontWeight:800, fontSize:18 }}>●</span>
                       )}
                     </div>
                   ))}
 
                   <button onClick={() => setAddingNew(o => !o)}
                     style={{ width:'100%', padding:'13px', border:'2px dashed #e0e0e0', borderRadius:12,
-                      background:'none', cursor:'pointer', color:'#e94560', fontWeight:700, fontSize:14,
+                      background:'none', cursor:'pointer', color:'var(--color-brand)', fontWeight:700, fontSize:14,
                       marginBottom: addingNew ? 16 : 0, transition:'all 0.15s' }}>
                     + Add New Address
                   </button>
@@ -244,7 +244,7 @@ export default function CheckoutPage({ navigate }) {
 
                   <button onClick={() => { if (!selectedAddr) { showToast('Select address','warning'); return; } setStep(2); }}
                     className="checkout-btn"
-                    style={{ width:'100%', marginTop:20, background:'linear-gradient(135deg,#e94560,#c0392b)',
+                    style={{ width:'100%', marginTop:20, background:'linear-gradient(135deg,var(--color-brand),#c0392b)',
                       color:'#fff', border:'none', padding:'15px', borderRadius:12, cursor:'pointer',
                       fontWeight:800, fontSize:15, boxShadow:'0 6px 20px rgba(233,69,96,0.3)', transition:'all 0.18s' }}>
                     Continue to Payment →
@@ -263,7 +263,7 @@ export default function CheckoutPage({ navigate }) {
                   ].map(m => (
                     <div key={m.id} onClick={() => setPayMethod(m.id)} className="pay-method"
                       style={{ padding:16, borderRadius:14, marginBottom:12, cursor:'pointer', transition:'all 0.15s',
-                        border:`2px solid ${payMethod===m.id ? '#e94560' : '#f0f0f0'}`,
+                        border:`2px solid ${payMethod===m.id ? 'var(--color-brand)' : '#f0f0f0'}`,
                         background: payMethod===m.id ? '#fff8f9' : '#fafafa',
                         display:'flex', gap:14, alignItems:'center' }}>
                       <span style={{ fontSize:28 }}>{m.icon}</span>
@@ -272,8 +272,8 @@ export default function CheckoutPage({ navigate }) {
                         <div style={{ fontSize:13, color:'#888' }}>{m.sub}</div>
                       </div>
                       <div style={{ width:20, height:20, borderRadius:'50%',
-                        border:`2px solid ${payMethod===m.id ? '#e94560' : '#ddd'}`,
-                        background: payMethod===m.id ? '#e94560' : 'transparent',
+                        border:`2px solid ${payMethod===m.id ? 'var(--color-brand)' : '#ddd'}`,
+                        background: payMethod===m.id ? 'var(--color-brand)' : 'transparent',
                         display:'flex', alignItems:'center', justifyContent:'center' }}>
                         {payMethod===m.id && <div style={{ width:7, height:7, borderRadius:'50%', background:'#fff' }} />}
                       </div>
@@ -290,7 +290,7 @@ export default function CheckoutPage({ navigate }) {
                         style={{ ...inputStyle, flex:1, letterSpacing:1.5, fontWeight:600 }}
                         className="input-field" />
                       <button onClick={handleApplyCoupon}
-                        style={{ background:'#e94560', color:'#fff', border:'none', padding:'12px 20px',
+                        style={{ background:'var(--color-brand)', color:'#fff', border:'none', padding:'12px 20px',
                           borderRadius:10, cursor:'pointer', fontWeight:700, fontSize:14, whiteSpace:'nowrap' }}>
                         Apply
                       </button>
@@ -301,7 +301,7 @@ export default function CheckoutPage({ navigate }) {
                       </div>
                     )}
                     <div style={{ marginTop:8, fontSize:12, color:'#bbb' }}>
-                      Try: MKWELCOME · MK100 · AUTOCARE
+                      Try: SlotWELCOME · Slot100 · AUTOCARE
                     </div>
                   </div>
 
@@ -312,7 +312,7 @@ export default function CheckoutPage({ navigate }) {
                       ← Back
                     </button>
                     <button onClick={() => setStep(3)} className="checkout-btn"
-                      style={{ flex:2, padding:'14px', background:'linear-gradient(135deg,#e94560,#c0392b)',
+                      style={{ flex:2, padding:'14px', background:'linear-gradient(135deg,var(--color-brand),#c0392b)',
                         color:'#fff', border:'none', borderRadius:12, cursor:'pointer',
                         fontWeight:800, fontSize:15, boxShadow:'0 6px 20px rgba(233,69,96,0.3)',
                         transition:'all 0.18s' }}>
@@ -334,7 +334,7 @@ export default function CheckoutPage({ navigate }) {
                         fontSize:36, boxShadow:'0 8px 28px rgba(39,174,96,0.35)' }}>🎉</div>
                       <h2 style={{ fontWeight:900, fontSize:26, color:'#1a1a2e', marginBottom:8 }}>Booking Confirmed!</h2>
                       <p style={{ color:'#888', marginBottom:20 }}>
-                        Booking ID: <strong style={{ color:'#e94560' }}>{placedBooking.bookingId}</strong>
+                        Booking ID: <strong style={{ color:'var(--color-brand)' }}>{placedBooking.bookingId}</strong>
                       </p>
                       <div style={{ background:'#f8f9fa', borderRadius:14, padding:'16px 20px',
                         marginBottom:24, textAlign:'left' }}>
@@ -350,7 +350,7 @@ export default function CheckoutPage({ navigate }) {
                       </div>
                       <div style={{ display:'flex', gap:12 }}>
                         <button onClick={() => navigate('tracking',{bookingId:placedBooking._id})}
-                          style={{ flex:1, background:'linear-gradient(135deg,#e94560,#c0392b)', color:'#fff',
+                          style={{ flex:1, background:'linear-gradient(135deg,var(--color-brand),#c0392b)', color:'#fff',
                             border:'none', padding:'14px', borderRadius:12, cursor:'pointer', fontWeight:700 }}>
                           📍 Track Booking
                         </button>
@@ -368,8 +368,15 @@ export default function CheckoutPage({ navigate }) {
                       </h3>
                       {cart.map(item => (
                         <div key={item.cartId} style={{ padding:'14px 0', borderBottom:'1px solid #f5f5f5',
-                          display:'flex', justifyContent:'space-between', alignItems:'flex-start' }}>
-                          <div>
+                          display:'flex', gap:14, alignItems:'flex-start' }}>
+                          <div style={{ width: 44, height: 44, borderRadius: 10, overflow: 'hidden', background: '#f8f9fa', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                            {item.serviceImage ? (
+                              <img src={item.serviceImage} alt={item.serviceName} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            ) : (
+                              <span style={{ fontSize: 24 }}>{item.serviceIcon || '🔧'}</span>
+                            )}
+                          </div>
+                          <div style={{ flex: 1 }}>
                             <div style={{ fontWeight:700, fontSize:15 }}>{item.serviceName}</div>
                             {item.subServiceName && <div style={{ fontSize:13, color:'#888' }}>{item.subServiceName}</div>}
                             {item.date && <div style={{ fontSize:12, color:'#27ae60', marginTop:4 }}>
@@ -396,7 +403,7 @@ export default function CheckoutPage({ navigate }) {
                           ← Back
                         </button>
                         <button onClick={handlePlaceOrder} disabled={loading} className="checkout-btn"
-                          style={{ flex:2, padding:'14px', background:'linear-gradient(135deg,#e94560,#c0392b)',
+                          style={{ flex:2, padding:'14px', background:'linear-gradient(135deg,var(--color-brand),#c0392b)',
                             color:'#fff', border:'none', borderRadius:12, cursor:'pointer',
                             fontWeight:800, fontSize:15, boxShadow:'0 6px 20px rgba(233,69,96,0.3)',
                             transition:'all 0.18s' }}>
@@ -415,9 +422,15 @@ export default function CheckoutPage({ navigate }) {
                 boxShadow:'0 4px 20px rgba(0,0,0,0.05)' }}>
                 <h3 style={{ fontWeight:800, marginBottom:18, color:'#1a1a2e', fontSize:16 }}>Order Summary</h3>
                 {cart.map(item => (
-                  <div key={item.cartId} style={{ display:'flex', justifyContent:'space-between',
-                    marginBottom:10, fontSize:14 }}>
-                    <div>
+                  <div key={item.cartId} style={{ display:'flex', gap: 10, marginBottom:16, fontSize:14 }}>
+                    <div style={{ width: 36, height: 36, borderRadius: 8, overflow: 'hidden', background: '#f8f9fa', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      {item.serviceImage ? (
+                        <img src={item.serviceImage} alt={item.serviceName} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      ) : (
+                        <span style={{ fontSize: 20 }}>{item.serviceIcon || '🔧'}</span>
+                      )}
+                    </div>
+                    <div style={{ flex: 1 }}>
                       <div style={{ fontWeight:600 }}>{item.serviceName}</div>
                       {item.subServiceName && <div style={{ fontSize:12, color:'#888' }}>{item.subServiceName}</div>}
                     </div>
@@ -438,7 +451,7 @@ export default function CheckoutPage({ navigate }) {
                   <div style={{ display:'flex', justifyContent:'space-between', fontWeight:900,
                     fontSize:20, borderTop:'2px solid #f0f0f0', paddingTop:12, marginTop:4 }}>
                     <span>Total</span>
-                    <span style={{ color:'#e94560' }}>₹{total}</span>
+                    <span style={{ color:'var(--color-brand)' }}>₹{total}</span>
                   </div>
                 </div>
                 {discount > 0 && (

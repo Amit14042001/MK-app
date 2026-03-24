@@ -1,5 +1,5 @@
 /**
- * MK App — LoyaltyPointsScreen (Feature #26 - UC Pass)
+ * Slot App — LoyaltyPointsScreen (Feature #26 - UC Pass)
  * Points earned per booking, tier system, redemption
  */
 import React, { useState, useEffect } from 'react';
@@ -119,7 +119,7 @@ export default function LoyaltyPointsScreen({ navigation }) {
         <TouchableOpacity onPress={() => navigation.goBack()} style={LP.backBtn}>
           <Text style={LP.backIcon}>←</Text>
         </TouchableOpacity>
-        <Text style={LP.headerTitle}>MK Rewards</Text>
+        <Text style={LP.headerTitle}>Slot Rewards</Text>
         <View style={{ width: 40 }} />
       </View>
 

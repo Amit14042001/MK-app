@@ -1,5 +1,5 @@
 /**
- * MK App — WhatsApp Booking Bot
+ * Slot App — WhatsApp Booking Bot
  * Full conversational booking flow via WhatsApp
  * Extends the base whatsapp.js route
  * 
@@ -187,7 +187,7 @@ ${buildSlotList()}`;
 
 // ── Message Builders ──────────────────────────────────────────
 function buildHelpMessage(name) {
-  return `👋 Hello ${name}! Welcome to *MK App* 🏠\n\nI can help you:\n\n1️⃣ *STATUS* — Check booking status\n2️⃣ *BOOK* — Book a home service\n3️⃣ *OFFERS* — View current offers\n4️⃣ *SUPPORT* — Talk to our team\n\nWhat would you like to do?`;
+  return `👋 Hello ${name}! Welcome to *Slot App* 🏠\n\nI can help you:\n\n1️⃣ *STATUS* — Check booking status\n2️⃣ *BOOK* — Book a home service\n3️⃣ *OFFERS* — View current offers\n4️⃣ *SUPPORT* — Talk to our team\n\nWhat would you like to do?`;
 }
 
 async function buildCategoryMenu() {
@@ -248,10 +248,10 @@ function buildConfirmation(data) {
 function buildOffersMessage() {
   return `🎉 *Current Offers:*\n\n` +
     `🏷️ *FIRST15* — 15% off your first booking\n` +
-    `🏷️ *PRIME20* — 20% off with MK Prime\n` +
+    `🏷️ *PRIME20* — 20% off with Slot Prime\n` +
     `🏷️ *AC499* — AC service at ₹499 (today only)\n\n` +
-    `Apply codes at checkout in the MK App.\n` +
-    `Download: mkapp.in/download`;
+    `Apply codes at checkout in the Slot App.\n` +
+    `Download: slotapp.in/download`;
 }
 
 // ── Book creation ─────────────────────────────────────────────
@@ -259,7 +259,7 @@ async function createBookingAndRespond(phone, data, name) {
   try {
     const user = await User.findOne({ phone }).lean();
     if (!user) {
-      return `❌ No account found for this number.\n\nPlease download the MK App to create an account first:\n📱 mkapp.in/download`;
+      return `❌ No account found for this number.\n\nPlease download the Slot App to create an account first:\n📱 slotapp.in/download`;
     }
 
     // Build address object
@@ -296,13 +296,13 @@ async function createBookingAndRespond(phone, data, name) {
       `⏰ *Slot:* ${data.slot}\n` +
       `💰 *Total:* ₹${booking.pricing.totalAmount}\n\n` +
       `📱 *Pay & manage your booking:*\n` +
-      `mkapp.in/booking/${booking.bookingId}\n\n` +
+      `slotapp.in/booking/${booking.bookingId}\n\n` +
       `You'll receive a confirmation SMS once a professional is assigned.\n\n` +
       `Need help? Reply *SUPPORT*`;
   } catch (err) {
     console.error('[WhatsApp Bot] Booking creation error:', err);
     sessions.delete(phone);
-    return `❌ Sorry, we couldn't complete your booking.\n\nPlease try again via the app:\n📱 mkapp.in/download\n\nOr call us: 1800-123-4567`;
+    return `❌ Sorry, we couldn't complete your booking.\n\nPlease try again via the app:\n📱 slotapp.in/download\n\nOr call us: 1800-123-4567`;
   }
 }
 
@@ -356,7 +356,7 @@ function parseDate(text) {
 async function handleCancelBooking(from, bookingId) {
   try {
     const user = await User.findOne({ phone: from }).lean();
-    if (!user) return `No account found. Download MK App: mkapp.in/download`;
+    if (!user) return `No account found. Download Slot App: slotapp.in/download`;
     const booking = await Booking.findOne({ bookingId, customer: user._id });
     if (!booking) return `❌ Booking *${bookingId}* not found.`;
     if (['completed','cancelled'].includes(booking.status)) {
@@ -383,7 +383,7 @@ For help: reply *SUPPORT*`;
 async function doReschedule(from, bookingId, newDate, newSlot) {
   try {
     const user = await User.findOne({ phone: from }).lean();
-    if (!user) return `No account found. Download MK App: mkapp.in/download`;
+    if (!user) return `No account found. Download Slot App: slotapp.in/download`;
     const booking = await Booking.findOne({ bookingId, customer: user._id });
     if (!booking) return `❌ Booking *${bookingId}* not found.`;
     if (['completed','cancelled'].includes(booking.status)) {
@@ -399,7 +399,7 @@ Booking ID: ${bookingId}
 New date: ${newDate.toLocaleDateString('en-IN', { weekday:'long', day:'numeric', month:'long' })}
 New slot: ${newSlot}
 
-Your professional will be notified. Track in the MK App.`;
+Your professional will be notified. Track in the Slot App.`;
   } catch (e) {
     return `❌ Reschedule failed. Please try in the app or call 1800-123-4567`;
   }
@@ -421,7 +421,7 @@ async function handleRateBooking(from, bookingId, rating, comment) {
 
 Your ${rating}/5 review for booking *${bookingId}* has been submitted. It helps our professionals improve and helps other customers choose.
 
-🙏 Thanks for using MK App!`;
+🙏 Thanks for using Slot App!`;
   } catch (e) {
     return `❌ Rating failed. Please rate in the app.`;
   }

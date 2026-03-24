@@ -107,7 +107,7 @@ export function ProfileScreen({ navigation }) {
         </View>
 
         {/* App version */}
-        <Text style={styles.appVersion}>MK App v1.0.0  ·  © 2026 MK Technologies</Text>
+        <Text style={styles.appVersion}>Slot App v1.0.0  ·  © 2026 Slot Technologies</Text>
 
         {/* Logout */}
         <TouchableOpacity onPress={handleLogout} style={styles.logoutBtn}>

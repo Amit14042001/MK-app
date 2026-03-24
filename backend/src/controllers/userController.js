@@ -1,5 +1,5 @@
 /**
- * MK App — User Controller (Full)
+ * Slot App — User Controller (Full)
  * Profile management, addresses, wallet, saved services, stats
  */
 const User    = require('../models/User');
@@ -61,7 +61,25 @@ exports.getWallet = asyncHandler(async (req, res) => {
 exports.addWalletMoney = asyncHandler(async (req, res) => {
   const { amount, razorpayPaymentId, razorpayOrderId, razorpaySignature, description } = req.body;
   if (!amount || amount < 1) throw new AppError('Invalid amount', 400);
-  if (!razorpayPaymentId)    throw new AppError('Payment ID required', 400);
+   if (!razorpayPaymentId) throw new AppError('Payment ID required', 400);
+  if (razorpayOrderId && razorpaySignature) {
+    const { verifySignature } = require('../services/paymentService');
+    const valid = verifySignature(razorpayOrderId, razorpayPaymentId, razorpaySignature);
+    if (!valid) throw new AppError('Payment verification failed — invalid signature', 400);
+  } else {
+    try {
+      const Razorpay = require('razorpay');
+      if (process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET) {
+        const instance = new Razorpay({ key_id: process.env.RAZORPAY_KEY_ID, key_secret: process.env.RAZORPAY_KEY_SECRET });
+        const payment = await instance.payments.fetch(razorpayPaymentId);
+        if (payment.status !== 'captured') throw new AppError('Payment not captured', 400);
+        if (payment.amount !== amount * 100) throw new AppError('Payment amount mismatch', 400);
+      }
+    } catch (verifyErr) {
+      if (verifyErr.statusCode) throw verifyErr;
+      console.warn('[Wallet] Razorpay verify skipped in dev:', verifyErr.message);
+    }
+  }
 
   // Verify Razorpay signature when orderId + signature are present
   if (razorpayOrderId && razorpaySignature) {
@@ -102,7 +120,7 @@ exports.addWalletMoney = asyncHandler(async (req, res) => {
   res.json({
     success: true,
     balance: user.wallet.balance,
-    message: `₹${amount} added to your MK Wallet!`,
+    message: `₹${amount} added to your Slot Wallet!`,
   });
 });
 

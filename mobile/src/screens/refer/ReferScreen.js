@@ -1,5 +1,5 @@
 /**
- * MK App — ReferScreen
+ * Slot App — ReferScreen
  * Referral program: share code, track earnings, leaderboard
  */
 import React, { useState, useEffect } from 'react';
@@ -52,7 +52,7 @@ export default function ReferScreen({ navigation }) {
       ]);
       if (codeRes.data.referralCode) {
         setReferralCode(codeRes.data.referralCode);
-        setReferralLink(codeRes.data.referralLink || `https://mkapp.in/join?ref=${codeRes.data.referralCode}`);
+        setReferralLink(codeRes.data.referralLink || `https://slotapp.in/join?ref=${codeRes.data.referralCode}`);
       }
       if (codeRes.data.stats) {
         setStats({
@@ -82,7 +82,7 @@ export default function ReferScreen({ navigation }) {
   };
 
   const copyCode = () => {
-    Clipboard.setString(referralCode || 'MKAPP');
+    Clipboard.setString(referralCode || 'SLOTAPP');
     setCopied(true);
     animateCopy();
     setTimeout(() => setCopied(false), 2000);
@@ -91,9 +91,9 @@ export default function ReferScreen({ navigation }) {
   const shareCode = async () => {
     try {
       await Share.share({
-        message: `Hey! I use MK App for all home services — AC repair, cleaning, electrician & more. Download it and use my code ${referralCode} to get ₹${FRIEND_REWARD} off your first booking! 🏠✨\n\nDownload: ${referralLink || 'https://mkapp.in/download'}`,
-        title:   'Join MK App — Best Home Services',
-        url:     referralLink || 'https://mkapp.in/download',
+        message: `Hey! I use Slot App for all home services — AC repair, cleaning, electrician & more. Download it and use my code ${referralCode} to get ₹${FRIEND_REWARD} off your first booking! 🏠✨\n\nDownload: ${referralLink || 'https://slotapp.in/download'}`,
+        title:   'Join Slot App — Best Home Services',
+        url:     referralLink || 'https://slotapp.in/download',
       });
     } catch (e) {
       Alert.alert('Error', 'Could not open share sheet.');
@@ -101,7 +101,7 @@ export default function ReferScreen({ navigation }) {
   };
 
   const shareVia = (platform) => {
-    const msg = `Use my code ${referralCode} on MK App & get ₹${FRIEND_REWARD} off!`;
+    const msg = `Use my code ${referralCode} on Slot App & get ₹${FRIEND_REWARD} off!`;
     Alert.alert(platform, `Sharing on ${platform}:\n\n${msg}`);
   };
 
@@ -128,7 +128,7 @@ export default function ReferScreen({ navigation }) {
           <Text style={S.heroEmoji}>🎁</Text>
           <Text style={S.heroTitle}>Earn ₹{REWARD_PER_REFERRAL} per referral!</Text>
           <Text style={S.heroSub}>
-            Invite friends to MK App. They get ₹{FRIEND_REWARD} off,{'\n'}you earn ₹{REWARD_PER_REFERRAL} in wallet credits.
+            Invite friends to Slot App. They get ₹{FRIEND_REWARD} off,{'\n'}you earn ₹{REWARD_PER_REFERRAL} in wallet credits.
           </Text>
         </View>
 
@@ -152,7 +152,7 @@ export default function ReferScreen({ navigation }) {
         <View style={S.codeSection}>
           <Text style={S.codeSectionLabel}>Your Referral Code</Text>
           <Animated.View style={[S.codeCard, { transform: [{ scale: scaleAnim }] }]}>
-            <Text style={S.codeText}>{referralCode || 'MKAPP'}</Text>
+            <Text style={S.codeText}>{referralCode || 'SLOTAPP'}</Text>
             <TouchableOpacity
               style={[S.copyBtn, copied && S.copyBtnSuccess]}
               onPress={copyCode}

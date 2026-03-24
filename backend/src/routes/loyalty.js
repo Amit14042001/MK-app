@@ -1,5 +1,5 @@
 /**
- * MK App — Loyalty Routes (Full)
+ * Slot App — Loyalty Routes (Full)
  */
 const express = require('express');
 const router  = express.Router();

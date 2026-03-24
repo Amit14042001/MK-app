@@ -1,5 +1,5 @@
 /**
- * MK App — AR Beauty Try-On Screen
+ * Slot App — AR Beauty Try-On Screen
  * Simulates AR hair color, makeup, and nail art preview
  * Uses RNCamera + overlay compositing (canvas-style filter approach)
  * In production: integrate with Banuba or TrueDepth ARKit for real AR
@@ -38,12 +38,12 @@ const AR_FILTERS = {
     { id: 'hc8', name: 'Honey Blonde',  color: '#C8963E', hex: '#C8963E', overlay: 'rgba(200,150,62,0.3)', price: 1699 },
   ],
   makeup: [
-    { id: 'mk1', name: 'Natural Glow',  color: '#E8C4A0', hex: '#E8C4A0', overlay: 'rgba(232,196,160,0.2)', price: 799 },
-    { id: 'mk2', name: 'Smoky Eye',     color: '#2D2D2D', hex: '#2D2D2D', overlay: 'rgba(45,45,45,0.25)', price: 999 },
-    { id: 'mk3', name: 'Bold Red Lip',  color: '#C0182A', hex: '#C0182A', overlay: 'rgba(192,24,42,0.3)', price: 899 },
-    { id: 'mk4', name: 'Nude Glam',     color: '#D4A574', hex: '#D4A574', overlay: 'rgba(212,165,116,0.2)', price: 849 },
-    { id: 'mk5', name: 'Pink Pout',     color: '#E91E8C', hex: '#E91E8C', overlay: 'rgba(233,30,140,0.25)', price: 899 },
-    { id: 'mk6', name: 'Bronze Queen',  color: '#CD853F', hex: '#CD853F', overlay: 'rgba(205,133,63,0.25)', price: 1099 },
+    { id: 'slot1', name: 'Natural Glow',  color: '#E8C4A0', hex: '#E8C4A0', overlay: 'rgba(232,196,160,0.2)', price: 799 },
+    { id: 'slot2', name: 'Smoky Eye',     color: '#2D2D2D', hex: '#2D2D2D', overlay: 'rgba(45,45,45,0.25)', price: 999 },
+    { id: 'slot3', name: 'Bold Red Lip',  color: '#C0182A', hex: '#C0182A', overlay: 'rgba(192,24,42,0.3)', price: 899 },
+    { id: 'slot4', name: 'Nude Glam',     color: '#D4A574', hex: '#D4A574', overlay: 'rgba(212,165,116,0.2)', price: 849 },
+    { id: 'slot5', name: 'Pink Pout',     color: '#E91E8C', hex: '#E91E8C', overlay: 'rgba(233,30,140,0.25)', price: 899 },
+    { id: 'slot6', name: 'Bronze Queen',  color: '#CD853F', hex: '#CD853F', overlay: 'rgba(205,133,63,0.25)', price: 1099 },
   ],
   nails: [
     { id: 'nl1', name: 'Classic Red',   color: '#C0182A', hex: '#C0182A', overlay: 'rgba(192,24,42,0.5)', price: 499 },

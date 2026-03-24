@@ -1,5 +1,5 @@
 /**
- * MK Professional App — Earnings Screen (Full)
+ * Slot Professional App — Earnings Screen (Full)
  * Weekly/monthly earnings, payout history, withdrawal
  */
 import React, { useState, useEffect, useCallback } from 'react';
@@ -162,7 +162,7 @@ export default function EarningsScreen({ navigation }) {
         <View style={E.statsGrid}>
           <StatCard icon="💰" label="Period Earnings" value={`₹${(data?.periodEarnings || 0).toLocaleString('en-IN')}`} accent />
           <StatCard icon="📋" label="Completed Jobs" value={data?.completedBookings || 0} />
-          <StatCard icon="📊" label="Commission Rate" value={`${data?.commissionRate || 20}%`} sub="MK takes" />
+          <StatCard icon="📊" label="Commission Rate" value={`${data?.commissionRate || 20}%`} sub="Slot takes" />
           <StatCard icon="🏆" label="Total Lifetime" value={`₹${(data?.totalEarnings || 0).toLocaleString('en-IN')}`} />
         </View>
 

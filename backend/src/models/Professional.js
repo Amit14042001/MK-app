@@ -71,7 +71,7 @@ const professionalSchema = new mongoose.Schema({
     accountHolderName: String,
     upiId: String,
   },
-  commissionRate: { type: Number, default: 20 }, // percentage MK takes
+  commissionRate: { type: Number, default: 20 }, // percentage Slot takes
 
   // Device
   fcmToken: String,

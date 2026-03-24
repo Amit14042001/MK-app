@@ -1,5 +1,5 @@
 /**
- * MK App — Salon at Home Screen (Full Production)
+ * Slot App — Salon at Home Screen (Full Production)
  * Women's salon — haircut, blow-dry, hair color, keratin, styling at home
  */
 import React, { useState, useRef } from 'react';

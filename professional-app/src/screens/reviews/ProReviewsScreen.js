@@ -1,5 +1,5 @@
 /**
- * MK Professional App — ProReviewsScreen
+ * Slot Professional App — ProReviewsScreen
  * All customer reviews, ratings breakdown, response to reviews
  */
 import React, { useState, useEffect } from 'react';

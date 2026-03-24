@@ -1,5 +1,5 @@
 /**
- * MK App — Stripe Routes
+ * Slot App — Stripe Routes
  * International payment endpoints (non-India markets)
  */
 const express    = require('express');

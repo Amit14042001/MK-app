@@ -159,7 +159,7 @@ exports.getServicesByCategory = async (req, res) => {
 
   const services = await Service.find({ category: category._id, isActive: true })
     .sort('-totalBookings')
-    .select('name slug icon startingPrice rating totalRatings isNew isPopular');
+    .select('name slug icon images startingPrice rating totalRatings isNew isPopular');
 
   res.json({ success: true, category, services });
 };

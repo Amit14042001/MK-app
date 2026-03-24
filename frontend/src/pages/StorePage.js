@@ -1,5 +1,5 @@
 /**
- * MK App — Web Store Page (UC Store Clone)
+ * Slot App — Web Store Page (UC Store Clone)
  * Full product browsing, cart, checkout experience on web
  * Matches Urban Company Store design + functionality
  */
@@ -9,7 +9,7 @@ import { storeAPI } from '../utils/api';
 
 // ── Design tokens (inline for self-contained page) ─────────────
 const T = {
-  brand: '#f15c22',
+  brand: 'var(--color-brand)',
   brandDk: '#d94f1a',
   brandLt: '#fff3ee',
   ink900: '#1c1c1e',
@@ -26,18 +26,18 @@ const T = {
 
 // ── Mock products (mirrors mobile StoreScreen) ─────────────────
 const PRODUCTS = [
-  { _id: 'p1', name: 'Phenyl Floor Cleaner 1L', category: 'cleaning', price: 129, mrp: 199, discount: 35, emoji: '🧹', topSeller: true, rating: 4.5, reviewCount: 2340, soldCount: 12000, highlights: ['Kills 99.9% germs', 'Long-lasting fragrance', 'Safe for all floors'], deliveryDays: 2 },
-  { _id: 'p2', name: 'Professional AC Coil Cleaner', category: 'tools', price: 349, mrp: 499, discount: 30, emoji: '❄️', featured: true, rating: 4.7, reviewCount: 890, soldCount: 4500, highlights: ['Non-corrosive formula', 'Removes dust & mold', 'Easy spray nozzle'], deliveryDays: 2 },
-  { _id: 'p3', name: 'Keratin Hair Mask 200ml', category: 'beauty', price: 599, mrp: 899, discount: 33, emoji: '💆', topSeller: true, rating: 4.8, reviewCount: 3210, soldCount: 18000, highlights: ['Salon-grade formula', 'Reduces frizz 85%', 'All hair types'], deliveryDays: 3 },
-  { _id: 'p4', name: 'Car Battery Clamps Set', category: 'automotive', price: 249, mrp: 399, discount: 38, emoji: '🚗', rating: 4.3, reviewCount: 450, soldCount: 2100, highlights: ['Heavy duty steel', 'Safety insulation', 'Fits all batteries'], deliveryDays: 3 },
-  { _id: 'p5', name: 'Pest Control Spray 500ml', category: 'pest_control', price: 199, mrp: 299, discount: 33, emoji: '🐛', featured: true, rating: 4.6, reviewCount: 1780, soldCount: 8900, highlights: ['Cockroach & mosquito', 'Odourless after dry', 'Child-safe formula'], deliveryDays: 2 },
-  { _id: 'p6', name: 'Microfiber Cleaning Kit (10pc)', category: 'cleaning', price: 299, mrp: 449, discount: 33, emoji: '✨', rating: 4.4, reviewCount: 2100, soldCount: 9800, highlights: ['Super absorbent', 'Scratch-free', 'Washable & reusable'], deliveryDays: 2 },
-  { _id: 'p7', name: 'Vitamin C Face Serum 30ml', category: 'beauty', price: 449, mrp: 699, discount: 36, emoji: '💧', topSeller: true, rating: 4.9, reviewCount: 5600, soldCount: 32000, highlights: ['Dermatologist tested', 'Brightens in 2 weeks', 'All skin types'], deliveryDays: 3 },
-  { _id: 'p8', name: 'Cordless Screwdriver Set', category: 'tools', price: 1299, mrp: 1999, discount: 35, emoji: '🔧', rating: 4.6, reviewCount: 780, soldCount: 3400, highlights: ['3.6V rechargeable', '22 bits included', 'LED work light'], deliveryDays: 4 },
-  { _id: 'p9', name: 'Lavender Room Freshener', category: 'home_care', price: 149, mrp: 199, discount: 25, emoji: '🌸', rating: 4.2, reviewCount: 1200, soldCount: 6700, highlights: ['Long lasting 60 days', 'Neutralizes odors', 'Non-toxic'], deliveryDays: 2 },
-  { _id: 'p10', name: 'Car Dashboard Polish', category: 'automotive', price: 179, mrp: 249, discount: 28, emoji: '🚘', rating: 4.4, reviewCount: 670, soldCount: 3100, highlights: ['UV protection', 'Anti-dust', 'Shine lasts 3 months'], deliveryDays: 3 },
-  { _id: 'p11', name: 'Anti-Dandruff Shampoo 300ml', category: 'beauty', price: 299, mrp: 449, discount: 33, emoji: '🧴', rating: 4.5, reviewCount: 2890, soldCount: 14500, highlights: ['ZPTO formula', 'Salon recommended', 'Daily use safe'], deliveryDays: 3 },
-  { _id: 'p12', name: 'Heavy Duty Drain Cleaner', category: 'home_care', price: 179, mrp: 249, discount: 28, emoji: '🪣', rating: 4.3, reviewCount: 980, soldCount: 5200, highlights: ['Clears blockages fast', 'Safe for pipes', 'No harsh fumes'], deliveryDays: 2 },
+  { _id: 'p1', name: 'Phenyl Floor Cleaner 1L', category: 'cleaning', price: 129, mrp: 199, discount: 35, emoji: '🧹', image: 'https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&q=80&w=400', topSeller: true, rating: 4.5, reviewCount: 2340, soldCount: 12000, highlights: ['Kills 99.9% germs', 'Long-lasting fragrance', 'Safe for all floors'], deliveryDays: 2 },
+  { _id: 'p2', name: 'Professional AC Coil Cleaner', category: 'tools', price: 349, mrp: 499, discount: 30, emoji: '❄️', image: 'https://images.unsplash.com/photo-1581094288338-2314dddb7bc3?auto=format&fit=crop&q=80&w=400', featured: true, rating: 4.7, reviewCount: 890, soldCount: 4500, highlights: ['Non-corrosive formula', 'Removes dust & mold', 'Easy spray nozzle'], deliveryDays: 2 },
+  { _id: 'p3', name: 'Keratin Hair Mask 200ml', category: 'beauty', price: 599, mrp: 899, discount: 33, emoji: '💆', image: 'https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&q=80&w=400', topSeller: true, rating: 4.8, reviewCount: 3210, soldCount: 18000, highlights: ['Salon-grade formula', 'Reduces frizz 85%', 'All hair types'], deliveryDays: 3 },
+  { _id: 'p4', name: 'Car Battery Clamps Set', category: 'automotive', price: 249, mrp: 399, discount: 38, emoji: '🚗', image: 'https://images.unsplash.com/photo-1621905252507-b354bcadcabc?auto=format&fit=crop&q=80&w=400', rating: 4.3, reviewCount: 450, soldCount: 2100, highlights: ['Heavy duty steel', 'Safety insulation', 'Fits all batteries'], deliveryDays: 3 },
+  { _id: 'p5', name: 'Pest Control Spray 500ml', category: 'pest_control', price: 199, mrp: 299, discount: 33, emoji: '🐛', image: 'https://images.unsplash.com/photo-1587370560942-ad2a04eabb6d?auto=format&fit=crop&q=80&w=400', featured: true, rating: 4.6, reviewCount: 1780, soldCount: 8900, highlights: ['Cockroach & mosquito', 'Odourless after dry', 'Child-safe formula'], deliveryDays: 2 },
+  { _id: 'p6', name: 'Microfiber Cleaning Kit (10pc)', category: 'cleaning', price: 299, mrp: 449, discount: 33, emoji: '✨', image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=400', rating: 4.4, reviewCount: 2100, soldCount: 9800, highlights: ['Super absorbent', 'Scratch-free', 'Washable & reusable'], deliveryDays: 2 },
+  { _id: 'p7', name: 'Vitamin C Face Serum 30ml', category: 'beauty', price: 449, mrp: 699, discount: 36, emoji: '💧', image: 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&q=80&w=400', topSeller: true, rating: 4.9, reviewCount: 5600, soldCount: 32000, highlights: ['Dermatologist tested', 'Brightens in 2 weeks', 'All skin types'], deliveryDays: 3 },
+  { _id: 'p8', name: 'Cordless Screwdriver Set', category: 'tools', price: 1299, mrp: 1999, discount: 35, emoji: '🔧', image: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&q=80&w=400', rating: 4.6, reviewCount: 780, soldCount: 3400, highlights: ['3.6V rechargeable', '22 bits included', 'LED work light'], deliveryDays: 4 },
+  { _id: 'p9', name: 'Lavender Room Freshener', category: 'home_care', price: 149, mrp: 199, discount: 25, emoji: '🌸', image: 'https://images.unsplash.com/photo-1602928321679-560bb453f190?auto=format&fit=crop&q=80&w=400', rating: 4.2, reviewCount: 1200, soldCount: 6700, highlights: ['Long lasting 60 days', 'Neutralizes odors', 'Non-toxic'], deliveryDays: 2 },
+  { _id: 'p10', name: 'Car Dashboard Polish', category: 'automotive', price: 179, mrp: 249, discount: 28, emoji: '🚘', image: 'https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&q=80&w=400', rating: 4.4, reviewCount: 670, soldCount: 3100, highlights: ['UV protection', 'Anti-dust', 'Shine lasts 3 months'], deliveryDays: 3 },
+  { _id: 'p11', name: 'Anti-Dandruff Shampoo 300ml', category: 'beauty', price: 299, mrp: 449, discount: 33, emoji: '🧴', image: 'https://images.unsplash.com/photo-1626784215021-2e39ccf971cd?auto=format&fit=crop&q=80&w=400', rating: 4.5, reviewCount: 2890, soldCount: 14500, highlights: ['ZPTO formula', 'Salon recommended', 'Daily use safe'], deliveryDays: 3 },
+  { _id: 'p12', name: 'Heavy Duty Drain Cleaner', category: 'home_care', price: 179, mrp: 249, discount: 28, emoji: '🪣', image: 'https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&q=80&w=400', rating: 4.3, reviewCount: 980, soldCount: 5200, highlights: ['Clears blockages fast', 'Safe for pipes', 'No harsh fumes'], deliveryDays: 2 },
 ];
 
 const CATEGORIES = [
@@ -100,15 +100,19 @@ function ProductCard({ product, qty, onAdd, onRemove, onClick }) {
       }}
     >
       {/* Image area */}
-      <div style={{ position: 'relative', background: bg, height: 160, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <span style={{ fontSize: 64 }}>{product.emoji}</span>
+      <div style={{ position: 'relative', background: bg, height: 160, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+        {product.image ? (
+          <img src={product.image} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        ) : (
+          <span style={{ fontSize: 64 }}>{product.emoji}</span>
+        )}
         {product.discount > 0 && (
-          <span style={{ position: 'absolute', top: 10, left: 10, background: T.brand, color: '#fff', fontSize: 11, fontWeight: 700, padding: '3px 8px', borderRadius: 6 }}>
+          <span style={{ position: 'absolute', top: 10, left: 10, background: T.brand, color: '#fff', fontSize: 11, fontWeight: 700, padding: '3px 8px', borderRadius: 6, zIndex: 1 }}>
             {product.discount}% OFF
           </span>
         )}
         {product.topSeller && (
-          <span style={{ position: 'absolute', top: 10, right: 10, background: '#fff3e0', color: '#e65100', fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 6 }}>
+          <span style={{ position: 'absolute', top: 10, right: 10, background: '#fff3e0', color: '#e65100', fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 6, zIndex: 1 }}>
             🔥 Top Seller
           </span>
         )}
@@ -173,10 +177,14 @@ function ProductModal({ product, qty, onAdd, onRemove, onClose }) {
 
         <div style={{ overflowY: 'auto', flex: 1 }}>
           {/* Hero */}
-          <div style={{ background: bg, height: 180, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-            <span style={{ fontSize: 80 }}>{product.emoji}</span>
+          <div style={{ background: bg, height: 220, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
+            {product.image ? (
+              <img src={product.image} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            ) : (
+              <span style={{ fontSize: 80 }}>{product.emoji}</span>
+            )}
             {product.discount > 0 && (
-              <span style={{ position: 'absolute', top: 14, right: 14, background: T.brand, color: '#fff', fontSize: 12, fontWeight: 700, padding: '4px 10px', borderRadius: 8 }}>
+              <span style={{ position: 'absolute', top: 14, right: 14, background: T.brand, color: '#fff', fontSize: 12, fontWeight: 700, padding: '4px 10px', borderRadius: 8, zIndex: 1 }}>
                 {product.discount}% OFF
               </span>
             )}
@@ -287,8 +295,12 @@ function CartSidebar({ cart, onClose, onAdd, onRemove, onCheckout }) {
             </div>
           ) : items.map(({ product, qty }) => (
             <div key={product._id} style={{ display: 'flex', gap: 14, alignItems: 'center' }}>
-              <div style={{ width: 56, height: 56, background: CAT_BG[product.category] || T.ink50, borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <span style={{ fontSize: 28 }}>{product.emoji}</span>
+              <div style={{ width: 56, height: 56, background: CAT_BG[product.category] || T.ink50, borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, overflow: 'hidden' }}>
+                {product.image ? (
+                  <img src={product.image} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                ) : (
+                  <span style={{ fontSize: 28 }}>{product.emoji}</span>
+                )}
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <p style={{ margin: '0 0 2px', fontSize: 13, fontWeight: 600, color: T.ink900, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{product.name}</p>
@@ -447,7 +459,7 @@ export default function StorePage({ navigate }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
             <span style={{ fontSize: 28 }}>🛍️</span>
             <div>
-              <h1 style={{ margin: 0, fontSize: 28, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' }}>MK Store</h1>
+              <h1 style={{ margin: 0, fontSize: 28, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' }}>Slot Store</h1>
               <p style={{ margin: 0, fontSize: 14, color: 'rgba(255,255,255,0.55)' }}>Professional products for your home</p>
             </div>
           </div>
@@ -555,7 +567,7 @@ export default function StorePage({ navigate }) {
 
         {/* ── Why shop with us ─────────────────────────────────── */}
         <div style={{ marginTop: 60, padding: '32px 0', borderTop: `1px solid ${T.ink100}` }}>
-          <h2 style={{ textAlign: 'center', fontSize: 22, fontWeight: 700, color: T.ink900, marginBottom: 28 }}>Why Shop at MK Store?</h2>
+          <h2 style={{ textAlign: 'center', fontSize: 22, fontWeight: 700, color: T.ink900, marginBottom: 28 }}>Why Shop at Slot Store?</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 16 }}>
             {[
               ['🏷️', 'Best Prices', 'Up to 40% off on professional-grade products'],

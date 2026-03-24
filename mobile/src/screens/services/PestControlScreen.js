@@ -1,5 +1,5 @@
 /**
- * MK App — Pest Control Screen (Full Production)
+ * Slot App — Pest Control Screen (Full Production)
  * Cockroach, rodent, termite, bed bug, mosquito, general pest control
  */
 import React, { useState, useRef } from 'react';

@@ -1,5 +1,5 @@
 /**
- * MK App — Recommendation Engine Service
+ * Slot App — Recommendation Engine Service
  * Collaborative filtering + content-based hybrid for personalized service suggestions
  * Features: user history, location, demographics, trending, seasonal patterns
  */

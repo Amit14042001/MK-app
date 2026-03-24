@@ -1,5 +1,5 @@
 /**
- * MK App — Addresses Routes (Full CRUD)
+ * Slot App — Addresses Routes (Full CRUD)
  */
 const express = require('express');
 const router  = express.Router();

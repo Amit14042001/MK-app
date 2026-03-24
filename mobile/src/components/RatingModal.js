@@ -1,5 +1,5 @@
 /**
- * MK App — RatingModal Component
+ * Slot App — RatingModal Component
  * Urban Company style post-booking review popup
  * Feature #6: Star rating modal after service completion
  */

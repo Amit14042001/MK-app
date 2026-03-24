@@ -1,5 +1,5 @@
 /**
- * MK App — Professional Matching Algorithm
+ * Slot App — Professional Matching Algorithm
  * Smart assignment: proximity + skills + rating + availability + load balancing
  */
 

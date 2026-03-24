@@ -1,5 +1,5 @@
 /**
- * MK App — Review Model (Full)
+ * Slot App — Review Model (Full)
  */
 const mongoose = require('mongoose');
 

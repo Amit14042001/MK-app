@@ -12,7 +12,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { Colors, Typography, Radius, Shadows, Common, Spacing } from '../utils/theme';
 import { api } from '../context/AuthContext';
 
-const API_URL = __DEV__ ? 'http://10.0.2.2:5000' : 'https://api.mkapp.in';
+const API_URL = __DEV__ ? 'http://10.0.2.2:5000' : 'https://api.slotapp.in';
 
 const STATUS_FLOW = {
   confirmed: { next: 'professional_arriving', label: 'Start Heading', icon: '🚗', color: Colors.info },
@@ -193,7 +193,7 @@ export default function JobsScreen({ navigation }) {
   };
 
   const setupSocket = async () => {
-    const token = await AsyncStorage.getItem('mk_access_token');
+    const token = await AsyncStorage.getItem('slot_access_token');
     const socket = io(API_URL, { auth: { token }, transports: ['websocket'] });
     socketRef.current = socket;
 

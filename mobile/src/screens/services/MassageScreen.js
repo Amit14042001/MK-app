@@ -1,5 +1,5 @@
 /**
- * MK App — Massage & Spa Services Screen (Full)
+ * Slot App — Massage & Spa Services Screen (Full)
  * Body massage, couple massage, deep tissue, Swedish, Thai, foot reflexology
  */
 import React, { useState, useRef } from 'react';

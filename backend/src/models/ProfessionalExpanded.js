@@ -1,5 +1,5 @@
 /**
- * MK App — Professional Model (Complete)
+ * Slot App — Professional Model (Complete)
  * Full schema: services, availability, earnings, documents, ratings
  */
 const mongoose = require('mongoose');

@@ -1,5 +1,5 @@
 /**
- * MK App — Service Model (Complete)
+ * Slot App — Service Model (Complete)
  */
 const mongoose = require('mongoose');
 

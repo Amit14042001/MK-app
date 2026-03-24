@@ -1,11 +1,11 @@
 {
-  "name": "MKApp",
-  "displayName": "MK",
+  "name": "SlotApp",
+  "displayName": "Slot",
   "version": "1.0.0",
   "buildNumber": "1",
-  "scheme": "mkapp",
+  "scheme": "slotapp",
   "android": {
-    "package": "in.mkapp.customer",
+    "package": "in.slotapp.customer",
     "versionCode": 1,
     "permissions": [
       "android.permission.INTERNET",
@@ -24,30 +24,30 @@
     "googleServicesFile": "./google-services.json"
   },
   "ios": {
-    "bundleIdentifier": "in.mkapp.customer",
+    "bundleIdentifier": "in.slotapp.customer",
     "buildNumber": "1",
     "supportsTablet": false,
     "infoPlist": {
-      "NSCameraUsageDescription": "MK App needs camera access to take photos for service requests and AR beauty try-on.",
-      "NSMicrophoneUsageDescription": "MK App needs microphone access for voice search and video consultations.",
-      "NSLocationWhenInUseUsageDescription": "MK App needs your location to find nearby professionals and show accurate service areas.",
-      "NSLocationAlwaysUsageDescription": "MK App uses location to track your professional in real-time during a service.",
-      "NSPhotoLibraryUsageDescription": "MK App needs access to your photos to upload service request images.",
-      "NSPhotoLibraryAddUsageDescription": "MK App needs permission to save AR previews and service photos to your gallery.",
-      "NSFaceIDUsageDescription": "Use Face ID to quickly sign in to MK App.",
+      "NSCameraUsageDescription": "Slot App needs camera access to take photos for service requests and AR beauty try-on.",
+      "NSMicrophoneUsageDescription": "Slot App needs microphone access for voice search and video consultations.",
+      "NSLocationWhenInUseUsageDescription": "Slot App needs your location to find nearby professionals and show accurate service areas.",
+      "NSLocationAlwaysUsageDescription": "Slot App uses location to track your professional in real-time during a service.",
+      "NSPhotoLibraryUsageDescription": "Slot App needs access to your photos to upload service request images.",
+      "NSPhotoLibraryAddUsageDescription": "Slot App needs permission to save AR previews and service photos to your gallery.",
+      "NSFaceIDUsageDescription": "Use Face ID to quickly sign in to Slot App.",
       "UIBackgroundModes": ["location", "fetch", "remote-notification"]
     },
     "googleServicesFile": "./GoogleService-Info.plist",
     "entitlements": {
       "com.apple.developer.associated-domains": [
-        "applinks:mkapp.in",
-        "webcredentials:mkapp.in"
+        "applinks:slotapp.in",
+        "webcredentials:slotapp.in"
       ]
     }
   },
   "deepLinking": {
-    "scheme": "mkapp",
-    "host": "mkapp.in",
+    "scheme": "slotapp",
+    "host": "slotapp.in",
     "paths": {
       "booking": "/booking/:id",
       "service": "/service/:slug",

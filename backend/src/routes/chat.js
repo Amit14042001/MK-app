@@ -1,5 +1,5 @@
 /**
- * MK App — Chat Routes (Full)
+ * Slot App — Chat Routes (Full)
  */
 const express = require('express');
 const router  = express.Router();

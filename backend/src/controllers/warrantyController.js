@@ -1,5 +1,5 @@
 /**
- * MK App — Warranty Controller (Full)
+ * Slot App — Warranty Controller (Full)
  * Service warranty tracking, claims, free revisits, replacements
  */
 const { WarrantyClaim } = require('../models/SupportModels');

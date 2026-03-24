@@ -1,5 +1,5 @@
 /**
- * MK App — Professionals Routes (Full)
+ * Slot App — Professionals Routes (Full)
  */
 const express = require('express');
 const router  = express.Router();

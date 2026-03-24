@@ -1,5 +1,5 @@
 /**
- * MK Professional App — Support Screen
+ * Slot Professional App — Support Screen
  */
 import React, { useState } from 'react';
 import {
@@ -14,7 +14,7 @@ const API = process.env.API_URL || 'http://10.0.2.2:5000/api/v1';
 
 const FAQS = [
   { q: 'When do I get paid?', a: 'Payouts are processed every Monday for the previous week\'s completed bookings. Funds arrive in your bank within 1-2 business days.' },
-  { q: 'How is my commission calculated?', a: 'MK takes 20% of the booking amount. You receive 80%. Example: For a ₹500 booking, you earn ₹400.' },
+  { q: 'How is my commission calculated?', a: 'Slot takes 20% of the booking amount. You receive 80%. Example: For a ₹500 booking, you earn ₹400.' },
   { q: 'What if a customer cancels?', a: 'If a customer cancels after you\'ve been assigned, you\'ll receive a ₹50 cancellation fee. If cancelled more than 2 hours before, no fee is charged.' },
   { q: 'How do I update my service areas?', a: 'Go to Profile → Edit Profile → Working Areas to update the pincodes you serve.' },
   { q: 'What if I can\'t complete a job?', a: 'Mark the booking as "Unable to complete" in the app. Contact support immediately at 1800-XXX-XXXX.' },
@@ -146,8 +146,8 @@ export default function SupportScreen({ navigation }) {
           {[
             { icon: '📞', label: 'Call Support (Toll-Free)', value: '1800-XXX-XXXX', action: () => Linking.openURL('tel:18001234567'), badge: '24/7' },
             { icon: '💬', label: 'WhatsApp Support', value: '+91 98765 43210', action: () => Linking.openURL('https://wa.me/919876543210'), badge: '9AM-9PM' },
-            { icon: '📧', label: 'Email Support', value: 'pro.support@mkapp.in', action: () => Linking.openURL('mailto:pro.support@mkapp.in'), badge: null },
-            { icon: '💻', label: 'Online Help Center', value: 'help.mkapp.in', action: () => Linking.openURL('https://help.mkapp.in'), badge: null },
+            { icon: '📧', label: 'Email Support', value: 'pro.support@slotapp.in', action: () => Linking.openURL('mailto:pro.support@slotapp.in'), badge: null },
+            { icon: '💻', label: 'Online Help Center', value: 'help.slotapp.in', action: () => Linking.openURL('https://help.slotapp.in'), badge: null },
           ].map((c, i) => (
             <TouchableOpacity key={i} style={S.contactCard} onPress={c.action} activeOpacity={0.8}>
               <Text style={S.contactIcon}>{c.icon}</Text>
@@ -163,7 +163,7 @@ export default function SupportScreen({ navigation }) {
           ))}
 
           <View style={S.officeCard}>
-            <Text style={S.officeTitle}>🏢 MK Services HQ</Text>
+            <Text style={S.officeTitle}>🏢 Slot Services HQ</Text>
             <Text style={S.officeAddr}>Plot 42, HITEC City, Hyderabad — 500081{'\n'}Telangana, India</Text>
           </View>
         </ScrollView>

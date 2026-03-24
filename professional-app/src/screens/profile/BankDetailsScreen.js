@@ -111,7 +111,7 @@ export function DocumentsScreen({ navigation }) {
     { id: 'photo',      label: 'Profile Photo',        icon: '🤳', required: true,  status: 'verified',   note: 'Clear face photo' },
     { id: 'address',    label: 'Address Proof',        icon: '📄', required: true,  status: 'not_uploaded', note: 'Utility bill or bank statement' },
     { id: 'skill_cert', label: 'Skill Certificate',    icon: '🎓', required: false, status: 'not_uploaded', note: 'Optional but boosts earnings' },
-    { id: 'police',     label: 'Police Clearance',     icon: '🛡️', required: false, status: 'processing', note: 'MK can help obtain this' },
+    { id: 'police',     label: 'Police Clearance',     icon: '🛡️', required: false, status: 'processing', note: 'Slot can help obtain this' },
   ];
 
   const STATUS_CONFIG = {
@@ -171,7 +171,7 @@ export function ProNotificationsScreen({ navigation }) {
   const insets = useSafeAreaInsets();
   const [notifications, setNotifications] = useState([
     { id:'1', title:'New Job Alert 🔔', message:'AC Service booking near Jubilee Hills — ₹1,299', time:'2 min ago', isRead:false, type:'job' },
-    { id:'2', title:'Payment Received 💰', message:'₹1,039 credited to your UPI for booking #MK2026001', time:'1 hr ago', isRead:false, type:'payment' },
+    { id:'2', title:'Payment Received 💰', message:'₹1,039 credited to your UPI for booking #Slot2026001', time:'1 hr ago', isRead:false, type:'payment' },
     { id:'3', title:'Rating Received ⭐', message:'Rahul gave you 5 stars! "Very professional and on time."', time:'3 hr ago', isRead:true, type:'rating' },
     { id:'4', title:'Schedule Reminder', message:'You have 2 jobs tomorrow. Check your schedule.', time:'Yesterday', isRead:true, type:'reminder' },
     { id:'5', title:'Training Available 🎓', message:'New "Advanced AC Servicing" course available. Complete to earn more.', time:'2 days ago', isRead:true, type:'training' },
@@ -302,7 +302,7 @@ export function SupportScreen({ navigation }) {
           {[
             { icon:'📞', label:'Pro Helpline', sub:'1800-123-4567 · 24/7' },
             { icon:'💬', label:'Live Chat',    sub:'Avg 2 min response' },
-            { icon:'📧', label:'Email',        sub:'prosupport@mkapp.in' },
+            { icon:'📧', label:'Email',        sub:'prosupport@slotapp.in' },
           ].map(c => (
             <View key={c.label} style={styles.contactItem}>
               <Text style={{ fontSize:24 }}>{c.icon}</Text>

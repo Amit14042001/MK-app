@@ -1,5 +1,5 @@
 /**
- * MK App — Custom Hooks
+ * Slot App — Custom Hooks
  * Feature #7: useBooking (repeat booking)
  * Feature #4: useBeforeAfterPhotos
  * Feature various: useSearch, useLocation, usePayment
@@ -70,7 +70,7 @@ export function useSearch() {
   const loadRecentSearches = async () => {
     try {
       const AsyncStorage = require('@react-native-async-storage/async-storage').default;
-      const saved = await AsyncStorage.getItem('mk_recent_searches');
+      const saved = await AsyncStorage.getItem('slot_recent_searches');
       if (saved) setRecent(JSON.parse(saved));
     } catch {}
   };
@@ -80,7 +80,7 @@ export function useSearch() {
       const AsyncStorage = require('@react-native-async-storage/async-storage').default;
       const updated = [query, ...recentSearches.filter(s => s !== query)].slice(0, 8);
       setRecent(updated);
-      await AsyncStorage.setItem('mk_recent_searches', JSON.stringify(updated));
+      await AsyncStorage.setItem('slot_recent_searches', JSON.stringify(updated));
     } catch {}
   };
 
@@ -88,7 +88,7 @@ export function useSearch() {
     try {
       const AsyncStorage = require('@react-native-async-storage/async-storage').default;
       setRecent([]);
-      await AsyncStorage.removeItem('mk_recent_searches');
+      await AsyncStorage.removeItem('slot_recent_searches');
     } catch {}
   };
 
@@ -155,12 +155,12 @@ export function usePayment() {
 
     if (RazorpayCheckout) {
       RazorpayCheckout.open({
-        description:  order.description || 'MK App Service Payment',
-        image:        'https://mkapp.in/logo.png',
+        description:  order.description || 'Slot App Service Payment',
+        image:        'https://slotapp.in/logo.png',
         currency:     order.currency || 'INR',
         key:          process.env.RAZORPAY_KEY_ID || '',
         amount:       order.amount,
-        name:         'MK App',
+        name:         'Slot App',
         order_id:     order.id,
         prefill:      {
           email:       userInfo?.email  || '',

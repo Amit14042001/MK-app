@@ -1,5 +1,5 @@
 /**
- * MK App Professional — Invoice Generator Screen (Full)
+ * Slot App Professional — Invoice Generator Screen (Full)
  * Create itemized invoice, add extra charges, get customer digital signature
  */
 import React, { useState, useRef } from 'react';
@@ -118,7 +118,7 @@ export default function InvoiceGeneratorScreen({ route, navigation }) {
               <Text style={styles.invoiceId}>#{bookingId.slice(-8).toUpperCase()}</Text>
               <Text style={styles.invoiceDate}>{new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}</Text>
             </View>
-            <View style={styles.mkLogo}><Text style={styles.mkLogoText}>MK</Text></View>
+            <View style={styles.slotLogo}><Text style={styles.slotLogoText}>Slot</Text></View>
           </View>
           <View style={styles.invoiceMeta}>
             <View style={styles.invoiceMetaCol}>
@@ -341,8 +341,8 @@ const styles = StyleSheet.create({
   invoiceTitle: { fontSize: 11, fontWeight: '800', color: '#888', letterSpacing: 2 },
   invoiceId: { fontSize: 18, fontWeight: '900', color: '#1A1A2E', marginTop: 4 },
   invoiceDate: { fontSize: 12, color: '#888', marginTop: 2 },
-  mkLogo: { width: 48, height: 48, borderRadius: 14, backgroundColor: '#E94560', justifyContent: 'center', alignItems: 'center' },
-  mkLogoText: { fontSize: 18, fontWeight: '900', color: '#fff' },
+  slotLogo: { width: 48, height: 48, borderRadius: 14, backgroundColor: '#E94560', justifyContent: 'center', alignItems: 'center' },
+  slotLogoText: { fontSize: 18, fontWeight: '900', color: '#fff' },
   invoiceMeta: { flexDirection: 'row', gap: 20 },
   invoiceMetaCol: { flex: 1 },
   invoiceMetaLabel: { fontSize: 10, fontWeight: '800', color: '#AAA', letterSpacing: 1, marginBottom: 4 },

@@ -1,5 +1,5 @@
 /**
- * MK App — ServiceHealthReportScreen
+ * Slot App — ServiceHealthReportScreen
  * Post-service health report: what was found, fixed, photos, next service date.
  * Accessed from BookingDetail after service is completed.
  * Downloadable as PDF via react-native-html-to-pdf.
@@ -59,13 +59,13 @@ export default function ServiceHealthReportScreen({ navigation, route }) {
       if (RNHTMLtoPDF && report) {
         const html = buildPdfHtml(report);
         const result = await RNHTMLtoPDF.convert({
-          html, fileName: `MK_Report_${report.reportId}`, directory: 'Downloads',
+          html, fileName: `slot_Report_${report.reportId}`, directory: 'Downloads',
         });
         Alert.alert('✅ Downloaded', `Report saved to: ${result.filePath}`);
       } else {
         // Share fallback
         await Share.share({
-          title:   `MK Service Report — ${report?.reportId}`,
+          title:   `Slot Service Report — ${report?.reportId}`,
           message: buildTextReport(report),
         });
       }
@@ -92,7 +92,7 @@ export default function ServiceHealthReportScreen({ navigation, route }) {
 
   const buildTextReport = (r) => {
     if (!r) return '';
-    return `MK Service Health Report\n\nReport ID: ${r.reportId}\nService: ${r.service}\nProfessional: ${r.professional.name}\nDate: ${new Date(r.serviceDate).toDateString()}\n\n${r.healthItems.map(i => `✓ ${i.label}: ${i.value}`).join('\n')}\n\nWarranty valid until: ${new Date(r.warrantyUntil).toDateString()}\nNext service due: ${new Date(r.nextServiceDue).toDateString()}\n\nThank you for choosing MK App!`;
+    return `Slot Service Health Report\n\nReport ID: ${r.reportId}\nService: ${r.service}\nProfessional: ${r.professional.name}\nDate: ${new Date(r.serviceDate).toDateString()}\n\n${r.healthItems.map(i => `✓ ${i.label}: ${i.value}`).join('\n')}\n\nWarranty valid until: ${new Date(r.warrantyUntil).toDateString()}\nNext service due: ${new Date(r.nextServiceDue).toDateString()}\n\nThank you for choosing Slot App!`;
   };
 
   if (loading) return (

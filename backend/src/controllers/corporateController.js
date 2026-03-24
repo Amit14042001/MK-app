@@ -1,5 +1,5 @@
 /**
- * MK App — Corporate Controller
+ * Slot App — Corporate Controller
  * B2B corporate account management, bulk bookings, employee management
  */
 const { Corporate, CorporateEmployee, CorporateBooking } = require('../models/Corporate');
@@ -54,8 +54,8 @@ exports.registerCorporate = asyncHandler(async (req, res) => {
   // Send confirmation to client
   await sendEmail({
     to: contactEmail,
-    subject: 'Corporate Account Request Received — MK App',
-    text: `Dear ${contactName},\n\nThank you for your interest in MK App for Business. Your request has been received and our corporate team will contact you within 24 business hours.\n\nCompany: ${companyName}\nTier: ${corporate.tier}\n\nBest regards,\nMK App Corporate Team`,
+    subject: 'Corporate Account Request Received — Slot App',
+    text: `Dear ${contactName},\n\nThank you for your interest in Slot App for Business. Your request has been received and our corporate team will contact you within 24 business hours.\n\nCompany: ${companyName}\nTier: ${corporate.tier}\n\nBest regards,\nSlot App Corporate Team`,
   });
 
   res.status(201).json({
@@ -127,7 +127,7 @@ exports.addEmployees = asyncHandler(async (req, res) => {
       results.push({ id: employee._id, name: emp.name, email: emp.email, status: 'added' });
 
       // Send invite to employee
-      await sendSMS(emp.phone, `You've been added to ${corporate.companyName}'s MK App corporate account. Login with your phone number to access company-sponsored services.`);
+      await sendSMS(emp.phone, `You've been added to ${corporate.companyName}'s Slot App corporate account. Login with your phone number to access company-sponsored services.`);
     } catch (err) {
       results.push({ name: emp.name, email: emp.email, status: 'failed', error: err.message });
     }
@@ -296,7 +296,7 @@ exports.generateInvoice = asyncHandler(async (req, res) => {
   const grandTotal = totalAmount + gst;
 
   const invoice = {
-    invoiceNumber: `MK-CORP-${corporate._id.toString().slice(-6).toUpperCase()}-${year}${String(month).padStart(2, '0')}`,
+    invoiceNumber: `Slot-CORP-${corporate._id.toString().slice(-6).toUpperCase()}-${year}${String(month).padStart(2, '0')}`,
     corporate: { name: corporate.companyName, gstin: corporate.gstin, address: corporate.billingAddress },
     period: { month, year, from: startDate, to: endDate },
     lineItems: bookings.map(b => ({

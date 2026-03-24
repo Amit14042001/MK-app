@@ -1,9 +1,9 @@
 /**
- * MK Web — API Client (Full)
+ * Slot Web — API Client (Full)
  */
 import axios from 'axios';
 
-const BASE_URL = process.env.REACT_APP_API_URL || '/api/v1';
+const BASE_URL = '/api/v1';
 
 export const api = axios.create({
   baseURL: BASE_URL,
@@ -13,7 +13,7 @@ export const api = axios.create({
 
 // Attach token
 api.interceptors.request.use(config => {
-  const token = localStorage.getItem('mk_access_token');
+  const token = localStorage.getItem('slot_access_token');
   if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
@@ -25,16 +25,16 @@ api.interceptors.response.use(
     if (err.response?.status === 401 && !err.config._retry) {
       err.config._retry = true;
       try {
-        const refresh = localStorage.getItem('mk_refresh_token');
+        const refresh = localStorage.getItem('slot_refresh_token');
         if (!refresh) throw new Error('no refresh');
         const { data } = await axios.post(`${BASE_URL}/auth/refresh-token`, { refreshToken: refresh });
-        localStorage.setItem('mk_access_token', data.accessToken);
+        localStorage.setItem('slot_access_token', data.accessToken);
         api.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
         err.config.headers.Authorization = `Bearer ${data.accessToken}`;
         return api(err.config);
       } catch {
-        localStorage.removeItem('mk_access_token');
-        localStorage.removeItem('mk_refresh_token');
+        localStorage.removeItem('slot_access_token');
+        localStorage.removeItem('slot_refresh_token');
         window.location.href = '/login';
       }
     }
@@ -130,6 +130,8 @@ export const notificationsAPI = {
   markAllRead:   ()         => api.put('/notifications/read-all'),
   delete:        (id)       => api.delete(`/notifications/${id}`),
   clearAll:      ()         => api.put('/notifications/clear-all'),
+  broadcast:     (data)     => api.post('/notifications/broadcast', data),
+  registerDeviceToken: (data) => api.post('/notifications/device-token', data),
 };
 
 // ── Subscriptions ─────────────────────────────────────────────
@@ -163,8 +165,16 @@ export const bannersAPI = {
 
 // ── Professionals ─────────────────────────────────────────────
 export const professionalsAPI = {
-  getAll:        (params)   => api.get('/professionals', { params }),
-  getOne:        (id)       => api.get(`/professionals/${id}`),
+  getAll:             (params)   => api.get('/professionals', { params }),
+  getOne:             (id)       => api.get(`/professionals/${id}`),
+  getMe:              ()         => api.get('/professionals/me'),
+  updateMe:           (data)     => api.put('/professionals/me', data),
+  getEarnings:        (p)        => api.get('/professionals/me/earnings', { params: p }),
+  updateAvailability: (data)     => api.put('/professionals/me/availability', data),
+  requestPayout:      (data)     => api.post('/professionals/me/payout', data),
+  getLeaderboard:     (p)        => api.get('/professionals/leaderboard', { params: p }),
+  getMyBookings:      (p)        => api.get('/bookings/professional', { params: p }),
+  updateBookingStatus:(id, data) => api.put(`/bookings/${id}/status`, data),
 };
 
 // ── Admin ─────────────────────────────────────────────────────

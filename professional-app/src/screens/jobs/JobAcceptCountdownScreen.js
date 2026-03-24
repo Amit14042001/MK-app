@@ -1,5 +1,5 @@
 /**
- * MK App Professional — Job Accept Countdown Screen (Full)
+ * Slot App Professional — Job Accept Countdown Screen (Full)
  * UC's signature real-time feature: 30-second window to accept/decline new jobs
  * Shows job details, earnings, distance, countdown ring
  */

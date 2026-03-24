@@ -1,5 +1,5 @@
 /**
- * MK App — OTP Service
+ * Slot App — OTP Service
  * Generate, send, verify and expire OTPs via SMS / WhatsApp
  */
 const crypto  = require('crypto');
@@ -49,7 +49,7 @@ async function isInCooldown(phone) {
  * Send OTP via SMS
  */
 async function sendSMSOTP(phone, otp) {
-  const message = `${otp} is your MK App OTP. Valid for 10 minutes. Do NOT share. -MK Services`;
+  const message = `${otp} is your Slot App OTP. Valid for 10 minutes. Do NOT share. -Slot Services`;
   if (IS_TEST) {
     console.log(`[OTP TEST] Phone: ${phone} | OTP: ${otp}`);
     return { success: true, mock: true };
@@ -63,7 +63,7 @@ async function sendSMSOTP(phone, otp) {
  */
 async function sendWhatsAppOTP(phone, otp) {
   if (IS_TEST || !process.env.WHATSAPP_TOKEN) return { success: false, reason: 'WA not configured' };
-  const message = `Your MK App verification code: *${otp}*\n\nThis code expires in 10 minutes. Do not share it with anyone.`;
+  const message = `Your Slot App verification code: *${otp}*\n\nThis code expires in 10 minutes. Do not share it with anyone.`;
   const { sendMessage } = require('../routes/whatsapp');
   return sendMessage(phone, message);
 }

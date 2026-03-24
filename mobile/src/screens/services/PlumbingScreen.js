@@ -1,5 +1,5 @@
 /**
- * MK App — Plumbing Services Screen (Full)
+ * Slot App — Plumbing Services Screen (Full)
  * Tap repair, pipe leakage, bathroom fitting, drain cleaning, geyser installation
  */
 import React, { useState } from 'react';

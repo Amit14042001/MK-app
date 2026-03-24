@@ -1,5 +1,5 @@
 /**
- * MK App — Payment Service
+ * Slot App — Payment Service
  * Razorpay integration: orders, verification, refunds, payouts
  */
 const crypto  = require('crypto');

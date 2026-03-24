@@ -1,5 +1,5 @@
 /**
- * MK App — Store Screen (UC Store Clone)
+ * Slot App — Store Screen (UC Store Clone)
  * Browse products, add to cart, checkout, track orders
  * Cleaning kits, beauty products, tools, automotive accessories
  */
@@ -316,7 +316,7 @@ export default function StoreScreen({ navigation }) {
         <TouchableOpacity style={S.backBtn} onPress={() => navigation.goBack()}>
           <Text style={S.backIcon}>←</Text>
         </TouchableOpacity>
-        <Text style={S.headerTitle}>MK Store</Text>
+        <Text style={S.headerTitle}>Slot Store</Text>
         {cartCount > 0 && (
           <TouchableOpacity style={S.cartIconBtn} onPress={() => setCartVisible(true)}>
             <Text style={S.cartIcon}>🛒</Text>

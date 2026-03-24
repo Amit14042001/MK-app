@@ -1,5 +1,5 @@
 /**
- * MK App — Internationalization (i18n) System
+ * Slot App — Internationalization (i18n) System
  * Supports: English, Hindi, Telugu, Tamil, Kannada, Bengali, Marathi
  * Auto-detects device language, stores preference
  */
@@ -21,7 +21,7 @@ export const SUPPORTED_LANGUAGES = [
 const TRANSLATIONS = {
   en: {
     // App
-    app_name: 'MK App',
+    app_name: 'Slot App',
     tagline: 'Home services at your doorstep',
 
     // Navigation
@@ -129,7 +129,7 @@ const TRANSLATIONS = {
   },
 
   hi: {
-    app_name: 'MK ऐप',
+    app_name: 'Slot ऐप',
     tagline: 'घर पर सेवाएं',
     home: 'होम',
     bookings: 'बुकिंग',
@@ -215,7 +215,7 @@ const TRANSLATIONS = {
   },
 
   te: {
-    app_name: 'MK యాప్',
+    app_name: 'Slot యాప్',
     tagline: 'మీ ఇంట్లో సేవలు',
     home: 'హోమ్',
     bookings: 'బుకింగ్‌లు',
@@ -259,7 +259,7 @@ const TRANSLATIONS = {
   },
 
   ta: {
-    app_name: 'MK செயலி',
+    app_name: 'Slot செயலி',
     tagline: 'உங்கள் வீட்டில் சேவைகள்',
     home: 'முகப்பு',
     bookings: 'முன்பதிவுகள்',

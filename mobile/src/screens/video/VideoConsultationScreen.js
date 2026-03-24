@@ -1,5 +1,5 @@
 /**
- * MK App — VideoConsultationScreen
+ * Slot App — VideoConsultationScreen
  * ₹99 for a 5-minute video diagnosis call with a specialist.
  * ₹99 is credited back if customer books the full service.
  * Agora already integrated — extend to one-way consultation.
@@ -46,11 +46,11 @@ export default function VideoConsultationScreen({ navigation }) {
       const RazorpayCheckout = require('react-native-razorpay').default;
       const paymentData = await RazorpayCheckout.open({
         description:  `${selected.name} — 5 min consultation`,
-        image:        'https://mkapp.in/logo.png',
+        image:        'https://slotapp.in/logo.png',
         currency:     currency || 'INR',
         key:          process.env.RAZORPAY_KEY_ID || 'rzp_test_xxxxxxxxxx',
         amount:       CONSULT_FEE * 100,
-        name:         'MK Video Consult',
+        name:         'Slot Video Consult',
         order_id:     orderId,
         theme:        { color: Colors.primary },
         prefill:      { contact: '', email: '' },

@@ -1,5 +1,5 @@
 /**
- * MK App — Offline Queue & Sync Utility
+ * Slot App — Offline Queue & Sync Utility
  * Queues API calls when offline, replays when connection restored
  * Handles: bookings, reviews, profile updates, address saves
  */

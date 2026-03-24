@@ -1,11 +1,11 @@
 /**
- * MK App — Store Admin Panel
+ * Slot App — Store Admin Panel
  * Manage products (inventory, stock, pricing), view orders, update status
  */
 import { useState, useEffect, useCallback } from 'react';
 import { storeAPI, adminAPI } from '../utils/api';
 
-const BRAND = '#e94560';
+const BRAND = 'var(--color-brand)';
 const CATEGORIES = ['cleaning','beauty','tools','automotive','pest_control','home_care','wellness'];
 const STATUS_COLORS = {
   pending:           { bg:'#fff3e0', color:'#e65100' },

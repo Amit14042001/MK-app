@@ -1,5 +1,5 @@
 /**
- * MK App — Webhook Retry Queue Service
+ * Slot App — Webhook Retry Queue Service
  * Feature #38: Failed webhook deliveries retried with exponential backoff
  */
 const axios  = require('axios');
@@ -241,7 +241,7 @@ async function replayDeadLetter(jobId) {
 }
 
 // ── Pre-register core webhooks for known integrations ─────────
-registerWebhook('razorpay_main', process.env.RAZORPAY_WEBHOOK_URL || 'https://api.mkapp.in/webhooks/razorpay', ['payment.*'], process.env.RAZORPAY_WEBHOOK_SECRET || 'rp_secret');
+registerWebhook('razorpay_main', process.env.RAZORPAY_WEBHOOK_URL || 'https://api.slotapp.in/webhooks/razorpay', ['payment.*'], process.env.RAZORPAY_WEBHOOK_SECRET || 'rp_secret');
 
 module.exports = {
   registerWebhook,

@@ -1,5 +1,5 @@
 /**
- * MK App — Booking Controller (Full Production)
+ * Slot App — Booking Controller (Full Production)
  */
 const Booking      = require('../models/Booking');
 const Service      = require('../models/Service');
@@ -147,7 +147,7 @@ exports.createBooking = asyncHandler(async (req, res) => {
   Promise.allSettled([
     notifyBookingConfirmed(booking),
     assignedPro ? notifyProfessionalNewBooking(assignedPro.user, populatedBooking) : null,
-    sendSMS(req.user.phone, `Booking ${booking.bookingId} confirmed for ${scheduledDate} at ${scheduledTime}. -MK Services`),
+    sendSMS(req.user.phone, `Booking ${booking.bookingId} confirmed for ${scheduledDate} at ${scheduledTime}. -Slot Services`),
   ]);
 
   global.io?.to(`user_${req.user._id}`).emit('booking_created', { bookingId: booking._id });

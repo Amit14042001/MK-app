@@ -1,5 +1,5 @@
 /**
- * MK App — BundleBuilderScreen
+ * Slot App — BundleBuilderScreen
  * Customer builds a personalised home maintenance plan.
  * Pick services + frequency = monthly price with 10% bundle discount.
  * UC's Prime is platform-defined. Yours is customer-defined.

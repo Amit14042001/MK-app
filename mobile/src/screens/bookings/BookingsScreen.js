@@ -1,5 +1,5 @@
 /**
- * MK App — Bookings Screen (Full)
+ * Slot App — Bookings Screen (Full)
  * My bookings with tabs: All / Upcoming / Completed / Cancelled
  */
 import React, { useState, useEffect, useCallback } from 'react';

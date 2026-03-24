@@ -1,5 +1,5 @@
 /**
- * MK App — Men's Grooming at Home Screen (Full)
+ * Slot App — Men's Grooming at Home Screen (Full)
  * Haircut, beard styling, hair color, facial, head massage, full grooming packages
  */
 import React, { useState, useRef } from 'react';

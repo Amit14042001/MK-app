@@ -1,5 +1,5 @@
 /**
- * MK App — MapAddressPicker Component
+ * Slot App — MapAddressPicker Component
  * Drop a pin on map to set address — Urban Company style
  * Feature #3: Address on map
  */

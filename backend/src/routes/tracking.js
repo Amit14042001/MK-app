@@ -1,5 +1,5 @@
 /**
- * MK App — Tracking Routes
+ * Slot App — Tracking Routes
  */
 const express = require('express');
 const router = express.Router();
@@ -38,7 +38,7 @@ router.post('/checkin-arrived/:bookingId', protect, authorize('professional'),
     // Send OTP via SMS to customer
     const { sendSMS } = require('../utils/sms');
     await sendSMS(booking.customer.phone,
-      `Your MK App check-in OTP is ${otp}. Share with your professional to start the service. Valid 10 min.`
+      `Your Slot App check-in OTP is ${otp}. Share with your professional to start the service. Valid 10 min.`
     ).catch(() => { });
 
     // Push notification to customer

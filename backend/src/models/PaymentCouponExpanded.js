@@ -1,5 +1,5 @@
 /**
- * MK App — Payment Model (Complete)
+ * Slot App — Payment Model (Complete)
  */
 const mongoose = require('mongoose');
 

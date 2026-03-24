@@ -1,5 +1,5 @@
 /**
- * MK App — HelpScreen (full support hub)
+ * Slot App — HelpScreen (full support hub)
  * FAQs, chat support, raise ticket, call center
  */
 import React, { useState, useEffect } from 'react';
@@ -24,14 +24,14 @@ const FAQ_CATEGORIES = [
 const FAQS = [
   { id: 'f1', q: 'How do I book a service?', a: 'Open the app → Select a service category → Choose your service → Pick date & time → Enter your address → Confirm booking. You will receive a confirmation SMS and in-app notification.', cat: 'booking' },
   { id: 'f2', q: 'Can I cancel or reschedule a booking?', a: 'Yes! Go to Bookings tab → Tap on your booking → Select "Cancel" or "Reschedule". Cancellations made more than 24 hours before the scheduled time get a full refund. Cancellations 4–24 hours before get 50% refund.', cat: 'booking' },
-  { id: 'f3', q: 'What payment methods are accepted?', a: 'We accept UPI, Credit/Debit cards, Net Banking, MK Wallet, and Cash on Service. All online payments are processed securely via Razorpay.', cat: 'payment' },
-  { id: 'f4', q: 'How do I get a refund?', a: 'Refunds are credited to your MK Wallet within 24 hours of cancellation. To refund to the original payment method, contact support within 7 days.', cat: 'payment' },
+  { id: 'f3', q: 'What payment methods are accepted?', a: 'We accept UPI, Credit/Debit cards, Net Banking, Slot Wallet, and Cash on Service. All online payments are processed securely via Razorpay.', cat: 'payment' },
+  { id: 'f4', q: 'How do I get a refund?', a: 'Refunds are credited to your Slot Wallet within 24 hours of cancellation. To refund to the original payment method, contact support within 7 days.', cat: 'payment' },
   { id: 'f5', q: 'How do I add money to my wallet?', a: 'Go to Profile → Wallet → Add Money. You can add via UPI, card, or net banking. There is no minimum top-up amount.', cat: 'payment' },
   { id: 'f6', q: 'Are the professionals verified?', a: 'Yes, all professionals undergo background checks, ID verification, and skill assessments before being listed on the platform. Look for the ✓ verified badge on professional profiles.', cat: 'professional' },
   { id: 'f7', q: 'What if the professional doesn\'t show up?', a: 'Contact us immediately via the Help section or call our helpline 1800-123-4567. We will either reschedule with another professional or issue a full refund within 2 hours.', cat: 'professional' },
   { id: 'f8', q: 'How do I change my registered phone number?', a: 'Go to Profile → Settings → Account Settings → Change Phone. You will need to verify the new number via OTP.', cat: 'account' },
   { id: 'f9', q: 'Is my address and personal data safe?', a: 'Yes. We use bank-level encryption to store your data. We never share personal information with third parties except professionals assigned to your bookings.', cat: 'safety' },
-  { id: 'f10', q: 'How does the MK Shield safety guarantee work?', a: 'Every professional is background verified. Your booking is insured up to ₹10,000 for any service damage. Simply report the issue within 48 hours with photos.', cat: 'safety' },
+  { id: 'f10', q: 'How does the Slot Shield safety guarantee work?', a: 'Every professional is background verified. Your booking is insured up to ₹10,000 for any service damage. Simply report the issue within 48 hours with photos.', cat: 'safety' },
 ];
 
 export default function HelpScreen({ navigation }) {
@@ -90,7 +90,7 @@ export default function HelpScreen({ navigation }) {
           {[
             { icon: '📞', label: 'Call Us',    sub: '1800-123-4567',  action: () => Linking.openURL('tel:18001234567'), color: Colors.success },
             { icon: '💬', label: 'Live Chat',  sub: 'Avg 2 min',      action: () => Alert.alert('Chat', 'Live chat launching...'), color: Colors.info },
-            { icon: '📧', label: 'Email',      sub: 'help@mkapp.in',  action: () => Linking.openURL('mailto:help@mkapp.in'), color: Colors.warning },
+            { icon: '📧', label: 'Email',      sub: 'help@slotapp.in',  action: () => Linking.openURL('mailto:help@slotapp.in'), color: Colors.warning },
           ].map(item => (
             <TouchableOpacity key={item.label} style={S.contactCard} onPress={item.action}>
               <View style={[S.contactIcon, { backgroundColor: item.color + '20' }]}>
@@ -166,8 +166,8 @@ export default function HelpScreen({ navigation }) {
 
         {/* App Info */}
         <View style={S.appInfo}>
-          <Text style={S.appInfoTitle}>MK App</Text>
-          <Text style={S.appInfoText}>Version 2.1.0 · {new Date().getFullYear()} MK Services Pvt Ltd</Text>
+          <Text style={S.appInfoTitle}>Slot App</Text>
+          <Text style={S.appInfoText}>Version 2.1.0 · {new Date().getFullYear()} Slot Services Pvt Ltd</Text>
           <View style={S.linksRow}>
             {['Privacy Policy', 'Terms of Service', 'About Us'].map(link => (
               <TouchableOpacity key={link} onPress={() => navigation.navigate('About')}>

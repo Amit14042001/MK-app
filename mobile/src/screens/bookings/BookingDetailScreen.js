@@ -78,13 +78,13 @@ export default function BookingDetailScreen({ route, navigation }) {
   const handleShare = async () => {
     try {
       await Share.share({
-        message: `MK Booking #${booking.bookingId}\n${booking.service?.name}\n${new Date(booking.scheduledDate).toDateString()} at ${booking.scheduledTime}`,
+        message: `Slot Booking #${booking.bookingId}\n${booking.service?.name}\n${new Date(booking.scheduledDate).toDateString()} at ${booking.scheduledTime}`,
       });
     } catch {}
   };
 
   const handleInvoice = () => {
-    Linking.openURL(`https://api.mkapp.in/api/v1/bookings/${bookingId}/invoice`);
+    Linking.openURL(`https://api.slotapp.in/api/v1/bookings/${bookingId}/invoice`);
   };
 
   if (loading) return (

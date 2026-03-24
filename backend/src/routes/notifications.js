@@ -1,5 +1,5 @@
 /**
- * MK App — Notifications Routes (Full)
+ * Slot App — Notifications Routes (Full)
  */
 const express  = require('express');
 const router   = express.Router();

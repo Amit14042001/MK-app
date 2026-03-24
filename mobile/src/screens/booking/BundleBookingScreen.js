@@ -1,5 +1,5 @@
 /**
- * MK App — Bundle Booking Screen (Full)
+ * Slot App — Bundle Booking Screen (Full)
  * Book multiple services together with smart scheduling and bundle discounts
  */
 import React, { useState, useEffect } from 'react';

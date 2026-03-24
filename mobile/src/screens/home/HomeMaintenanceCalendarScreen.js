@@ -1,5 +1,5 @@
 /**
- * MK App — HomeMaintenanceCalendarScreen
+ * Slot App — HomeMaintenanceCalendarScreen
  * Personalised annual maintenance schedule based on past bookings + home profile.
  * Auto-reminds 7 days before each service. "Book now at today's price."
  * Turns the app from a booking tool into a home health platform.

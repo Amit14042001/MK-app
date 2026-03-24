@@ -1,5 +1,5 @@
 /**
- * MK App — MongoDB Connection + Health Check
+ * Slot App — MongoDB Connection + Health Check
  */
 const mongoose = require('mongoose');
 
@@ -7,7 +7,7 @@ let retries = 0;
 const MAX_RETRIES = 5;
 
 const connectDB = async () => {
-  const uri = process.env.MONGO_URI || 'mongodb://localhost:27017/mk-app';
+  const uri = process.env.MONGO_URI || 'mongodb://localhost:27017/slot-app';
   const options = {
     useNewUrlParser:    true,
     useUnifiedTopology: true,

@@ -1,5 +1,5 @@
 /**
- * MK App — Splash Screen (Full Production v2)
+ * Slot App — Splash Screen (Full Production v2)
  * Animated logo reveal, pulse rings, particles, progress bar
  */
 import React, { useEffect, useRef, useState } from 'react';
@@ -139,7 +139,7 @@ export default function SplashScreen({ onFinish }) {
           </Animated.View>
         </Animated.View>
         <Animated.View style={{ opacity: titleOpacity, transform: [{ translateY: titleTransY }] }}>
-          <Text style={styles.appName}>MK App</Text>
+          <Text style={styles.appName}>Slot App</Text>
         </Animated.View>
         <Animated.View style={{ opacity: taglineOpacity, transform: [{ translateY: taglineTransY }] }}>
           <Text style={styles.tagline}>{TAGLINES[taglineIdx]}</Text>
@@ -165,7 +165,7 @@ export default function SplashScreen({ onFinish }) {
         <Animated.View style={[styles.versionRow, { opacity: versionOpacity }]}>
           <Text style={styles.versionText}>v{APP_VERSION}</Text>
           <View style={styles.dot} />
-          <Text style={styles.versionText}>© 2026 MK App</Text>
+          <Text style={styles.versionText}>© 2026 Slot App</Text>
         </Animated.View>
         <Text style={styles.madeIn}>Made with ❤️ in India</Text>
       </Animated.View>

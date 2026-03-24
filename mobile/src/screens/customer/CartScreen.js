@@ -149,7 +149,7 @@ export default function CartScreen({ navigation }) {
           {/* Quick coupons */}
           <ScrollView horizontal showsHorizontalScrollIndicator={false}
             contentContainerStyle={{ gap: 8, paddingVertical: Spacing.sm }}>
-            {['MKWELCOME','MK100','AUTOCARE'].map(code => (
+            {['SLOTWELCOME','SLOT100','AUTOCARE'].map(code => (
               <TouchableOpacity key={code} onPress={() => setCouponCode(code)} style={styles.quickCoupon}>
                 <Text style={styles.quickCouponText}>{code}</Text>
               </TouchableOpacity>

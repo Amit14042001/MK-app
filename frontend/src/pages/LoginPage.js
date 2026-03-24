@@ -3,7 +3,7 @@ import { useApp } from '../context/AppContext';
 import { authAPI } from '../utils/api';
 import { socialSignIn } from '../utils/firebase';
 
-const SERVICES = ['AC Service','Salon','Cleaning','Plumber','Car Battery','Oil Change','Spa','Electrician'];
+const SERVICES = ['AC Service', 'Salon', 'Cleaning', 'Plumber', 'Car Battery', 'Oil Change', 'Spa', 'Electrician'];
 
 export default function LoginPage({ navigate }) {
   const { login, showToast } = useApp();
@@ -12,7 +12,7 @@ export default function LoginPage({ navigate }) {
   const [phone, setPhone] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [otp, setOtp] = useState(['','','','']);
+  const [otp, setOtp] = useState(['', '', '', '']);
   const [timer, setTimer] = useState(0);
   const [loading, setLoading] = useState(false);
   const [isNewUser, setIsNewUser] = useState(false);
@@ -27,10 +27,13 @@ export default function LoginPage({ navigate }) {
     }
   }, [timer]);
 
-  // Handle Firebase redirect result
   useEffect(() => {
     const checkRedirect = async () => {
       try {
+        const { initFirebase } = await import('../utils/firebase');
+        const ok = await initFirebase();
+        if (!ok) return;
+
         const { getAuth, getRedirectResult } = await import('firebase/auth');
         const auth = getAuth();
         const result = await getRedirectResult(auth);
@@ -45,7 +48,6 @@ export default function LoginPage({ navigate }) {
         }
       } catch (err) {
         console.error('Redirect result error:', err);
-        showToast('Social login failed. Please try again.', 'error');
       } finally {
         setLoading(false);
       }
@@ -87,7 +89,7 @@ export default function LoginPage({ navigate }) {
       navigate('home');
     } catch (err) {
       showToast(err.response?.data?.message || 'Invalid OTP', 'error');
-      setOtp(['','','','']);
+      setOtp(['', '', '', '']);
       otpRefs[0].current?.focus();
       triggerShake();
     } finally { setLoading(false); }
@@ -139,9 +141,9 @@ export default function LoginPage({ navigate }) {
         @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.04)} }
         .shake { animation: shake 0.4s ease; }
         .fade-up { animation: fadeUp 0.4s ease forwards; }
-        .input-field:focus { border-color: #e94560 !important; box-shadow: 0 0 0 3px rgba(233,69,96,0.12) !important; }
-        .otp-box:focus { border-color: #e94560 !important; background: #fff0f3 !important; }
-        .social-btn:hover { border-color: #e94560 !important; background: #fff8f9 !important; }
+        .input-field:focus { border-color: var(--color-brand) !important; box-shadow: 0 0 0 3px rgba(233,69,96,0.12) !important; }
+        .otp-box:focus { border-color: var(--color-brand) !important; background: #fff0f3 !important; }
+        .social-btn:hover { border-color: var(--color-brand) !important; background: #fff8f9 !important; }
         .tab-btn:hover { background: rgba(255,255,255,0.15) !important; }
       `}</style>
 
@@ -152,48 +154,52 @@ export default function LoginPage({ navigate }) {
         position: 'relative', overflow: 'hidden',
       }}>
         {/* Bg circles */}
-        {[{s:320,t:-100,r:-100,o:0.04},{s:200,b:-60,l:-60,o:0.06},{s:150,t:'40%',r:-40,o:0.05}].map((c,i) => (
-          <div key={i} style={{ position:'absolute', width:c.s, height:c.s, borderRadius:'50%',
-            background:'rgba(233,69,96,0.15)', top:c.t, right:c.r, bottom:c.b, left:c.l, opacity:c.o }} />
+        {[{ s: 320, t: -100, r: -100, o: 0.04 }, { s: 200, b: -60, l: -60, o: 0.06 }, { s: 150, t: '40%', r: -40, o: 0.05 }].map((c, i) => (
+          <div key={i} style={{
+            position: 'absolute', width: c.s, height: c.s, borderRadius: '50%',
+            background: 'rgba(233,69,96,0.15)', top: c.t, right: c.r, bottom: c.b, left: c.l, opacity: c.o
+          }} />
         ))}
 
         {/* Logo */}
         <div>
-          <div onClick={() => navigate('home')} style={{ display:'flex', alignItems:'center', gap:10, cursor:'pointer', marginBottom:48 }}>
-            <img src="/logo.png" alt="MK Logo" style={{ width:50, height:50, borderRadius:12, objectFit:'cover' }} />
-            <span style={{ color:'#fff', fontWeight:800, fontSize:24, letterSpacing:-0.5 }}>MK Services</span>
+          <div onClick={() => navigate('home')} style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', marginBottom: 48 }}>
+            <img src="/logo.png" alt="Slot Logo" style={{ width: 50, height: 50, borderRadius: 12, objectFit: 'cover' }} />
+            <span style={{ color: '#fff', fontWeight: 800, fontSize: 24, letterSpacing: -0.5 }}>Slot Services</span>
           </div>
 
-          <h2 style={{ color:'#fff', fontSize:36, fontWeight:900, lineHeight:1.2, letterSpacing:-1, marginBottom:14 }}>
+          <h2 style={{ color: '#fff', fontSize: 36, fontWeight: 900, lineHeight: 1.2, letterSpacing: -1, marginBottom: 14 }}>
             India's Most Trusted<br />Home Services
           </h2>
-          <p style={{ color:'rgba(255,255,255,0.65)', fontSize:15, lineHeight:1.7, marginBottom:32 }}>
+          <p style={{ color: 'rgba(255,255,255,0.65)', fontSize: 15, lineHeight: 1.7, marginBottom: 32 }}>
             Book verified professionals for
           </p>
 
           {/* Service ticker */}
-          <div style={{ height:36, overflow:'hidden', marginBottom:40 }}>
-            <div key={tickerIdx} style={{ animation:'ticker 2s ease', color:'#e94560', fontSize:20, fontWeight:700 }}>
+          <div style={{ height: 36, overflow: 'hidden', marginBottom: 40 }}>
+            <div key={tickerIdx} style={{ animation: 'ticker 2s ease', color: 'var(--color-brand)', fontSize: 20, fontWeight: 700 }}>
               {SERVICES[tickerIdx]}
             </div>
           </div>
         </div>
 
         {/* Trust items */}
-        <div style={{ display:'flex', flexDirection:'column', gap:18 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
           {[
-            ['🛡️','100% Verified Professionals','Background-checked & trained experts'],
-            ['⭐','4.8★ Average Rating','Rated by 11M+ happy customers'],
-            ['💰','Transparent Pricing','Zero hidden charges, ever'],
-            ['📱','Real-Time Tracking','Live GPS tracking of your professional'],
+            ['🛡️', '100% Verified Professionals', 'Background-checked & trained experts'],
+            ['⭐', '4.8★ Average Rating', 'Rated by 11M+ happy customers'],
+            ['💰', 'Transparent Pricing', 'Zero hidden charges, ever'],
+            ['📱', 'Real-Time Tracking', 'Live GPS tracking of your professional'],
           ].map(([icon, title, sub]) => (
-            <div key={title} style={{ display:'flex', gap:14, alignItems:'center' }}>
-              <div style={{ width:42, height:42, borderRadius:11, background:'rgba(255,255,255,0.08)',
-                display:'flex', alignItems:'center', justifyContent:'center', fontSize:20, flexShrink:0,
-                backdropFilter:'blur(8px)', border:'1px solid rgba(255,255,255,0.1)' }}>{icon}</div>
+            <div key={title} style={{ display: 'flex', gap: 14, alignItems: 'center' }}>
+              <div style={{
+                width: 42, height: 42, borderRadius: 11, background: 'rgba(255,255,255,0.08)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, flexShrink: 0,
+                backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.1)'
+              }}>{icon}</div>
               <div>
-                <div style={{ color:'#fff', fontWeight:700, fontSize:13 }}>{title}</div>
-                <div style={{ color:'rgba(255,255,255,0.5)', fontSize:12, marginTop:1 }}>{sub}</div>
+                <div style={{ color: '#fff', fontWeight: 700, fontSize: 13 }}>{title}</div>
+                <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: 12, marginTop: 1 }}>{sub}</div>
               </div>
             </div>
           ))}
@@ -201,40 +207,40 @@ export default function LoginPage({ navigate }) {
       </div>
 
       {/* ── RIGHT PANEL ── */}
-      <div style={{ flex:1, display:'flex', alignItems:'center', justifyContent:'center', padding:'40px 24px' }}>
-        <div style={{ width:'100%', maxWidth:420 }} className={shake ? 'shake' : ''}>
+      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px 24px' }}>
+        <div style={{ width: '100%', maxWidth: 420 }} className={shake ? 'shake' : ''}>
 
           {step === 'phone' ? (
             <div className="fade-up">
               {/* Mode toggle */}
-              <div style={{ display:'flex', background:'#f0f0f0', borderRadius:14, padding:4, marginBottom:36 }}>
-                {['login','signup'].map(m => (
+              <div style={{ display: 'flex', background: '#f0f0f0', borderRadius: 14, padding: 4, marginBottom: 36 }}>
+                {['login', 'signup'].map(m => (
                   <button key={m} onClick={() => setMode(m)} className="tab-btn" style={{
-                    flex:1, padding:'12px 0', borderRadius:11, border:'none', cursor:'pointer', fontWeight:700, fontSize:14,
-                    background: mode===m ? '#fff' : 'transparent',
-                    color: mode===m ? '#e94560' : '#888',
-                    boxShadow: mode===m ? '0 2px 12px rgba(0,0,0,0.1)' : 'none',
-                    transition:'all 0.2s',
+                    flex: 1, padding: '12px 0', borderRadius: 11, border: 'none', cursor: 'pointer', fontWeight: 700, fontSize: 14,
+                    background: mode === m ? '#fff' : 'transparent',
+                    color: mode === m ? 'var(--color-brand)' : '#888',
+                    boxShadow: mode === m ? '0 2px 12px rgba(0,0,0,0.1)' : 'none',
+                    transition: 'all 0.2s',
                   }}>{m === 'login' ? 'Login' : 'Sign Up'}</button>
                 ))}
               </div>
 
-              <h2 style={{ fontSize:26, fontWeight:900, color:'#1a1a2e', letterSpacing:-0.5, marginBottom:6 }}>
+              <h2 style={{ fontSize: 26, fontWeight: 900, color: '#1a1a2e', letterSpacing: -0.5, marginBottom: 6 }}>
                 {mode === 'login' ? 'Welcome back 👋' : 'Create your account'}
               </h2>
-              <p style={{ color:'#aaa', fontSize:14, marginBottom:28 }}>
+              <p style={{ color: '#aaa', fontSize: 14, marginBottom: 28 }}>
                 {mode === 'login' ? 'Sign in to continue booking services' : 'Join 11M+ satisfied customers'}
               </p>
 
               {/* Primary Social Login */}
-              <button 
-                onClick={() => handleSocialLogin('google')} 
-                className="social-btn" 
+              <button
+                onClick={() => handleSocialLogin('google')}
+                className="social-btn"
                 style={{
                   width: '100%', padding: '15px', border: '1.5px solid #e8e8e8', borderRadius: 14, background: '#fff',
                   cursor: loading ? 'not-allowed' : 'pointer', fontWeight: 700, fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center',
                   gap: 12, transition: 'all 0.15s', marginBottom: 20
-                }} 
+                }}
                 disabled={loading}
               >
                 <img src="https://www.google.com/favicon.ico" alt="Google" style={{ width: 20, height: 20 }} />
@@ -249,7 +255,7 @@ export default function LoginPage({ navigate }) {
               </div>
 
               {mode === 'signup' && (
-                <div style={{ display:'flex', flexDirection:'column', gap:12, marginBottom:12 }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 12 }}>
                   <input placeholder="Full Name *" value={name} onChange={e => setName(e.target.value)}
                     className="input-field" style={{ ...inputStyle }} />
                   <input placeholder="Email Address (optional)" type="email" value={email}
@@ -258,93 +264,106 @@ export default function LoginPage({ navigate }) {
               )}
 
               {/* Phone input */}
-              <div style={{ display:'flex', border:'1.5px solid #e8e8e8', borderRadius:12, overflow:'hidden',
-                background:'#fafafa', marginBottom:20, transition:'all 0.2s' }}>
-                <div style={{ display:'flex', alignItems:'center', gap:8, padding:'14px 16px',
-                  borderRight:'1.5px solid #e8e8e8', background:'#f4f4f4' }}>
+              <div style={{
+                display: 'flex', border: '1.5px solid #e8e8e8', borderRadius: 12, overflow: 'hidden',
+                background: '#fafafa', marginBottom: 20, transition: 'all 0.2s'
+              }}>
+                <div style={{
+                  display: 'flex', alignItems: 'center', gap: 8, padding: '14px 16px',
+                  borderRight: '1.5px solid #e8e8e8', background: '#f4f4f4'
+                }}>
                   <span>🇮🇳</span>
-                  <span style={{ fontWeight:700, color:'#333', fontSize:14 }}>+91</span>
+                  <span style={{ fontWeight: 700, color: '#333', fontSize: 14 }}>+91</span>
                 </div>
                 <input
                   value={phone} maxLength={10} placeholder="Mobile number"
-                  onChange={e => setPhone(e.target.value.replace(/\D/g,'').slice(0,10))}
-                  onKeyDown={e => e.key==='Enter' && handleSendOTP()}
+                  onChange={e => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
+                  onKeyDown={e => e.key === 'Enter' && handleSendOTP()}
                   className="input-field"
-                  style={{ flex:1, padding:'14px 16px', border:'none', outline:'none', fontSize:15,
-                    fontWeight:600, background:'transparent', color:'#1a1a2e', letterSpacing:1 }}
+                  style={{
+                    flex: 1, padding: '14px 16px', border: 'none', outline: 'none', fontSize: 15,
+                    fontWeight: 600, background: 'transparent', color: '#1a1a2e', letterSpacing: 1
+                  }}
                 />
               </div>
 
               <button onClick={handleSendOTP} disabled={phone.length !== 10 || loading}
                 style={{
-                  width:'100%', padding:'15px', borderRadius:14, border:'none', cursor: phone.length===10 ? 'pointer' : 'not-allowed',
-                  background: phone.length===10 ? 'linear-gradient(135deg,#e94560,#c0392b)' : '#f0f0f0',
-                  color: phone.length===10 ? '#fff' : '#bbb', fontWeight:800, fontSize:16, marginBottom:20,
-                  boxShadow: phone.length===10 ? '0 6px 20px rgba(233,69,96,0.35)' : 'none',
-                  transition:'all 0.2s', letterSpacing:-0.3,
+                  width: '100%', padding: '15px', borderRadius: 14, border: 'none', cursor: phone.length === 10 ? 'pointer' : 'not-allowed',
+                  background: phone.length === 10 ? 'linear-gradient(135deg,var(--color-brand),#c0392b)' : '#f0f0f0',
+                  color: phone.length === 10 ? '#fff' : '#bbb', fontWeight: 800, fontSize: 16, marginBottom: 20,
+                  boxShadow: phone.length === 10 ? '0 6px 20px rgba(233,69,96,0.35)' : 'none',
+                  transition: 'all 0.2s', letterSpacing: -0.3,
                 }}>{loading ? 'Sending…' : 'Get OTP →'}</button>
 
               {/* Other Options */}
-              <div style={{ display:'flex', justifyContent: 'center' }}>
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <button onClick={() => handleSocialLogin('facebook')} className="social-btn" style={{
-                  padding:'10px 24px', border:'1.5px solid #e8e8e8', borderRadius:12, background:'#fff',
-                  cursor: loading ? 'not-allowed' : 'pointer', fontWeight:600, fontSize:13, display:'flex', alignItems:'center', justifyContent:'center',
-                  gap:8, transition:'all 0.15s',
-                }} disabled={loading}><span style={{ fontSize:15 }}>🔷</span> Facebook Login</button>
+                  padding: '10px 24px', border: '1.5px solid #e8e8e8', borderRadius: 12, background: '#fff',
+                  cursor: loading ? 'not-allowed' : 'pointer', fontWeight: 600, fontSize: 13, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  gap: 8, transition: 'all 0.15s',
+                }} disabled={loading}><span style={{ fontSize: 15 }}>🔷</span> Facebook Login</button>
               </div>
 
-              <p style={{ textAlign:'center', fontSize:11, color:'#ccc', marginTop:24, lineHeight:1.8 }}>
+              <p style={{ textAlign: 'center', fontSize: 11, color: '#ccc', marginTop: 24, lineHeight: 1.8 }}>
                 By continuing, you agree to our{' '}
-                <span style={{ color:'#e94560', cursor:'pointer', fontWeight:600 }}>Terms of Service</span>{' '}
+                <span style={{ color: 'var(--color-brand)', cursor: 'pointer', fontWeight: 600 }}>Terms of Service</span>{' '}
                 and{' '}
-                <span style={{ color:'#e94560', cursor:'pointer', fontWeight:600 }}>Privacy Policy</span>
+                <span style={{ color: 'var(--color-brand)', cursor: 'pointer', fontWeight: 600 }}>Privacy Policy</span>
               </p>
             </div>
           ) : (
             <div className="fade-up">
-              <button onClick={() => { setStep('phone'); setOtp(['','','','']); }}
-                style={{ background:'none', border:'none', color:'#888', cursor:'pointer', fontSize:14,
-                  display:'flex', alignItems:'center', gap:6, marginBottom:32, padding:0 }}>
+              <button onClick={() => { setStep('phone'); setOtp(['', '', '', '']); }}
+                style={{
+                  background: 'none', border: 'none', color: '#888', cursor: 'pointer', fontSize: 14,
+                  display: 'flex', alignItems: 'center', gap: 6, marginBottom: 32, padding: 0
+                }}>
                 ← Back
               </button>
 
-              <h2 style={{ fontSize:26, fontWeight:900, color:'#1a1a2e', letterSpacing:-0.5, marginBottom:6 }}>
+              <h2 style={{ fontSize: 26, fontWeight: 900, color: '#1a1a2e', letterSpacing: -0.5, marginBottom: 6 }}>
                 Verify number
               </h2>
-              <p style={{ color:'#aaa', fontSize:14, marginBottom:32, lineHeight:1.6 }}>
+              <p style={{ color: '#aaa', fontSize: 14, marginBottom: 32, lineHeight: 1.6 }}>
                 OTP sent to{' '}
-                <strong style={{ color:'#333' }}>+91 {phone}</strong>
+                <strong style={{ color: '#333' }}>+91 {phone}</strong>
                 <button onClick={() => setStep('phone')}
-                  style={{ background:'none', border:'none', color:'#e94560', cursor:'pointer', fontSize:13,
-                    fontWeight:700, marginLeft:8, padding:0 }}>Change</button>
+                  style={{
+                    background: 'none', border: 'none', color: 'var(--color-brand)', cursor: 'pointer', fontSize: 13,
+                    fontWeight: 700, marginLeft: 8, padding: 0
+                  }}>Change</button>
               </p>
 
               {/* OTP boxes */}
-              <div style={{ display:'flex', gap:12, marginBottom:24, justifyContent:'center' }}>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 24, justifyContent: 'center' }}>
                 {otp.map((d, i) => (
                   <input key={i} ref={otpRefs[i]} value={d} maxLength={1}
                     onChange={e => handleOTPInput(e.target.value, i)}
                     onKeyDown={e => handleOTPKey(e, i)}
                     className="otp-box"
-                    style={{ width:68, height:72, textAlign:'center', fontSize:28, fontWeight:900,
-                      border:`2.5px solid ${d ? '#e94560' : '#e8e8e8'}`,
-                      borderRadius:14, outline:'none', background: d ? '#fff0f3' : '#fafafa',
-                      color:'#1a1a2e', transition:'all 0.15s', cursor:'text',
+                    style={{
+                      width: 68, height: 72, textAlign: 'center', fontSize: 28, fontWeight: 900,
+                      border: `2.5px solid ${d ? 'var(--color-brand)' : '#e8e8e8'}`,
+                      borderRadius: 14, outline: 'none', background: d ? '#fff0f3' : '#fafafa',
+                      color: '#1a1a2e', transition: 'all 0.15s', cursor: 'text',
                     }}
                   />
                 ))}
               </div>
 
               {/* Timer */}
-              <div style={{ textAlign:'center', marginBottom:24, fontSize:14 }}>
+              <div style={{ textAlign: 'center', marginBottom: 24, fontSize: 14 }}>
                 {timer > 0 ? (
-                  <span style={{ color:'#aaa' }}>
+                  <span style={{ color: '#aaa' }}>
                     Resend OTP in{' '}
-                    <span style={{ color:'#e94560', fontWeight:700 }}>{timer}s</span>
+                    <span style={{ color: 'var(--color-brand)', fontWeight: 700 }}>{timer}s</span>
                   </span>
                 ) : (
-                  <button onClick={handleSendOTP} style={{ background:'none', border:'none',
-                    color:'#e94560', cursor:'pointer', fontWeight:700, fontSize:14, padding:0 }}>
+                  <button onClick={handleSendOTP} style={{
+                    background: 'none', border: 'none',
+                    color: 'var(--color-brand)', cursor: 'pointer', fontWeight: 700, fontSize: 14, padding: 0
+                  }}>
                     Resend OTP
                   </button>
                 )}
@@ -352,12 +371,12 @@ export default function LoginPage({ navigate }) {
 
               <button onClick={handleVerifyOTP} disabled={otp.join('').length !== 4 || loading}
                 style={{
-                  width:'100%', padding:'15px', borderRadius:14, border:'none',
-                  cursor: otp.join('').length===4 ? 'pointer' : 'not-allowed',
-                  background: otp.join('').length===4 ? 'linear-gradient(135deg,#e94560,#c0392b)' : '#f0f0f0',
-                  color: otp.join('').length===4 ? '#fff' : '#bbb', fontWeight:800, fontSize:16,
-                  boxShadow: otp.join('').length===4 ? '0 6px 20px rgba(233,69,96,0.35)' : 'none',
-                  transition:'all 0.2s',
+                  width: '100%', padding: '15px', borderRadius: 14, border: 'none',
+                  cursor: otp.join('').length === 4 ? 'pointer' : 'not-allowed',
+                  background: otp.join('').length === 4 ? 'linear-gradient(135deg,var(--color-brand),#c0392b)' : '#f0f0f0',
+                  color: otp.join('').length === 4 ? '#fff' : '#bbb', fontWeight: 800, fontSize: 16,
+                  boxShadow: otp.join('').length === 4 ? '0 6px 20px rgba(233,69,96,0.35)' : 'none',
+                  transition: 'all 0.2s',
                 }}>{loading ? 'Verifying…' : isNewUser ? 'Create Account' : 'Sign In'}</button>
             </div>
           )}
@@ -368,7 +387,7 @@ export default function LoginPage({ navigate }) {
 }
 
 const inputStyle = {
-  width:'100%', padding:'13px 16px', border:'1.5px solid #e8e8e8',
-  borderRadius:12, fontSize:14, outline:'none', background:'#fafafa',
-  color:'#1a1a2e', transition:'all 0.2s', fontFamily:'inherit',
+  width: '100%', padding: '13px 16px', border: '1.5px solid #e8e8e8',
+  borderRadius: 12, fontSize: 14, outline: 'none', background: '#fafafa',
+  color: '#1a1a2e', transition: 'all 0.2s', fontFamily: 'inherit',
 };

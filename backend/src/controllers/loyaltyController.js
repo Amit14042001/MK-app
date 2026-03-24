@@ -1,5 +1,5 @@
 /**
- * MK App — Loyalty & Points Controller (Full)
+ * Slot App — Loyalty & Points Controller (Full)
  * Earn points per booking, tier upgrades, rewards redemption
  * Tiers: Bronze → Silver → Gold → Platinum
  */

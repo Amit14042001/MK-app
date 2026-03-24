@@ -1,5 +1,5 @@
 /**
- * MK App — Physiotherapy at Home Screen (Full)
+ * Slot App — Physiotherapy at Home Screen (Full)
  * Back pain, joint pain, sports injury, post-surgery rehab, elderly care physio
  */
 import React, { useState, useRef } from 'react';

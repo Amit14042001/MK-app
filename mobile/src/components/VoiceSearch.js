@@ -1,5 +1,5 @@
 /**
- * MK App — VoiceSearch Component
+ * Slot App — VoiceSearch Component
  * Microphone voice input for search — Urban Company style
  * Feature #8: Voice search
  */

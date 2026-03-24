@@ -33,7 +33,7 @@ exports.sendOTP = async (req, res) => {
   // Send SMS
   const hasSMSKeys = process.env.TWILIO_ACCOUNT_SID || process.env.MSG91_AUTH_KEY;
   if (hasSMSKeys) {
-    await sendSMS(phone, `Your MK App OTP is ${otp}. Valid for ${process.env.OTP_EXPIRY || 10} mins. Do not share with anyone.`);
+    await sendSMS(phone, `Your Slot App OTP is ${otp}. Valid for ${process.env.OTP_EXPIRY || 10} mins. Do not share with anyone.`);
   }
 
   res.json({
@@ -63,9 +63,14 @@ exports.verifyOTP = async (req, res) => {
     return res.status(400).json({ success: false, message: 'OTP has expired. Please request a new one.' });
   }
   if (user.otp.code !== otp) {
-    user.otp.attempts += 1;
-    await user.save();
-    return res.status(400).json({ success: false, message: `Invalid OTP. ${5 - user.otp.attempts} attempts remaining.` });
+    // Dev: Allow 1234 for test number 9876543210
+    if (process.env.NODE_ENV === 'development' && phone === '9876543210' && otp === '1234') {
+      // Allow
+    } else {
+      user.otp.attempts += 1;
+      await user.save();
+      return res.status(400).json({ success: false, message: `Invalid OTP. ${5 - user.otp.attempts} attempts remaining.` });
+    }
   }
 
   // OTP valid — update user
@@ -232,7 +237,7 @@ exports.forgotPassword = async (req, res, next) => {
     const { sendEmail } = require('../utils/email');
     await sendEmail({
       to: email,
-      subject: 'MK App — Password Reset',
+      subject: 'Slot App — Password Reset',
       html: `<p>Click <a href="${process.env.FRONTEND_URL}/reset-password/${token}">here</a> to reset your password. Valid for 10 minutes.</p>`,
     });
 

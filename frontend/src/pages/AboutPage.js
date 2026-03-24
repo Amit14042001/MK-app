@@ -1,7 +1,3 @@
-/**
- * MK Web — About / Landing Page Sections (Full)
- * About, Why MK, Cities, Press, Careers
- */
 import React, { useState } from 'react';
 
 const STATS = [
@@ -14,199 +10,103 @@ const STATS = [
 ];
 
 const VALUES = [
-  { icon: '🔒', title: 'Verified & Trusted', desc: 'Every professional undergoes a thorough background check, skill test, and police verification before joining the MK network.' },
-  { icon: '💯', title: 'Quality Guaranteed', desc: 'Not happy? We redo the service for free or give you a full refund. Our 30-day re-service warranty covers all bookings.' },
-  { icon: '💰', title: 'Fair & Transparent Pricing', desc: 'What you see is what you pay. No hidden charges, no surprise fees. Price locked at the time of booking.' },
-  { icon: '⚡', title: 'On-Time Guarantee', desc: 'Professionals arrive within the scheduled window. If they\'re late, you get a discount automatically.' },
-  { icon: '🌿', title: 'Eco-Friendly Products', desc: 'We only use WHO-approved, child-safe, and eco-friendly cleaning and treatment products.' },
-  { icon: '📱', title: 'Real-Time Tracking', desc: 'Track your professional in real-time from the moment they leave until they arrive at your doorstep.' },
-];
-
-const CITIES = [
-  { name: 'Hyderabad', icon: '🏙️', services: 45, pros: 320 },
-  { name: 'Bangalore', icon: '🌿', services: 48, pros: 380 },
-  { name: 'Mumbai', icon: '🌊', services: 50, pros: 450 },
-  { name: 'Delhi NCR', icon: '🏛️', services: 52, pros: 510 },
-  { name: 'Chennai', icon: '🎭', services: 40, pros: 280 },
-  { name: 'Pune', icon: '🏫', services: 38, pros: 240 },
-  { name: 'Kolkata', icon: '🌺', services: 35, pros: 200 },
-  { name: 'Ahmedabad', icon: '🏗️', services: 30, pros: 160 },
-  { name: 'Jaipur', icon: '🏰', services: 25, pros: 130 },
-  { name: 'Kochi', icon: '🌴', services: 22, pros: 100 },
-  { name: 'Chandigarh', icon: '🌻', services: 20, pros: 90 },
-  { name: 'Surat', icon: '💎', services: 18, pros: 80 },
-];
-
-const TEAM = [
-  { name: 'Manoj Kumar', role: 'Founder & CEO', bio: 'Ex-Swiggy, IIT Bombay. Built MK after years of struggling to find reliable home services.', icon: '👨‍💼' },
-  { name: 'Priya Sharma', role: 'CTO', bio: 'Ex-Google, BITS Pilani. Leads technology and product development.', icon: '👩‍💻' },
-  { name: 'Arun Reddy', role: 'COO', bio: 'Ex-Urban Company, IIM Ahmedabad. Oversees operations in all cities.', icon: '👨‍💼' },
-  { name: 'Sunita Patel', role: 'Head of Professionals', bio: 'Trains and manages our network of 1500+ verified professionals.', icon: '👩‍🔧' },
+  { icon: '🔒', title: 'Verified & Trusted', desc: 'Every professional undergoes a thorough background check, skill test, and police verification.' },
+  { icon: '💯', title: 'Quality Guaranteed', desc: 'Not happy? We redo the service for free. Our 30-day warranty covers all bookings.' },
+  { icon: '💰', title: 'Transparent Pricing', desc: 'What you see is what you pay. No hidden charges, no surprise fees.' },
+  { icon: '⚡', title: 'On-Time Guarantee', desc: 'Professionals arrive within the scheduled window. If they\'re late, you get a discount.' },
+  { icon: '🌿', title: 'Safe Products', desc: 'We only use WHO-approved, child-safe, and eco-friendly cleaning products.' },
+  { icon: '📱', title: 'Real-Time Tracking', desc: 'Track your professional in real-time from the moment they leave.' },
 ];
 
 const FAQS = [
-  { q: 'How does MK verify its professionals?', a: 'Every professional undergoes Aadhaar verification, police verification, skill testing, and background checks before being onboarded. We also do periodic re-verification.' },
-  { q: 'Are your products safe for children and pets?', a: 'Yes. All our cleaning and treatment products are WHO-approved, child-safe, and eco-friendly. We never use harsh chemicals.' },
-  { q: 'What is your cancellation policy?', a: 'Cancel more than 4 hours before → Full refund. Cancel 1-4 hours before → 50% refund. Cancel within 1 hour → No refund.' },
-  { q: 'How do I become a professional on MK?', a: 'Apply on our Pro App or website. Submit documents, pass skill test, and complete training. Approval in 2-3 days.' },
-  { q: 'Do you operate on Sundays and holidays?', a: 'Yes! We operate 365 days a year, including Sundays and public holidays. Some services have limited slots on holidays.' },
+  { q: 'How does Slot verify its professionals?', a: 'Every professional undergoes Aadhaar verification, police verification, and skill testing before being onboarded.' },
+  { q: 'Are your products safe for children and pets?', a: 'Yes. All our cleaning products are WHO-approved and eco-friendly.' },
+  { q: 'What is your cancellation policy?', a: 'Cancel 4h before for full refund. 1-4h for 50%. Within 1h, no refund.' },
+  { q: 'How do I become a pro on Slot?', a: 'Apply on our website, pass skill test, and complete training. Approval in 2-3 days.' },
 ];
 
-export default function AboutPage() {
+export default function AboutPage({ navigate }) {
   const [expandedFaq, setExpandedFaq] = useState(null);
 
+  const sectionStyle = { padding: '80px 24px', maxWidth: 1200, margin: '0 auto' };
+  const titleStyle = { fontSize: 32, fontWeight: 800, color: '#1a1a2e', marginBottom: 12, textAlign: 'center' };
+  const subStyle = { fontSize: 16, color: '#666', marginBottom: 48, textAlign: 'center', maxWidth: 600, margin: '0 auto 48px' };
+
   return (
-    <div className="min-h-screen bg-white">
+    <div style={{ background: '#fff', minHeight: '100vh', fontFamily: 'inherit' }}>
       {/* Hero */}
-      <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-orange-900 text-white py-24 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-block bg-orange-500/20 border border-orange-500/30 px-4 py-2 rounded-full text-sm font-semibold text-orange-300 mb-6">
-            🏠 India's Most Trusted Home Services
-          </div>
-          <h1 className="text-5xl md:text-6xl font-black mb-6 leading-tight">
-            We bring the best<br/>professionals to <span className="text-orange-400">your home</span>
-          </h1>
-          <p className="text-xl text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
-            MK Services connects you with verified, skilled professionals for all your home service needs — from plumbing to salon, AC repair to deep cleaning.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <span data-href="/" className="px-8 py-4 bg-orange-500 text-white font-bold rounded-2xl hover:bg-orange-600 transition-colors text-lg">
-              Book a Service
-            </span>
-            <a href="#cities" className="px-8 py-4 bg-white/10 border border-white/30 text-white font-bold rounded-2xl hover:bg-white/20 transition-colors text-lg">
-              Check Your City
-            </a>
-          </div>
+      <div style={{ background: 'linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%)', padding: '100px 24px', textAlign: 'center', color: '#fff' }}>
+        <div style={{ background: 'rgba(233,69,96,0.2)', border: '1px solid rgba(233,69,96,0.5)', padding: '6px 16px', borderRadius: 20, display: 'inline-block', fontSize: 12, fontWeight: 700, color: '#ff8a80', marginBottom: 24 }}>
+          🏠 India's Most Trusted Home Services
         </div>
+        <h1 style={{ fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 900, marginBottom: 20, lineHeight: 1.1 }}>
+          Better Service.<br/><span style={{ color: 'var(--color-brand)' }}>Better Homes.</span>
+        </h1>
+        <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.7)', maxWidth: 700, margin: '0 auto 32px', lineHeight: 1.6 }}>
+          Slot Services connects you with verified, skilled professionals for all your home needs — from plumbing to salon, AC repair to cleaning.
+        </p>
+        <button onClick={() => navigate('services')} style={{ padding: '16px 36px', background: 'var(--color-brand)', color: '#fff', border: 'none', borderRadius: 14, fontWeight: 700, fontSize: 17, cursor: 'pointer', boxShadow: '0 8px 24px rgba(233,69,96,0.4)' }}>
+          Explore Services
+        </button>
       </div>
 
       {/* Stats */}
-      <div className="py-16 px-6 bg-gray-50">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-          {STATS.map(stat => (
-            <div key={stat.label} className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100">
-              <div className="text-3xl mb-2">{stat.icon}</div>
-              <p className="text-2xl font-black text-gray-900">{stat.value}</p>
-              <p className="text-xs text-gray-500 mt-1">{stat.label}</p>
+      <div style={{ background: '#f8f9fa', padding: '60px 24px', borderBottom: '1px solid #eee' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 24 }}>
+          {STATS.map(s => (
+            <div key={s.label} style={{ background: '#fff', padding: 24, borderRadius: 20, textAlign: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.03)' }}>
+              <div style={{ fontSize: 32, marginBottom: 8 }}>{s.icon}</div>
+              <div style={{ fontSize: 24, fontWeight: 800, color: '#1a1a2e' }}>{s.value}</div>
+              <div style={{ fontSize: 12, color: '#888', marginTop: 4 }}>{s.label}</div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Our Story */}
-      <div className="py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-black text-gray-900 mb-4">Our Story</h2>
-            <p className="text-xl text-gray-500 max-w-2xl mx-auto">
-              Born from frustration. Built with passion. Trusted by millions.
-            </p>
-          </div>
-          <div className="prose prose-lg max-w-none text-gray-600 space-y-4">
-            <p>MK Services was founded in 2022 by Manoj Kumar after a frustrating experience trying to find a reliable plumber for a burst pipe at midnight. The search took 6 hours, and the "professional" who arrived had no tools and no skills.</p>
-            <p>That day, Manoj decided to build the platform he wished had existed — one where every professional is verified, every job has a warranty, and every customer is treated with respect.</p>
-            <p>Today, MK operates in 12 cities with over 1,500 verified professionals and has delivered 50 lakh+ services with a 4.8-star average rating. We're just getting started.</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Why MK */}
-      <div className="py-20 px-6 bg-gray-50">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-black text-gray-900 mb-4">Why Choose MK?</h2>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {VALUES.map(v => (
-              <div key={v.title} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-                <div className="text-4xl mb-4">{v.icon}</div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{v.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{v.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Team */}
-      <div className="py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-black text-gray-900 mb-4">Our Leadership Team</h2>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {TEAM.map(member => (
-              <div key={member.name} className="text-center">
-                <div className="w-20 h-20 bg-orange-100 rounded-2xl flex items-center justify-center text-4xl mx-auto mb-4">
-                  {member.icon}
-                </div>
-                <h3 className="font-bold text-gray-900">{member.name}</h3>
-                <p className="text-sm text-orange-500 font-semibold mb-2">{member.role}</p>
-                <p className="text-xs text-gray-500 leading-relaxed">{member.bio}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Cities */}
-      <div id="cities" className="py-20 px-6 bg-gray-50">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-black text-gray-900 mb-4">Available in 12+ Cities</h2>
-            <p className="text-xl text-gray-500">Expanding to new cities every month</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {CITIES.map(city => (
-              <Link to={`/?city=${city.name}`} key={city.name}
-                className="bg-white rounded-2xl p-4 text-center shadow-sm border border-gray-100 hover:border-orange-300 hover:shadow-md transition-all">
-                <div className="text-3xl mb-2">{city.icon}</div>
-                <p className="font-bold text-gray-900">{city.name}</p>
-                <p className="text-xs text-gray-400 mt-1">{city.services}+ services</p>
-                <p className="text-xs text-gray-400">{city.pros}+ professionals</p>
-              </span>
-            ))}
-          </div>
+      {/* Why Choose Us */}
+      <div style={sectionStyle}>
+        <h2 style={titleStyle}>Why Choose Slot?</h2>
+        <p style={subStyle}>We're committed to quality, safety, and transparency in every service we deliver.</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 24 }}>
+          {VALUES.map(v => (
+            <div key={v.title} style={{ padding: 32, border: '1px solid #f0f0f0', borderRadius: 24, background: '#fff' }}>
+              <div style={{ fontSize: 40, marginBottom: 16 }}>{v.icon}</div>
+              <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 12, color: '#1a1a2e' }}>{v.title}</h3>
+              <p style={{ fontSize: 14, color: '#666', lineHeight: 1.6 }}>{v.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
 
       {/* FAQ */}
-      <div className="py-20 px-6">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-black text-gray-900 mb-4">Frequently Asked Questions</h2>
-          </div>
-          <div className="space-y-4">
-            {FAQS.map((faq, i) => (
-              <div key={i} className="border border-gray-200 rounded-2xl overflow-hidden">
-                <button className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors"
-                  onClick={() => setExpandedFaq(expandedFaq === i ? null : i)}>
-                  <span className="font-semibold text-gray-900">{faq.q}</span>
-                  <span className="text-gray-400 ml-4 flex-shrink-0">{expandedFaq === i ? '▲' : '▼'}</span>
-                </button>
-                {expandedFaq === i && (
-                  <div className="px-5 pb-5">
-                    <p className="text-gray-600 leading-relaxed">{faq.a}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+      <div style={{ ...sectionStyle, background: '#f8f9fa' }}>
+        <h2 style={titleStyle}>Frequently Asked Questions</h2>
+        <div style={{ maxWidth: 700, margin: '40px auto 0' }}>
+          {FAQS.map((faq, i) => (
+            <div key={i} style={{ marginBottom: 16, border: '1px solid #eee', borderRadius: 16, background: '#fff', overflow: 'hidden' }}>
+              <button 
+                onClick={() => setExpandedFaq(expandedFaq === i ? null : i)}
+                style={{ width: '100%', padding: '20px 24px', border: 'none', background: 'none', textAlign: 'left', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontWeight: 700, color: '#1a1a2e', fontSize: 15 }}>{faq.q}</span>
+                <span style={{ color: '#aaa' }}>{expandedFaq === i ? '−' : '+'}</span>
+              </button>
+              {expandedFaq === i && (
+                <div style={{ padding: '0 24px 20px', fontSize: 14, color: '#666', lineHeight: 1.6 }}>
+                  {faq.a}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
 
       {/* CTA */}
-      <div className="bg-gradient-to-br from-gray-900 to-orange-900 text-white py-20 px-6 text-center">
-        <h2 className="text-4xl font-black mb-4">Ready to experience the MK difference?</h2>
-        <p className="text-white/70 text-xl mb-8 max-w-2xl mx-auto">Join 2 million+ happy customers across India</p>
-        <div className="flex flex-wrap gap-4 justify-center">
-          <span data-href="/" className="px-8 py-4 bg-orange-500 text-white font-bold rounded-2xl hover:bg-orange-600 transition-colors text-lg">
-            Book Your First Service
-          </span>
-          <a href="/pro-app" className="px-8 py-4 bg-white/10 border border-white/30 text-white font-bold rounded-2xl hover:bg-white/20 transition-colors text-lg">
-            Join as Professional
-          </a>
-        </div>
+      <div style={{ background: 'var(--color-brand)', padding: '80px 24px', textAlign: 'center', color: '#fff' }}>
+        <h2 style={{ fontSize: 32, fontWeight: 800, marginBottom: 16 }}>Ready to get started?</h2>
+        <p style={{ fontSize: 18, opacity: 0.9, marginBottom: 32 }}>Join 11 million+ happy customers today.</p>
+        <button onClick={() => navigate('services')} style={{ padding: '16px 40px', background: '#fff', color: 'var(--color-brand)', border: 'none', borderRadius: 14, fontWeight: 800, fontSize: 16, cursor: 'pointer' }}>
+          Book Now
+        </button>
       </div>
     </div>
   );

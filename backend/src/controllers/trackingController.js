@@ -1,5 +1,5 @@
 /**
- * MK App — Tracking Controller (Full)
+ * Slot App — Tracking Controller (Full)
  * Real-time location updates, booking lifecycle tracking
  */
 const Booking      = require('../models/Booking');

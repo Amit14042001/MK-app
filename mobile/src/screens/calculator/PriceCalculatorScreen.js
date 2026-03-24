@@ -1,5 +1,5 @@
 /**
- * MK App — PriceCalculatorScreen (Feature #27)
+ * Slot App — PriceCalculatorScreen (Feature #27)
  * Estimate service cost before booking — room size, add-ons, etc.
  */
 import React, { useState, useEffect } from 'react';
@@ -240,7 +240,7 @@ export default function PriceCalculatorScreen({ navigation, route }) {
 
         <TouchableOpacity
           style={PC.shareBtn}
-          onPress={() => Share.share({ message: `I got a price estimate for ${service} on MK App: ₹${total}\n\nDownload MK App: https://mkapp.in` })}
+          onPress={() => Share.share({ message: `I got a price estimate for ${service} on Slot App: ₹${total}\n\nDownload Slot App: https://slotapp.in` })}
         >
           <Text style={PC.shareBtnText}>📤 Share Estimate</Text>
         </TouchableOpacity>

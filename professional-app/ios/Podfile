@@ -1,4 +1,4 @@
-# ── MK Professional App — iOS Podfile ─────────────────────────
+# ── Slot Professional App — iOS Podfile ───────────────────────
 # React Native 0.73.4 · Firebase · Google Maps
 
 require Pod::Executable.execute_command('node', ['-e',

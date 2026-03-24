@@ -1,5 +1,5 @@
 /**
- * MK App — User Model (Complete)
+ * Slot App — User Model (Complete)
  * Full schema with wallet, subscription, referral, preferences, security
  */
 const mongoose = require('mongoose');
@@ -201,7 +201,7 @@ userSchema.pre('save', async function (next) {
 // ── Pre-save: Generate referral code ─────────────────────────
 userSchema.pre('save', function (next) {
   if (this.isNew && !this.referral?.code) {
-    const code = `MK${this.phone.slice(-4).toUpperCase()}${Math.random().toString(36).slice(-4).toUpperCase()}`;
+    const code = `Slot${this.phone.slice(-4).toUpperCase()}${Math.random().toString(36).slice(-4).toUpperCase()}`;
     this.referral = { ...this.referral, code };
   }
   next();
@@ -217,7 +217,7 @@ userSchema.methods.comparePassword = async function (enteredPassword) {
 userSchema.methods.generateToken = function () {
   return jwt.sign(
     { id: this._id, role: this.role, version: this.refreshTokenVersion },
-    process.env.JWT_SECRET || 'mk_jwt_secret_2025',
+    process.env.JWT_SECRET || 'slot_jwt_secret_2025',
     { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
   );
 };
@@ -226,7 +226,7 @@ userSchema.methods.generateToken = function () {
 userSchema.methods.generateRefreshToken = function () {
   return jwt.sign(
     { id: this._id, version: this.refreshTokenVersion },
-    process.env.JWT_REFRESH_SECRET || 'mk_refresh_secret_2025',
+    process.env.JWT_REFRESH_SECRET || 'slot_refresh_secret_2025',
     { expiresIn: '30d' }
   );
 };

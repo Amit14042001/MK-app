@@ -44,7 +44,7 @@ export function PaymentSuccessScreen({ route, navigation }) {
           <Text style={styles.successSub}>
             {booking?.service?.name ? `${booking.service.icon} ${booking.service.name}` : 'Service booked'}
           </Text>
-          <Text style={styles.successId}>Booking ID: {booking?.bookingId || 'MK' + Date.now().toString().slice(-8)}</Text>
+          <Text style={styles.successId}>Booking ID: {booking?.bookingId || 'Slot' + Date.now().toString().slice(-8)}</Text>
         </Animated.View>
 
         <View style={styles.successActions}>
@@ -151,7 +151,7 @@ export function CityPickerScreen({ navigation, route }) {
 
   const handleSelect = async (city) => {
     setSelected(city.name);
-    await AsyncStorage.setItem('mk_selected_city', city.name);
+    await AsyncStorage.setItem('slot_selected_city', city.name);
     onSelect?.(city.name);
     navigation.goBack();
   };
@@ -251,7 +251,7 @@ export function PermissionsScreen({ navigation, onGranted }) {
     }
 
     setPermissions(results);
-    await AsyncStorage.setItem('mk_permissions_asked', 'true');
+    await AsyncStorage.setItem('slot_permissions_asked', 'true');
 
     if (results.location && results.notifications) {
       setTimeout(() => { onGranted?.(); navigation.goBack?.(); }, 800);
@@ -267,7 +267,7 @@ export function PermissionsScreen({ navigation, onGranted }) {
           Before We Begin
         </Text>
         <Text style={[Typography.body, { textAlign:'center', color:Colors.midGray, lineHeight:22, marginBottom:Spacing.xxl }]}>
-          MK needs a few permissions to give you the best experience
+          Slot needs a few permissions to give you the best experience
         </Text>
 
         {PERMS.map(perm => (
@@ -315,20 +315,20 @@ export function AboutScreen({ navigation }) {
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
           <Text style={styles.backIcon}>←</Text>
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>About MK</Text>
+        <Text style={styles.headerTitle}>About Slot</Text>
         <View style={{ width:40 }} />
       </View>
       <ScrollView contentContainerStyle={{ padding:Spacing.xl, alignItems:'center', paddingBottom:60 }}>
         <LinearGradient colors={['#E94560','#C0392B']} style={styles.aboutLogo}>
-          <Text style={{ color:Colors.white, fontSize:40, fontWeight:'900' }}>MK</Text>
+          <Text style={{ color:Colors.white, fontSize:40, fontWeight:'900' }}>Slot</Text>
         </LinearGradient>
 
-        <Text style={[Typography.h2, { textAlign:'center', marginBottom:8 }]}>MK App</Text>
+        <Text style={[Typography.h2, { textAlign:'center', marginBottom:8 }]}>Slot App</Text>
         <Text style={[Typography.body, { color:Colors.midGray, textAlign:'center', marginBottom:4 }]}>Version 1.0.0 (Build 100)</Text>
-        <Text style={[Typography.small, { color:Colors.lightGray, marginBottom:Spacing.xxl }]}>© 2026 MK Technologies Pvt. Ltd.</Text>
+        <Text style={[Typography.small, { color:Colors.lightGray, marginBottom:Spacing.xxl }]}>© 2026 Slot Technologies Pvt. Ltd.</Text>
 
         <Text style={[Typography.body, { textAlign:'center', lineHeight:24, marginBottom:Spacing.xxl, color:Colors.gray }]}>
-          MK is India's most trusted platform for home services — connecting millions of customers with verified, trained professionals across 200+ services.
+          Slot is India's most trusted platform for home services — connecting millions of customers with verified, trained professionals across 200+ services.
         </Text>
 
         {[
@@ -345,10 +345,10 @@ export function AboutScreen({ navigation }) {
 
         <View style={styles.aboutLinks}>
           {[
-            { label:'Website',       url:'https://mkapp.in' },
-            { label:'Privacy Policy',url:'https://mkapp.in/privacy' },
-            { label:'Terms of Use',  url:'https://mkapp.in/terms' },
-            { label:'Careers',       url:'https://mkapp.in/careers' },
+            { label:'Website',       url:'https://slotapp.in' },
+            { label:'Privacy Policy',url:'https://slotapp.in/privacy' },
+            { label:'Terms of Use',  url:'https://slotapp.in/terms' },
+            { label:'Careers',       url:'https://slotapp.in/careers' },
           ].map(link => (
             <TouchableOpacity key={link.label} onPress={() => Linking.openURL(link.url)}
               style={styles.aboutLink}>
@@ -394,7 +394,7 @@ export function EmergencyScreen({ navigation }) {
         style={styles.sosBanner}>
         <Text style={styles.sosIcon}>📞</Text>
         <View>
-          <Text style={styles.sosTitle}>MK Emergency Hotline</Text>
+          <Text style={styles.sosTitle}>Slot Emergency Hotline</Text>
           <Text style={styles.sosSub}>1800-123-4567 · Free · 24/7</Text>
         </View>
         <Text style={styles.sosCall}>Call Now</Text>

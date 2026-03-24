@@ -1,5 +1,5 @@
 /**
- * MK App — Service Areas / Pincode Routes
+ * Slot App — Service Areas / Pincode Routes
  */
 const express = require('express');
 const router = express.Router();
@@ -48,7 +48,7 @@ module.exports = router;
 
 
 /**
- * MK App — App Version Routes
+ * Slot App — App Version Routes
  */
 const versionRouter = express.Router();
 const { AppVersion } = require('../models/AllModels');
@@ -91,7 +91,7 @@ module.exports.versionRouter = versionRouter;
 
 
 /**
- * MK App — Remote Config Routes
+ * Slot App — Remote Config Routes
  */
 const configRouter = express.Router();
 const { RemoteConfig } = require('../models/AllModels');
@@ -129,7 +129,7 @@ module.exports.configRouter = configRouter;
 
 
 /**
- * MK App — Flash Sales Routes
+ * Slot App — Flash Sales Routes
  */
 const flashRouter = express.Router();
 const { FlashSale } = require('../models/AllModels');
@@ -156,7 +156,7 @@ module.exports.flashRouter = flashRouter;
 
 
 /**
- * MK App — Instant Booking Routes
+ * Slot App — Instant Booking Routes
  */
 const instantRouter = express.Router();
 const Professional = require('../models/Professional');
@@ -226,7 +226,7 @@ module.exports.instantRouter = instantRouter;
 
 
 /**
- * MK App — Pro Bids Routes
+ * Slot App — Pro Bids Routes
  */
 const bidsRouter = express.Router();
 const { ProBid } = require('../models/AllModels');

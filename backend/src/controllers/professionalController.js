@@ -53,7 +53,7 @@ exports.register = asyncHandler(async (req, res) => {
   });
 
   // Send welcome SMS
-  await sendSMS(phone, `Welcome to MK Pro! Your registration is received. Complete verification at mkapp.in/pro. Support: 1800-123-4567`).catch(() => {});
+  await sendSMS(phone, `Welcome to Slot Pro! Your registration is received. Complete verification at slotapp.in/pro. Support: 1800-123-4567`).catch(() => {});
 
   // Alert admin
   await sendPushToAdmin({ title: 'New Pro Registration', body: `${name} registered as professional in ${city}` }).catch(() => {});
@@ -301,8 +301,8 @@ exports.adminVerify = asyncHandler(async (req, res) => {
 
   // Notify professional
   const msg = action === 'approve'
-    ? `Congratulations ${pro.user.name}! Your MK Pro account is verified. You can now receive jobs. Welcome aboard!`
-    : `Hi ${pro.user.name}, your verification was unsuccessful. Reason: ${reason}. Contact support@mkapp.in for help.`;
+    ? `Congratulations ${pro.user.name}! Your Slot Pro account is verified. You can now receive jobs. Welcome aboard!`
+    : `Hi ${pro.user.name}, your verification was unsuccessful. Reason: ${reason}. Contact support@slotapp.in for help.`;
 
   await sendSMS(pro.user.phone, msg).catch(() => {});
 

@@ -1,5 +1,5 @@
 /**
- * MK App Professional — Availability Screen (Full)
+ * Slot App Professional — Availability Screen (Full)
  */
 import React, { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';

@@ -1,5 +1,5 @@
 /**
- * MK App — Full App Navigator (v2 — all screens wired)
+ * Slot App — Full App Navigator (v2 — all screens wired)
  */
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
@@ -278,7 +278,7 @@ export default function AppNavigator() {
   if (loading) return <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: 48 }}>🏠</Text></View>;
 
   const linking = {
-    prefixes: ['mkapp://', 'https://mkapp.in', 'https://www.mkapp.in'],
+    prefixes: ['mkapp://', 'https://slotapp.in', 'https://www.slotapp.in'],
     config: {
       screens: {
         MainTabs: {

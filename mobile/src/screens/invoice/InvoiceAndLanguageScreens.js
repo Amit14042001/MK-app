@@ -1,5 +1,5 @@
 /**
- * MK App — InvoiceScreen (Feature #29)
+ * Slot App — InvoiceScreen (Feature #29)
  * Feature #28: Live Chat Widget
  * Feature #32: Language Switch
  */
@@ -39,23 +39,23 @@ export function InvoiceScreen({ navigation, route }) {
 
       const html = `
         <html><body style="font-family:Arial;padding:24px;color:#1a1a2e">
-          <h2 style="color:#e94560">MK App Invoice</h2>
+          <h2 style="color:#e94560">Slot App Invoice</h2>
           <hr/>
           <p><b>Invoice No:</b> ${booking.invoiceNo || 'INV-' + booking.bookingId}</p>
           <p><b>Booking ID:</b> ${booking.bookingId}</p>
           <p><b>Service:</b> ${booking.service?.name}</p>
-          <p><b>Professional:</b> ${booking.professional?.user?.name || 'MK Professional'}</p>
+          <p><b>Professional:</b> ${booking.professional?.user?.name || 'Slot Professional'}</p>
           <p><b>Date:</b> ${new Date(booking.completedAt || booking.scheduledDate).toDateString()}</p>
           <hr/>
           <p><b>Amount Paid:</b> ₹${booking.pricing?.amountPaid || booking.pricing?.totalAmount}</p>
-          <p style="color:#27ae60"><i>Thank you for using MK App!</i></p>
+          <p style="color:#27ae60"><i>Thank you for using Slot App!</i></p>
         </body></html>
       `;
 
       if (RNHTMLtoPDF) {
         const result = await RNHTMLtoPDF.convert({
           html,
-          fileName: `MK_Invoice_${booking.bookingId}`,
+          fileName: `slot_Invoice_${booking.bookingId}`,
           directory: 'Downloads',
         });
         setDownloading(false);
@@ -65,7 +65,7 @@ export function InvoiceScreen({ navigation, route }) {
         setDownloading(false);
         Share.share({
           title:   `Invoice ${booking.invoiceNo || booking.bookingId}`,
-          message: `MK App Invoice\n\nInvoice No: ${booking.invoiceNo || booking.bookingId}\nBooking: ${booking.bookingId}\nService: ${booking.service?.name}\nAmount: ₹${booking.pricing?.amountPaid || booking.pricing?.totalAmount}\nDate: ${new Date(booking.completedAt || booking.scheduledDate).toDateString()}\n\nThank you for using MK App!`,
+          message: `Slot App Invoice\n\nInvoice No: ${booking.invoiceNo || booking.bookingId}\nBooking: ${booking.bookingId}\nService: ${booking.service?.name}\nAmount: ₹${booking.pricing?.amountPaid || booking.pricing?.totalAmount}\nDate: ${new Date(booking.completedAt || booking.scheduledDate).toDateString()}\n\nThank you for using Slot App!`,
         });
       }
     } catch (e) {
@@ -77,7 +77,7 @@ export function InvoiceScreen({ navigation, route }) {
   const shareInvoice = () => {
     Share.share({
       title:   `Invoice ${booking.invoiceNo}`,
-      message: `MK App Invoice\n\nInvoice No: ${booking.invoiceNo}\nBooking: ${booking.bookingId}\nService: ${booking.service?.name}\nAmount: ₹${booking.pricing.amountPaid}\nDate: ${new Date(booking.completedAt).toDateString()}\n\nThank you for using MK App!`,
+      message: `Slot App Invoice\n\nInvoice No: ${booking.invoiceNo}\nBooking: ${booking.bookingId}\nService: ${booking.service?.name}\nAmount: ₹${booking.pricing.amountPaid}\nDate: ${new Date(booking.completedAt).toDateString()}\n\nThank you for using Slot App!`,
     });
   };
 
@@ -107,10 +107,10 @@ export function InvoiceScreen({ navigation, route }) {
         <View style={INV.invoiceCard}>
           {/* Brand header */}
           <View style={INV.brandHeader}>
-            <Text style={INV.brandName}>MK App</Text>
+            <Text style={INV.brandName}>Slot App</Text>
             <View style={INV.paidBadge}><Text style={INV.paidText}>PAID ✓</Text></View>
           </View>
-          <Text style={INV.brandTagline}>MK Services Pvt Ltd · GSTIN: 36AABCM1234A1Z5</Text>
+          <Text style={INV.brandTagline}>Slot Services Pvt Ltd · GSTIN: 36AABCM1234A1Z5</Text>
 
           <View style={INV.divider} />
 
@@ -193,7 +193,7 @@ export function InvoiceScreen({ navigation, route }) {
           </View>
 
           <View style={INV.divider} />
-          <Text style={INV.thankYou}>Thank you for choosing MK App! 🙏</Text>
+          <Text style={INV.thankYou}>Thank you for choosing Slot App! 🙏</Text>
           <Text style={INV.gstnNote}>This is a computer-generated invoice. No signature required.</Text>
         </View>
 
@@ -221,7 +221,7 @@ export function InvoiceScreen({ navigation, route }) {
 // ══════════════════════════════════════════════════════════════
 export function LiveChatWidget({ visible, onClose, bookingId, userName }) {
   const [messages, setMessages]   = useState([
-    { id: 'm0', text: `Hi ${userName || 'there'}! 👋 I'm your MK support agent. How can I help you today?`, sender: 'agent', time: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }), agentName: 'Priya (Support)' },
+    { id: 'm0', text: `Hi ${userName || 'there'}! 👋 I'm your Slot support agent. How can I help you today?`, sender: 'agent', time: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }), agentName: 'Priya (Support)' },
   ]);
   const [input, setInput]         = useState('');
   const [agentTyping, setTyping]  = useState(false);
@@ -394,7 +394,7 @@ export function LanguageSwitchScreen({ navigation }) {
     try {
       // Persist language preference
       const AsyncStorage = require('@react-native-async-storage/async-storage').default;
-      await AsyncStorage.setItem('mk_language', code);
+      await AsyncStorage.setItem('slot_language', code);
       // Apply via i18n if context is available
       try {
         const { useI18n } = require('../../utils/i18n');

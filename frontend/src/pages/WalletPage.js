@@ -1,5 +1,5 @@
 /**
- * MK Web — Wallet Page (Full)
+ * Slot Web — Wallet Page (Full)
  */
 import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
@@ -42,7 +42,7 @@ export default function WalletPage({ navigate = () => {} }) {
       // Open Razorpay
       const options = {
         key: data.key, amount: amount * 100, currency: 'INR',
-        name: 'MK Services', description: 'Wallet Recharge',
+        name: 'Slot Services', description: 'Wallet Recharge',
         order_id: data.order.id,
         handler: async (response) => {
           await usersAPI.addWalletMoney({ amount, razorpayPaymentId: response.razorpay_payment_id });
@@ -50,7 +50,7 @@ export default function WalletPage({ navigate = () => {} }) {
           setTransactions(p => [{ type: 'credit', amount, description: `Wallet recharge ₹${amount}`, date: new Date() }, ...p]);
           alert(`✅ ₹${amount} added to your wallet!`);
         },
-        theme: { color: '#f15c22' },
+        theme: { color: 'var(--color-brand)' },
       };
       if (window.Razorpay) {
         const rzp = new window.Razorpay(options);
@@ -79,7 +79,7 @@ export default function WalletPage({ navigate = () => {} }) {
       {/* Hero */}
       <div className="bg-gradient-to-br from-gray-900 to-orange-600 text-white px-6 py-10">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-2xl font-black mb-2">💰 MK Wallet</h1>
+          <h1 className="text-2xl font-black mb-2">💰 Slot Wallet</h1>
           <div className="text-center py-6">
             <p className="text-white/70 text-sm mb-2">Available Balance</p>
             <p className="text-5xl font-black">₹{balance.toLocaleString('en-IN')}</p>

@@ -1,5 +1,5 @@
 /**
- * MK App — Yoga & Fitness at Home Screen (Full)
+ * Slot App — Yoga & Fitness at Home Screen (Full)
  * Personal yoga sessions, meditation, zumba, pilates, stretching classes
  */
 import React, { useState, useRef } from 'react';

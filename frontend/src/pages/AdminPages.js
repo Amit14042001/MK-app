@@ -11,21 +11,21 @@ const css = `
   .action-btn:hover { opacity:0.85; }
   @keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
   .fade-in { animation:fadeIn 0.3s ease forwards; }
-  input:focus,select:focus,textarea:focus { border-color:#e94560!important; outline:none; box-shadow:0 0 0 3px rgba(233,69,96,0.1); }
+  input:focus,select:focus,textarea:focus { border-color:var(--color-brand)!important; outline:none; box-shadow:0 0 0 3px rgba(233,69,96,0.1); }
 `;
 
 function StatCard({ icon, label, value, sub, color, onClick }) {
   return (
     <div onClick={onClick} className="stat-card" style={{
       background: '#fff', borderRadius: 16, padding: '20px 24px', cursor: onClick ? 'pointer' : 'default',
-      border: '1px solid #f0f0f0', transition: 'all 0.2s', borderLeft: `4px solid ${color || '#e94560'}`,
+      border: '1px solid #f0f0f0', transition: 'all 0.2s', borderLeft: `4px solid ${color || 'var(--color-brand)'}`,
     }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div>
           <div style={{ fontSize: 28, marginBottom: 8 }}>{icon}</div>
           <div style={{ fontSize: 26, fontWeight: 900, color: '#1a1a2e', lineHeight: 1 }}>{value}</div>
           <div style={{ fontSize: 13, color: '#888', marginTop: 4 }}>{label}</div>
-          {sub && <div style={{ fontSize: 11, color: color || '#e94560', fontWeight: 600, marginTop: 4 }}>{sub}</div>}
+          {sub && <div style={{ fontSize: 11, color: color || 'var(--color-brand)', fontWeight: 600, marginTop: 4 }}>{sub}</div>}
         </div>
       </div>
     </div>
@@ -126,7 +126,7 @@ export function AdminOverviewPage({ navigate }) {
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(200px,1fr))', gap: 16, marginBottom: 32 }}>
           <StatCard icon="👤" label="Total Users" value={stats?.users?.total?.toLocaleString() || '—'} color="#2196f3" onClick={() => navigate('admin-users')} />
-          <StatCard icon="📋" label="Total Bookings" value={stats?.bookings?.total?.toLocaleString() || '—'} color="#e94560" onClick={() => navigate('admin-bookings')} />
+          <StatCard icon="📋" label="Total Bookings" value={stats?.bookings?.total?.toLocaleString() || '—'} color="var(--color-brand)" onClick={() => navigate('admin-bookings')} />
           <StatCard icon="✅" label="Completed" value={stats?.bookings?.completed?.toLocaleString() || '—'} color="#4caf50" sub={`${stats?.bookings?.completionRate || '—'} rate`} />
           <StatCard icon="💰" label="Total Revenue" value={`₹${((stats?.revenue?.total || 0) / 100000).toFixed(1)}L`} color="#ff9800" />
           <StatCard icon="🔧" label="Active Services" value={stats?.services?.active?.toLocaleString() || '—'} color="#9c27b0" onClick={() => navigate('admin-services')} />
@@ -232,7 +232,7 @@ export function AdminUsersPage() {
                 <tr key={u._id} className="table-row" style={{ borderBottom: '1px solid #f5f5f5' }}>
                   <td style={{ padding: '14px 16px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                      <div style={{ width: 34, height: 34, borderRadius: '50%', background: '#e94560', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 700, fontSize: 14 }}>
+                      <div style={{ width: 34, height: 34, borderRadius: '50%', background: 'var(--color-brand)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 700, fontSize: 14 }}>
                         {u.name?.charAt(0)?.toUpperCase() || '?'}
                       </div>
                       <div>
@@ -265,7 +265,7 @@ export function AdminUsersPage() {
       <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8, marginTop: 16 }}>
         {Array.from({ length: Math.min(Math.ceil(total / 20), 10) }, (_, i) => i + 1).map(p => (
           <button key={p} onClick={() => setPage(p)}
-            style={{ width: 36, height: 36, borderRadius: 8, border: '1.5px solid', borderColor: page === p ? '#e94560' : '#e8e8e8', background: page === p ? '#e94560' : '#fff', color: page === p ? '#fff' : '#555', cursor: 'pointer', fontWeight: 600, fontSize: 13 }}>
+            style={{ width: 36, height: 36, borderRadius: 8, border: '1.5px solid', borderColor: page === p ? 'var(--color-brand)' : '#e8e8e8', background: page === p ? 'var(--color-brand)' : '#fff', color: page === p ? '#fff' : '#555', cursor: 'pointer', fontWeight: 600, fontSize: 13 }}>
             {p}
           </button>
         ))}
@@ -307,7 +307,7 @@ export function AdminBookingsPage() {
           <button key={s} onClick={() => { setStatus(s); setPage(1); }}
             style={{
               padding: '8px 16px', borderRadius: 20, border: 'none', cursor: 'pointer', fontWeight: 600, fontSize: 13, textTransform: 'capitalize',
-              background: status === s ? '#e94560' : '#fff', color: status === s ? '#fff' : '#555', boxShadow: '0 2px 8px rgba(0,0,0,0.06)'
+              background: status === s ? 'var(--color-brand)' : '#fff', color: status === s ? '#fff' : '#555', boxShadow: '0 2px 8px rgba(0,0,0,0.06)'
             }}>
             {s.replace('_', ' ')}
           </button>
@@ -328,7 +328,7 @@ export function AdminBookingsPage() {
               <tr><td colSpan={7} style={{ padding: 40, textAlign: 'center', color: '#aaa' }}>Loading...</td></tr>
             ) : bookings.map(b => (
               <tr key={b._id} className="table-row" style={{ borderBottom: '1px solid #f5f5f5' }}>
-                <td style={{ padding: '14px 16px', fontSize: 13, fontFamily: 'monospace', color: '#e94560', fontWeight: 700 }}>{b.bookingId}</td>
+                <td style={{ padding: '14px 16px', fontSize: 13, fontFamily: 'monospace', color: 'var(--color-brand)', fontWeight: 700 }}>{b.bookingId}</td>
                 <td style={{ padding: '14px 16px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                     <span style={{ fontSize: 22 }}>{b.service?.icon || '🔧'}</span>
@@ -398,7 +398,7 @@ export function AdminCouponsPage() {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
         <h1 style={{ fontSize: 24, fontWeight: 900, color: '#1a1a2e' }}>Coupons</h1>
         <button onClick={() => setCreating(v => !v)}
-          style={{ padding: '10px 24px', background: '#e94560', color: '#fff', border: 'none', borderRadius: 10, cursor: 'pointer', fontWeight: 700, fontSize: 14 }}>
+          style={{ padding: '10px 24px', background: 'var(--color-brand)', color: '#fff', border: 'none', borderRadius: 10, cursor: 'pointer', fontWeight: 700, fontSize: 14 }}>
           {creating ? 'Cancel' : '+ New Coupon'}
         </button>
       </div>
@@ -410,7 +410,7 @@ export function AdminCouponsPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(200px,1fr))', gap: 12 }}>
             <div>
               <label style={{ fontSize: 12, fontWeight: 600, color: '#888', display: 'block', marginBottom: 6 }}>CODE *</label>
-              <input value={form.code} onChange={e => setForm(f => ({ ...f, code: e.target.value.toUpperCase() }))} placeholder="MKWELCOME" style={inputStyle} />
+              <input value={form.code} onChange={e => setForm(f => ({ ...f, code: e.target.value.toUpperCase() }))} placeholder="SLOTWELCOME" style={inputStyle} />
             </div>
             <div>
               <label style={{ fontSize: 12, fontWeight: 600, color: '#888', display: 'block', marginBottom: 6 }}>TYPE</label>
@@ -441,7 +441,7 @@ export function AdminCouponsPage() {
             </div>
           </div>
           <button onClick={handleCreate}
-            style={{ marginTop: 16, padding: '12px 32px', background: '#e94560', color: '#fff', border: 'none', borderRadius: 10, cursor: 'pointer', fontWeight: 700 }}>
+            style={{ marginTop: 16, padding: '12px 32px', background: 'var(--color-brand)', color: '#fff', border: 'none', borderRadius: 10, cursor: 'pointer', fontWeight: 700 }}>
             Create Coupon
           </button>
         </div>
@@ -462,7 +462,7 @@ export function AdminCouponsPage() {
               <tr><td colSpan={8} style={{ padding: 40, textAlign: 'center', color: '#aaa' }}>Loading...</td></tr>
             ) : coupons.map(c => (
               <tr key={c._id} className="table-row" style={{ borderBottom: '1px solid #f5f5f5' }}>
-                <td style={{ padding: '14px 16px', fontWeight: 700, fontFamily: 'monospace', color: '#e94560', fontSize: 15 }}>{c.code}</td>
+                <td style={{ padding: '14px 16px', fontWeight: 700, fontFamily: 'monospace', color: 'var(--color-brand)', fontSize: 15 }}>{c.code}</td>
                 <td style={{ padding: '14px 16px', fontSize: 13 }}>{c.type}</td>
                 <td style={{ padding: '14px 16px', fontWeight: 700, fontSize: 14 }}>
                   {c.type === 'percentage' ? `${c.value}%` : `₹${c.value}`}

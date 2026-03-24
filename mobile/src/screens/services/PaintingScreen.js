@@ -1,5 +1,5 @@
 /**
- * MK App — Painting Services Screen (Full Production)
+ * Slot App — Painting Services Screen (Full Production)
  * Interior, exterior, texture, waterproofing, wood polishing with cost calculator
  */
 import React, { useState, useRef } from 'react';
@@ -275,7 +275,7 @@ export default function PaintingScreen({ navigation }) {
           ))}
         </View>
         <View style={styles.whyCard}>
-          <Text style={styles.sectionTitle}>Why Choose MK App Painters?</Text>
+          <Text style={styles.sectionTitle}>Why Choose Slot App Painters?</Text>
           {[['🎨','All Premium Brands','Asian Paints, Berger, Dulux — your choice'],['🛡️','Up to 5-Year Warranty','Written warranty on all painting work'],['👷','Experienced Teams','Average 8 years experience per painter'],['🧹','Zero Mess Policy','Full masking and complete cleanup included'],['💰','Transparent Pricing','No hidden costs. Final quote before work starts']].map(([icon,title,desc],i) => (
             <View key={i} style={styles.whyRow}>
               <Text style={styles.whyIcon}>{icon}</Text>

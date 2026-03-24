@@ -1,5 +1,5 @@
 /**
- * MK App — Store Controller
+ * Slot App — Store Controller
  * Full UC Store clone: browse products, cart, checkout, orders, reviews
  */
 const { Product, StoreOrder } = require('../models/StoreModels');

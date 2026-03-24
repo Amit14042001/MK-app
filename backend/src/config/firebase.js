@@ -8,7 +8,13 @@ const initFirebaseAdmin = () => {
     let serviceAccount = null;
 
     if (process.env.FIREBASE_SERVICE_ACCOUNT_JSON) {
-      serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
+      const fs = require('fs');
+      const val = process.env.FIREBASE_SERVICE_ACCOUNT_JSON.trim();
+      if (val.startsWith('{')) {
+        serviceAccount = JSON.parse(val);
+      } else if (fs.existsSync(val)) {
+        serviceAccount = JSON.parse(fs.readFileSync(val, 'utf8'));
+      }
     } else if (process.env.FIREBASE_PROJECT_ID && process.env.FIREBASE_PRIVATE_KEY) {
       serviceAccount = {
         type:                        'service_account',
@@ -46,7 +52,7 @@ const sendPushNotification = async ({ token, title, body, data = {}, imageUrl })
       notification: { title, body, ...(imageUrl && { imageUrl }) },
       data: Object.fromEntries(Object.entries(data).map(([k, v]) => [k, String(v)])),
       android: {
-        notification: { icon: 'ic_notification', color: '#f15c22', channelId: 'mk_bookings', clickAction: 'FLUTTER_NOTIFICATION_CLICK' },
+        notification: { icon: 'ic_notification', color: '#f15c22', channelId: 'slot_bookings', clickAction: 'FLUTTER_NOTIFICATION_CLICK' },
         priority: 'high',
       },
       apns: {

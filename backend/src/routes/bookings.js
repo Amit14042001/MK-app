@@ -1,5 +1,5 @@
 /**
- * MK App — Bookings Routes (Full)
+ * Slot App — Bookings Routes (Full)
  */
 const express = require('express');
 const router  = express.Router();
@@ -23,14 +23,6 @@ router.route('/')
 
 router.get('/stats',           getBookingStats);
 router.get('/slots',           getAvailableSlots);
-
-router.route('/:id')
-  .get(getBooking);
-
-router.put('/:id/cancel',      cancelBooking);
-router.put('/:id/status',      authorize('professional', 'admin'), updateBookingStatus);
-router.put('/:id/reschedule',  rescheduleBooking);
-router.put('/:id/assign',      authorize('admin'), assignProfessional);
 
 // GET /bookings/professional — bookings assigned to this professional
 router.get('/professional', authorize('professional'), _ah(async (req, res) => {
@@ -72,6 +64,15 @@ router.get('/professional/history', authorize('professional'), _ah(async (req, r
   res.json({ success: true, bookings, total, pages: Math.ceil(total/limit) });
 }));
 
+router.route('/:id')
+  .get(getBooking);
+
+router.put('/:id/cancel',      cancelBooking);
+router.put('/:id/status',      authorize('professional', 'admin'), updateBookingStatus);
+router.put('/:id/reschedule',  rescheduleBooking);
+router.put('/:id/assign',      authorize('admin'), assignProfessional);
+
+
 // GET /bookings/:id/health-report — Post-service health report
 router.get('/:id/health-report', _ah(async (req, res) => {
   const booking = await _Booking.findOne({ _id: req.params.id, customer: req.user._id })
@@ -93,7 +94,7 @@ router.get('/:id/health-report', _ah(async (req, res) => {
     service:        booking.service?.name,
     serviceIcon:    booking.service?.icon,
     professional: {
-      name:         booking.professional?.user?.name || 'MK Professional',
+      name:         booking.professional?.user?.name || 'Slot Professional',
       rating:       booking.professional?.rating,
       totalJobs:    booking.professional?.totalBookings,
     },
@@ -122,8 +123,8 @@ router.post('/:id/health-report/email', _ah(async (req, res) => {
   const user = await User.findById(req.user._id).select('email name').lean();
   await sendEmail({
     to:      user.email,
-    subject: `Your MK Service Report — ${booking.bookingId}`,
-    html:    `<h2>Service Complete ✅</h2><p>Your service report for booking ${booking.bookingId} is ready. Open the MK App to view the full health report.</p>`,
+    subject: `Your Slot Service Report — ${booking.bookingId}`,
+    html:    `<h2>Service Complete ✅</h2><p>Your service report for booking ${booking.bookingId} is ready. Open the Slot App to view the full health report.</p>`,
   }).catch(() => {});
   res.json({ success: true, message: 'Report emailed to your registered address' });
 }));

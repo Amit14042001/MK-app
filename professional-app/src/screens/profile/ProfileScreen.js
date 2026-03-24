@@ -1,5 +1,5 @@
 /**
- * MK Professional App — Profile Screen (Full)
+ * Slot Professional App — Profile Screen (Full)
  */
 import React, { useState, useEffect, useCallback } from 'react';
 import {
@@ -201,7 +201,7 @@ export default function ProfProfileScreen({ navigation }) {
           </TouchableOpacity>
         </View>
 
-        <Text style={S.version}>MK Professional App v2.4.1</Text>
+        <Text style={S.version}>Slot Professional App v2.4.1</Text>
       </ScrollView>
     </View>
   );

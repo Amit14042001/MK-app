@@ -1,5 +1,5 @@
 /**
- * MK App — Cron Jobs (Complete)
+ * Slot App — Cron Jobs (Complete)
  * All scheduled background tasks
  */
 const cron = require('node-cron');
@@ -315,7 +315,7 @@ async function autoRenewSubscriptions() {
           if (sub.user?.fcmToken) {
             const { sendPushNotification } = require('../utils/notifications');
             await sendPushNotification(sub.user.fcmToken, {
-              title: '👑 MK Prime Renewal Required',
+              title: '👑 Slot Prime Renewal Required',
               body:  `Your ${sub.plan} plan has expired. Renew now to keep your benefits.`,
               data:  { type: 'subscription_renewal', planId: sub.plan },
             }).catch(() => {});

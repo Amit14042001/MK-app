@@ -1,5 +1,5 @@
 /**
- * MK App — PhotoToQuoteScreen
+ * Slot App — PhotoToQuoteScreen
  * Customer takes a photo of their problem (peeling wall, broken AC, dirty room).
  * Claude Vision analyzes the image and generates an instant price quote.
  * No forms, no dropdowns — the camera IS the booking form.

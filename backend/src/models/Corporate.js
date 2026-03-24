@@ -73,7 +73,7 @@ const submitEnquiry = asyncHandler(async (req, res) => {
   // Send notification to sales team
   const { sendEmail } = require('../utils/email');
   await sendEmail({
-    to: process.env.SALES_EMAIL || 'sales@mkapp.in',
+    to: process.env.SALES_EMAIL || 'sales@slotapp.in',
     subject: `New Corporate Enquiry: ${companyName}`,
     html: `
       <h2>New Corporate Enquiry</h2>
@@ -198,7 +198,7 @@ const getMonthlyInvoice = asyncHandler(async (req, res) => {
   res.json({
     success: true,
     invoice: {
-      invoiceNumber: `MK-CORP-${year}-${month}-${corporate._id.toString().slice(-4).toUpperCase()}`,
+      invoiceNumber: `Slot-CORP-${year}-${month}-${corporate._id.toString().slice(-4).toUpperCase()}`,
       period: { year: Number(year), month: Number(month) },
       company: corporate.companyName,
       gstin: corporate.gstin,

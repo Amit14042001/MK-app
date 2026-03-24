@@ -1,11 +1,11 @@
 /**
- * MK Web — Bookings Page (Full)
+ * Slot Web — Bookings Page (Full)
  */
 import React, { useState, useEffect, useCallback } from 'react';
 import { useApp } from '../context/AppContext';
 import { bookingsAPI } from '../utils/api';
 
-const BRAND='#f15c22', INK900='#1c1c1e', INK500='#6e6e73', INK100='#e5e5ea', INK50='#f2f2f7';
+const BRAND='var(--color-brand)', INK900='#1c1c1e', INK500='#6e6e73', INK100='#e5e5ea', INK50='#f2f2f7';
 
 const STATUS={
   pending:               {color:'#E65100',bg:'#FFF3E0',label:'Pending',icon:'⏳'},

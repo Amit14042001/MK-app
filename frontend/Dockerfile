@@ -30,7 +30,7 @@ ENV REACT_APP_FIREBASE_APP_ID=$REACT_APP_FIREBASE_APP_ID
 ENV REACT_APP_FIREBASE_VAPID_KEY=$REACT_APP_FIREBASE_VAPID_KEY
 
 COPY package.json package-lock.json* ./
-RUN npm ci
+RUN npm install
 
 COPY . .
 RUN npm run build

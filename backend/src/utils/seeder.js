@@ -7,7 +7,7 @@ const Professional = require('../models/Professional');
 const Coupon = require('../models/Coupon');
 
 const connectDB = async () => {
-  await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/mk-app');
+  await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/slot-app');
   console.log('✅ MongoDB connected for seeding');
 };
 
@@ -39,6 +39,7 @@ const getServices = (cats) => [
     exclusions: ['Gas refilling (extra cost)', 'Spare parts'],
     warranty: '30 days service warranty',
     tags: ['AC', 'air conditioner', 'cooling', 'summer'],
+    images: ['/images/services/ac-repair.png'],
     subServices: [
       { name: 'AC Service (1 unit)', price: 299, originalPrice: 499, duration: 60, inclusions: ['Filter clean', 'Coil clean', 'Gas check'] },
       { name: 'AC Gas Refilling', price: 999, originalPrice: 1499, duration: 90, inclusions: ['Gas refill', 'Leak check', 'Pressure test'] },
@@ -57,6 +58,7 @@ const getServices = (cats) => [
     isActive: true, isFeatured: true, isPopular: true,
     availableCities: ['All'],
     tags: ['cleaning', 'deep clean', 'home', 'hygiene'],
+    images: ['/images/services/home-cleaning.png'],
     subServices: [
       { name: '1BHK Full Cleaning', price: 999, originalPrice: 1499, duration: 180 },
       { name: '2BHK Full Cleaning', price: 1399, originalPrice: 1999, duration: 240 },
@@ -77,6 +79,7 @@ const getServices = (cats) => [
     isActive: true, isPopular: true,
     availableCities: ['All'],
     tags: ['electrical', 'wiring', 'fan', 'light', 'switchboard'],
+    images: ['/images/services/electrician.png'],
     subServices: [
       { name: 'Switch/Socket Repair', price: 149, duration: 30 },
       { name: 'Fan Installation', price: 199, duration: 30 },
@@ -95,6 +98,7 @@ const getServices = (cats) => [
     isActive: true,
     availableCities: ['All'],
     tags: ['plumbing', 'pipe', 'tap', 'water', 'leakage'],
+    images: ['/images/services/plumber.png'],
     subServices: [
       { name: 'Tap Repair/Replace', price: 149, duration: 30 },
       { name: 'Pipe Leak Fix', price: 299, duration: 60 },
@@ -113,6 +117,7 @@ const getServices = (cats) => [
     isActive: true,
     availableCities: ['All'],
     tags: ['carpentry', 'furniture', 'wood', 'door'],
+    images: ['/images/services/carpenter.png'],
     subServices: [
       { name: 'Furniture Repair', price: 249, duration: 60 },
       { name: 'Door/Window Fix', price: 299, duration: 45 },
@@ -131,6 +136,7 @@ const getServices = (cats) => [
     isActive: true, isFeatured: true, isPopular: true,
     availableCities: ['All'],
     tags: ['salon', 'beauty', 'haircut', 'facial', 'waxing', 'women'],
+    images: ['/images/services/beauty-salon-women.png'],
     subServices: [
       { name: 'Haircut & Styling', price: 249, originalPrice: 399, duration: 45 },
       { name: 'Full Face Facial', price: 399, originalPrice: 599, duration: 60 },
@@ -151,6 +157,7 @@ const getServices = (cats) => [
     isActive: true, isFeatured: true, isPopular: true,
     availableCities: ['All'],
     tags: ['salon', 'men', 'haircut', 'beard', 'grooming'],
+    images: ['/images/services/salon-men.png'],
     subServices: [
       { name: 'Haircut', price: 149, originalPrice: 249, duration: 30 },
       { name: 'Beard Trim & Style', price: 99, duration: 20 },
@@ -170,6 +177,7 @@ const getServices = (cats) => [
     isActive: true, isFeatured: true,
     availableCities: ['All'],
     tags: ['spa', 'massage', 'relaxation', 'women'],
+    images: ['/images/services/spa-women.png'],
     subServices: [
       { name: 'Swedish Massage (60 min)', price: 799, originalPrice: 1199, duration: 60 },
       { name: 'Deep Tissue Massage (60 min)', price: 999, originalPrice: 1499, duration: 60 },
@@ -188,6 +196,7 @@ const getServices = (cats) => [
     isActive: true, isFeatured: true,
     availableCities: ['All'],
     tags: ['makeup', 'bridal', 'wedding', 'party'],
+    images: ['/images/services/bridal-makeup.png'],
     subServices: [
       { name: 'Party Makeup', price: 1999, originalPrice: 2999, duration: 90 },
       { name: 'Bridal Makeup (HD)', price: 4999, originalPrice: 7999, duration: 180 },
@@ -208,13 +217,12 @@ const getServices = (cats) => [
     warranty: '12 months warranty on battery',
     inclusions: ['Genuine battery', 'Free installation', 'Old battery disposal', '12-month warranty'],
     tags: ['battery', 'car', 'vehicle', 'automotive'],
+    images: ['/images/services/jump-start.png'],
     subServices: [
       { name: 'Maruti Suzuki (35Ah)', price: 2299, originalPrice: 3499, duration: 30, inclusions: ['Genuine Exide/Amaron', 'Free install', '1 yr warranty'] },
       { name: 'Hyundai/Kia (45Ah)', price: 2799, originalPrice: 3999, duration: 30 },
       { name: 'Honda (38Ah)', price: 2499, originalPrice: 3699, duration: 30 },
       { name: 'Toyota (55Ah)', price: 3499, originalPrice: 4999, duration: 30 },
-      { name: 'Tata (40Ah)', price: 2599, originalPrice: 3799, duration: 30 },
-      { name: 'Mahindra (60Ah)', price: 3299, originalPrice: 4799, duration: 30 },
       { name: 'SUV/MUV (65Ah+)', price: 3999, originalPrice: 5999, duration: 45 },
     ],
   },
@@ -230,10 +238,10 @@ const getServices = (cats) => [
     availableCities: ['All'],
     inclusions: ['On-site jump start', 'Battery health check', '24/7 availability'],
     tags: ['jump start', 'dead battery', 'emergency', 'roadside'],
+    images: ['/images/services/jump-start.png'],
     subServices: [
       { name: '4-Wheeler Jump Start', price: 299, duration: 20, inclusions: ['Jump start', 'Battery health check'] },
       { name: '2-Wheeler Jump Start', price: 149, duration: 15 },
-      { name: 'Emergency + Tow (if needed)', price: 799, duration: 30 },
     ],
   },
   {
@@ -248,11 +256,11 @@ const getServices = (cats) => [
     availableCities: ['All'],
     inclusions: ['Oil change', 'Oil filter replacement', 'Fluid top-up check', 'Service record update'],
     tags: ['oil change', 'engine oil', 'car service', 'maintenance'],
+    images: ['/images/services/car-oil-change.png'],
     subServices: [
       { name: 'Mineral Oil Change', price: 899, originalPrice: 1299, duration: 45, inclusions: ['3.5L mineral oil', 'Oil filter', 'Fluid check'] },
       { name: 'Semi-Synthetic Oil Change', price: 1299, originalPrice: 1799, duration: 45 },
       { name: 'Full Synthetic Oil Change', price: 1899, originalPrice: 2599, duration: 45 },
-      { name: 'Diesel Engine Oil Change', price: 1499, originalPrice: 2099, duration: 60 },
     ],
   },
   {
@@ -266,11 +274,10 @@ const getServices = (cats) => [
     isActive: true, isFeatured: true,
     availableCities: ['All'],
     tags: ['car wash', 'detailing', 'cleaning', 'polish'],
+    images: ['/images/services/car-wash.png'],
     subServices: [
       { name: 'Exterior Wash', price: 399, duration: 30 },
-      { name: 'Interior + Exterior', price: 699, originalPrice: 999, duration: 60 },
       { name: 'Full Detailing', price: 1999, originalPrice: 2999, duration: 180 },
-      { name: 'Ceramic Coating', price: 8999, originalPrice: 14999, duration: 480 },
     ],
   },
   {
@@ -284,11 +291,10 @@ const getServices = (cats) => [
     isActive: true,
     availableCities: ['All'],
     tags: ['tyre', 'puncture', 'wheel', 'balancing'],
+    images: ['/images/services/tyre-service.png'],
     subServices: [
       { name: 'Tyre Puncture Repair', price: 199, duration: 20 },
       { name: 'Tyre Rotation (4 tyres)', price: 399, duration: 30 },
-      { name: 'Wheel Balancing', price: 499, duration: 45 },
-      { name: 'Tyre Replacement (1)', price: 299, duration: 30 },
     ],
   },
   {
@@ -302,11 +308,9 @@ const getServices = (cats) => [
     isActive: true,
     availableCities: ['All'],
     tags: ['car AC', 'cooling', 'gas refill', 'filter'],
+    images: ['/images/services/car-ac-service.png'],
     subServices: [
       { name: 'AC Gas Refill (R134a)', price: 1299, duration: 45 },
-      { name: 'AC Filter Change', price: 599, duration: 20 },
-      { name: 'AC Deep Cleaning', price: 999, duration: 60 },
-      { name: 'AC Full Service', price: 1799, originalPrice: 2499, duration: 90 },
     ],
   },
   // ── APPLIANCE ─────────────────────────────────────────────
@@ -321,9 +325,9 @@ const getServices = (cats) => [
     isActive: true, isPopular: true,
     availableCities: ['All'],
     tags: ['washing machine', 'repair', 'appliance'],
+    images: ['/images/services/appliance-repair.png'],
     subServices: [
       { name: 'Repair Visit', price: 199, duration: 60 },
-      { name: 'Service & Clean', price: 499, duration: 90 },
     ],
   },
   {
@@ -337,9 +341,9 @@ const getServices = (cats) => [
     isActive: true,
     availableCities: ['All'],
     tags: ['refrigerator', 'fridge', 'repair', 'cooling'],
+    images: ['/images/services/refrigerator-repair.png'],
     subServices: [
       { name: 'Diagnosis & Repair', price: 199, duration: 60 },
-      { name: 'Gas Refilling', price: 1499, duration: 90 },
     ],
   },
   // ── PAINTING ──────────────────────────────────────────────
@@ -355,11 +359,9 @@ const getServices = (cats) => [
     isActive: true,
     availableCities: ['All'],
     tags: ['painting', 'wall paint', 'interior', 'exterior'],
+    images: ['/images/services/painting.png'],
     subServices: [
-      { name: 'Economy Painting', price: 7, duration: 480 },
       { name: 'Premium Painting', price: 12, duration: 480 },
-      { name: 'Texture Painting', price: 18, duration: 480 },
-      { name: 'Waterproofing', price: 25, duration: 480 },
     ],
   },
   // ── PEST CONTROL ──────────────────────────────────────────
@@ -374,18 +376,16 @@ const getServices = (cats) => [
     isActive: true,
     availableCities: ['All'],
     tags: ['pest control', 'cockroach', 'termite', 'mosquito'],
+    images: ['/images/services/pest-control.png'],
     subServices: [
       { name: 'Cockroach Control (1BHK)', price: 399, duration: 60 },
-      { name: 'Bed Bug Control', price: 999, originalPrice: 1499, duration: 120 },
-      { name: 'Termite Control', price: 1999, originalPrice: 2999, duration: 180 },
-      { name: 'Mosquito Control', price: 599, duration: 60 },
     ],
   },
 ];
 
 const COUPONS = [
   {
-    code: 'MKWELCOME',
+    code: 'SLOTWELCOME',
     description: '20% off on your first booking',
     discountType: 'percentage',
     discountValue: 20,
@@ -396,7 +396,7 @@ const COUPONS = [
     validUntil: new Date('2027-12-31'),
   },
   {
-    code: 'MK100',
+    code: 'SLOT100',
     description: 'Flat ₹100 off on orders above ₹499',
     discountType: 'flat',
     discountValue: 100,
@@ -442,9 +442,9 @@ const seed = async () => {
 
     // Seed admin user
     const admin = await User.create({
-      name: 'MK Admin',
+      name: 'Slot Admin',
       phone: '9000000000',
-      email: 'admin@mkapp.in',
+      email: 'admin@slotapp.in',
       role: 'admin',
       isPhoneVerified: true,
       isEmailVerified: true,
@@ -488,7 +488,7 @@ const seed = async () => {
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
     console.log('Admin:    phone=9000000000  OTP=1234');
     console.log('Customer: phone=9876543210  OTP=1234');
-    console.log('Coupons:  MKWELCOME | MK100 | AUTOCARE');
+    console.log('Coupons:  SLOTWELCOME | SLOT100 | AUTOCARE');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 
     process.exit(0);

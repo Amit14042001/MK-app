@@ -1,5 +1,5 @@
 /**
- * MK App — ServiceAddons Component
+ * Slot App — ServiceAddons Component
  * Feature #11: Add-ons/extras during booking (like UC)
  * AC deep clean + gas refill, sofa + carpet cleaning etc.
  */

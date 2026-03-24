@@ -1,5 +1,5 @@
 /**
- * MK App — Scheduled Cron Jobs
+ * Slot App — Scheduled Cron Jobs
  * Runs: subscription renewals, booking reminders, cleanup, daily reports
  */
 
@@ -114,7 +114,7 @@ const subscriptionRenewalJob = cron.schedule('0 8 * * *', async () => {
 
         if (sub.user?.fcmToken) {
           await sendPushNotification(sub.user.fcmToken, {
-            title: '👑 MK Prime Renewal',
+            title: '👑 Slot Prime Renewal',
             body: renewalSuccess
               ? 'Your Prime subscription is being renewed. Thank you!'
               : 'Your Prime subscription expires today. Renew to keep your benefits!',
@@ -125,7 +125,7 @@ const subscriptionRenewalJob = cron.schedule('0 8 * * *', async () => {
         // 3-day warning
         if (sub.user?.fcmToken) {
           await sendPushNotification(sub.user.fcmToken, {
-            title: `👑 MK Prime expires in ${daysLeft} days`,
+            title: `👑 Slot Prime expires in ${daysLeft} days`,
             body: 'Renew now to continue enjoying 15% off, priority slots, and more!',
             data: { type: 'subscription_reminder', daysLeft },
           });

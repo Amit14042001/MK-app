@@ -1,5 +1,5 @@
 /**
- * MK App — Gift Cards Routes (Full)
+ * Slot App — Gift Cards Routes (Full)
  */
 const express = require('express');
 const router = express.Router();
@@ -9,7 +9,7 @@ const { asyncHandler, AppError } = require('../middleware/errorHandler');
 const crypto = require('crypto');
 
 function generateGiftCode() {
-  return 'MK' + crypto.randomBytes(4).toString('hex').toUpperCase();
+  return 'Slot' + crypto.randomBytes(4).toString('hex').toUpperCase();
 }
 
 // Buy a gift card
@@ -34,7 +34,7 @@ router.post('/', protect, asyncHandler(async (req, res) => {
     const { sendSMS } = require('../utils/sms');
     await sendSMS(
       recipientPhone,
-      `🎁 You've received a ₹${amount} MK App Gift Card from ${senderName || 'a friend'}! Code: ${giftCard.code}. Valid 1 year. Download MK App to redeem. -MK Services`
+      `🎁 You've received a ₹${amount} Slot App Gift Card from ${senderName || 'a friend'}! Code: ${giftCard.code}. Valid 1 year. Download Slot App to redeem. -Slot Services`
     );
   } catch (smsErr) {
     console.warn('[GiftCard] SMS notification failed (non-fatal):', smsErr.message);

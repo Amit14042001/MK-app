@@ -8,13 +8,13 @@ export const useApp = () => useContext(AppContext);
 
 export const AppProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
-    try { return JSON.parse(localStorage.getItem('mk_user')); } catch { return null; }
+    try { return JSON.parse(localStorage.getItem('slot_user')); } catch { return null; }
   });
   const [cart, setCart] = useState(() => {
-    try { return JSON.parse(localStorage.getItem('mk_cart')) || []; } catch { return []; }
+    try { return JSON.parse(localStorage.getItem('slot_cart')) || []; } catch { return []; }
   });
   const [selectedCity, setSelectedCity] = useState(
-    localStorage.getItem('mk_city') || 'Hyderabad'
+    localStorage.getItem('slot_city') || 'Hyderabad'
   );
   const [notifications, setNotifications] = useState([]);
   const [unreadCount, setUnreadCount] = useState(0);
@@ -24,19 +24,19 @@ export const AppProvider = ({ children }) => {
 
   // Persist cart
   useEffect(() => {
-    localStorage.setItem('mk_cart', JSON.stringify(cart));
+    localStorage.setItem('slot_cart', JSON.stringify(cart));
   }, [cart]);
 
   // Persist city
   useEffect(() => {
-    localStorage.setItem('mk_city', selectedCity);
+    localStorage.setItem('slot_city', selectedCity);
   }, [selectedCity]);
 
   // Init socket on login
   useEffect(() => {
     if (user) {
-      const s = io(process.env.REACT_APP_SOCKET_URL || 'http://localhost:5000', {
-        auth: { token: localStorage.getItem('mk_access_token') },
+      const s = io(process.env.REACT_APP_SOCKET_URL || '/', {
+        auth: { token: localStorage.getItem('slot_access_token') },
         reconnectionAttempts: 5,
       });
       s.emit('join_user', user._id);
@@ -64,23 +64,23 @@ export const AppProvider = ({ children }) => {
   // ── AUTH ──────────────────────────────────────────────────
   const login = (userData, accessToken, refreshToken) => {
     setUser(userData);
-    localStorage.setItem('mk_user', JSON.stringify(userData));
-    localStorage.setItem('mk_access_token', accessToken);
-    localStorage.setItem('mk_refresh_token', refreshToken);
+    localStorage.setItem('slot_user', JSON.stringify(userData));
+    localStorage.setItem('slot_access_token', accessToken);
+    localStorage.setItem('slot_refresh_token', refreshToken);
   };
 
   const logout = async () => {
     try {
-      await authAPI.logout(localStorage.getItem('mk_refresh_token'));
+      await authAPI.logout(localStorage.getItem('slot_refresh_token'));
     } catch { }
     setUser(null);
     setCart([]);
     setNotifications([]);
     setUnreadCount(0);
-    localStorage.removeItem('mk_user');
-    localStorage.removeItem('mk_access_token');
-    localStorage.removeItem('mk_refresh_token');
-    localStorage.removeItem('mk_cart');
+    localStorage.removeItem('slot_user');
+    localStorage.removeItem('slot_access_token');
+    localStorage.removeItem('slot_refresh_token');
+    localStorage.removeItem('slot_cart');
     if (socket) socket.disconnect();
   };
 

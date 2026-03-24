@@ -1,5 +1,5 @@
 /**
- * MK App — Cache Service
+ * Slot App — Cache Service
  * Full Redis caching layer: read-through, write-through, invalidation strategies
  */
 const redis = require('../config/redis');

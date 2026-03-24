@@ -1,5 +1,5 @@
 /**
- * MK App — Support Tickets Routes
+ * Slot App — Support Tickets Routes
  */
 const express = require('express');
 const router  = express.Router();

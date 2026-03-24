@@ -1,5 +1,5 @@
 /**
- * MK Professional App — SOSScreen, LeaderboardScreen, WorkProofCameraScreen
+ * Slot Professional App — SOSScreen, LeaderboardScreen, WorkProofCameraScreen
  * Features #21, #23, #24
  */
 import React, { useState, useRef, useEffect } from 'react';
@@ -23,7 +23,7 @@ export function SOSScreen({ navigation }) {
   const pulseRef   = useRef(null);
 
   const EMERGENCY_CONTACTS = [
-    { name: 'MK Safety Team',  phone: '1800-123-4567', icon: '🛡️' },
+    { name: 'Slot Safety Team',  phone: '1800-123-4567', icon: '🛡️' },
     { name: 'Police',          phone: '100',           icon: '👮' },
     { name: 'Ambulance',       phone: '108',           icon: '🚑' },
     { name: 'Women Helpline',  phone: '1091',          icon: '👩' },
@@ -32,7 +32,7 @@ export function SOSScreen({ navigation }) {
   const SAFETY_TIPS = [
     '📍 Always share your live location with family when visiting a new area',
     '📱 Keep your phone charged before heading to service locations',
-    '🔔 Let MK Safety Team know if a customer is making you uncomfortable',
+    '🔔 Let Slot Safety Team know if a customer is making you uncomfortable',
     '🚗 Prefer well-lit routes and avoid isolated areas at night',
     '📞 Save emergency contacts in your speed dial',
   ];
@@ -111,7 +111,7 @@ export function SOSScreen({ navigation }) {
     } catch {}
     Alert.alert(
       '🚨 SOS Activated',
-      'Emergency alert sent to MK Safety Team.\nYour location has been shared.\nHelp is on the way.',
+      'Emergency alert sent to Slot Safety Team.\nYour location has been shared.\nHelp is on the way.',
       [{ text: 'OK' }]
     );
   };
@@ -130,7 +130,7 @@ export function SOSScreen({ navigation }) {
         {/* SOS Button */}
         <View style={SOS.sosSection}>
           <Text style={SOS.sosTitle}>Emergency SOS</Text>
-          <Text style={SOS.sosSub}>Press and hold for 5 seconds to alert MK Safety Team and share your location</Text>
+          <Text style={SOS.sosSub}>Press and hold for 5 seconds to alert Slot Safety Team and share your location</Text>
 
           <View style={SOS.sosContainer}>
             <Animated.View style={[SOS.pulse, { transform: [{ scale: pulseAnim }], opacity: sosActive ? 0.3 : 0 }]} />

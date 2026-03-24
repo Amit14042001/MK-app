@@ -1,5 +1,5 @@
 /**
- * MK App — AdminPanelExpanded.js (Feature #34)
+ * Slot App — AdminPanelExpanded.js (Feature #34)
  * Comprehensive admin routes: heatmaps, advanced analytics, bulk actions
  * Feature #39: GDPR data export + right to delete
  */
@@ -213,8 +213,8 @@ router.post('/gdpr/export-request', protect, asyncHandler(async (req, res) => {
   const exportData = {
     exportedAt:    new Date().toISOString(),
     requestedBy:   userId,
-    dataController:'MK Services Pvt Ltd',
-    contact:       'privacy@mkapp.in',
+    dataController:'Slot Services Pvt Ltd',
+    contact:       'privacy@slotapp.in',
     personalData: {
       profile:     user,
       bookings:    bookings.map(b => ({ ...b, customer: undefined })),
@@ -231,7 +231,7 @@ router.post('/gdpr/export-request', protect, asyncHandler(async (req, res) => {
       portability:  'You may request this data at any time',
       deletion:     'You may request account deletion via POST /gdpr/delete-request',
       rectification:'You may update your data via the app profile settings',
-      objection:    'Contact privacy@mkapp.in',
+      objection:    'Contact privacy@slotapp.in',
     },
   };
 
@@ -248,10 +248,10 @@ router.post('/gdpr/export-request', protect, asyncHandler(async (req, res) => {
 
     // Email download link (expires in 24h)
     const { sendEmail } = require('../utils/email');
-    const downloadUrl   = `${process.env.APP_URL || 'https://mkapp.in'}/api/v1/admin/gdpr/download/${fileName}`;
+    const downloadUrl   = `${process.env.APP_URL || 'https://slotapp.in'}/api/v1/admin/gdpr/download/${fileName}`;
     await sendEmail({
       to:      exportData.profile.email,
-      subject: 'Your MK App Data Export',
+      subject: 'Your Slot App Data Export',
       html:    `<h2>Your data export is ready</h2>
                 <p>Your personal data export has been generated. <a href="${downloadUrl}">Download it here</a></p>
                 <p>This link expires in 24 hours.</p>`,
@@ -305,10 +305,10 @@ router.post('/gdpr/delete-request', protect, asyncHandler(async (req, res) => {
     const user = await require('../models/User').findById(req.user._id).select('email name').lean();
     await sendEmail({
       to:      user.email,
-      subject: 'MK App — Account Deletion Request Confirmed',
+      subject: 'Slot App — Account Deletion Request Confirmed',
       html:    `<h2>Account Deletion Request</h2>
                 <p>Hi ${user.name || 'there'},</p>
-                <p>We've received your request to delete your MK App account.</p>
+                <p>We've received your request to delete your Slot App account.</p>
                 <p><b>Your account will be permanently deleted on ${new Date(Date.now() + 30 * 86400000).toDateString()}.</b></p>
                 <p>To cancel this request, simply log in to the app within the next 7 days.</p>
                 <p>All your data including bookings, reviews, and personal information will be permanently removed.</p>`,
@@ -356,9 +356,9 @@ router.get('/gdpr/data-info', asyncHandler(async (req, res) => {
   res.json({
     success: true,
     data: {
-      controller:    'MK Services Pvt Ltd',
-      contact:       'privacy@mkapp.in',
-      dpo:           'dpo@mkapp.in',
+      controller:    'Slot Services Pvt Ltd',
+      contact:       'privacy@slotapp.in',
+      dpo:           'dpo@slotapp.in',
       dataTypes: [
         { type: 'Identity',  fields: ['Name', 'Phone', 'Email', 'Avatar'], retention: 'Account lifetime + 3 years' },
         { type: 'Location',  fields: ['Service address', 'Delivery coordinates'], retention: '2 years' },

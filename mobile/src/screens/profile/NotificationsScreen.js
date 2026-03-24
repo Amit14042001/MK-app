@@ -1,5 +1,5 @@
 /**
- * MK App — Customer Notification & Profile Screens (Full)
+ * Slot App — Customer Notification & Profile Screens (Full)
  * NotificationsScreen, OffersScreen, ReferScreen, HelpScreen
  */
 import React, { useState, useEffect, useCallback } from 'react';
@@ -132,7 +132,7 @@ export function NotificationsScreen({ navigation }) {
 // ── OFFERS SCREEN ─────────────────────────────────────────────
 const MOCK_OFFERS = [
   { id: '1', code: 'FIRST200', title: 'First Booking Offer', desc: '₹200 off on your first booking above ₹500', discount: '₹200 OFF', validUntil: '31 Dec 2026', category: 'new_user', color: '#E8F5E9', accent: '#2E7D32' },
-  { id: '2', code: 'PRIME15',  title: 'MK Prime Discount',   desc: '15% off on all bookings for Prime members', discount: '15% OFF', validUntil: 'Ongoing', category: 'prime', color: '#FFF8E1', accent: '#F59E0B' },
+  { id: '2', code: 'PRIME15',  title: 'Slot Prime Discount',   desc: '15% off on all bookings for Prime members', discount: '15% OFF', validUntil: 'Ongoing', category: 'prime', color: '#FFF8E1', accent: '#F59E0B' },
   { id: '3', code: 'MONSOON30',title: 'Monsoon Special',     desc: '30% off on waterproofing & pest control', discount: '30% OFF', validUntil: '30 Sep 2026', category: 'seasonal', color: '#E3F2FD', accent: '#1565C0' },
   { id: '4', code: 'WEEKEND50',title: 'Weekend Saver',       desc: 'Flat ₹50 off on weekend bookings', discount: '₹50 OFF', validUntil: 'Every Weekend', category: 'weekend', color: '#F3E5F5', accent: '#6A1B9A' },
   { id: '5', code: 'REFER100', title: 'Referral Reward',     desc: '₹100 cashback when your friend books using your code', discount: '₹100 CASHBACK', validUntil: 'Ongoing', category: 'referral', color: '#FFF3E0', accent: '#E65100' },
@@ -197,13 +197,13 @@ export function OffersScreen({ navigation }) {
 export function ReferScreen({ navigation }) {
   const insets = useSafeAreaInsets();
   const { user } = useAuth();
-  const referralCode = user?.referralCode || 'MK' + (user?._id?.slice(-6).toUpperCase() || 'XXXXXX');
+  const referralCode = user?.referralCode || 'Slot' + (user?._id?.slice(-6).toUpperCase() || 'XXXXXX');
 
   const handleShare = async () => {
     try {
       await Share.share({
-        message: `🏠 Book home services with MK App! Use my referral code *${referralCode}* and get ₹100 off your first booking.\n\nDownload: https://mkapp.in/download`,
-        title: 'MK App — Refer & Earn',
+        message: `🏠 Book home services with Slot App! Use my referral code *${referralCode}* and get ₹100 off your first booking.\n\nDownload: https://slotapp.in/download`,
+        title: 'Slot App — Refer & Earn',
       });
     } catch {}
   };
@@ -273,10 +273,10 @@ const FAQS = [
   { q: 'Can I reschedule my booking?', a: 'Yes, you can reschedule up to 4 hours before the scheduled time from the Bookings section.' },
   { q: 'What if I\'m not satisfied?', a: 'Contact our support within 24 hours of service completion. We offer free re-service or full refund.' },
   { q: 'How do I track my professional?', a: 'Once assigned, you can track your professional in real-time from the Bookings > Track section.' },
-  { q: 'What payment methods are accepted?', a: 'UPI, Credit/Debit cards, Net Banking, MK Wallet, and Cash on Delivery.' },
+  { q: 'What payment methods are accepted?', a: 'UPI, Credit/Debit cards, Net Banking, Slot Wallet, and Cash on Delivery.' },
   { q: 'How do I cancel a booking?', a: 'Go to Bookings → Select booking → Cancel. Refund depends on cancellation time.' },
   { q: 'Are your professionals verified?', a: 'Yes! All professionals undergo background checks, skill verification, and training before joining.' },
-  { q: 'What is the warranty on services?', a: 'Most services come with a 30-day warranty. MK Prime members get 60 days.' },
+  { q: 'What is the warranty on services?', a: 'Most services come with a 30-day warranty. Slot Prime members get 60 days.' },
 ];
 
 export function HelpScreen({ navigation }) {
@@ -292,7 +292,7 @@ export function HelpScreen({ navigation }) {
   const CONTACTS = [
     { icon: '📞', label: 'Call Support', value: '1800-XXX-XXXX', action: () => Linking.openURL('tel:18001234567'), badge: '24/7' },
     { icon: '💬', label: 'WhatsApp', value: '+91 98765 43210', action: () => Linking.openURL('https://wa.me/919876543210'), badge: '9AM-9PM' },
-    { icon: '📧', label: 'Email', value: 'support@mkapp.in', action: () => Linking.openURL('mailto:support@mkapp.in') },
+    { icon: '📧', label: 'Email', value: 'support@slotapp.in', action: () => Linking.openURL('mailto:support@slotapp.in') },
   ];
 
   return (

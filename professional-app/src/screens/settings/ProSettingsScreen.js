@@ -1,5 +1,5 @@
 /**
- * MK Professional App — Settings Screen
+ * Slot Professional App — Settings Screen
  */
 import React, { useState } from 'react';
 import {
@@ -77,7 +77,7 @@ export default function ProSettingsScreen({ navigation }) {
         { label: 'My Documents',         icon: '📄', type: 'nav',
           onPress: () => navigation.navigate('Documents') },
         { label: 'Commission & Earnings Info', icon: '💹', type: 'nav',
-          onPress: () => Alert.alert('Commission', 'MK takes 20% commission on all bookings.\n\nYou receive 80% of each booking amount.\n\nPayouts every Monday.') },
+          onPress: () => Alert.alert('Commission', 'Slot takes 20% commission on all bookings.\n\nYou receive 80% of each booking amount.\n\nPayouts every Monday.') },
       ],
     },
     {
@@ -85,8 +85,8 @@ export default function ProSettingsScreen({ navigation }) {
       items: [
         { label: 'Help & FAQ',           icon: '❓', type: 'nav', onPress: () => navigation.navigate('Support') },
         { label: 'Contact Support',      icon: '📞', type: 'nav', onPress: () => Linking.openURL('tel:18001234567') },
-        { label: 'Privacy Policy',       icon: '🔒', type: 'nav', onPress: () => Linking.openURL('https://mkapp.in/privacy') },
-        { label: 'Terms of Service',     icon: '📋', type: 'nav', onPress: () => Linking.openURL('https://mkapp.in/terms') },
+        { label: 'Privacy Policy',       icon: '🔒', type: 'nav', onPress: () => Linking.openURL('https://slotapp.in/privacy') },
+        { label: 'Terms of Service',     icon: '📋', type: 'nav', onPress: () => Linking.openURL('https://slotapp.in/terms') },
         { label: 'Rate the App',         icon: '⭐', type: 'nav', onPress: () => Linking.openURL('https://play.google.com/store') },
       ],
     },
@@ -156,9 +156,9 @@ export default function ProSettingsScreen({ navigation }) {
 
         {/* App Version */}
         <View style={S.versionWrap}>
-          <Text style={S.versionText}>MK Professional App</Text>
+          <Text style={S.versionText}>Slot Professional App</Text>
           <Text style={S.versionNum}>Version {APP_VERSION}</Text>
-          <Text style={S.versionSub}>© 2026 MK Services India Pvt. Ltd.</Text>
+          <Text style={S.versionSub}>© 2026 Slot Services India Pvt. Ltd.</Text>
         </View>
       </ScrollView>
     </View>

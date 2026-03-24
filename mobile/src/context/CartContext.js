@@ -1,5 +1,5 @@
 /**
- * MK App — Cart Context (Full)
+ * Slot App — Cart Context (Full)
  * Manages service cart, city selection, address selection
  */
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
@@ -25,9 +25,9 @@ export function CartProvider({ children }) {
     const restore = async () => {
       try {
         const [cartData, cityData, addressData] = await Promise.all([
-          AsyncStorage.getItem('mk_cart'),
-          AsyncStorage.getItem('mk_city'),
-          AsyncStorage.getItem('mk_address'),
+          AsyncStorage.getItem('slot_cart'),
+          AsyncStorage.getItem('slot_city'),
+          AsyncStorage.getItem('slot_address'),
         ]);
         if (cartData) setCart(JSON.parse(cartData));
         if (cityData) setCity(cityData);
@@ -40,16 +40,16 @@ export function CartProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    if (!loading) AsyncStorage.setItem('mk_cart', JSON.stringify(cart));
+    if (!loading) AsyncStorage.setItem('slot_cart', JSON.stringify(cart));
   }, [cart, loading]);
 
   useEffect(() => {
-    if (city) AsyncStorage.setItem('mk_city', city);
+    if (city) AsyncStorage.setItem('slot_city', city);
   }, [city]);
 
   useEffect(() => {
     if (selectedAddress)
-      AsyncStorage.setItem('mk_address', JSON.stringify(selectedAddress));
+      AsyncStorage.setItem('slot_address', JSON.stringify(selectedAddress));
   }, [selectedAddress]);
 
   // ── Cart operations ───────────────────────────────────────

@@ -1,4 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import {
+  servicesAPI, categoriesAPI, authAPI, bookingsAPI, trackingAPI,
+  adminAPI, usersAPI, paymentsAPI, reviewsAPI, subscriptionsAPI, notificationsAPI
+} from './utils/api';
 import { AppProvider, useApp } from './context/AppContext';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
@@ -9,16 +13,39 @@ import BecomeProfessionalPage from './pages/BecomeProfessionalPage';
 import BundleBuilderPage from './pages/BundleBuilderPage';
 import StoreAdminPage from './pages/StoreAdminPage';
 import StorePage from './pages/StorePage';
+import AboutPage from './pages/AboutPage';
 import { TrackingPage, MyBookingsPage, CartPage, Footer } from './pages/OtherPages';
 import {
   AdminOverviewPage, AdminUsersPage, AdminBookingsPage, AdminCouponsPage,
 } from './pages/AdminPages';
+import AdminNotificationsPage from './pages/AdminNotificationsPage';
+import ProfessionalDashboard from './pages/ProfessionalDashboard';
 
 // ── Simple client-side router ────────────────────────────────
 function Router() {
   const { user } = useApp();
   const [page, setPage] = useState('home');
   const [pageData, setPageData] = useState({});
+
+  useEffect(() => {
+    const handlePopState = (e) => {
+      if (e.state) {
+        setPage(e.state.page || 'home');
+        setPageData(e.state.data || {});
+      } else {
+        setPage('home');
+        setPageData({});
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+
+    // Initial state
+    if (!window.history.state) {
+      window.history.replaceState({ page: 'home', data: {} }, '', '');
+    }
+
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   const navigate = (to, data = {}) => {
     // Guard protected routes
@@ -30,6 +57,7 @@ function Router() {
     }
     setPage(to);
     setPageData(data || {});
+    window.history.pushState({ page: to, data: data || {} }, '', '');
     window.scrollTo(0, 0);
   };
 
@@ -104,6 +132,9 @@ function Router() {
       case 'admin-seed':
         return <AdminSubPage title="Seed Data" navigate={navigate}><AdminSeedPage navigate={navigate} /></AdminSubPage>;
 
+      case 'admin-notifications':
+        return <AdminSubPage title="Send Broadcast" navigate={navigate}><AdminNotificationsPage /></AdminSubPage>;
+
       case 'offers':
         return <OffersPageInline navigate={navigate} />;
 
@@ -113,8 +144,14 @@ function Router() {
       case 'become-pro':
         return <BecomeProfessionalPage navigate={navigate} />;
 
+      case 'about':
+        return <AboutPage navigate={navigate} />;
+
       case 'bundle-builder':
         return <BundleBuilderPage navigate={navigate} />;
+
+      case 'professional-dashboard':
+        return <ProfessionalDashboard navigate={navigate} />;
 
       default:
         return <HomePage navigate={navigate} />;
@@ -140,9 +177,8 @@ function ServicesPage({ navigate }) {
   const [categories, setCategories] = useState([]);
   const [activeFilter, setActiveFilter] = useState('all');
   const [loading, setLoading] = useState(true);
-  const { servicesAPI, categoriesAPI } = require('./utils/api');
 
-  useState(() => {
+  useEffect(() => {
     (async () => {
       try {
         const [sRes, cRes] = await Promise.all([servicesAPI.getAll(), categoriesAPI.getAll()]);
@@ -150,7 +186,7 @@ function ServicesPage({ navigate }) {
         setCategories(cRes.data.categories || []);
       } catch { } finally { setLoading(false); }
     })();
-  });
+  }, []);
 
   const filtered = activeFilter === 'all' ? services : services.filter(s => s.category?.slug === activeFilter);
 
@@ -160,9 +196,9 @@ function ServicesPage({ navigate }) {
         <h1 style={{ fontSize: 32, fontWeight: 800, color: '#1a1a2e', marginBottom: 8 }}>All Services</h1>
         <p style={{ color: '#888', marginBottom: 28 }}>200+ services at your doorstep in your city</p>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 32 }}>
-          <button onClick={() => setActiveFilter('all')} style={{ padding: '9px 20px', borderRadius: 20, border: 'none', cursor: 'pointer', background: activeFilter === 'all' ? '#e94560' : '#fff', color: activeFilter === 'all' ? '#fff' : '#555', fontWeight: 600, fontSize: 13, boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>All</button>
+          <button onClick={() => setActiveFilter('all')} style={{ padding: '9px 20px', borderRadius: 20, border: 'none', cursor: 'pointer', background: activeFilter === 'all' ? 'var(--color-brand)' : '#fff', color: activeFilter === 'all' ? '#fff' : '#555', fontWeight: 600, fontSize: 13, boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>All</button>
           {categories.map(c => (
-            <button key={c._id} onClick={() => setActiveFilter(c.slug)} style={{ padding: '9px 20px', borderRadius: 20, border: 'none', cursor: 'pointer', background: activeFilter === c.slug ? '#e94560' : '#fff', color: activeFilter === c.slug ? '#fff' : '#555', fontWeight: 600, fontSize: 13, boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
+            <button key={c._id} onClick={() => setActiveFilter(c.slug)} style={{ padding: '9px 20px', borderRadius: 20, border: 'none', cursor: 'pointer', background: activeFilter === c.slug ? 'var(--color-brand)' : '#fff', color: activeFilter === c.slug ? '#fff' : '#555', fontWeight: 600, fontSize: 13, boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
               {c.icon} {c.name}
             </button>
           ))}
@@ -174,12 +210,18 @@ function ServicesPage({ navigate }) {
             {filtered.map(s => (
               <div key={s._id} onClick={() => navigate('service-detail', { serviceId: s.slug || s._id })}
                 style={{ background: '#fff', borderRadius: 16, padding: '20px 14px', cursor: 'pointer', textAlign: 'center', border: '2px solid #f0f0f0', transition: 'all 0.2s' }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = '#e94560'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--color-brand)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = '#f0f0f0'; e.currentTarget.style.transform = 'none'; }}>
-                <div style={{ fontSize: 40, marginBottom: 10 }}>{s.icon}</div>
+                <div style={{ height: 100, marginBottom: 12, borderRadius: 12, overflow: 'hidden', background: '#f8f9fa', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  {s.images && s.images.length > 0 ? (
+                    <img src={s.images[0]} alt={s.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  ) : (
+                    <span style={{ fontSize: 40 }}>{s.icon}</span>
+                  )}
+                </div>
                 <div style={{ fontWeight: 700, fontSize: 13, color: '#1a1a2e', marginBottom: 6 }}>{s.name}</div>
                 <div style={{ color: '#f5a623', fontSize: 12 }}>★ {s.rating || 4.8}</div>
-                <div style={{ color: '#e94560', fontWeight: 700, marginTop: 6 }}>₹{s.startingPrice}+</div>
+                <div style={{ color: 'var(--color-brand)', fontWeight: 700, marginTop: 6 }}>₹{s.startingPrice}+</div>
                 {s.isNew && <div style={{ marginTop: 6 }}><span style={{ background: '#e3f2fd', color: '#1565c0', padding: '2px 8px', borderRadius: 20, fontSize: 10, fontWeight: 700 }}>NEW</span></div>}
               </div>
             ))}
@@ -193,12 +235,11 @@ function ServicesPage({ navigate }) {
 // ── Automotive Page ──────────────────────────────────────────
 function AutomotivePage({ navigate }) {
   const [services, setServices] = useState([]);
-  const { servicesAPI } = require('./utils/api');
   const { addToCart } = useApp();
 
-  useState(() => {
+  useEffect(() => {
     servicesAPI.getByCategory('automotive').then(({ data }) => setServices(data.services || [])).catch(() => { });
-  });
+  }, []);
 
   return (
     <div style={{ background: '#f8f9fa', minHeight: '100vh', padding: '32px 24px' }}>
@@ -211,7 +252,7 @@ function AutomotivePage({ navigate }) {
             <p style={{ color: 'rgba(255,255,255,0.7)', margin: '0 0 24px', fontSize: 15 }}>Expert car care at your doorstep. Battery, oil, tyres & more — all certified mechanics.</p>
             <div style={{ display: 'flex', gap: 24 }}>
               {[['5K+', 'Cars Serviced'], ['4.88★', 'Avg Rating'], ['30 min', 'Response']].map(([v, l]) => (
-                <div key={l}><div style={{ color: '#e94560', fontWeight: 800, fontSize: 20 }}>{v}</div><div style={{ color: 'rgba(255,255,255,0.6)', fontSize: 12 }}>{l}</div></div>
+                <div key={l}><div style={{ color: 'var(--color-brand)', fontWeight: 800, fontSize: 20 }}>{v}</div><div style={{ color: 'rgba(255,255,255,0.6)', fontSize: 12 }}>{l}</div></div>
               ))}
             </div>
           </div>
@@ -223,7 +264,13 @@ function AutomotivePage({ navigate }) {
           {services.map(s => (
             <div key={s._id} style={{ background: '#fff', borderRadius: 16, padding: 24, border: '1px solid #f0f0f0', cursor: 'pointer' }} onClick={() => navigate('service-detail', { serviceId: s.slug || s._id })}>
               <div style={{ display: 'flex', gap: 14, marginBottom: 14 }}>
-                <span style={{ fontSize: 38 }}>{s.icon}</span>
+                <div style={{ width: 50, height: 50, borderRadius: 10, overflow: 'hidden', background: '#f8f9fa', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  {s.images && s.images.length > 0 ? (
+                    <img src={s.images[0]} alt={s.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  ) : (
+                    <span style={{ fontSize: 24 }}>{s.icon}</span>
+                  )}
+                </div>
                 <div>
                   <div style={{ fontWeight: 800, fontSize: 16 }}>{s.name}</div>
                   {s.isNew && <span style={{ background: '#e3f2fd', color: '#1565c0', padding: '2px 8px', borderRadius: 20, fontSize: 10, fontWeight: 700 }}>NEW</span>}
@@ -232,9 +279,9 @@ function AutomotivePage({ navigate }) {
               </div>
               <p style={{ fontSize: 13, color: '#666', lineHeight: 1.5, margin: '0 0 14px' }}>{s.description?.slice(0, 90)}...</p>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ color: '#e94560', fontWeight: 800, fontSize: 16 }}>₹{s.startingPrice}+</span>
+                <span style={{ color: 'var(--color-brand)', fontWeight: 800, fontSize: 16 }}>₹{s.startingPrice}+</span>
                 <button onClick={e => { e.stopPropagation(); addToCart({ serviceId: s._id, serviceName: s.name, serviceIcon: s.icon, price: s.startingPrice }); }}
-                  style={{ background: '#e94560', color: '#fff', border: 'none', padding: '8px 16px', borderRadius: 10, cursor: 'pointer', fontWeight: 700, fontSize: 13 }}>Book Now</button>
+                  style={{ background: 'var(--color-brand)', color: '#fff', border: 'none', padding: '8px 16px', borderRadius: 10, cursor: 'pointer', fontWeight: 700, fontSize: 13 }}>Book Now</button>
               </div>
             </div>
           ))}
@@ -250,11 +297,10 @@ function ProfilePage({ navigate }) {
   const [profile, setProfile] = useState(user);
   const [stats, setStats] = useState(null);
   const [section, setSection] = useState('bookings');
-  const { usersAPI } = require('./utils/api');
 
-  useState(() => {
+  useEffect(() => {
     usersAPI.getStats().then(({ data }) => setStats(data.stats)).catch(() => { });
-  });
+  }, []);
 
   if (!user) return <div style={{ padding: 80, textAlign: 'center' }}>Please login</div>;
 
@@ -264,7 +310,7 @@ function ProfilePage({ navigate }) {
         {/* Header */}
         <div style={{ background: 'linear-gradient(135deg, #1a1a2e, #0f3460)', borderRadius: 20, padding: '32px 28px', marginBottom: 28, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
           <div style={{ display: 'flex', gap: 18, alignItems: 'center' }}>
-            <div style={{ width: 72, height: 72, borderRadius: '50%', background: 'linear-gradient(135deg, #e94560, #c0392b)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 28, fontWeight: 800 }}>
+            <div style={{ width: 72, height: 72, borderRadius: '50%', background: 'linear-gradient(135deg, var(--color-brand), #c0392b)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 28, fontWeight: 800 }}>
               {user.name?.charAt(0).toUpperCase()}
             </div>
             <div>
@@ -303,7 +349,7 @@ function ProfilePage({ navigate }) {
         <div style={{ display: 'flex', gap: 8, marginBottom: 24, flexWrap: 'wrap' }}>
           {['bookings', 'addresses', 'payments', 'settings'].map(s => (
             <button key={s} onClick={() => s === 'bookings' ? navigate('my-bookings') : setSection(s)}
-              style={{ padding: '10px 20px', borderRadius: 20, border: 'none', cursor: 'pointer', background: section === s ? '#e94560' : '#fff', color: section === s ? '#fff' : '#555', fontWeight: 600, fontSize: 14, textTransform: 'capitalize', boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
+              style={{ padding: '10px 20px', borderRadius: 20, border: 'none', cursor: 'pointer', background: section === s ? 'var(--color-brand)' : '#fff', color: section === s ? '#fff' : '#555', fontWeight: 600, fontSize: 14, textTransform: 'capitalize', boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
               {s}
             </button>
           ))}
@@ -316,11 +362,10 @@ function ProfilePage({ navigate }) {
 // ── Notifications Page ───────────────────────────────────────
 function NotificationsPage({ navigate }) {
   const [notifications, setNotifications] = useState([]);
-  const { notificationsAPI } = require('./utils/api');
 
-  useState(() => {
+  useEffect(() => {
     notificationsAPI.getAll().then(({ data }) => setNotifications(data.notifications || [])).catch(() => { });
-  });
+  }, []);
 
   return (
     <div style={{ maxWidth: 700, margin: '0 auto', padding: '32px 24px' }}>
@@ -339,7 +384,7 @@ function NotificationsPage({ navigate }) {
               <div style={{ fontSize: 14, color: '#666', lineHeight: 1.5 }}>{n.message}</div>
               <div style={{ fontSize: 12, color: '#aaa', marginTop: 6 }}>{new Date(n.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}</div>
             </div>
-            {!n.isRead && <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#e94560', marginTop: 8, flexShrink: 0 }} />}
+            {!n.isRead && <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-brand)', marginTop: 8, flexShrink: 0 }} />}
           </div>
         ))
       )}
@@ -351,11 +396,10 @@ function NotificationsPage({ navigate }) {
 function AdminPage({ navigate }) {
   const { user } = useApp();
   const [stats, setStats] = useState(null);
-  const { adminAPI } = require('./utils/api');
 
-  useState(() => {
+  useEffect(() => {
     adminAPI.getStats().then(({ data }) => setStats(data.stats)).catch(() => { });
-  });
+  }, []);
 
   if (!user || user.role !== 'admin') return <div style={{ padding: 80, textAlign: 'center' }}>Admin access only</div>;
 
@@ -363,13 +407,13 @@ function AdminPage({ navigate }) {
     <div style={{ background: '#f8f9fa', minHeight: '100vh', padding: '32px 24px' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <h1 style={{ fontSize: 28, fontWeight: 800, color: '#1a1a2e', marginBottom: 8 }}>Admin Dashboard</h1>
-        <p style={{ color: '#888', marginBottom: 32 }}>Manage your MK platform</p>
+        <p style={{ color: '#888', marginBottom: 32 }}>Manage your Slot platform</p>
 
         {stats && (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 20, marginBottom: 32 }}>
             {[
               { label: 'Total Users', value: stats.users?.total, icon: '👤', color: '#2196f3' },
-              { label: 'Total Bookings', value: stats.bookings?.total, icon: '📋', color: '#e94560' },
+              { label: 'Total Bookings', value: stats.bookings?.total, icon: '📋', color: 'var(--color-brand)' },
               { label: 'Completed', value: stats.bookings?.completed, icon: '✅', color: '#4caf50' },
               { label: 'Revenue (Total)', value: `₹${stats.revenue?.total?.toLocaleString()}`, icon: '💰', color: '#ff9800' },
               { label: 'Active Services', value: stats.services?.active, icon: '🔧', color: '#9c27b0' },
@@ -416,8 +460,8 @@ function AdminPage({ navigate }) {
 // ── Offers Page (inline) ──────────────────────────────────────
 function OffersPageInline({ navigate }) {
   const OFFERS = [
-    { code: 'FIRST15', title: '15% off your first booking', desc: 'New users only. Valid on all services.', expiry: '31 Mar 2026', color: '#e94560', emoji: '🎉', minOrder: 0 },
-    { code: 'PRIME20', title: '20% off with MK Prime', desc: 'Active Prime members get 20% on every booking.', expiry: 'No expiry', color: '#9c27b0', emoji: '👑', minOrder: 0 },
+    { code: 'FIRST15', title: '15% off your first booking', desc: 'New users only. Valid on all services.', expiry: '31 Mar 2026', color: 'var(--color-brand)', emoji: '🎉', minOrder: 0 },
+    { code: 'PRIME20', title: '20% off with Slot Prime', desc: 'Active Prime members get 20% on every booking.', expiry: 'No expiry', color: '#9c27b0', emoji: '👑', minOrder: 0 },
     { code: 'AC499', title: 'AC Service at ₹499', desc: 'Full AC service including gas check & cleaning.', expiry: 'Today only', color: '#0288d1', emoji: '❄️', minOrder: 499 },
     { code: 'CLEAN299', title: 'Deep Clean at ₹299', desc: '1BHK deep cleaning. Save ₹200 today.', expiry: '15 Apr 2026', color: '#00897b', emoji: '🧹', minOrder: 299 },
     { code: 'REFER100', title: '₹100 wallet credit on referral', desc: 'Refer a friend and get ₹100 when they book.', expiry: 'Ongoing', color: '#f57c00', emoji: '🤝', minOrder: 0 },
@@ -434,7 +478,7 @@ function OffersPageInline({ navigate }) {
       <div style={{ background: 'linear-gradient(135deg,#1c1c1e,#2d2d30)', padding: '32px 24px 28px' }}>
         <div style={{ maxWidth: 800, margin: '0 auto' }}>
           <h1 style={{ margin: 0, fontSize: 28, fontWeight: 800, color: '#fff' }}>🎁 Offers & Coupons</h1>
-          <p style={{ margin: '8px 0 0', color: 'rgba(255,255,255,0.55)', fontSize: 15 }}>Exclusive deals for MK App customers</p>
+          <p style={{ margin: '8px 0 0', color: 'rgba(255,255,255,0.55)', fontSize: 15 }}>Exclusive deals for Slot App customers</p>
         </div>
       </div>
       <div style={{ maxWidth: 800, margin: '0 auto', padding: '24px' }}>
@@ -505,7 +549,7 @@ function ReviewPageInline({ bookingId, navigate }) {
       <div style={{ fontSize: 72 }}>🎉</div>
       <h2 style={{ margin: 0, fontSize: 22, fontWeight: 700, color: '#1a1a2e' }}>Thanks for your review!</h2>
       <p style={{ margin: 0, color: '#888', textAlign: 'center' }}>Your feedback helps us improve and rewards great professionals.</p>
-      <button onClick={() => navigate('my-bookings')} style={{ marginTop: 8, padding: '13px 32px', background: '#e94560', color: '#fff', border: 'none', borderRadius: 14, fontWeight: 700, fontSize: 15, cursor: 'pointer' }}>
+      <button onClick={() => navigate('my-bookings')} style={{ marginTop: 8, padding: '13px 32px', background: 'var(--color-brand)', color: '#fff', border: 'none', borderRadius: 14, fontWeight: 700, fontSize: 15, cursor: 'pointer' }}>
         Back to Bookings
       </button>
     </div>
@@ -533,7 +577,7 @@ function ReviewPageInline({ bookingId, navigate }) {
             ))}
           </div>
           {(hover || rating) > 0 && (
-            <p style={{ margin: 0, fontSize: 15, fontWeight: 600, color: '#e94560' }}>{RATING_LABELS[hover || rating]}</p>
+            <p style={{ margin: 0, fontSize: 15, fontWeight: 600, color: 'var(--color-brand)' }}>{RATING_LABELS[hover || rating]}</p>
           )}
         </div>
 
@@ -544,7 +588,7 @@ function ReviewPageInline({ bookingId, navigate }) {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {POSITIVE_TAGS.map(t => (
                 <button key={t} onClick={() => toggleTag(t)}
-                  style={{ padding: '8px 16px', borderRadius: 24, fontWeight: 600, fontSize: 13, cursor: 'pointer', transition: 'all 0.15s', background: tags.includes(t) ? '#e94560' : '#f8f9fa', color: tags.includes(t) ? '#fff' : '#555', border: `1px solid ${tags.includes(t) ? '#e94560' : '#e0e0e0'}` }}>
+                  style={{ padding: '8px 16px', borderRadius: 24, fontWeight: 600, fontSize: 13, cursor: 'pointer', transition: 'all 0.15s', background: tags.includes(t) ? 'var(--color-brand)' : '#f8f9fa', color: tags.includes(t) ? '#fff' : '#555', border: `1px solid ${tags.includes(t) ? 'var(--color-brand)' : '#e0e0e0'}` }}>
                   {tags.includes(t) ? '✓ ' : ''}{t}
                 </button>
               ))}
@@ -560,7 +604,7 @@ function ReviewPageInline({ bookingId, navigate }) {
         </div>
 
         <button onClick={handleSubmit} disabled={rating === 0 || submitting}
-          style={{ padding: 16, background: rating > 0 ? '#e94560' : '#ccc', color: '#fff', border: 'none', borderRadius: 14, fontWeight: 700, fontSize: 15, cursor: rating > 0 ? 'pointer' : 'not-allowed', boxShadow: rating > 0 ? '0 6px 20px rgba(233,69,96,0.30)' : 'none', transition: 'all 0.2s' }}>
+          style={{ padding: 16, background: rating > 0 ? 'var(--color-brand)' : '#ccc', color: '#fff', border: 'none', borderRadius: 14, fontWeight: 700, fontSize: 15, cursor: rating > 0 ? 'pointer' : 'not-allowed', boxShadow: rating > 0 ? '0 6px 20px rgba(233,69,96,0.30)' : 'none', transition: 'all 0.2s' }}>
           {submitting ? 'Submitting…' : rating === 0 ? 'Select a rating to continue' : `Submit ${RATING_LABELS[rating]} Review ⭐${rating}`}
         </button>
       </div>
@@ -619,7 +663,7 @@ function AdminSeedPage({ navigate }) {
       {done ? (
         <div style={{ color: '#27ae60', fontWeight: 700, fontSize: 15 }}>✅ Database seeded successfully!</div>
       ) : (
-        <button onClick={runSeed} disabled={seeding} style={{ background: '#e94560', color: '#fff', border: 'none', borderRadius: 10, padding: '12px 28px', fontWeight: 700, fontSize: 14, cursor: seeding ? 'not-allowed' : 'pointer', opacity: seeding ? 0.7 : 1 }}>
+        <button onClick={runSeed} disabled={seeding} style={{ background: 'var(--color-brand)', color: '#fff', border: 'none', borderRadius: 10, padding: '12px 28px', fontWeight: 700, fontSize: 14, cursor: seeding ? 'not-allowed' : 'pointer', opacity: seeding ? 0.7 : 1 }}>
           {seeding ? 'Seeding...' : 'Run Seed Script'}
         </button>
       )}
@@ -654,13 +698,13 @@ function WalletPageInline({ navigate }) {
   return (
     <div style={{ background: '#f8f9fa', minHeight: '100vh', padding: '0 0 60px' }}>
       {/* Header */}
-      <div style={{ background: 'linear-gradient(135deg,#e94560,#c0392b)', padding: '32px 24px 28px' }}>
+      <div style={{ background: 'linear-gradient(135deg,var(--color-brand),#c0392b)', padding: '32px 24px 28px' }}>
         <div style={{ maxWidth: 640, margin: '0 auto' }}>
           <button onClick={() => navigate('profile')} style={{ background: 'rgba(255,255,255,0.15)', border: 'none', color: '#fff', borderRadius: 10, padding: '8px 14px', cursor: 'pointer', fontSize: 13, marginBottom: 20 }}>← Back</button>
-          <p style={{ margin: '0 0 4px', fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>MK Wallet Balance</p>
+          <p style={{ margin: '0 0 4px', fontSize: 14, color: 'rgba(255,255,255,0.75)' }}>Slot Wallet Balance</p>
           <div style={{ fontSize: 44, fontWeight: 900, color: '#fff', lineHeight: 1 }}>₹{balance.toLocaleString()}</div>
           <p style={{ margin: '8px 0 0', fontSize: 13, color: 'rgba(255,255,255,0.65)' }}>Available to use on all bookings</p>
-          <button onClick={() => setAddModal(true)} style={{ marginTop: 20, background: '#fff', color: '#e94560', border: 'none', borderRadius: 24, padding: '11px 28px', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}>
+          <button onClick={() => setAddModal(true)} style={{ marginTop: 20, background: '#fff', color: 'var(--color-brand)', border: 'none', borderRadius: 24, padding: '11px 28px', fontWeight: 700, fontSize: 14, cursor: 'pointer' }}>
             + Add Money
           </button>
         </div>
@@ -673,7 +717,7 @@ function WalletPageInline({ navigate }) {
           <div style={{ display: 'flex', gap: 10 }}>
             {QUICK_AMOUNTS.map(a => (
               <button key={a} onClick={() => { setAddAmt(String(a)); setAddModal(true); }}
-                style={{ flex: 1, padding: '10px 0', background: '#fff0f3', border: '1px solid #ffd6de', color: '#e94560', borderRadius: 10, fontWeight: 700, fontSize: 14, cursor: 'pointer' }}>
+                style={{ flex: 1, padding: '10px 0', background: '#fff0f3', border: '1px solid #ffd6de', color: 'var(--color-brand)', borderRadius: 10, fontWeight: 700, fontSize: 14, cursor: 'pointer' }}>
                 ₹{a}
               </button>
             ))}
@@ -692,7 +736,7 @@ function WalletPageInline({ navigate }) {
                 <p style={{ margin: 0, fontSize: 14, fontWeight: 600, color: '#1a1a2e' }}>{t.desc}</p>
                 <p style={{ margin: 0, fontSize: 12, color: '#888' }}>{t.date}</p>
               </div>
-              <span style={{ fontWeight: 800, fontSize: 15, color: t.type === 'credit' ? '#27ae60' : '#e94560' }}>
+              <span style={{ fontWeight: 800, fontSize: 15, color: t.type === 'credit' ? '#27ae60' : 'var(--color-brand)' }}>
                 {t.type === 'credit' ? '+' : '-'}₹{t.amount}
               </span>
             </div>
@@ -709,7 +753,7 @@ function WalletPageInline({ navigate }) {
               style={{ width: '100%', padding: '13px 16px', border: '1.5px solid #e8e8e8', borderRadius: 12, fontSize: 16, fontFamily: 'inherit', outline: 'none', boxSizing: 'border-box', marginBottom: 16 }} />
             <div style={{ display: 'flex', gap: 10 }}>
               <button onClick={() => setAddModal(false)} style={{ flex: 1, padding: 13, background: '#f8f9fa', border: 'none', borderRadius: 12, fontWeight: 600, cursor: 'pointer', fontSize: 14 }}>Cancel</button>
-              <button onClick={handleAdd} style={{ flex: 2, padding: 13, background: '#e94560', color: '#fff', border: 'none', borderRadius: 12, fontWeight: 700, cursor: 'pointer', fontSize: 14 }}>Add ₹{addAmt || '—'}</button>
+              <button onClick={handleAdd} style={{ flex: 2, padding: 13, background: 'var(--color-brand)', color: '#fff', border: 'none', borderRadius: 12, fontWeight: 700, cursor: 'pointer', fontSize: 14 }}>Add ₹{addAmt || '—'}</button>
             </div>
           </div>
         </div>
@@ -737,7 +781,7 @@ function BookingDetailPageInline({ bookingId, navigate }) {
   if (!booking) return <div style={{ padding: 60, textAlign: 'center' }}>
     <div style={{ fontSize: 40, marginBottom: 12 }}>📋</div>
     <p style={{ color: '#888' }}>Booking not found</p>
-    <button onClick={() => navigate('my-bookings')} style={{ marginTop: 16, background: '#e94560', color: '#fff', border: 'none', borderRadius: 10, padding: '10px 20px', cursor: 'pointer', fontWeight: 600 }}>My Bookings</button>
+    <button onClick={() => navigate('my-bookings')} style={{ marginTop: 16, background: 'var(--color-brand)', color: '#fff', border: 'none', borderRadius: 10, padding: '10px 20px', cursor: 'pointer', fontWeight: 600 }}>My Bookings</button>
   </div>;
 
   const statusColors = { pending: '#ff9800', confirmed: '#2196f3', in_progress: '#9c27b0', completed: '#4caf50', cancelled: '#f44336' };
@@ -767,7 +811,7 @@ function BookingDetailPageInline({ bookingId, navigate }) {
         ))}
 
         {booking.status === 'confirmed' && (
-          <button style={{ marginTop: 20, width: '100%', padding: 14, background: '#e94560', color: '#fff', border: 'none', borderRadius: 14, fontWeight: 700, fontSize: 15, cursor: 'pointer' }}
+          <button style={{ marginTop: 20, width: '100%', padding: 14, background: 'var(--color-brand)', color: '#fff', border: 'none', borderRadius: 14, fontWeight: 700, fontSize: 15, cursor: 'pointer' }}
             onClick={() => navigate('tracking', { bookingId: booking._id })}>
             🗺️ Track Professional
           </button>

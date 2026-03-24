@@ -1,5 +1,5 @@
 /**
- * MK App — Warranty Routes (Full)
+ * Slot App — Warranty Routes (Full)
  */
 const express = require('express');
 const router  = express.Router();

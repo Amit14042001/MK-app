@@ -1,5 +1,5 @@
 /**
- * MK App — Subscription Controller (Full)
+ * Slot App — Subscription Controller (Full)
  * Plans, subscribe, cancel, renew, upgrade, promo codes
  */
 const Subscription = require('../models/Subscription');

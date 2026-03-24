@@ -1,5 +1,5 @@
 /**
- * MK App — Services Screen (Full)
+ * Slot App — Services Screen (Full)
  * Category → services listing with filters, sort, search
  */
 import React, { useState, useEffect, useCallback } from 'react';

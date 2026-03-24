@@ -1,4 +1,4 @@
-# ── MK Customer App — iOS Podfile ─────────────────────────────
+# ── Slot Customer App — iOS Podfile ─────────────────────────────
 # React Native 0.73.4 · Firebase · Google Maps · Razorpay
 
 require Pod::Executable.execute_command('node', ['-e',

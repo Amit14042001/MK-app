@@ -1,5 +1,5 @@
 /**
- * MK App — All Missing Mongoose Models
+ * Slot App — All Missing Mongoose Models
  * Referral, LoyaltyTransaction, LoyaltyReward, WarrantyClaim,
  * ChatRoom, ChatMessage, CorporateEmployee, CorporateBooking,
  * GiftCard, Bundle, ServiceArea, AppVersion, FlashSale, ProBid

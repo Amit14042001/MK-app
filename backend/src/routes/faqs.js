@@ -1,5 +1,5 @@
 /**
- * MK App — FAQ Routes
+ * Slot App — FAQ Routes
  */
 const express = require('express');
 const router  = express.Router();

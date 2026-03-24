@@ -1,5 +1,5 @@
 /**
- * MK Professional App — Documents Screen
+ * Slot Professional App — Documents Screen
  * Upload & manage identity documents for verification
  */
 import React, { useState, useEffect } from 'react';

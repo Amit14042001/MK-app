@@ -1,5 +1,5 @@
 /**
- * MK App — Banner Model + Controller + Routes
+ * Slot App — Banner Model + Controller + Routes
  * Home screen banners, promotional banners, category banners
  */
 const mongoose = require('mongoose');

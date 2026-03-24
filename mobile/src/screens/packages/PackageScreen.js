@@ -1,5 +1,5 @@
 /**
- * MK App — PackageScreen
+ * Slot App — PackageScreen
  * Feature #15: Service packages/bundles (Annual AC package etc.)
  */
 import React, { useState } from 'react';

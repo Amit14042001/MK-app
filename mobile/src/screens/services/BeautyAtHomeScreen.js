@@ -1,5 +1,5 @@
 /**
- * MK App — Beauty at Home Screen (Full)
+ * Slot App — Beauty at Home Screen (Full)
  * Women's beauty services — facial, waxing, threading, makeup, mani-pedi
  */
 import React, { useState, useRef } from 'react';

@@ -1,5 +1,5 @@
 /**
- * MK App — BeforeAfterPhotos + ImageCarousel Components
+ * Slot App — BeforeAfterPhotos + ImageCarousel Components
  * Feature #4: Before/After service photos
  * Feature #5: Service photos carousel
  */

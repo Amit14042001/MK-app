@@ -1,5 +1,5 @@
 /**
- * MK App — FestivalBookingScreen
+ * Slot App — FestivalBookingScreen
  * Pre-book Diwali / Eid / wedding-season services 45 days ahead
  * at today's price. Pros see confirmed future income.
  */

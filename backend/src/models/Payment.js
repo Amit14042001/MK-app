@@ -44,7 +44,7 @@ const paymentSchema = new mongoose.Schema({
 
 paymentSchema.pre('save', function (next) {
   if (!this.invoiceNumber) {
-    this.invoiceNumber = 'INV-MK-' + Date.now().toString().slice(-8);
+    this.invoiceNumber = 'INV-Slot-' + Date.now().toString().slice(-8);
   }
   next();
 });

@@ -6,15 +6,15 @@
 
     <!-- ── App Identity ─────────────────────────────────────── -->
     <key>CFBundleDisplayName</key>
-    <string>MK</string>
+    <string>Slot</string>
     <key>CFBundleIdentifier</key>
-    <string>com.mkapp</string>
+    <string>com.slotapp</string>
     <key>CFBundleVersion</key>
     <string>1</string>
     <key>CFBundleShortVersionString</key>
     <string>1.0.0</string>
     <key>CFBundleName</key>
-    <string>MKApp</string>
+    <string>SlotApp</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleInfoDictionaryVersion</key>
@@ -45,14 +45,14 @@
     <!-- ── URL Schemes (Deep Links) ─────────────────────────── -->
     <key>CFBundleURLTypes</key>
     <array>
-        <!-- Custom scheme: mkapp://booking/123 -->
+        <!-- Custom scheme: slotapp://booking/123 -->
         <dict>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string>mkapp</string>
+                <string>slotapp</string>
             </array>
             <key>CFBundleURLName</key>
-            <string>com.mkapp</string>
+            <string>com.slotapp</string>
         </dict>
         <!-- Google Sign-In reverse client ID (from GoogleService-Info.plist) -->
         <dict>
@@ -65,7 +65,7 @@
 
     <!-- ── Associated Domains (Universal Links) ─────────────── -->
     <!-- Enable in Xcode: Signing & Capabilities → Associated Domains -->
-    <!-- Then add: applinks:mkapp.in -->
+    <!-- Then add: applinks:slotapp.in -->
 
     <!-- ── Google Maps ──────────────────────────────────────── -->
     <key>GMSApiKey</key>
@@ -73,27 +73,27 @@
 
     <!-- ── Privacy Permissions ──────────────────────────────── -->
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>MK uses your location to show nearby professionals and track your booking.</string>
+    <string>Slot uses your location to show nearby professionals and track your booking.</string>
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>MK uses your location in the background to provide accurate tracking during active bookings.</string>
+    <string>Slot uses your location in the background to provide accurate tracking during active bookings.</string>
     <key>NSLocationAlwaysUsageDescription</key>
-    <string>MK uses your location to track your booking in real time.</string>
+    <string>Slot uses your location to track your booking in real time.</string>
 
     <key>NSCameraUsageDescription</key>
-    <string>MK needs camera access to upload profile photos and review images.</string>
+    <string>Slot needs camera access to upload profile photos and review images.</string>
     <key>NSPhotoLibraryUsageDescription</key>
-    <string>MK needs photo library access to select profile and review images.</string>
+    <string>Slot needs photo library access to select profile and review images.</string>
     <key>NSPhotoLibraryAddUsageDescription</key>
-    <string>MK needs permission to save photos.</string>
+    <string>Slot needs permission to save photos.</string>
 
     <key>NSContactsUsageDescription</key>
-    <string>MK can help you find friends already using the app.</string>
+    <string>Slot can help you find friends already using the app.</string>
     <key>NSMicrophoneUsageDescription</key>
-    <string>MK needs microphone access for support calls.</string>
+    <string>Slot needs microphone access for support calls.</string>
 
     <!-- ── Face ID / Biometrics (Razorpay) ──────────────────── -->
     <key>NSFaceIDUsageDescription</key>
-    <string>MK uses Face ID for faster, secure payments.</string>
+    <string>Slot uses Face ID for faster, secure payments.</string>
 
     <!-- ── Network ──────────────────────────────────────────── -->
     <key>NSAppTransportSecurity</key>

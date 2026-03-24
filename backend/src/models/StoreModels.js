@@ -1,5 +1,5 @@
 /**
- * MK App — Product Store Model
+ * Slot App — Product Store Model
  * Products, cart, orders — like UC Store selling cleaning kits, tools, beauty products
  */
 const mongoose = require('mongoose');

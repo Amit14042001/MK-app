@@ -1,5 +1,5 @@
 /**
- * MK App Professional — Check-In Screen (Full)
+ * Slot App Professional — Check-In Screen (Full)
  * Customer OTP verification at job start, GPS location confirm, job timer start
  * Urban Company's signature "verify before you begin" feature
  */

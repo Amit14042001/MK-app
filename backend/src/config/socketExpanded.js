@@ -1,5 +1,5 @@
 /**
- * MK App — Socket.io Configuration (Complete)
+ * Slot App — Socket.io Configuration (Complete)
  * Real-time: booking updates, live tracking, chat, notifications
  */
 const socketIO = require('socket.io');
@@ -29,7 +29,7 @@ function initSocket(server) {
                     socket.handshake.headers.authorization?.replace('Bearer ', '');
       if (!token) return next(new Error('Authentication required'));
 
-      const decoded = jwt.verify(token, process.env.JWT_SECRET || 'mk_jwt_secret_2025');
+      const decoded = jwt.verify(token, process.env.JWT_SECRET || 'slot_jwt_secret_2025');
       socket.userId = decoded.id;
       socket.userRole = decoded.role;
       next();

@@ -1,5 +1,5 @@
 /**
- * MK App — AI Chat Booking Assistant Screen
+ * Slot App — AI Chat Booking Assistant Screen
  * LLM-powered conversational booking — UC doesn't have this
  * "Book AC service Sunday 10am" → auto-creates booking
  */
@@ -19,7 +19,7 @@ const { width: W } = Dimensions.get('window');
 const GREETING = {
   id: 'greeting',
   role: 'assistant',
-  text: "Hi! 👋 I'm your MK Assistant.\n\nI can help you book any home service just by chatting — no tapping through menus.\n\nTry: *\"Book AC service this Sunday at 10am\"*",
+  text: "Hi! 👋 I'm your Slot Assistant.\n\nI can help you book any home service just by chatting — no tapping through menus.\n\nTry: *\"Book AC service this Sunday at 10am\"*",
   timestamp: new Date(),
 };
 
@@ -206,7 +206,7 @@ export default function AIChatScreen({ navigation }) {
           <View style={S.headerAvatarRow}>
             <View style={S.headerAvatar}><Text style={{ fontSize: 18 }}>🤖</Text></View>
             <View>
-              <Text style={S.headerTitle}>MK Assistant</Text>
+              <Text style={S.headerTitle}>Slot Assistant</Text>
               <Text style={S.headerSub}>AI-powered booking · Always online</Text>
             </View>
           </View>

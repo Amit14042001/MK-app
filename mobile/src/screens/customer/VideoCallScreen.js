@@ -1,5 +1,5 @@
 /**
- * MK App — Video Consultation Screen (Customer Side, Full)
+ * Slot App — Video Consultation Screen (Customer Side, Full)
  * Agora-based video/audio call between customer and professional
  * Pre-call lobby, in-call controls, post-call summary
  */
@@ -202,7 +202,7 @@ export default function VideoCallScreen({ route, navigation }) {
       const { videoCallsAPI } = require('../../utils/api');
       const { data } = await videoCallsAPI.initiateCall({ bookingId: bookingId || 'demo' });
       setCallToken(data.token || 'demo_token_' + Date.now());
-      setChannelName(data.channelName || `mk_${bookingId || 'demo'}`);
+      setChannelName(data.channelName || `slot_${bookingId || 'demo'}`);
       setCallState(CALL_STATE.CALLING);
 
       // Listen for professional joining via socket

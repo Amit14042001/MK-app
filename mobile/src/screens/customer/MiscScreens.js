@@ -1,5 +1,5 @@
 /**
- * MK App Professional — KYC Verification Screen (Full)
+ * Slot App Professional — KYC Verification Screen (Full)
  * Aadhaar, PAN, selfie liveness check, bank details verification
  */
 import React, { useState } from 'react';
@@ -286,25 +286,25 @@ const KS = StyleSheet.create({
 
 const WHATSAPP_TEMPLATES = {
   booking_confirmed: (name, service, date, bookingId) =>
-    `Hi ${name}! ✅ Your *${service}* booking is confirmed.\n\n📅 Date: ${date}\n🔖 Booking ID: ${bookingId}\n\nTrack your professional: https://mkapp.in/track/${bookingId}`,
+    `Hi ${name}! ✅ Your *${service}* booking is confirmed.\n\n📅 Date: ${date}\n🔖 Booking ID: ${bookingId}\n\nTrack your professional: https://slotapp.in/track/${bookingId}`,
 
   professional_assigned: (name, proName, proPhone, eta) =>
-    `Hi ${name}! 👷 *${proName}* has been assigned for your service.\n\n📞 Contact: ${proPhone}\n🚗 ETA: ${eta} minutes\n\nTrack live: https://mkapp.in/track`,
+    `Hi ${name}! 👷 *${proName}* has been assigned for your service.\n\n📞 Contact: ${proPhone}\n🚗 ETA: ${eta} minutes\n\nTrack live: https://slotapp.in/track`,
 
   professional_arriving: (name, proName, mins) =>
     `Hi ${name}! ⏰ *${proName}* is ${mins} minutes away!\n\nPlease make sure someone is available at the address.`,
 
   job_completed: (name, service, bookingId) =>
-    `Hi ${name}! ✅ Your *${service}* is complete!\n\n⭐ Please rate your experience: https://mkapp.in/review/${bookingId}\n\nThank you for choosing MK App! 🙏`,
+    `Hi ${name}! ✅ Your *${service}* is complete!\n\n⭐ Please rate your experience: https://slotapp.in/review/${bookingId}\n\nThank you for choosing Slot App! 🙏`,
 
   payment_received: (name, amount, bookingId) =>
-    `Hi ${name}! 💰 Payment of *₹${amount}* received for booking #${bookingId}.\n\nYour invoice: https://mkapp.in/invoice/${bookingId}`,
+    `Hi ${name}! 💰 Payment of *₹${amount}* received for booking #${bookingId}.\n\nYour invoice: https://slotapp.in/invoice/${bookingId}`,
 
   booking_cancelled: (name, service, reason) =>
-    `Hi ${name}, your *${service}* booking has been cancelled.\n\nReason: ${reason}\n\nRebook anytime at https://mkapp.in`,
+    `Hi ${name}, your *${service}* booking has been cancelled.\n\nReason: ${reason}\n\nRebook anytime at https://slotapp.in`,
 
   offer_alert: (name, discount, service) =>
-    `Hi ${name}! 🎉 Special offer just for you!\n\n*${discount}% off* on ${service} today only!\n\nBook now: https://mkapp.in`,
+    `Hi ${name}! 🎉 Special offer just for you!\n\n*${discount}% off* on ${service} today only!\n\nBook now: https://slotapp.in`,
 };
 
 export const whatsappOutbound = {

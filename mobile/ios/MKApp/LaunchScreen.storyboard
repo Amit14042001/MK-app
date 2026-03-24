@@ -24,7 +24,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
 
-                        <!-- Dark navy background matching UC / MK brand -->
+                        <!-- Dark navy background matching Slot brand -->
                         <color key="backgroundColor" red="0.102" green="0.102" blue="0.180" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 
                         <subviews>
@@ -55,7 +55,7 @@
                                 contentMode="left"
                                 horizontalHuggingPriority="251"
                                 verticalHuggingPriority="251"
-                                text="MK"
+                                text="Slot"
                                 textAlignment="center"
                                 lineBreakMode="middleTruncation"
                                 translatesAutoresizingMaskIntoConstraints="NO"

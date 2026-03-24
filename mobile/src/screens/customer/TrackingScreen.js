@@ -10,7 +10,7 @@ import { useAuth } from '../../context/AuthContext';
 import io from 'socket.io-client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const API_URL = __DEV__ ? 'http://10.0.2.2:5000' : 'https://api.mkapp.in';
+const API_URL = __DEV__ ? 'http://10.0.2.2:5000' : 'https://api.slotapp.in';
 
 const STATUS_STEPS = [
   { status: 'confirmed', label: 'Booking Confirmed', icon: '✅' },
@@ -71,7 +71,7 @@ export default function TrackingScreen({ route, navigation }) {
   };
 
   const setupSocket = async () => {
-    const token = await AsyncStorage.getItem('mk_access_token');
+    const token = await AsyncStorage.getItem('slot_access_token');
     const socket = io(API_URL, {
       auth: { token },
       transports: ['websocket'],
@@ -95,9 +95,9 @@ export default function TrackingScreen({ route, navigation }) {
         (async () => {
           try {
             const AsyncStorage = require('@react-native-async-storage/async-storage').default;
-            const countStr = await AsyncStorage.getItem('mk_completed_bookings');
+            const countStr = await AsyncStorage.getItem('slot_completed_bookings');
             const count = parseInt(countStr || '0') + 1;
-            await AsyncStorage.setItem('mk_completed_bookings', String(count));
+            await AsyncStorage.setItem('slot_completed_bookings', String(count));
             // Trigger native In-App Review on 3rd, 10th, 25th booking
             if ([3, 10, 25].includes(count)) {
               try {

@@ -291,7 +291,7 @@ export default function HomeScreen({ navigation }) {
         <LinearGradient colors={[Colors.gradientStart, Colors.gradientEnd]} style={styles.heroBg}>
           <View style={styles.heroContent}>
             <Text style={styles.heroGreet}>
-              {user ? `Hey ${user.name?.split(' ')[0]} 👋` : 'Welcome to MK 👋'}
+              {user ? `Hey ${user.name?.split(' ')[0]} 👋` : 'Welcome to Slot 👋'}
             </Text>
             <Text style={styles.heroTitle}>What service{'\n'}do you need?</Text>
           </View>
@@ -382,7 +382,7 @@ export default function HomeScreen({ navigation }) {
               >
                 <View style={{ backgroundColor: '#E94560', padding: 16, borderRadius: 16, gap: 6 }}>
                   <Text style={{ fontSize: 28 }}>🛍️</Text>
-                  <Text style={{ fontSize: 13, fontWeight: '700', color: '#fff' }}>MK Store</Text>
+                  <Text style={{ fontSize: 13, fontWeight: '700', color: '#fff' }}>Slot Store</Text>
                   <Text style={{ fontSize: 11, color: 'rgba(255,255,255,0.75)' }}>Cleaning, beauty & tools</Text>
                   <View style={{ backgroundColor: 'rgba(255,255,255,0.2)', borderRadius: 8, paddingVertical: 5, alignItems: 'center', marginTop: 4 }}>
                     <Text style={{ fontSize: 11, color: '#fff', fontWeight: '700' }}>Shop Now →</Text>
@@ -534,7 +534,7 @@ export default function HomeScreen({ navigation }) {
 
           {/* How it works */}
           <View style={[styles.section, styles.howItWorks]}>
-            <Text style={[styles.sectionTitle, { textAlign: 'center', marginBottom: 24 }]}>How MK Works</Text>
+            <Text style={[styles.sectionTitle, { textAlign: 'center', marginBottom: 24 }]}>How Slot Works</Text>
             {[
               { n: '01', icon: '📱', title: 'Choose Service', desc: 'Browse 200+ services & pick what you need' },
               { n: '02', icon: '📅', title: 'Schedule Slot', desc: 'Pick date & time that suits you best' },

@@ -1,5 +1,5 @@
 /**
- * MK App — Address & Payment Management Screens (Full)
+ * Slot App — Address & Payment Management Screens (Full)
  * AddAddressScreen, AddressesScreen, PaymentMethodsScreen, EditProfileScreen
  */
 import React, { useState, useEffect, useCallback } from 'react';
@@ -256,7 +256,7 @@ export function PaymentMethodsScreen({ navigation }) {
     { icon: '💳', name: 'Credit / Debit Card', desc: 'Visa, Mastercard, RuPay', available: true },
     { icon: '📱', name: 'UPI', desc: 'Google Pay, PhonePe, Paytm, BHIM', available: true },
     { icon: '🏦', name: 'Net Banking', desc: 'All major banks supported', available: true },
-    { icon: '💰', name: 'MK Wallet', desc: `Balance: ₹${walletBalance.toLocaleString('en-IN')}`, available: true, isWallet: true },
+    { icon: '💰', name: 'Slot Wallet', desc: `Balance: ₹${walletBalance.toLocaleString('en-IN')}`, available: true, isWallet: true },
     { icon: '💵', name: 'Cash on Delivery', desc: 'Pay after service completion', available: true },
     { icon: '📊', name: 'EMI', desc: 'No cost EMI on credit cards (3/6/12 months)', available: true },
   ];
@@ -272,7 +272,7 @@ export function PaymentMethodsScreen({ navigation }) {
           <View style={S.walletLeft}>
             <Text style={S.walletEmoji}>💰</Text>
             <View>
-              <Text style={S.walletTitle}>MK Wallet</Text>
+              <Text style={S.walletTitle}>Slot Wallet</Text>
               <Text style={S.walletSub}>Use for instant payments</Text>
             </View>
           </View>

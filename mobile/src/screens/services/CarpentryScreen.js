@@ -1,5 +1,5 @@
 /**
- * MK App — Carpentry & Woodwork Services Screen (Full)
+ * Slot App — Carpentry & Woodwork Services Screen (Full)
  * Door repair, furniture assembly, custom woodwork, wardrobe fitting, window repair
  */
 import React, { useState, useRef } from 'react';

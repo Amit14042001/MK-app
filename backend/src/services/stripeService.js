@@ -1,5 +1,5 @@
 /**
- * MK App — Stripe Service
+ * Slot App — Stripe Service
  * International payments for UAE, Singapore, UK, US expansion
  * Complements Razorpay (India) with Stripe (rest of world)
  */
@@ -67,7 +67,7 @@ exports.createPaymentIntent = async (booking, countryCode = 'AE') => {
       appName:     'MKApp',
       countryCode,
     },
-    description: `MK App Booking: ${booking.bookingId}`,
+    description: `Slot App Booking: ${booking.bookingId}`,
     // Enable multiple payment method types for the region
     payment_method_types: getPaymentMethodsForRegion(countryCode),
   });
@@ -96,7 +96,7 @@ exports.createStorePaymentIntent = async (order, countryCode = 'AE') => {
       customerId:  order.user.toString(),
       type:        'store_order',
     },
-    description: `MK Store Order: ${order.orderId}`,
+    description: `Slot Store Order: ${order.orderId}`,
     payment_method_types: getPaymentMethodsForRegion(countryCode),
   });
 

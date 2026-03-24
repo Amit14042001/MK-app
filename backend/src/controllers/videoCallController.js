@@ -1,5 +1,5 @@
 /**
- * MK App — Video Call Controller (Full)
+ * Slot App — Video Call Controller (Full)
  * Agora RTC token generation, call lifecycle, recording, quality metrics
  */
 const { VideoCall } = require('../models/SupportModels');
@@ -53,7 +53,7 @@ exports.initiateCall = asyncHandler(async (req, res) => {
   });
   if (existing) return res.json({ success: true, data: existing, message: 'Rejoining existing call' });
 
-  const channelName = `mk_${bookingId}_${Date.now()}`;
+  const channelName = `slot_${bookingId}_${Date.now()}`;
   const callerUid = Math.floor(Math.random() * 100000) + 1;
   const receiverUid = callerUid + 1;
 

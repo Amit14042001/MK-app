@@ -1,5 +1,5 @@
 /**
- * MK App — WhatsApp Webhook Handler
+ * Slot App — WhatsApp Webhook Handler
  * Handles incoming WhatsApp messages via Meta Business API
  * Use cases: OTP delivery, booking updates, customer support
  */
@@ -12,7 +12,7 @@ const { asyncHandler, AppError } = require('../middleware/errorHandler');
 
 const WA_TOKEN    = process.env.WHATSAPP_TOKEN;
 const WA_PHONE_ID = process.env.WHATSAPP_PHONE_ID;
-const WA_VERIFY   = process.env.WHATSAPP_VERIFY_TOKEN || 'mk_wa_verify_2026';
+const WA_VERIFY   = process.env.WHATSAPP_VERIFY_TOKEN || 'slot_wa_verify_2026';
 const WA_API      = `https://graph.facebook.com/v18.0/${WA_PHONE_ID}/messages`;
 
 // ── Webhook verification (GET) ────────────────────────────────
@@ -74,7 +74,7 @@ async function processMessage(message, contact) {
     if (text === 'hi' || text === 'hello' || text === 'start') {
       await sendWAMessage(from, {
         type: 'text',
-        text: { body: `Hello ${name}! 👋 Welcome to MK — India's most trusted home services app.\n\nType:\n📋 *status* — Track your booking\n🆘 *help* — Get support\n📞 *call* — Request callback\n❌ *cancel* — Cancel booking` },
+        text: { body: `Hello ${name}! 👋 Welcome to Slot — India's most trusted home services app.\n\nType:\n📋 *status* — Track your booking\n🆘 *help* — Get support\n📞 *call* — Request callback\n❌ *cancel* — Cancel booking` },
       });
       return;
     }
@@ -82,18 +82,18 @@ async function processMessage(message, contact) {
     if (text === 'status' || text.includes('booking')) {
       const user = await User.findOne({ phone: `+91${from}` }).lean();
       if (!user) {
-        await sendWAMessage(from, { type:'text', text:{ body:'No account found. Download MK App: https://mkapp.in' } });
+        await sendWAMessage(from, { type:'text', text:{ body:'No account found. Download Slot App: https://slotapp.in' } });
         return;
       }
       const booking = await Booking.findOne({ customer:user._id, status:{ $nin:['completed','cancelled'] } })
         .populate('service','name icon').sort({ createdAt:-1 }).lean();
       if (!booking) {
-        await sendWAMessage(from, { type:'text', text:{ body:'You have no active bookings. Book a service at mkapp.in 🏠' } });
+        await sendWAMessage(from, { type:'text', text:{ body:'You have no active bookings. Book a service at slotapp.in 🏠' } });
         return;
       }
       await sendWAMessage(from, {
         type: 'text',
-        text: { body: `📋 *Booking Update*\n\n${booking.service?.icon} ${booking.service?.name}\nStatus: *${booking.status.replace(/_/g,' ').toUpperCase()}*\nID: ${booking.bookingId}\n📅 ${new Date(booking.scheduledDate).toDateString()} at ${booking.scheduledTime}\n\nTrack live: https://mkapp.in/track/${booking._id}` },
+        text: { body: `📋 *Booking Update*\n\n${booking.service?.icon} ${booking.service?.name}\nStatus: *${booking.status.replace(/_/g,' ').toUpperCase()}*\nID: ${booking.bookingId}\n📅 ${new Date(booking.scheduledDate).toDateString()} at ${booking.scheduledTime}\n\nTrack live: https://slotapp.in/track/${booking._id}` },
       });
       return;
     }
@@ -112,7 +112,7 @@ async function processMessage(message, contact) {
     // Default fallback
     await sendWAMessage(from, {
       type: 'text',
-      text: { body: `I didn't understand that. Reply:\n*status* — Booking status\n*help* — Support\n*call* — Callback\n\nOr visit mkapp.in 🏠` },
+      text: { body: `I didn't understand that. Reply:\n*status* — Booking status\n*help* — Support\n*call* — Callback\n\nOr visit slotapp.in 🏠` },
     });
   }
 
@@ -164,7 +164,7 @@ exports.sendBookingConfirmation = async (booking) => {
   const phone = user.phone.replace('+', '');
   await sendWAMessage(phone, {
     type: 'text',
-    text: { body: `✅ *Booking Confirmed!*\n\n📋 ${booking.service?.name}\n📅 ${new Date(booking.scheduledDate).toDateString()} at ${booking.scheduledTime}\n💰 ₹${booking.pricing?.totalAmount}\n\nID: ${booking.bookingId}\nTrack: https://mkapp.in/track/${booking._id}` },
+    text: { body: `✅ *Booking Confirmed!*\n\n📋 ${booking.service?.name}\n📅 ${new Date(booking.scheduledDate).toDateString()} at ${booking.scheduledTime}\n💰 ₹${booking.pricing?.totalAmount}\n\nID: ${booking.bookingId}\nTrack: https://slotapp.in/track/${booking._id}` },
   });
 };
 
@@ -176,7 +176,7 @@ exports.sendProAssigned = async (booking, professional) => {
   const proName = professional?.user?.name || 'a professional';
   await sendWAMessage(phone, {
     type: 'text',
-    text: { body: `👷 *Professional Assigned*\n\n${proName} will be at your location for ${booking.service?.name}.\n⭐ Rating: ${professional?.rating || 4.8}\n📍 Track live: https://mkapp.in/track/${booking._id}` },
+    text: { body: `👷 *Professional Assigned*\n\n${proName} will be at your location for ${booking.service?.name}.\n⭐ Rating: ${professional?.rating || 4.8}\n📍 Track live: https://slotapp.in/track/${booking._id}` },
   });
 };
 
@@ -185,7 +185,7 @@ exports.sendOTPWhatsApp = async (phone, otp) => {
   const to = phone.replace('+', '');
   await sendWAMessage(to, {
     type: 'text',
-    text: { body: `🔐 Your MK App OTP is: *${otp}*\n\nValid for 10 minutes. Do NOT share with anyone.\n\nIf you didn't request this, ignore this message.` },
+    text: { body: `🔐 Your Slot App OTP is: *${otp}*\n\nValid for 10 minutes. Do NOT share with anyone.\n\nIf you didn't request this, ignore this message.` },
   });
 };
 

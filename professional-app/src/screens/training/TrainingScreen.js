@@ -1,5 +1,5 @@
 /**
- * MK Professional App — TrainingScreen
+ * Slot Professional App — TrainingScreen
  * Courses, certifications, skill badges, video tutorials, quizzes
  */
 import React, { useState, useEffect, useRef } from 'react';

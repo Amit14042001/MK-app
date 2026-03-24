@@ -1,5 +1,5 @@
 /**
- * MK App — TimeSlotPicker Component
+ * Slot App — TimeSlotPicker Component
  * Urban Company style horizontal date scroller + time slot grid
  * Feature #2: Beautiful scrollable date+time slot picker
  */

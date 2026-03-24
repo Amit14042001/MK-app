@@ -1,5 +1,5 @@
 /**
- * MK Web — Live Booking Tracking Page (Full)
+ * Slot Web — Live Booking Tracking Page (Full)
  */
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useApp } from '../context/AppContext';

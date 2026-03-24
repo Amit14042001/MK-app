@@ -1,5 +1,5 @@
 /**
- * MK App — MultiAddressBookingScreen (Feature #16)
+ * Slot App — MultiAddressBookingScreen (Feature #16)
  * Book services at multiple addresses in one corporate order
  */
 import React, { useState } from 'react';

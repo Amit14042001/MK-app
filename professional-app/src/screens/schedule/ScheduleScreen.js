@@ -1,5 +1,5 @@
 /**
- * MK Professional App — ScheduleScreen
+ * Slot Professional App — ScheduleScreen
  * Full weekly/monthly calendar with availability toggling, blocked slots, booking slots
  */
 import React, { useState, useEffect, useCallback } from 'react';

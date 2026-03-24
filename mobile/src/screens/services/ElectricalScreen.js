@@ -1,5 +1,5 @@
 /**
- * MK App — Electrical Services Screen (Full Production v2)
+ * Slot App — Electrical Services Screen (Full Production v2)
  * Fan, switchboard, wiring, MCB, inverter, CCTV, smart home
  */
 import React, { useState, useRef } from 'react';

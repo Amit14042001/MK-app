@@ -1,5 +1,5 @@
 /**
- * MK App — SMS Utility (Twilio + MSG91 fallback)
+ * Slot App — SMS Utility (Twilio + MSG91 fallback)
  * Handles OTP delivery, booking alerts, promotional SMS
  */
 
@@ -47,19 +47,19 @@ const sendSMS = async (to, message) => {
 
 // ── Message templates ────────────────────────────────────────
 const sendOTPSMS = (phone, otp) =>
-  sendSMS(phone, `${otp} is your MK App OTP. Valid for 10 mins. DO NOT share with anyone. -MK Services`);
+  sendSMS(phone, `${otp} is your Slot App OTP. Valid for 10 mins. DO NOT share with anyone. -Slot Services`);
 
 const sendBookingConfirmationSMS = (phone, bookingId, date, time) =>
-  sendSMS(phone, `Booking ${bookingId} confirmed for ${date} at ${time}. Track at mkapp.in. -MK Services`);
+  sendSMS(phone, `Booking ${bookingId} confirmed for ${date} at ${time}. Track at slotapp.in. -Slot Services`);
 
 const sendBookingCancelledSMS = (phone, bookingId) =>
-  sendSMS(phone, `Booking ${bookingId} has been cancelled. Refund will be processed in 5-7 days. -MK Services`);
+  sendSMS(phone, `Booking ${bookingId} has been cancelled. Refund will be processed in 5-7 days. -Slot Services`);
 
 const sendProfessionalAssignedSMS = (phone, proName, eta) =>
-  sendSMS(phone, `${proName} is assigned for your booking and will arrive in ~${eta} mins. Track live on MK App. -MK Services`);
+  sendSMS(phone, `${proName} is assigned for your booking and will arrive in ~${eta} mins. Track live on Slot App. -Slot Services`);
 
 const sendPaymentReceiptSMS = (phone, amount, bookingId) =>
-  sendSMS(phone, `Payment of Rs.${amount} received for booking ${bookingId}. Thank you! -MK Services`);
+  sendSMS(phone, `Payment of Rs.${amount} received for booking ${bookingId}. Thank you! -Slot Services`);
 
 module.exports = {
   sendSMS, sendOTPSMS, sendBookingConfirmationSMS,

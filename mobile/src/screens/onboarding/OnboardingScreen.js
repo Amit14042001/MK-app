@@ -185,7 +185,7 @@ export function PermissionScreen({ onAllow, onSkip }) {
       if (Platform.OS === 'android') {
         const granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-          { title: 'Location Permission', message: 'MK App needs your location to find professionals near you.', buttonPositive: 'Allow' }
+          { title: 'Location Permission', message: 'Slot App needs your location to find professionals near you.', buttonPositive: 'Allow' }
         );
         setLocationGranted(granted === PermissionsAndroid.RESULTS.GRANTED);
       } else {

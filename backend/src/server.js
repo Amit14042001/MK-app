@@ -1,5 +1,5 @@
 /**
- * MK App — Express Server (Production-Complete)
+ * Slot App — Express Server (Production-Complete)
  * All routes wired, video calls, banners, FAQs, support tickets
  */
 require('dotenv').config();
@@ -99,11 +99,11 @@ app.get('/api/v1/metrics', async (req, res) => {
     ]);
     res.set('Content-Type', 'text/plain');
     res.send(
-      `mk_active_bookings ${active}\n` +
-      `mk_pending_bookings ${pending}\n` +
-      `mk_active_users ${users}\n` +
-      `mk_uptime_seconds ${Math.round(process.uptime())}\n` +
-      `mk_memory_mb ${Math.round(process.memoryUsage().rss / 1024 / 1024)}\n`
+      `slot_active_bookings ${active}\n` +
+      `slot_pending_bookings ${pending}\n` +
+      `slot_active_users ${users}\n` +
+      `slot_uptime_seconds ${Math.round(process.uptime())}\n` +
+      `slot_memory_mb ${Math.round(process.memoryUsage().rss / 1024 / 1024)}\n`
     );
   } catch { res.status(500).send(''); }
 });
@@ -182,7 +182,7 @@ async function bootstrap() {
 
     const PORT = parseInt(process.env.PORT || '5000');
     server.listen(PORT, '0.0.0.0', () => {
-      console.log(`\n🏠 MK App Server  ➜  http://localhost:${PORT}  (${process.env.NODE_ENV || 'development'})`);
+      console.log(`\n🏠 Slot App Server  ➜  http://localhost:${PORT}  (${process.env.NODE_ENV || 'development'})`);
       console.log(`📡 WebSocket       ➜  ws://localhost:${PORT}`);
       console.log(`📊 Metrics         ➜  http://localhost:${PORT}/api/v1/metrics\n`);
     });

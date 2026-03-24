@@ -1,5 +1,5 @@
 /**
- * MK App — Referral Controller (Full)
+ * Slot App — Referral Controller (Full)
  * Referral code generation, tracking, reward distribution
  */
 const User = require('../models/User');
@@ -18,7 +18,7 @@ const REFERRAL_REWARD = {
 
 // Generate unique referral code for user
 function generateReferralCode(userId, name) {
-  const prefix = name.replace(/[^a-zA-Z]/g, '').toUpperCase().substring(0, 4) || 'MK';
+  const prefix = name.replace(/[^a-zA-Z]/g, '').toUpperCase().substring(0, 4) || 'Slot';
   const suffix = crypto.createHash('md5').update(userId.toString()).digest('hex').substring(0, 4).toUpperCase();
   return `${prefix}${suffix}`;
 }
@@ -53,13 +53,13 @@ exports.getMyReferralCode = asyncHandler(async (req, res) => {
     },
   ]);
 
-  const shareMessage = `Hey! I've been using MK App for all my home services — AC repair, cleaning, salons and more. Use my code ${user.referralCode} and get ₹${REFERRAL_REWARD.REFEREE_DISCOUNT} off your first booking! Download: https://mkapp.in/download`;
+  const shareMessage = `Hey! I've been using Slot App for all my home services — AC repair, cleaning, salons and more. Use my code ${user.referralCode} and get ₹${REFERRAL_REWARD.REFEREE_DISCOUNT} off your first booking! Download: https://slotapp.in/download`;
 
   res.json({
     success: true,
     data: {
       referralCode: user.referralCode,
-      referralLink: `https://mkapp.in/join?ref=${user.referralCode}`,
+      referralLink: `https://slotapp.in/join?ref=${user.referralCode}`,
       shareMessage,
       rewards: REFERRAL_REWARD,
       stats: stats[0] || { totalReferred: 0, successfulReferrals: 0, totalEarned: 0, pendingRewards: 0 },
@@ -240,7 +240,7 @@ exports.shareReferral = asyncHandler(async (req, res) => {
     await user.save();
   }
 
-  const message = `${user.name} is inviting you to try MK App! Get ₹${REFERRAL_REWARD.REFEREE_DISCOUNT} off your first home service booking. Use code: ${user.referralCode} — https://mkapp.in/join?ref=${user.referralCode}`;
+  const message = `${user.name} is inviting you to try Slot App! Get ₹${REFERRAL_REWARD.REFEREE_DISCOUNT} off your first home service booking. Use code: ${user.referralCode} — https://slotapp.in/join?ref=${user.referralCode}`;
 
   const results = [];
   for (const phone of phones) {

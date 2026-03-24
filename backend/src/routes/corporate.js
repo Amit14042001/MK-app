@@ -1,5 +1,5 @@
 /**
- * MK App — Corporate Routes
+ * Slot App — Corporate Routes
  */
 const express = require('express');
 const router  = express.Router();
@@ -26,7 +26,7 @@ router.post('/enquiry', asyncHandler(async (req, res) => {
   try {
     const { sendEmail } = require('../utils/email');
     await sendEmail({
-      to:      process.env.SALES_EMAIL || 'sales@mkapp.in',
+      to:      process.env.SALES_EMAIL || 'sales@slotapp.in',
       subject: `New Corporate Enquiry — ${companyName}`,
       html: `<h2>New Corporate Enquiry</h2>
              <p><b>Company:</b> ${companyName}</p>
@@ -38,11 +38,11 @@ router.post('/enquiry', asyncHandler(async (req, res) => {
     // Also send acknowledgement to enquirer
     await sendEmail({
       to:      contactEmail,
-      subject: 'MK App — We received your enquiry',
+      subject: 'Slot App — We received your enquiry',
       html: `<h2>Thank you, ${contactName || contactEmail}!</h2>
              <p>We've received your corporate services enquiry for <b>${companyName}</b>.</p>
              <p>Our corporate team will contact you within 24 hours.</p>
-             <p>— MK App Team</p>`,
+             <p>— Slot App Team</p>`,
     });
   } catch (emailErr) {
     console.warn('[Corporate] Email failed (non-fatal):', emailErr.message);
@@ -203,7 +203,7 @@ router.get('/invoice/:year/:month', asyncHandler(async (req, res) => {
   res.json({
     success: true,
     data: {
-      invoiceNumber: `MK-CORP-${year}-${String(month).padStart(2,'0')}-${corp._id.toString().slice(-4).toUpperCase()}`,
+      invoiceNumber: `Slot-CORP-${year}-${String(month).padStart(2,'0')}-${corp._id.toString().slice(-4).toUpperCase()}`,
       period: { year: Number(year), month: Number(month) },
       company: corp.companyName,
       gstin: corp.gstin,

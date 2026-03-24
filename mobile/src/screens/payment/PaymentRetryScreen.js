@@ -1,5 +1,5 @@
 /**
- * MK App — PaymentRetryScreen (Feature #19) + CancellationPolicyScreen (Feature #20)
+ * Slot App — PaymentRetryScreen (Feature #19) + CancellationPolicyScreen (Feature #20)
  */
 import React, { useState, useEffect } from 'react';
 import {
@@ -35,7 +35,7 @@ export function PaymentRetryScreen({ navigation, route }) {
     { id: 'upi',     icon: '💳', label: 'UPI',             sub: 'GPay, PhonePe, Paytm' },
     { id: 'card',    icon: '💰', label: 'Credit/Debit Card',sub: 'Visa, Mastercard, RuPay' },
     { id: 'netbank', icon: '🏦', label: 'Net Banking',      sub: 'All major banks' },
-    { id: 'wallet',  icon: '👛', label: 'MK Wallet',        sub: 'Balance: ₹200' },
+    { id: 'wallet',  icon: '👛', label: 'Slot Wallet',        sub: 'Balance: ₹200' },
     { id: 'cash',    icon: '💵', label: 'Pay at Service',   sub: 'Cash on delivery' },
   ];
 
@@ -57,12 +57,12 @@ export function PaymentRetryScreen({ navigation, route }) {
       // Create a fresh Razorpay order for retry
       const { data: orderData } = await paymentsAPI.createOrder({ bookingId, amount });
       const paymentData = await RazorpayCheckout.open({
-        description:    'MK App Payment Retry',
-        image:          'https://mkapp.in/logo.png',
+        description:    'Slot App Payment Retry',
+        image:          'https://slotapp.in/logo.png',
         currency:       'INR',
         key:            process.env.RAZORPAY_KEY_ID || 'rzp_test_xxxxxxxxxx',
         amount:         amount * 100,
-        name:           'MK Services',
+        name:           'Slot Services',
         order_id:       orderData.orderId,
         theme:          { color: '#E94560' },
       });
@@ -201,7 +201,7 @@ export function CancellationPolicyScreen({ navigation, route }) {
       Alert.alert(
         'Booking Cancelled',
         refundAmt > 0
-          ? `₹${refundAmt} will be refunded to your MK Wallet within 24 hours.`
+          ? `₹${refundAmt} will be refunded to your Slot Wallet within 24 hours.`
           : 'No refund is applicable as per our cancellation policy.',
         [{ text: 'OK', onPress: () => navigation.navigate('BookingsTab') }]
       );
@@ -258,7 +258,7 @@ export function CancellationPolicyScreen({ navigation, route }) {
             ₹{refundAmt} ({refundPct}% of ₹{booking.pricing.amountPaid})
           </Text>
           {refundAmt > 0 ? (
-            <Text style={CP.refundNote}>💰 Credited to MK Wallet within 24 hours</Text>
+            <Text style={CP.refundNote}>💰 Credited to Slot Wallet within 24 hours</Text>
           ) : (
             <Text style={[CP.refundNote, { color: Colors.error }]}>⚠️ No refund applicable — too close to scheduled time</Text>
           )}

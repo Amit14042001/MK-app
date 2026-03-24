@@ -1,5 +1,5 @@
 /**
- * MK Professional App — Notifications Screen
+ * Slot Professional App — Notifications Screen
  */
 import React, { useState, useEffect, useCallback } from 'react';
 import {

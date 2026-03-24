@@ -1,7 +1,7 @@
 const { uploadToCloudinary } = require('../middleware/uploadValidation');
 
 /**
- * MK App — Upload Utility
+ * Slot App — Upload Utility
  * Wrapper around Cloudinary or local storage
  */
 exports.uploadToStorage = async (file, folder) => {

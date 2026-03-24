@@ -1,11 +1,11 @@
 {
-  "name": "MKPro",
-  "displayName": "MK Pro",
+  "name": "SlotPro",
+  "displayName": "Slot Pro",
   "version": "1.0.0",
   "buildNumber": "1",
-  "scheme": "mkpro",
+  "scheme": "slotpro",
   "android": {
-    "package": "in.mkapp.professional",
+    "package": "in.slotapp.professional",
     "versionCode": 1,
     "permissions": [
       "android.permission.INTERNET",
@@ -23,15 +23,15 @@
     "googleServicesFile": "./google-services.json"
   },
   "ios": {
-    "bundleIdentifier": "in.mkapp.professional",
+    "bundleIdentifier": "in.slotapp.professional",
     "buildNumber": "1",
     "supportsTablet": false,
     "infoPlist": {
-      "NSCameraUsageDescription": "MK Pro needs camera access to photograph jobs before and after completion.",
-      "NSMicrophoneUsageDescription": "MK Pro needs microphone access for customer video calls.",
-      "NSLocationWhenInUseUsageDescription": "MK Pro needs your location for job navigation and customer tracking.",
-      "NSLocationAlwaysUsageDescription": "MK Pro tracks your location in the background during active jobs.",
-      "NSPhotoLibraryUsageDescription": "MK Pro needs photo library access to upload job progress photos.",
+      "NSCameraUsageDescription": "Slot Pro needs camera access to photograph jobs before and after completion.",
+      "NSMicrophoneUsageDescription": "Slot Pro needs microphone access for customer video calls.",
+      "NSLocationWhenInUseUsageDescription": "Slot Pro needs your location for job navigation and customer tracking.",
+      "NSLocationAlwaysUsageDescription": "Slot Pro tracks your location in the background during active jobs.",
+      "NSPhotoLibraryUsageDescription": "Slot Pro needs photo library access to upload job progress photos.",
       "UIBackgroundModes": ["location", "fetch", "remote-notification"]
     },
     "googleServicesFile": "./GoogleService-Info.plist"

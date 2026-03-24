@@ -37,8 +37,6 @@
     <application
         android:name=".MainApplication"
         android:label="@string/app_name"
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:allowBackup="false"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
@@ -53,14 +51,13 @@
 
         <!-- ── Firebase / Google Services ─────────────── -->
         <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_notification" />
-        <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/primary" />
+            android:resource="@color/primary"
+            tools:replace="android:resource" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="mk_notifications" />
+            android:value="mk_notifications"
+            tools:replace="android:value" />
 
         <!-- ── Main Activity ────────────────────────── -->
         <activity
@@ -107,7 +104,7 @@
         <activity
             android:name="com.razorpay.CheckoutActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/CheckoutTheme" />
 
         <!-- ── File Provider (for image picker) ─────── -->

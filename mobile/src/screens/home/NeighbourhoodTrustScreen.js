@@ -1,5 +1,5 @@
 /**
- * MK App — NeighbourhoodTrustScreen
+ * Slot App — NeighbourhoodTrustScreen
  * Shows which pros your neighbours have used and rated.
  * "47 people in Kondapur used Ramesh — 44 gave 5 stars."
  * Hyper-local social proof. UC uses platform-wide ratings.

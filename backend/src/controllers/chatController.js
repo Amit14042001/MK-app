@@ -1,5 +1,5 @@
 /**
- * MK App — Chat Controller (Full)
+ * Slot App — Chat Controller (Full)
  * Real-time messaging between customers and professionals via Socket.io
  * Supports text, images, audio messages, booking context
  */

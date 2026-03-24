@@ -1,5 +1,5 @@
 /**
- * MK App — Mobile API Client (Full)
+ * Slot App — Mobile API Client (Full)
  */
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -15,7 +15,7 @@ export const api = axios.create({
 // ── Request interceptor: attach token ────────────────────────
 api.interceptors.request.use(
   async (config) => {
-    const token = await AsyncStorage.getItem('mk_access_token');
+    const token = await AsyncStorage.getItem('slot_access_token');
     if (token) config.headers.Authorization = `Bearer ${token}`;
     return config;
   },
@@ -50,18 +50,18 @@ api.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        const refreshToken = await AsyncStorage.getItem('mk_refresh_token');
+        const refreshToken = await AsyncStorage.getItem('slot_refresh_token');
         if (!refreshToken) throw new Error('No refresh token');
         const { data } = await axios.post(`${BASE_URL}/auth/refresh-token`, { refreshToken });
         const { accessToken } = data;
-        await AsyncStorage.setItem('mk_access_token', accessToken);
+        await AsyncStorage.setItem('slot_access_token', accessToken);
         api.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
         processQueue(null, accessToken);
         original.headers.Authorization = `Bearer ${accessToken}`;
         return api(original);
       } catch (err) {
         processQueue(err, null);
-        await AsyncStorage.multiRemove(['mk_access_token', 'mk_refresh_token', 'mk_user']);
+        await AsyncStorage.multiRemove(['slot_access_token', 'slot_refresh_token', 'slot_user']);
         return Promise.reject(err);
       } finally {
         isRefreshing = false;

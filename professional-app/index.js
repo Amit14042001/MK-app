@@ -1,5 +1,5 @@
 /**
- * MK Professional App — Entry Point
+ * Slot Professional App — Entry Point
  */
 import { AppRegistry, LogBox } from 'react-native';
 import App from './App';

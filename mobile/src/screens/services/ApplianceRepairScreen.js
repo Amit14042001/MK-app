@@ -1,5 +1,5 @@
 /**
- * MK App — Appliance Repair Screen (Full Production)
+ * Slot App — Appliance Repair Screen (Full Production)
  * Washing machine, refrigerator, microwave, TV, geyser, air cooler repair
  */
 import React, { useState, useRef } from 'react';
@@ -353,7 +353,7 @@ export default function ApplianceRepairScreen({ navigation }) {
         </View>
 
         <View style={styles.guaranteeCard}>
-          <Text style={styles.guaranteeTitle}>🛡️ MK App Repair Guarantee</Text>
+          <Text style={styles.guaranteeTitle}>🛡️ Slot App Repair Guarantee</Text>
           {['30-day warranty on all repairs','Genuine OEM spare parts only','Transparent pricing before work starts','No fix = No charge policy','Background-verified technicians'].map((item,i) => (
             <View key={i} style={styles.guaranteeRow}>
               <Text style={styles.guaranteeCheck}>✓</Text>

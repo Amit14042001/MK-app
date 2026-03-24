@@ -12,10 +12,10 @@
     // Google Maps — replace with your key
     [GMSServices provideAPIKey:@"YOUR_GOOGLE_MAPS_API_KEY"];
 
-    // Firebase — requires GoogleService-Info.plist in ios/MKPro/
+    // Firebase — requires GoogleService-Info.plist in ios/SlotPro/
     [FIRApp configure];
 
-    self.moduleName = @"MKPro";
+    self.moduleName = @"SlotPro";
     self.initialProps = @{};
 
     return [super application:application didFinishLaunchingWithOptions:launchOptions];
@@ -32,7 +32,7 @@
 #endif
 }
 
-// Deep links: mkpro://job/123
+// Deep links: slotpro://job/123
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
     options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
 {

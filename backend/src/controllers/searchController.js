@@ -1,5 +1,5 @@
 /**
- * MK App — Search Controller
+ * Slot App — Search Controller
  * Full-text search across services, professionals, categories with autocomplete
  */
 const Service      = require('../models/Service');

@@ -1,12 +1,12 @@
 /**
- * MK App — Auth Middleware (Complete)
+ * Slot App — Auth Middleware (Complete)
  * JWT verification, role-based access, optional auth, rate limits
  */
 const jwt      = require('jsonwebtoken');
 const User     = require('../models/User');
 const redis    = require('../config/redis');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'mk_jwt_secret_2025';
+const JWT_SECRET = process.env.JWT_SECRET || 'slot_jwt_secret_2025';
 
 // ── Error helpers ─────────────────────────────────────────────
 const authError = (res, message = 'Not authenticated', code = 401) =>
@@ -16,7 +16,7 @@ const authError = (res, message = 'Not authenticated', code = 401) =>
 function extractToken(req) {
   const auth = req.headers.authorization;
   if (auth?.startsWith('Bearer ')) return auth.slice(7);
-  if (req.cookies?.mk_token)       return req.cookies.mk_token;
+  if (req.cookies?.slot_token)       return req.cookies.slot_token;
   if (req.query?.token)            return req.query.token;
   return null;
 }

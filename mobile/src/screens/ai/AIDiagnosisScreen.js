@@ -1,5 +1,5 @@
 /**
- * MK App — AI Problem Diagnosis Screen
+ * Slot App — AI Problem Diagnosis Screen
  * Customer describes their home problem in natural language.
  * Claude API analyzes it, identifies the service, estimates cost,
  * and pre-fills the booking form — no category browsing needed.

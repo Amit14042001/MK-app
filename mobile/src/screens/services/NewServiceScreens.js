@@ -1,5 +1,5 @@
 /**
- * MK App — Car Wash, Home Shifting, Smart Home, Interior Design Screens
+ * Slot App — Car Wash, Home Shifting, Smart Home, Interior Design Screens
  * 4 missing Urban Company service categories
  */
 import React, { useState } from 'react';

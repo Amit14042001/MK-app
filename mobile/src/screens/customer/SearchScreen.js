@@ -64,7 +64,7 @@ export default function SearchScreen({ navigation }) {
 
   const loadRecent = async () => {
     try {
-      const stored = await AsyncStorage.getItem('mk_recent_searches');
+      const stored = await AsyncStorage.getItem('slot_recent_searches');
       if (stored) setRecent(JSON.parse(stored));
     } catch {}
   };
@@ -73,13 +73,13 @@ export default function SearchScreen({ navigation }) {
     try {
       const updated = [term, ...recent.filter(r => r !== term)].slice(0, 8);
       setRecent(updated);
-      await AsyncStorage.setItem('mk_recent_searches', JSON.stringify(updated));
+      await AsyncStorage.setItem('slot_recent_searches', JSON.stringify(updated));
     } catch {}
   };
 
   const clearRecent = async () => {
     setRecent([]);
-    await AsyncStorage.removeItem('mk_recent_searches');
+    await AsyncStorage.removeItem('slot_recent_searches');
   };
 
   // Debounced search
@@ -266,7 +266,7 @@ export default function SearchScreen({ navigation }) {
                     <TouchableOpacity onPress={() => {
                       const updated = recent.filter(r => r !== term);
                       setRecent(updated);
-                      AsyncStorage.setItem('mk_recent_searches', JSON.stringify(updated));
+                      AsyncStorage.setItem('slot_recent_searches', JSON.stringify(updated));
                     }}>
                       <Text style={styles.clearIcon}>✕</Text>
                     </TouchableOpacity>

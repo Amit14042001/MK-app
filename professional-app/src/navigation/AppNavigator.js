@@ -39,7 +39,7 @@ function RootNavigator() {
     return (
       <View style={{ flex:1, justifyContent:'center', alignItems:'center', backgroundColor:'#fff' }}>
         <Text style={{ fontSize:40, marginBottom:12 }}>🔧</Text>
-        <Text style={{ fontSize:22, fontWeight:'900', color:'#1A1A2E' }}>MK Pro</Text>
+        <Text style={{ fontSize:22, fontWeight:'900', color:'#1A1A2E' }}>Slot Pro</Text>
         <ActivityIndicator color="#E94560" size="small" style={{ marginTop:20 }} />
       </View>
     );

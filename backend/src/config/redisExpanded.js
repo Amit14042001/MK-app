@@ -1,5 +1,5 @@
 /**
- * MK App — Redis Config (Complete)
+ * Slot App — Redis Config (Complete)
  * Connection, helpers, cache middleware, rate limiter, pub/sub
  */
 const { createClient } = require('redis');

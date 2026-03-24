@@ -1,5 +1,5 @@
 /**
- * MK App — Subscription & Corporate Screens (Full)
+ * Slot App — Subscription & Corporate Screens (Full)
  */
 import React, { useState, useEffect } from 'react';
 import {
@@ -80,13 +80,13 @@ export default function SubscriptionScreen({ navigation }) {
       const plan = plans.find(p => p.id === selectedPlan);
 
       const options = {
-        description:  'MK Prime Subscription',
-        image:        'https://mkapp.in/logo.png',
+        description:  'Slot Prime Subscription',
+        image:        'https://slotapp.in/logo.png',
         currency:     'INR',
         key:          orderData.key,
         amount:       plan.price * 100,
         order_id:     orderData.order.id,
-        name:         'MK Services',
+        name:         'Slot Services',
         prefill: {
           email:    user?.email   || '',
           contact:  user?.phone   || '',
@@ -103,7 +103,7 @@ export default function SubscriptionScreen({ navigation }) {
         planType:          selectedPlan,
       });
 
-      Alert.alert('👑 Welcome to MK Prime!', 'Your subscription is now active. Enjoy exclusive benefits!',
+      Alert.alert('👑 Welcome to Slot Prime!', 'Your subscription is now active. Enjoy exclusive benefits!',
         [{ text: 'Awesome!', onPress: () => navigation.goBack() }]);
     } catch (err) {
       if (err.code !== 0) Alert.alert('Error', err.description || 'Subscription failed. Please try again.');
@@ -158,7 +158,7 @@ export default function SubscriptionScreen({ navigation }) {
             <Text style={S.backIcon}>←</Text>
           </TouchableOpacity>
           <Text style={S.heroEmoji}>👑</Text>
-          <Text style={S.heroTitle}>MK Prime</Text>
+          <Text style={S.heroTitle}>Slot Prime</Text>
           <Text style={S.heroSub}>India's most comprehensive home services membership</Text>
           {activeSub?.isActive && (
             <View style={S.activeTag}>
@@ -195,7 +195,7 @@ export default function SubscriptionScreen({ navigation }) {
 
         {/* Benefits */}
         <View style={S.benefitsCard}>
-          <Text style={S.benefitsTitle}>What's included in MK Prime</Text>
+          <Text style={S.benefitsTitle}>What's included in Slot Prime</Text>
           {BENEFITS.map((b, i) => <Benefit key={i} {...b} />)}
         </View>
 
@@ -271,7 +271,7 @@ export function CorporateScreen({ navigation }) {
       await corporateAPI.submitEnquiry(form);
       setStep('submitted');
     } catch {
-      Alert.alert('Error', 'Could not submit. Please email us at corporate@mkapp.in');
+      Alert.alert('Error', 'Could not submit. Please email us at corporate@slotapp.in');
     } finally {
       setSubmitting(false);
     }
@@ -312,7 +312,7 @@ export function CorporateScreen({ navigation }) {
             <>
               <View style={S.corpHero}>
                 <Text style={S.corpHeroIcon}>🏢</Text>
-                <Text style={S.corpHeroTitle}>MK for Business</Text>
+                <Text style={S.corpHeroTitle}>Slot for Business</Text>
                 <Text style={S.corpHeroSub}>Professional home services for your employees — all under one account</Text>
               </View>
               {CORP_BENEFITS.map((b, i) => (

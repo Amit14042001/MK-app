@@ -1,5 +1,5 @@
 /**
- * MK App — Admin Panel Full (Complete v2)
+ * Slot App — Admin Panel Full (Complete v2)
  * All 16 admin pages matching Urban Company admin dashboard
  */
 import React, { useState, useEffect, useCallback } from 'react';

@@ -1,5 +1,5 @@
 /**
- * MK App — Payment Methods Screen (Full)
+ * Slot App — Payment Methods Screen (Full)
  * Individual UPI apps, net banking, EMI with tenure, BNPL, saved cards CVV-less
  * Matches Urban Company's full payment flow
  */
@@ -70,10 +70,10 @@ const PAYMENT_SECTIONS = [
   },
   {
     id: 'wallet',
-    title: 'MK Wallet',
+    title: 'Slot Wallet',
     icon: '👛',
     methods: [
-      { id: 'mk_wallet', name: 'MK Wallet', logo: '👛', color: '#E94560', desc: 'Balance: ₹350', walletBalance: 350 },
+      { id: 'slot_wallet', name: 'Slot Wallet', logo: '👛', color: '#E94560', desc: 'Balance: ₹350', walletBalance: 350 },
     ],
   },
 ];
@@ -245,12 +245,12 @@ export default function PaymentMethodsScreen({ route, navigation }) {
       const { data: orderData } = await paymentsAPI.createOrder({ bookingId, amount });
       const RazorpayCheckout = require('react-native-razorpay').default;
       const paymentData = await RazorpayCheckout.open({
-        description:    'MK App Booking Payment',
-        image:          'https://mkapp.in/logo.png',
+        description:    'Slot App Booking Payment',
+        image:          'https://slotapp.in/logo.png',
         currency:       'INR',
         key:            process.env.RAZORPAY_KEY_ID || 'rzp_test_xxxxxxxxxx',
         amount:         amount * 100,
-        name:           'MK Services',
+        name:           'Slot Services',
         order_id:       orderData.orderId,
         prefill:        { contact: '', email: '' },
         theme:          { color: '#E94560' },

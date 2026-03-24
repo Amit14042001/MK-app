@@ -1,5 +1,5 @@
 /**
- * MK App — ThemeContext
+ * Slot App — ThemeContext
  * Dark mode, light mode, system mode, color customization
  * Feature #31: Dark mode support
  */
@@ -7,7 +7,7 @@ import React, { createContext, useContext, useState, useEffect, useCallback } fr
 import { useColorScheme, StatusBar } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const THEME_KEY = 'mk_theme_preference';
+const THEME_KEY = 'slot_theme_preference';
 
 // ── Light Theme ───────────────────────────────────────────────
 const LIGHT = {

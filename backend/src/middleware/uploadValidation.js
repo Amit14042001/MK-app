@@ -1,5 +1,5 @@
 /**
- * MK App — Middleware Collection
+ * Slot App — Middleware Collection
  * upload, validation, pagination, response formatter, rate-limiter helpers
  */
 
@@ -42,6 +42,18 @@ const createUploader = (type = 'image', fieldName = 'file', maxCount = 1) => {
 
 // Upload to Cloudinary
 const uploadToCloudinary = async (buffer, folder, options = {}) => {
+  try {
+    if (folder === 'services' || folder === 'professionals') {
+      const svgText = `<svg width="260" height="50"><rect width="240" height="40" x="10" y="5" fill="#F8C128" fill-opacity="0.95" rx="4"/><text x="130" y="31" font-family="sans-serif" font-size="17" font-weight="bold" fill="#111" text-anchor="middle">ServeNow Certified</text></svg>`;
+      const sharp = require('sharp');
+      buffer = await sharp(buffer)
+        .composite([{ input: Buffer.from(svgText), gravity: 'southeast' }])
+        .toBuffer();
+    }
+  } catch (e) {
+    console.error('ServeNow Watermark failed:', e.message);
+  }
+
   if (!process.env.CLOUDINARY_CLOUD_NAME) {
     // Dev: save to local
     const fileName = `upload_${Date.now()}.jpg`;
@@ -59,7 +71,7 @@ const uploadToCloudinary = async (buffer, folder, options = {}) => {
 
   return new Promise((resolve, reject) => {
     const stream = cloudinary.uploader.upload_stream(
-      { folder: `mk-app/${folder}`, ...options },
+      { folder: `slot-app/${folder}`, ...options },
       (err, result) => err ? reject(err) : resolve({ url: result.secure_url, publicId: result.public_id })
     );
     stream.end(buffer);

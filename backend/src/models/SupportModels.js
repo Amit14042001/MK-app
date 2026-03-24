@@ -1,5 +1,5 @@
 /**
- * MK App — FAQ, SupportTicket, VideoCall Models + Controllers
+ * Slot App — FAQ, SupportTicket, VideoCall Models + Controllers
  */
 const mongoose = require('mongoose');
 const { asyncHandler, AppError } = require('../middleware/errorHandler');

@@ -1,9 +1,9 @@
-# 🏠 MK App — Complete Urban Company Clone
+# 🏠 Slot App — Complete Urban Company Clone
 ### Full-Stack · 5 Apps · React Native iOS+Android · Docker · Redis · Firebase
 
 ## 📦 What's Inside
 ```
-mk-app/
+slot-app/
 ├── backend/           Node.js + Express + MongoDB + Redis + Firebase
 ├── frontend/          React 18 web (pixel-perfect UC UI)
 ├── mobile/            React Native customer app (iOS + Android)
@@ -32,7 +32,7 @@ cp .env.example .env && ./scripts/deploy.sh prod
 | Customer | 9876543210 | 1234 |
 | Professional | 9123456789 | 1234 |
 
-Coupons: **MKWELCOME** (20% off) · **MK100** (₹100 flat) · **AUTOCARE** (15% off auto)
+Coupons: **SLOTWELCOME** (20% off) · **SLOT100** (₹100 flat) · **AUTOCARE** (15% off auto)
 
 ## 📱 Mobile Setup
 ```bash
@@ -88,5 +88,5 @@ Node.js · Express · MongoDB · Redis · React 18 · React Native 0.73
 Socket.IO · Razorpay · Firebase FCM · Twilio · Google Maps/Places
 Docker · Nginx · Let's Encrypt · JWT · Mongoose
 
-Built with ❤️ — MK Technologies © 2026
-# MK-app
+Built with ❤️ — Slot Technologies © 2026
+# slot-app

@@ -1,5 +1,5 @@
 /**
- * MK App — Reschedule Screen (Full)
+ * Slot App — Reschedule Screen (Full)
  * Pick a new date and time for an existing booking
  */
 import React, { useState, useEffect } from 'react';

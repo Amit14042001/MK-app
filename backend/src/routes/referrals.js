@@ -1,5 +1,5 @@
 /**
- * MK App — Referrals Routes (Full)
+ * Slot App — Referrals Routes (Full)
  */
 const express = require('express');
 const router  = express.Router();

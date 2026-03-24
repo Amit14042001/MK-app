@@ -1,5 +1,5 @@
 /**
- * MK Web — Profile Page (Full)
+ * Slot Web — Profile Page (Full)
  */
 import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
@@ -41,9 +41,9 @@ export default function ProfilePage({ navigate = () => {} }) {
 
   const MENU = [
     { icon: '📋', label: 'My Bookings',     path: '/bookings' },
-    { icon: '💰', label: 'MK Wallet',       path: '/wallet' },
+    { icon: '💰', label: 'Slot Wallet',       path: '/wallet' },
     { icon: '📍', label: 'Saved Addresses', path: '/addresses' },
-    { icon: '👑', label: 'MK Prime',        path: '/prime' },
+    { icon: '👑', label: 'Slot Prime',        path: '/prime' },
     { icon: '🏢', label: 'Corporate',       path: '/corporate' },
     { icon: '🔔', label: 'Notifications',   path: '/notifications' },
     { icon: '🎁', label: 'Offers & Coupons',path: '/offers' },
@@ -140,7 +140,7 @@ export default function ProfilePage({ navigate = () => {} }) {
           <span className="block bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl p-4 mb-6 flex items-center gap-3 hover:opacity-90 transition-opacity">
             <span className="text-3xl">👑</span>
             <div className="flex-1">
-              <p className="font-black text-white">Upgrade to MK Prime</p>
+              <p className="font-black text-white">Upgrade to Slot Prime</p>
               <p className="text-sm text-white/80">Save 15% on every booking + free services</p>
             </div>
             <span className="text-white font-bold text-lg">→</span>
@@ -167,7 +167,7 @@ export default function ProfilePage({ navigate = () => {} }) {
           🚪 Logout
         </button>
 
-        <p className="text-center text-xs text-gray-400">MK Services v1.0.0 · Referral: {profile?.referralCode || '—'}</p>
+        <p className="text-center text-xs text-gray-400">Slot Services v1.0.0 · Referral: {profile?.referralCode || '—'}</p>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 /**
- * MK App — Category Model + Controller + Routes
+ * Slot App — Category Model + Controller + Routes
  */
 const mongoose = require('mongoose');
 const { asyncHandler, AppError } = require('../middleware/errorHandler');

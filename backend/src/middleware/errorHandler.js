@@ -1,5 +1,5 @@
 /**
- * MK App — Error Handler Middleware (Full)
+ * Slot App — Error Handler Middleware (Full)
  */
 class AppError extends Error {
   constructor(message, statusCode) {

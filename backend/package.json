@@ -1,7 +1,7 @@
 {
-  "name": "mk-app-backend",
+  "name": "slot-app-backend",
   "version": "1.0.0",
-  "description": "MK App - Urban Company Clone Backend API",
+  "description": "Slot App - Urban Company Clone Backend API",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
@@ -31,6 +31,7 @@
     "nodemailer": "^6.9.7",
     "razorpay": "^2.9.2",
     "redis": "^5.11.0",
+    "sharp": "^0.34.5",
     "socket.io": "^4.6.1",
     "stripe": "^14.21.0",
     "twilio": "^4.19.3",

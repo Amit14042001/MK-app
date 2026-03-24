@@ -1,5 +1,5 @@
 /**
- * MK App — Review / Rating Screen (Full)
+ * Slot App — Review / Rating Screen (Full)
  * Post-service rating with category ratings, tags, photos
  */
 import React, { useState } from 'react';

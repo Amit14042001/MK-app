@@ -1,5 +1,5 @@
 /**
- * MK App — ProPerformanceCard Component
+ * Slot App — ProPerformanceCard Component
  * Live performance score shown to customers before booking.
  * Shows: composite score, punctuality %, re-do rate, completion %, badges.
  * UC hides these metrics — we make them fully transparent.

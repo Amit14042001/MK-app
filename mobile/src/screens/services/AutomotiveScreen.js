@@ -1,5 +1,5 @@
 /**
- * MK App — Automotive Services Screen (Full)
+ * Slot App — Automotive Services Screen (Full)
  * Car battery, jump start, oil change, tyre, wash, AC, dent repair
  */
 import React, { useState } from 'react';

@@ -1,5 +1,5 @@
 /**
- * MK App Professional — Camera Screen (Full)
+ * Slot App Professional — Camera Screen (Full)
  * Before/after photo capture for jobs, document uploads, work evidence
  */
 import React, { useState, useRef, useCallback } from 'react';
